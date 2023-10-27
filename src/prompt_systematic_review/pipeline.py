@@ -2,7 +2,7 @@ from datasets import load_dataset, Dataset
 import os
 
 
-def is_authenticated_with_huggingface():
+def is_authenticated():
     """
     Check if the user is authenticated with huggingface-cli.
     Returns:
@@ -22,3 +22,6 @@ def is_authenticated_with_huggingface():
 
 
 #make sure
+
+def dummyfunc():
+    return True
