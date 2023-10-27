@@ -1,38 +1,24 @@
-from datasets import load_dataset, concatenate_datasets
+from datasets import load_dataset, Dataset
+import os
 
-"""
-Gets Huggingface dataset
-dataset_name: The name of the dataset on Huggingface
-user_name: The name under which the dataset has been created
-Returns a Dataset object
-"""
-def get(dataset_name, user_name):
-    return load_dataset(user_name + "/" + dataset_name)
 
-"""
-Replaces entire database in Huggingface
-dataset_name: The name of the dataset on Huggingface
-new_dataset: A Dataset object containing the new dataset
-"""
-def push(dataset_name, new_dataset):
-    new_dataset.push_to_hub(dataset_name)
-
-"""
-Appends to current dataset in Huggingface (experimental)
-user_name: The name under which the dataset has been created
-dataset_name: The name of the dataset on Huggingface
-new_dataset: A Dataset object containing the new dataset
-"""
-def append(user_name, dataset_name, new_dataset):
+def is_authenticated_with_huggingface():
+    """
+    Check if the user is authenticated with huggingface-cli.
+    Returns:
+    - bool: True if authenticated, False otherwise.
+    """
+    token_path = os.path.join(os.path.expanduser("~"), ".huggingface", "token")
+    # Check if the token file exists
+    if not os.path.exists(token_path):
+        return False
+    # Check if the token file has content (i.e., the token)
+    with open(token_path, 'r') as f:
+        token = f.read().strip()
+        if not token:
+            return False
     
-    #Try-except for empty dataset case
-    try:
-        #Assuming split 'train' as it seems to be the default split
-        dataset = load_dataset(user_name + "/" + dataset_name, split="train")
-        appended_dataset = concatenate_datasets([dataset,new_dataset])
-        appended_dataset.push_to_hub(dataset_name)
-    except:
-        push(dataset_name, new_dataset)
+    return True
 
 
-
+#make sure
