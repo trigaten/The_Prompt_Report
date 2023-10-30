@@ -1,22 +1,6 @@
-"The Creativity of Text-to-Image Generation" 
-- Applying prompts/prompt engineering
-
-"Beyond Traditional Teaching: The Potential of Large Language Models and Chatbots in Graduate Engineering Education"
-- Analysis of model
-- Applying prompts/prompt engineering
-- Agents
-- Ethics/Consequences
-
-"Collective Creativity in Crowd Ideation"
-- Survey
-- Analysis of technique
-- Applying prompts/prompt engineering
-- Agents
-
-"Massive prompt cusps: A new signature of warm dark matter" 
-- Analysis of technique
-- Analysis of model
-
-
-"Scientific Literature Text Mining and the Case for Open Access" - 
-- New model
+Title, Link, Labels
+"The Creativity of Text-to-Image Generation", http://dx.doi.org/10.1145/3569219.3569352, Applying prompts/prompt engineering
+"Beyond Traditional Teaching: The Potential of Large Language Models and Chatbots in Graduate Engineering Education", http://dx.doi.org/10.32388/MD04B0, Analysis of model;Applying prompts/prompt engineering;Agents;Ethics/Consequences
+"Collective Creativity in Crowd Ideation", http://dx.doi.org/10.1145/3411764.3445782, Survey;Analysis of technique;Applying prompts/prompt engineering;Agents
+"Massive prompt cusps: A new signature of warm dark matter", http://dx.doi.org/10.1093/mnrasl/slad043, Analysis of technique;Analysis of model
+"Scientific Literature Text Mining and the Case for Open Access", http://dx.doi.org/10.21428/14888, New model
