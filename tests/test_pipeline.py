@@ -12,12 +12,12 @@ def hashString(bytes):
 
 @pytest.fixture
 def client():
-    return Pipeline(token=os.environ['HF_TOKEN'])
+    return Pipeline(token=os.environ['HF_AUTH_TOKEN'])
 
 def test_login():
     testClient = Pipeline()
     assert testClient.is_logged_in() == False
-    testClient.login(os.environ['HF_TOKEN'])
+    testClient.login(os.environ['HF_AUTH_TOKEN'])
     assert testClient.is_logged_in() == True
 
 def test_get_all_files(client):
