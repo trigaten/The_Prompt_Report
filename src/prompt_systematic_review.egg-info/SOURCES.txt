@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+examples/search_pe_papers.ipynb
+src/prompt_systematic_review/__init__.py
+src/prompt_systematic_review/keywords.py
+src/prompt_systematic_review/utils.py
+src/prompt_systematic_review.egg-info/PKG-INFO
+src/prompt_systematic_review.egg-info/SOURCES.txt
+src/prompt_systematic_review.egg-info/dependency_links.txt
+src/prompt_systematic_review.egg-info/requires.txt
+src/prompt_systematic_review.egg-info/top_level.txt
+tests/__init__.py
+tests/test_utils.py

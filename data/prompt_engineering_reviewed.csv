@@ -4,3 +4,15 @@ Title, Link, Labels
 "Collective Creativity in Crowd Ideation", http://dx.doi.org/10.1145/3411764.3445782, Survey;Analysis of technique;Applying prompts/prompt engineering;Agents
 "Massive prompt cusps: A new signature of warm dark matter", http://dx.doi.org/10.1093/mnrasl/slad043, Analysis of technique;Analysis of model
 "Scientific Literature Text Mining and the Case for Open Access", http://dx.doi.org/10.21428/14888, New model
+"Cutting Down on Prompts and Parameters: Simple Few-Shot Learning with Language Models", https://arxiv.org/abs/2106.13353v2, New Technique;Analysis of     Technique;Applying Prompts/Prompt Engineering
+"Tailored Visions: Enhancing Text-to-Image Generation with Personalized Prompt Rewriting", https://arxiv.org/abs/2310.08129v1, New Technique;Analysis of Technique;Other Modality than Text;Applying Prompts/Prompt Engineering
+"Large Language Models in the Workplace: A Case Study on Prompt Engineering for Job Type Classification", https://arxiv.org/abs/2303.07142v3, Applying Promtps/Prompt Engineering;Analysis of Model
+"Open-Ended Instructable Embodied Agents with Memory-Augmented Large Language Models", https://arxiv.org/abs/2310.15127v1, New model;New Technique;Agents
+"Addressing Compiler Errors: Stack Overflow or Large Language Models?", https://arxiv.org/abs/2307.10793v1, Analysis of model;Applying Prompts/Prompt Engineering
+"Prompt Learning for Action Recognition", http://arxiv.org/abs/2305.12437v1, New Technique; Agents; Analysis of technique; Applying prompts/prompt engineering; Other modality than text
+"Effective Structured Prompting by Meta-Learning and Representative Verbalizer",http://arxiv.org/abs/2306.00618v1, New Technique; Analysis of technique
+"Invalid Logic, Equivalent Gains: The Bizarreness of Reasoning in Language Model Prompting",http://arxiv.org/abs/2307.10573v2, Analysis of technique
+"High-Fidelity Lake Extraction via Two-Stage Prompt Enhancement: Establishing a Novel Baseline and Benchmark",http://arxiv.org/abs/2308.08443v1, Analysis of technique; Other modality than text; Applying prompts/prompt engineering
+Structured Prompt Tuning,http://arxiv.org/abs/2205.12309v1, New Technique
+
+
