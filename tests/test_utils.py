@@ -1,5 +1,4 @@
 # test_utils.py
-import pytest
 from prompt_systematic_review.utils import search_arxiv, count_articles
 
 def test_search_arxiv():

@@ -1,4 +1,3 @@
-import pytest
 from prompt_systematic_review.paperSource import Paper
 from datetime import date
 
