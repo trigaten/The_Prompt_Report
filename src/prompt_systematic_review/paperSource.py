@@ -12,9 +12,9 @@ class Paper():
         self.firstAuthor = firstAuthor
         self.url = url
         self.dateSubmitted = dateSubmitted
-        self.keywords = keywords
+        self.keywords = keyWords
         try:
-            assert set(keywords) == set([k.lower() for k in keyWords])
+            assert set(keyWords) == set([k.lower() for k in keyWords])
         except:
             raise ValueError("Keywords must be lowercase")
     
