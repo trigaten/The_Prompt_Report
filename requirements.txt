@@ -2,4 +2,5 @@ numpy
 pandas
 requests
 matplotlib
+jellyfish
 -e .
