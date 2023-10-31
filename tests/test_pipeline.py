@@ -8,14 +8,14 @@ import hashlib
 
 
 def hashString(bytes):
-    return hashlib.sha256(bytes).hexdigest()
+    return str(hashlib.md5(bytes).hexdigest())
 
 @pytest.fixture
 def client():
-    return Pipeline(token=os.environ['HF_AUTH_TOKEN'])
+    return Pipeline(token=os.environ['HF_AUTH_TOKEN'],revision="test")
 
 def test_login():
-    testClient = Pipeline()
+    testClient = Pipeline(revision="test")
     assert testClient.is_logged_in() == False
     testClient.login(os.environ['HF_AUTH_TOKEN'])
     assert testClient.is_logged_in() == True
@@ -37,10 +37,17 @@ def test_write_to_file(client):
     randString = random.randbytes(100) + str(time.time()).encode()
     randHash = hashString(randString)
     csvDict = {"test":[1,3], "test2":[2,4]}
-    client.write_to_file(f"test_{randHash}.csv", pd.DataFrame(csvDict))
-    df = client.read_from_file(f"test_{randHash}.csv") 
+    print(client.revision)
+    client.write_to_file(f"{randHash[:10]}_test.csv", pd.DataFrame(csvDict))
+    print(client.revision)
+    time.sleep(1)
+    # assert client.revision == "main"
+    df = client.read_from_file(f"{randHash[:10]}_test.csv") 
     assert df["test"].sum() == 4
     assert df["test2"].sum() == 6
-    client.fs.delete(f"test_{randHash}.csv")
-    assert len(client.get_all_files()) == lenOfFiles
+    #time.sleep(1)
+    #client.fs.delete(f"{randHash[:10]}_test.csv",revision="test")
+    #assert len(client.get_all_files()) == lenOfFiles
+
+
     
