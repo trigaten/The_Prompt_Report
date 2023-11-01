@@ -1,6 +1,7 @@
 from prompt_systematic_review.paperSource import Paper
 from prompt_systematic_review.arxiv_source import ArXivSource
 from datetime import date, datetime
+from prompt_systematic_review.utils import process_paper_title
 
 def test_paper():
     paper1 = Paper("How to write a paper", "Harry Parnasus", "example.com", date(2000,2,2), ["keyword1", "keyword2"])
@@ -28,7 +29,7 @@ def test_arxiv_source():
     TITLE = "Foundational Models in Medical Imaging: A Comprehensive Survey and Future Vision"
     papers = arxiv_source.getPapers(1, [TITLE])
     paper = papers[0]
-    assert paper.title.lower().replace('\n', '').replace("  ", " ") == TITLE.lower()
+    assert process_paper_title(paper.title) == TITLE.lower()
     assert paper.firstAuthor == "Bobby Azad"
     assert paper.url == "http://arxiv.org/abs/2310.18689v1"
 
