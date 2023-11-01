@@ -3,4 +3,5 @@ pandas
 requests
 matplotlib
 jellyfish
+black
 -e .
