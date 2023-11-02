@@ -8,19 +8,21 @@
 
 import renku_sphinx_theme
 
-project = 'Prompt Systematic Review'
-copyright = '2023, Schulhoff et al.'
-author = 'Schulhoff et al.'
-release = '0.0.1'
+project = "Prompt Systematic Review"
+copyright = "2023, Schulhoff et al."
+author = "Schulhoff et al."
+release = "0.0.1"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.autodoc", 'renku_sphinx_theme',]
+extensions = [
+    "sphinx.ext.autodoc",
+    "renku_sphinx_theme",
+]
 
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-
+templates_path = ["_templates"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -28,4 +30,4 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
 html_theme = "renku"
-html_static_path = ['_static']
+html_static_path = ["_static"]
