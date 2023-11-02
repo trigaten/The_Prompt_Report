@@ -1,11 +1,7 @@
 # test_utils.py
-import pytest
-from prompt_systematic_review.utils import search_arxiv, count_articles
+from prompt_systematic_review.utils import process_paper_title
 
-def test_search_arxiv():
-    data = search_arxiv("covid",max_results=10)
-    assert len(data) > 0
 
-def test_count_articles():
-    data = search_arxiv("covid",max_results=10)
-    assert count_articles(data) == 10
+
+def test_process_paper_title():
+    assert process_paper_title("Laws  of the\n Wildabeest") == "laws of the wildabeest"
