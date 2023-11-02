@@ -6,4 +6,5 @@ jellyfish
 black
 sphinx
 renku-sphinx-theme
+sphinx-autobuild
 -e .
