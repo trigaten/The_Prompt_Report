@@ -1,9 +1,8 @@
 from prompt_systematic_review.paperSource import Paper
 from prompt_systematic_review.arxiv_source import ArXivSource
+from prompt_systematic_review.ieee_source import IEEESource
 from datetime import date, datetime
 from prompt_systematic_review.utils import process_paper_title
-
-
 
 def test_paper():
     paper1 = Paper(
@@ -60,4 +59,28 @@ def test_arxiv_source():
     assert paper.keywords == [
         "foundational models in medical imaging: a comprehensive survey and future vision"
     ]
+
+def test_ieee_source():
+    # test that IEEE source returns papers properly
+    ieee_source = IEEESource()
+    papers = ieee_source.getPapers(2, ["machine learning"])
+    assert len(papers) == 2
+    for paper in papers:
+        assert isinstance(paper, Paper)
+        assert isinstance(paper.url, str)
+        assert len(paper.url) > 0
+
+    # test that IEEE source returns the exact information for one paper properly
+    ieee_source = IEEESource()
+    TITLE = "Machine learning and its applications: A review"  
+    papers = ieee_source.getPapers(1, [TITLE])
+    paper = papers[0]
+    assert process_paper_title(paper.title) == TITLE.lower()
+    assert paper.firstAuthor == "Sheena Angra"
+    assert paper.url.startswith("https://ieeexplore.ieee.org/document/")  
+
+    date_object = date(2020, 9, 24)
+    assert paper.dateSubmitted == date_object
+    assert "Big Data" in [kw.lower() for kw in paper.keywords] 
+    assert "decision trees" in [kw.lower() for kw in paper.keywords] 
 
