@@ -44,7 +44,6 @@ class Pipeline:
         return self.fs.glob(self.root+"**.csv",revision=self.revision)
     
     def read_from_file(self, fileName):
-        print("TTTTT", os.path.join(self.root, fileName), self.revision)
         self.fs = None 
         self.fs = HfFileSystem(token=self.token)
         text = self.fs.read_text(os.path.join(self.root, fileName),revision=self.revision)
