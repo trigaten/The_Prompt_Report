@@ -4,7 +4,6 @@ from datetime import date, datetime
 from prompt_systematic_review.utils import process_paper_title
 
 
-
 def test_paper():
     paper1 = Paper(
         "How to write a paper",
@@ -30,7 +29,6 @@ def test_paper():
 
     assert paper1 == alsoPaper1
     assert paper1 != paper2 and paper2 != alsoPaper1
-
 
 
 def test_arxiv_source():
@@ -60,4 +58,3 @@ def test_arxiv_source():
     assert paper.keywords == [
         "foundational models in medical imaging: a comprehensive survey and future vision"
     ]
-
