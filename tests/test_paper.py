@@ -72,15 +72,15 @@ def test_ieee_source():
 
     # test that IEEE source returns the exact information for one paper properly
     ieee_source = IEEESource()
-    TITLE = "Machine learning and its applications: A review"  
-    papers = ieee_source.getPapers(1, [TITLE])
+    KEYWORDS = "Large Language Models"  
+    papers = ieee_source.getPapers(1, [KEYWORDS])
     paper = papers[0]
-    assert process_paper_title(paper.title) == TITLE.lower()
-    assert paper.firstAuthor == "Sheena Angra"
-    assert paper.url.startswith("https://ieeexplore.ieee.org/document/")  
+    print (paper.title)
+    assert paper.firstAuthor == "Qurat Ul Ain Ali"
+    assert paper.url.startswith("https://ieeexplore.ieee.org/")  
 
-    date_object = date(2020, 9, 24)
+    date_object = date(2021, 10, 10)
     assert paper.dateSubmitted == date_object
-    assert "Big Data" in [kw.lower() for kw in paper.keywords] 
-    assert "decision trees" in [kw.lower() for kw in paper.keywords] 
+    assert "scalability" in [kw.lower() for kw in paper.keywords] 
+    assert "java" in [kw.lower() for kw in paper.keywords] 
 

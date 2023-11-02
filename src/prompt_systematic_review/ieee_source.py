@@ -8,7 +8,6 @@ from prompt_systematic_review.paperSource import Paper
 class IEEESource:
    """A class to represent a source of papers from IEEE."""
 
-
    baseURL = "https://ieeexploreapi.ieee.org/api/v1/search/articles"
 
 
@@ -42,13 +41,14 @@ class IEEESource:
 
            for entry in root.findall(".//article"):
                title = entry.find("title").text
-               firstAuthor = entry.find("authors/full_name").text if entry.find("authors/full_name") is not None else ""
+               firstAuthor = entry.find("authors/author/full_name").text if entry.find("authors/author/full_name") is not None else ""
                url = entry.find("pdf_url").text
                dateSubmitted = entry.find("publication_date").text
               
-               keywords = [term.text for term in entry.findall("index_terms/author_terms") if term.text] + \
-                [term.text for term in entry.findall("index_terms/ieee_terms") if term.text]
+               keywords = [term.text for term in entry.findall("index_terms/author_terms/terms") if term.text] + \
+                       [term.text for term in entry.findall("index_terms/ieee_terms/term") if term.text]
                keywords = [k.lower() for k in keywords]
+
 
                dateSubmitted = parse_date(dateSubmitted)
 
@@ -94,8 +94,4 @@ def parse_date(date_str):
     else:
         raise ValueError("Unsupported date format")
 
-
-ieee_source = IEEESource()
-papers = ieee_source.getPapers(2, ["machine learning"])
-print(papers)
 
