@@ -31,7 +31,6 @@ def test_paper():
     assert paper1 != paper2 and paper2 != alsoPaper1
 
 
-
 def test_arxiv_source():
     # test that arXiv source returns papers properly
     arxiv_source = ArXivSource()
@@ -83,4 +82,5 @@ def test_ieee_source():
     assert paper.dateSubmitted == date_object
     assert "Big Data" in [kw.lower() for kw in paper.keywords] 
     assert "decision trees" in [kw.lower() for kw in paper.keywords] 
+
 

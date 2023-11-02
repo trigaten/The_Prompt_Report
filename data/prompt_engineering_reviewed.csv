@@ -1,4 +1,9 @@
 Title, Link, Labels
+"The Creativity of Text-to-Image Generation", http://dx.doi.org/10.1145/3569219.3569352, Applying prompts/prompt engineering
+"Beyond Traditional Teaching: The Potential of Large Language Models and Chatbots in Graduate Engineering Education", http://dx.doi.org/10.32388/MD04B0, Analysis of model;Applying prompts/prompt engineering;Agents;Ethics/Consequences
+"Collective Creativity in Crowd Ideation", http://dx.doi.org/10.1145/3411764.3445782, Survey;Analysis of technique;Applying prompts/prompt engineering;Agents
+"Massive prompt cusps: A new signature of warm dark matter", http://dx.doi.org/10.1093/mnrasl/slad043, Analysis of technique;Analysis of model
+"Scientific Literature Text Mining and the Case for Open Access", http://dx.doi.org/10.21428/14888, New model
  "Don't Complete It! Preventing Unhelpful Code Completion for Productive and Sustainable Neural Code Completion Systems", https://arxiv.org/pdf/2209.05948v2.pdf, Analysis of Technique;New Model;Applying Prompts/prompt Engineering
  "Unleashing the potential of prompt engineering in Large Language Models: a comprehensive review", https://arxiv.org/abs/2310.08129v1, Survey;Analysis of Technique;Applying Prompts/prompt Engineering;Agents
  "LoGoPrompt: Synthetic Text Images Can Be Good Visual Prompts for Vision-Language Models", https://arxiv.org/pdf/2309.01155v2.pdf, Survey;Analysis of Technique;Applying Promtps/Prompt Engineering
@@ -14,4 +19,3 @@ Title, Link, Labels
 "Invalid Logic, Equivalent Gains: The Bizarreness of Reasoning in Language Model Prompting",http://arxiv.org/abs/2307.10573v2, Analysis of technique
 "High-Fidelity Lake Extraction via Two-Stage Prompt Enhancement: Establishing a Novel Baseline and Benchmark",http://arxiv.org/abs/2308.08443v1, Analysis of technique; Other modality than text; Applying prompts/prompt engineering
 Structured Prompt Tuning,http://arxiv.org/abs/2205.12309v1, New Technique
-

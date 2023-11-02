@@ -2,6 +2,9 @@ numpy
 pandas
 requests
 matplotlib
+datasets
+huggingface_hub
+pytest
 jellyfish
 black
 -e .
