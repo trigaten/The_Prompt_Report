@@ -4,6 +4,7 @@ from prompt_systematic_review.ieee_source import IEEESource
 from datetime import date, datetime
 from prompt_systematic_review.utils import process_paper_title
 
+
 def test_paper():
     paper1 = Paper(
         "How to write a paper",
@@ -59,6 +60,7 @@ def test_arxiv_source():
         "foundational models in medical imaging: a comprehensive survey and future vision"
     ]
 
+
 def test_ieee_source():
     # test that IEEE source returns papers properly
     ieee_source = IEEESource()
@@ -71,16 +73,14 @@ def test_ieee_source():
 
     # test that IEEE source returns the exact information for one paper properly
     ieee_source = IEEESource()
-    KEYWORDS = "Large Language Models"  
+    KEYWORDS = "Large Language Models"
     papers = ieee_source.getPapers(1, [KEYWORDS])
     paper = papers[0]
-    print (paper.title)
+    print(paper.title)
     assert paper.firstAuthor == "Qurat Ul Ain Ali"
-    assert paper.url.startswith("https://ieeexplore.ieee.org/")  
+    assert paper.url.startswith("https://ieeexplore.ieee.org/")
 
     date_object = date(2021, 10, 10)
     assert paper.dateSubmitted == date_object
-    assert "scalability" in [kw.lower() for kw in paper.keywords] 
-    assert "java" in [kw.lower() for kw in paper.keywords] 
-
-
+    assert "scalability" in [kw.lower() for kw in paper.keywords]
+    assert "java" in [kw.lower() for kw in paper.keywords]
