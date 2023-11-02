@@ -4,7 +4,6 @@ requests
 matplotlib
 jellyfish
 black
-sphinx-autodoc
 sphinx
 renku-sphinx-theme
 -e .
