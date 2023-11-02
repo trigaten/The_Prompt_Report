@@ -17,7 +17,7 @@ jobs:
         run: pip install -r requirements.txt && git clone https://github.com/trigaten/Prompt_Systematic_Review.git
       
       - name: Build
-        run: sphinx-build -b dirhtml -v docs/source build
+        run: sphinx-autobuild docs/ _build/html
 
       - name: Upload to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
