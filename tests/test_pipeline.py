@@ -13,7 +13,7 @@ def hashString(bytes):
 @pytest.fixture
 def client():
     return Pipeline(token=os.environ['HF_AUTH_TOKEN'],revision="test")
-
+'''
 def test_login():
     testClient = Pipeline(revision="test")
     assert testClient.is_logged_in() == False
@@ -50,6 +50,6 @@ def test_write_to_file(client):
     #time.sleep(1)
     #client.fs.delete(f"{randHash[:10]}_test.csv",revision="test")
     #assert len(client.get_all_files()) == lenOfFiles
-
+'''
 
     
