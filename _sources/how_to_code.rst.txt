@@ -28,3 +28,10 @@ Here are some tips on codebase maintenances/cleanliness:
             """
 
 - Always write tests in the `tests/` directory. Every function you write should have a corresponding test that proves it works. You should even write tests before writing the function itself! This is called Test Driven Development (TDD).
+
+- For API tests, add `@pytest.mark.API_test` like below. This allows them to be skipped during CI pipeline runs.
+
+.. code:: python
+
+    @pytest.mark.API_test
+    def test_arxiv_source():

@@ -104,7 +104,12 @@
 </div>
 <ul class="simple">
 <li><p>Always write tests in the <cite>tests/</cite> directory. Every function you write should have a corresponding test that proves it works. You should even write tests before writing the function itself! This is called Test Driven Development (TDD).</p></li>
+<li><p>For API tests, add <cite>&#64;pytest.mark.API_test</cite> like below. This allows them to be skipped during CI pipeline runs.</p></li>
 </ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">API_test</span>
+<span class="k">def</span> <span class="nf">test_arxiv_source</span><span class="p">():</span>
+</pre></div>
+</div>
 </section>
 
 
