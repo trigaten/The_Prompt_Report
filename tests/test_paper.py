@@ -103,4 +103,3 @@ def test_semantic_scholar_source():
         assert isinstance(paper.firstAuthor, str)
         assert paper.url.startswith("https://api.semanticscholar.org/")
         assert isinstance(paper.dateSubmitted, date) or paper.dateSubmitted is None
-       
