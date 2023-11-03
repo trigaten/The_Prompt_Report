@@ -40,4 +40,5 @@ jobs:
       env:
         HF_AUTH_TOKEN: ${{ secrets.HF_AUTH_TOKEN }}
       run: |
-        export HF_AUTH_TOKEN=${{ secrets.HF_AUTH_TOKEN }} && pytest
+        export HF_AUTH_TOKEN=${{ secrets.HF_AUTH_TOKEN }} && pytest -k "not API_test"
+

@@ -2,7 +2,7 @@ from prompt_systematic_review.paperSource import Paper
 from prompt_systematic_review.arxiv_source import ArXivSource
 from datetime import date, datetime
 from prompt_systematic_review.utils import process_paper_title
-
+import pytest
 
 def test_paper():
     paper1 = Paper(
@@ -30,7 +30,8 @@ def test_paper():
     assert paper1 == alsoPaper1
     assert paper1 != paper2 and paper2 != alsoPaper1
 
-
+# mark as API_test, so it can be excluded by CI pipeline
+@pytest.mark.API_test
 def test_arxiv_source():
     # test that arXiv source returns papers properly
     arxiv_source = ArXivSource()
