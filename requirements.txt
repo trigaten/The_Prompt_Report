@@ -7,4 +7,7 @@ huggingface_hub
 pytest
 jellyfish
 black
+sphinx
+renku-sphinx-theme
+sphinx-autobuild
 -e .
