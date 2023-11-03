@@ -1,6 +1,5 @@
 prompt_systematic_review
-========
-
+====================================================
 .. automodule:: prompt_systematic_review.arxiv_source
     :members:
 
