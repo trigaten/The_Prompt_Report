@@ -12,7 +12,7 @@ class IEEESource:
     baseURL = "https://ieeexploreapi.ieee.org/api/v1/search/articles"
 
     def __init__(self):
-        self.api_key = "cjn9n2nujbyrcnbvd9p6nkws"
+        self.api_key = ""
 
     def getPapers(self, count: int, keyWords: List[str]) -> List[Paper]:
         """
