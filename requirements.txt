@@ -8,3 +8,4 @@ pytest
 jellyfish
 black
 aiohttp==3.8.2
+-e
