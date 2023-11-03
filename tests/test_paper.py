@@ -90,6 +90,7 @@ def test_ieee_source():
     assert "scalability" in [kw.lower() for kw in paper.keywords]
     assert "java" in [kw.lower() for kw in paper.keywords]
 
+
 @pytest.mark.API_test
 def test_semantic_scholar_source():
     # test that Semantic Scholar source returns papers properly
