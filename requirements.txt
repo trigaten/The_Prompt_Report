@@ -7,4 +7,3 @@ huggingface_hub
 pytest
 jellyfish
 black
--e .
