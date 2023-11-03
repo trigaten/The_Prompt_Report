@@ -4,6 +4,7 @@ from datetime import date, datetime
 from prompt_systematic_review.utils import process_paper_title
 import pytest
 
+
 def test_paper():
     paper1 = Paper(
         "How to write a paper",
@@ -29,6 +30,7 @@ def test_paper():
 
     assert paper1 == alsoPaper1
     assert paper1 != paper2 and paper2 != alsoPaper1
+
 
 # mark as API_test, so it can be excluded by CI pipeline
 @pytest.mark.API_test
