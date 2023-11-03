@@ -1,5 +1,6 @@
 from prompt_systematic_review.paperSource import Paper
 from prompt_systematic_review.arxiv_source import ArXivSource
+from prompt_systematic_review.semantic_scholar_source import SemanticScholarSource
 from datetime import date, datetime
 from prompt_systematic_review.utils import process_paper_title
 
@@ -58,3 +59,31 @@ def test_arxiv_source():
     assert paper.keywords == [
         "foundational models in medical imaging: a comprehensive survey and future vision"
     ]
+
+def test_semantic_scholar_source():
+    # test that Semantic Scholar source returns papers properly
+    semantic_scholar_source = SemanticScholarSource()
+    keywords = ["deep learning"]
+    papers = semantic_scholar_source.getPapers(keyWords=keywords, count=2)
+    assert len(papers) == 2
+    for paper in papers:
+        assert isinstance(paper, Paper)
+        assert keywords[0] in paper.keywords
+        assert isinstance(paper.title, str)
+        assert isinstance(paper.firstAuthor, str)
+        assert paper.url.startswith("https://api.semanticscholar.org/")
+        assert isinstance(paper.dateSubmitted, date) or paper.dateSubmitted is None
+        '''
+        If you want to display the files it finds
+        with open('paper_urls.txt', 'w') as file:
+            for paper in papers:
+                assert isinstance(paper, Paper)
+                assert keywords[0] in paper.keywords
+                assert isinstance(paper.title, str)
+                assert isinstance(paper.firstAuthor, str)
+                assert paper.url.startswith("https://api.semanticscholar.org/")
+                assert isinstance(paper.dateSubmitted, date) or paper.dateSubmitted is None
+                # Write the URL to the file
+                file.write(paper.url + '\n')
+        '''
+
