@@ -73,17 +73,4 @@ def test_semantic_scholar_source():
         assert isinstance(paper.firstAuthor, str)
         assert paper.url.startswith("https://api.semanticscholar.org/")
         assert isinstance(paper.dateSubmitted, date) or paper.dateSubmitted is None
-        '''
-        If you want to display the files it finds
-        with open('paper_urls.txt', 'w') as file:
-            for paper in papers:
-                assert isinstance(paper, Paper)
-                assert keywords[0] in paper.keywords
-                assert isinstance(paper.title, str)
-                assert isinstance(paper.firstAuthor, str)
-                assert paper.url.startswith("https://api.semanticscholar.org/")
-                assert isinstance(paper.dateSubmitted, date) or paper.dateSubmitted is None
-                # Write the URL to the file
-                file.write(paper.url + '\n')
-        '''
-
+       
