@@ -12,11 +12,11 @@ Git and Github are important tools for collaborative coding projects. Here's a b
 
 4. **Branches and Pull Requests**: When you want to change something in the project, create a "branch." It's like creating a separate workspace for your ideas. After you're done, you can ask others to review your work by making a "pull request." It's like getting feedback from others before your changes become part of the main project.
 
-5. **Commit Messages**: When you make changes, write clear and simple messages about what you did. Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+5. **Commit Messages**: When you make changes, write clear and simple messages about what you did. Use `Conventional Commits <https://www.conventionalcommits.org/en/v1.0.0/>`_.
 
 If you have any questions, feel free to ask me or your sub-team leader.
 
-For more help, you can check out the Github Help website: [Github Quickstart](https://docs.github.com/en/get-started/quickstart/hello-world).
+For more help, you can check out the Github Help website: `GitHub Quickstart <https://docs.github.com/en/get-started/quickstart/hello-world>`_.
 
 Note that our Github repo has a CI pipeline, which automatically runs tests, style checks, and more when you request you merge new code.
 This helps ensure that broken code does not get merged in.
