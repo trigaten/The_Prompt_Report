@@ -56,5 +56,4 @@ keywords_list = [
     ["Query Expansion"],
     ["Bias Reduction"],
     ["Knowledge Base"],
-
 ]
