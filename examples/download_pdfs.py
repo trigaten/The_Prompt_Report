@@ -37,15 +37,23 @@ print(df.head())
     with open("./arxivPDFs/" + paperName, 'wb') as f:
         f.write(response.content)
 """
+aSource = arxiv_source.ArXivSource()
+def downloadPaper(paper):
+        aSource.getPaperSrc(paper, "./arxivPDFs/")
+        time.sleep(0.5)
+        print("downloaded " + str(paper))
 
 if __name__ == '__main__':
-    aSource = arxiv_source.ArXivSource()
-    with Pool(processes=16) as pool:
-        for index, row in tqdm.tqdm(df.iterrows()):
-            paper = Paper(row['title'], row['firstAuthor'], row['url'], row['dateSubmitted'], row['keywords'])
-            pool.apply_async(aSource.getPaperSrc, args = (paper, "./arxivPDFs/"))
+    
+    papList = []
+    
+    with Pool(16) as pool:
+        for index, row in df.iterrows():
+            papList.append(Paper(row['title'], row['firstAuthor'], row['url'], row['dateSubmitted'], row['keywords']))
+            
+        pool.map(downloadPaper, papList)
           
-            time.sleep(0.5)
+            
 
 
 
