@@ -33,6 +33,8 @@ class Paper:
             j.jaro_winkler_similarity(self.__str__().lower(), other.__str__().lower())
             > 0.75
         )
+    def __hash__(self):
+        return hash(self.url)
 
     def matchingKeyWords(self):
         return [

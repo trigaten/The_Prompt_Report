@@ -28,16 +28,23 @@ class ArXivSource(PaperSource):
         for keyword in keyWords:
             url = self.baseURL + keyword + "&start=0&max_results=" + str(count)
             # Use custom header to avoid being blocked
-            data = requests.get(url, headers=headers).content
-            root = ET.fromstring(data)
+            print("sentNOW")
+            data = requests.get(url, headers=headers).content.decode("utf-8","ignore")
+            f = open(f"arxiv_{keyword}_data.xml", "w")
+            f.write(data)
+            f.close()
+            print("gotten data")
+            parser = ET.XMLParser(encoding="utf-8")
+            root = ET.fromstring(data,parser=parser)
             entries = root.findall("{http://www.w3.org/2005/Atom}entry")
+            print("starting arxiv")
             for entry in entries:
                 # Extract paper details from entry
                 title = entry.find("{http://www.w3.org/2005/Atom}title").text
                 firstAuthor = entry.find(
                     "{http://www.w3.org/2005/Atom}author/{http://www.w3.org/2005/Atom}name"
                 ).text
-                url = entry.find("{http://www.w3.org/2005/Atom}id").text
+                url = entry.find("{http://www.w3.org/2005/Atom}id").text.replace("/abs/", "/pdf/")+".pdf"
                 dateSubmitted = entry.find(
                     "{http://www.w3.org/2005/Atom}published"
                 ).text
@@ -54,24 +61,29 @@ class ArXivSource(PaperSource):
                 ]
 
                 paper = Paper(
-                    title,
+                    title.replace("\n", "").replace("\r", ""),
                     firstAuthor,
                     url,
                     dateSubmitted,
-                    [keyword.lower() for keyWord in keyWords],
+                    [keyWord.lower() for keyWord in keyWords],
                 )
                 papers.append(paper)
         return papers
 
-    def getPaperSrc(self, paper: Paper) -> str:
+    def getPaperSrc(self, paper: Paper, destinationFolder:str ) -> str:
         """
         Get the source of a paper.
 
-        :param paper: The paper to get the source of.
+        :param paper: The paper to get the source of. 
         :type paper: Paper
         :return: The source of the paper.
         :rtype: str
         """
-        url = paper.url + ".pdf"
+        url = paper.url 
         response = requests.get(url)
-        return response.content.decode("utf-8")
+        print(response.status_code)
+        with open(destinationFolder + url.split("/")[-1], 'wb') as f:
+            f.write(response.content)
+        
+        return "" 
+    

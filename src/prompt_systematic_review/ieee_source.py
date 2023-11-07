@@ -4,6 +4,7 @@ from typing import List
 import re
 from datetime import date
 from prompt_systematic_review.paperSource import Paper
+from prompt_systematic_review.utils import headers
 
 
 class IEEESource:
@@ -12,7 +13,7 @@ class IEEESource:
     baseURL = "https://ieeexploreapi.ieee.org/api/v1/search/articles"
 
     def __init__(self):
-        self.api_key = ""
+        self.api_key = "cjn9n2nujbyrcnbvd9p6nkws"
 
     def getPapers(self, count: int, keyWords: List[str]) -> List[Paper]:
         """
@@ -34,8 +35,15 @@ class IEEESource:
                 "apikey": self.api_key,
                 "format": "xml",
             }
-            response = requests.get(self.baseURL, params=params)
-            root = ET.fromstring(response.content)
+            #response = 
+            print("sentNOW")
+            data = requests.get(self.baseURL, params=params, headers=headers).content.decode("utf-8","ignore")
+            f = open(f"ieee_{keyword}_data.xml", "w")
+            f.write(data)
+            f.close()
+            print("gotten data")
+            parser = ET.XMLParser(encoding="utf-8")
+            root = ET.fromstring(data,parser=parser)
 
             for entry in root.findall(".//article"):
                 title = entry.find("title").text
@@ -44,8 +52,11 @@ class IEEESource:
                     if entry.find("authors/author/full_name") is not None
                     else ""
                 )
-                url = entry.find("pdf_url").text
-                dateSubmitted = entry.find("publication_date").text
+                url = entry.find("pdf_url").text.replace("&amp;", "&")
+                dateSubmitted = entry.find("publication_date")
+                if dateSubmitted is not None:
+                    dateSubmitted = dateSubmitted.text
+
 
                 keywords = [
                     term.text
@@ -58,12 +69,26 @@ class IEEESource:
                 ]
                 keywords = [k.lower() for k in keywords]
 
-                dateSubmitted = parse_date(dateSubmitted)
+                #dateSubmitted = None # parse_date(dateSubmitted)
 
                 paper = Paper(title, firstAuthor, url, dateSubmitted, keywords)
                 papers.append(paper)
 
         return papers
+    
+    def getPaperSrc(self, paper: Paper, destinationFolder :str) -> str:
+        num = paper.url.split("=")[-1]
+        url = f"https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&arnumber={num}&ref="
+        print(url)
+        #url = paper.url 
+        #params = {
+        #        "apikey": self.api_key,
+        #    }
+        response = requests.get(url,headers=headers)
+        with open(destinationFolder + num+".pdf", 'wb') as f:
+            f.write(response.content)
+        
+        return "" 
 
 
 def parse_date(date_str):
