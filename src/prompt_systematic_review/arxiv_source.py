@@ -6,6 +6,7 @@ from typing import List
 from prompt_systematic_review.paperSource import Paper
 from prompt_systematic_review.paperSource import PaperSource
 from prompt_systematic_review.utils import headers
+import time
 
 
 class ArXivSource(PaperSource):
@@ -70,7 +71,7 @@ class ArXivSource(PaperSource):
                 papers.append(paper)
         return papers
 
-    def getPaperSrc(self, paper: Paper, destinationFolder:str ) -> str:
+    def getPaperSrc(self, paper: Paper, destinationFolder:str, recurse=0 ) -> str:
         """
         Get the source of a paper.
 
@@ -82,8 +83,12 @@ class ArXivSource(PaperSource):
         url = paper.url 
         response = requests.get(url)
         print(response.status_code)
-        with open(destinationFolder + url.split("/")[-1], 'wb') as f:
-            f.write(response.content)
+        if str(response.status_code) != "200" and recurse < 5:
+            time.sleep(2 * recurse)
+            self.getPaperSrc(paper, destinationFolder, recurse=recurse+1)
+        else:   
+            with open(destinationFolder + url.split("/")[-1], 'wb') as f:
+                f.write(response.content)
         
         return "" 
     
