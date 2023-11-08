@@ -1,8 +1,5 @@
 keywords_list = [
     ["prompt injection"],
-    ["gpt-3", "gpt 3"],
-    ["gpt-4", "gpt 4"],
-    ["Auto-GPT", "Auto GPT"],
     ["prompt engineering"],
     ["few-shot prompt", "few shot prompt"],
     ["one-shot prompt", "one shot prompt"],
