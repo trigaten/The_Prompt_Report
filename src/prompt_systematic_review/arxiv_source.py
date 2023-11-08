@@ -27,7 +27,7 @@ class ArXivSource(PaperSource):
         """
         papers = []
         for keyword in keyWords:
-            url = self.baseURL + keyword + "&start=0&max_results=" + str(count)
+            url = self.baseURL + '"' + keyword + '"' + "&start=0&max_results=" + str(count)
             # Use custom header to avoid being blocked
             print("sentNOW")
             data = requests.get(url, headers=headers).content.decode("utf-8","ignore")
@@ -71,24 +71,29 @@ class ArXivSource(PaperSource):
                 papers.append(paper)
         return papers
 
-    def getPaperSrc(self, paper: Paper, destinationFolder:str, recurse=0 ) -> str:
+    def getPaperSrc(self, paper: Paper, destinationFolder:str, recurse=0 ):
         """
-        Get the source of a paper.
+        download a paper.
 
-        :param paper: The paper to get the source of. 
+        :param paper: The paper to get the download of. 
         :type paper: Paper
-        :return: The source of the paper.
-        :rtype: str
+        :param destinationFolder: The folder to save the paper to.
+        :type destinationFolder: str
+        :return: nothing
+        :rtype: None
         """
         url = paper.url 
         response = requests.get(url)
-        print(response.status_code)
-        if str(response.status_code) != "200" and recurse < 5:
+        #print(response.status_code)
+        if (str(response.status_code) != "200" or len(response.content)==0) and recurse < 5:
             time.sleep(2 * recurse)
             self.getPaperSrc(paper, destinationFolder, recurse=recurse+1)
+        elif (str(response.status_code) != "200" or len(response.content)==0) and recurse >= 5:
+            print("rip")
         else:   
             with open(destinationFolder + url.split("/")[-1], 'wb') as f:
                 f.write(response.content)
+                print(f"downloaded {str(paper)} with content length {len(response.content)}")
         
-        return "" 
+        return
     
