@@ -1,6 +1,8 @@
 keywords_list = [
     ["prompt injection"],
     ["prompt engineering"],
+    ["few-shot learning"],
+    ["few shot learning"],
     ["few-shot prompt", "few shot prompt"],
     ["one-shot prompt", "one shot prompt"],
     ["few-shot prompting", "few shot prompting"],
