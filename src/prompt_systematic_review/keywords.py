@@ -1,5 +1,9 @@
 keywords_list = [
+    ["jailbreak prompts"],
+    ["prompt an LLM"],
+    ["prompt a Large Language Model"],
     ["prompt injection"],
+    ["Prompt Optimization"],
     ["prompt engineering"],
     ["few-shot learning"],
     ["few shot learning"],
