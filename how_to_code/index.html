@@ -82,6 +82,7 @@
 <p>Here are some tips on codebase maintenances/cleanliness:</p>
 <ul class="simple">
 <li><p>Always blacken your code. black is a Python codebase formatter, just run <cite>black src</cite> and/or <cite>black tests</cite> from the root before opening a PR. Otherwise, the precommit part of the CI pipeline will fail.</p></li>
+<li><p>Always add type hints to your functions/classes. In the below code example, the type hints are <cite>int</cite>, <cite>List[str]</cite>, and <cite>List[Paper]</cite>. You will have to import some of these types.</p></li>
 <li><p>Use Sphinx style docstrings, like the following. This allows Sphinx to generate the API reference part of this website.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ArXivSource</span><span class="p">(</span><span class="n">PaperSource</span><span class="p">):</span>
