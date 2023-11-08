@@ -1,7 +1,8 @@
 from datasets import load_dataset
+from datasets import Split
 
 
-def load_hf_dataset(dataset_name, name=None, split=None):
+def load_hf_dataset(dataset_name: str, name: str = None, split: str or Split = None):
     """
     Load in a Hugging Face dataset.
 
@@ -16,16 +17,9 @@ def load_hf_dataset(dataset_name, name=None, split=None):
     """
 
     try:
-        if name:
-            if split:
-                return load_dataset(dataset_name, name, split=split)
-            else:
-                return load_dataset(dataset_name, name)
-        else:
-            if split:
-                return load_dataset(dataset_name, split=split)
-            else:
-                return load_dataset(dataset_name)
+        return load_dataset(
+            dataset_name, name if name else None, split=split if split else None
+        )
     except FileNotFoundError:
         print(
             f"The dataset {dataset_name} with config {name} and split {split} is not available on Hugging Face datasets."
