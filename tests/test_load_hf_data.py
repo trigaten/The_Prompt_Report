@@ -1,4 +1,4 @@
-from prompt_systematic_review.load import load_hf_dataset
+from prompt_systematic_review.load_hf_data import load_hf_dataset
 
 
 def test_arxiv_source():
