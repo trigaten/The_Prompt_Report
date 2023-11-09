@@ -4,6 +4,7 @@ from multiprocessing import Pool
 import pandas as pd
 import time
 from prompt_systematic_review.download_arxiv_query import queryArchive
+import os
 
 """
 Download papers from arxiv and save them to a csv file.
@@ -26,6 +27,9 @@ def downloadPaper(paper: str):
 
 if __name__ == "__main__":
     filename = "arxiv_papers.csv"
+    # mkdir "./arxivPDFs/" if it doesn't exist
+    if not os.path.exists("./arxivPDFs/"):
+        os.mkdir("./arxivPDFs/")
 
     queryArchive(filename)
     df = pd.read_csv(filename)

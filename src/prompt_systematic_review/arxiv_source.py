@@ -3,6 +3,7 @@ import requests
 from xml.etree import ElementTree as ET
 from datetime import date
 from typing import List
+import os
 from prompt_systematic_review.paperSource import Paper
 from prompt_systematic_review.paperSource import PaperSource
 from prompt_systematic_review.utils import headers
@@ -37,7 +38,10 @@ class ArXivSource(PaperSource):
             )
             # Use custom header to avoid being blocked
             data = requests.get(url, headers=headers).content.decode("utf-8", "ignore")
-            f = open(f"arxiv_{keyword}_data.xml", "w")
+            # create "./.log/" folder if it doesn't exist
+            if not os.path.exists("./.log/"):
+                os.mkdir("./.log/")
+            f = open(f"./.log/arxiv_{keyword}_data.xml", "w")
             f.write(data)
             f.close()
             parser = ET.XMLParser(encoding="utf-8")
