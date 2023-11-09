@@ -13,7 +13,6 @@ with a pool of NUM_PROCESSES processes (adjust as needed per your machine).
 """
 
 
-
 # instantiating the arxiv source
 aSource = arxiv_source.ArXivSource()
 
@@ -30,7 +29,7 @@ if __name__ == "__main__":
 
     queryArchive(filename)
     df = pd.read_csv(filename)
-    
+
     papList = []
 
     NUM_PROCESSES = 16  # adjust as needed per your machine
