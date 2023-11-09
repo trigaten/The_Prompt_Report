@@ -1,6 +1,8 @@
 from prompt_systematic_review.load_hf_data import load_hf_dataset
+import pytest
 
 
+@pytest.mark.API_test
 def test_arxiv_source():
     # Small dataset for testing
     dataset = load_hf_dataset("rotten_tomatoes")

@@ -1,5 +1,5 @@
 keywords_list = [
-    ["jailbreak prompts"],
+    ["jailbreak prompt"],
     ["prompt an LLM"],
     ["prompt a Large Language Model"],
     ["prompt injection"],
@@ -15,6 +15,8 @@ keywords_list = [
     ["prompt engineering techniques"],
     ["LLM prompting"],
     ["Large Language Model prompting"],
+    ["0-shot prompt"],
+    ["0 shot prompt"],
     ["zero-shot prompt"],
     ["many-shot prompt"],
     ["zero-shot prompting"],
