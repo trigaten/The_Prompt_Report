@@ -27,25 +27,34 @@ class ArXivSource(PaperSource):
         """
         papers = []
         for keyword in keyWords:
-            url = self.baseURL + '"' + keyword + '"' + "&start=0&max_results=" + str(count)
+            url = (
+                self.baseURL
+                + '"'
+                + keyword
+                + '"'
+                + "&start=0&max_results="
+                + str(count)
+            )
             # Use custom header to avoid being blocked
-            print("sentNOW")
-            data = requests.get(url, headers=headers).content.decode("utf-8","ignore")
+            data = requests.get(url, headers=headers).content.decode("utf-8", "ignore")
             f = open(f"arxiv_{keyword}_data.xml", "w")
             f.write(data)
             f.close()
-            print("gotten data")
             parser = ET.XMLParser(encoding="utf-8")
-            root = ET.fromstring(data,parser=parser)
+            root = ET.fromstring(data, parser=parser)
             entries = root.findall("{http://www.w3.org/2005/Atom}entry")
-            print("starting arxiv")
             for entry in entries:
                 # Extract paper details from entry
                 title = entry.find("{http://www.w3.org/2005/Atom}title").text
                 firstAuthor = entry.find(
                     "{http://www.w3.org/2005/Atom}author/{http://www.w3.org/2005/Atom}name"
                 ).text
-                url = entry.find("{http://www.w3.org/2005/Atom}id").text.replace("/abs/", "/pdf/")+".pdf"
+                url = (
+                    entry.find("{http://www.w3.org/2005/Atom}id").text.replace(
+                        "/abs/", "/pdf/"
+                    )
+                    + ".pdf"
+                )
                 dateSubmitted = entry.find(
                     "{http://www.w3.org/2005/Atom}published"
                 ).text
@@ -71,29 +80,34 @@ class ArXivSource(PaperSource):
                 papers.append(paper)
         return papers
 
-    def getPaperSrc(self, paper: Paper, destinationFolder:str, recurse=0 ):
+    def getPaperSrc(self, paper: Paper, destinationFolder: str, recurse=0):
         """
         download a paper.
 
-        :param paper: The paper to get the download of. 
+        :param paper: The paper to get the download of.
         :type paper: Paper
         :param destinationFolder: The folder to save the paper to.
         :type destinationFolder: str
+        :param recurse: hidden recursion parameter (repeat download attempt if fail), max recursion depth is 5
+        :type recurse: int
         :return: nothing
         :rtype: None
         """
-        url = paper.url 
+        url = paper.url
         response = requests.get(url)
-        #print(response.status_code)
-        if (str(response.status_code) != "200" or len(response.content)==0) and recurse < 5:
+        if (
+            str(response.status_code) != "200" or len(response.content) == 0
+        ) and recurse < 5:
+            # if failed to download try again after waiting 2*recurse seconds
             time.sleep(2 * recurse)
-            self.getPaperSrc(paper, destinationFolder, recurse=recurse+1)
-        elif (str(response.status_code) != "200" or len(response.content)==0) and recurse >= 5:
-            print("rip")
-        else:   
-            with open(destinationFolder + url.split("/")[-1], 'wb') as f:
+            self.getPaperSrc(paper, destinationFolder, recurse=recurse + 1)
+        elif (
+            str(response.status_code) != "200" or len(response.content) == 0
+        ) and recurse >= 5:
+            # if failed to download after 5 attempts, give up
+            pass
+        else:
+            with open(destinationFolder + url.split("/")[-1], "wb") as f:
                 f.write(response.content)
-                print(f"downloaded {str(paper)} with content length {len(response.content)}")
-        
+
         return
-    

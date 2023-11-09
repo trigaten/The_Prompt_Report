@@ -12,8 +12,8 @@ class IEEESource:
 
     baseURL = "https://ieeexploreapi.ieee.org/api/v1/search/articles"
 
-    def __init__(self):
-        self.api_key = "cjn9n2nujbyrcnbvd9p6nkws"
+    def __init__(self, api_key: str):
+        self.api_key = api_key
 
     def getPapers(self, count: int, keyWords: List[str]) -> List[Paper]:
         """
@@ -35,15 +35,16 @@ class IEEESource:
                 "apikey": self.api_key,
                 "format": "xml",
             }
-            #response = 
-            print("sentNOW")
-            data = requests.get(self.baseURL, params=params, headers=headers).content.decode("utf-8","ignore")
+
+            data = requests.get(
+                self.baseURL, params=params, headers=headers
+            ).content.decode("utf-8", "ignore")
             f = open(f"ieee_{keyword}_data.xml", "w")
             f.write(data)
             f.close()
-            print("gotten data")
+
             parser = ET.XMLParser(encoding="utf-8")
-            root = ET.fromstring(data,parser=parser)
+            root = ET.fromstring(data, parser=parser)
 
             for entry in root.findall(".//article"):
                 title = entry.find("title").text
@@ -57,7 +58,6 @@ class IEEESource:
                 if dateSubmitted is not None:
                     dateSubmitted = dateSubmitted.text
 
-
                 keywords = [
                     term.text
                     for term in entry.findall("index_terms/author_terms/terms")
@@ -69,26 +69,21 @@ class IEEESource:
                 ]
                 keywords = [k.lower() for k in keywords]
 
-                #dateSubmitted = None # parse_date(dateSubmitted)
+                # dateSubmitted = None # parse_date(dateSubmitted)
 
                 paper = Paper(title, firstAuthor, url, dateSubmitted, keywords)
                 papers.append(paper)
 
         return papers
-    
-    def getPaperSrc(self, paper: Paper, destinationFolder :str) -> str:
+
+    def getPaperSrc(self, paper: Paper, destinationFolder: str) -> str:
         num = paper.url.split("=")[-1]
         url = f"https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&arnumber={num}&ref="
-        print(url)
-        #url = paper.url 
-        #params = {
-        #        "apikey": self.api_key,
-        #    }
-        response = requests.get(url,headers=headers)
-        with open(destinationFolder + num+".pdf", 'wb') as f:
+        response = requests.get(url, headers=headers)
+        with open(destinationFolder + num + ".pdf", "wb") as f:
             f.write(response.content)
-        
-        return "" 
+
+        return ""
 
 
 def parse_date(date_str):
