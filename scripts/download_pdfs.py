@@ -13,10 +13,7 @@ with a pool of NUM_PROCESSES processes (adjust as needed per your machine).
 """
 
 
-filename = "arxiv_papers.csv"
 
-queryArchive(filename)
-df = pd.read_csv(filename)
 # instantiating the arxiv source
 aSource = arxiv_source.ArXivSource()
 
@@ -29,6 +26,11 @@ def downloadPaper(paper: str):
 
 
 if __name__ == "__main__":
+    filename = "arxiv_papers.csv"
+
+    queryArchive(filename)
+    df = pd.read_csv(filename)
+    
     papList = []
 
     NUM_PROCESSES = 16  # adjust as needed per your machine
