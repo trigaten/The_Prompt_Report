@@ -6,6 +6,8 @@ Here are some tips on codebase maintenances/cleanliness:
 
 - Always blacken your code. black is a Python codebase formatter, just run `black src` and/or `black tests` from the root before opening a PR. Otherwise, the precommit part of the CI pipeline will fail.
 
+- Always add type hints to your functions/classes. In the below code example, the type hints are `int`, `List[str]`, and `List[Paper]`. You will have to import some of these types.
+
 - Use Sphinx style docstrings, like the following. This allows Sphinx to generate the API reference part of this website.
 
 .. code:: python
