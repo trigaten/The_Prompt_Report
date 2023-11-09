@@ -6,3 +6,4 @@ build
 .log
 arxivPDFs
 arxiv_papers.csv
+*.zip
