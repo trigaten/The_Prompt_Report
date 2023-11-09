@@ -3,6 +3,7 @@ from prompt_systematic_review import arxiv_source
 from multiprocessing import Pool
 import pandas as pd
 import time
+from prompt_systematic_review.download_arxiv_query import queryArchive
 
 """
 Download papers from arxiv and save them to a csv file.
@@ -12,7 +13,6 @@ with a pool of NUM_PROCESSES processes (adjust as needed per your machine).
 """
 
 
-df = pd.read_csv("<filename>.csv")
 # instantiating the arxiv source
 aSource = arxiv_source.ArXivSource()
 
@@ -25,6 +25,11 @@ def downloadPaper(paper: str):
 
 
 if __name__ == "__main__":
+    filename = "arxiv_papers.csv"
+
+    queryArchive(filename)
+    df = pd.read_csv(filename)
+
     papList = []
 
     NUM_PROCESSES = 16  # adjust as needed per your machine
