@@ -93,17 +93,21 @@
 <dd><p>A class to represent a source of papers from ArXiv.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="prompt_systematic_review.arxiv_source.ArXivSource.getPaperSrc">
-<span class="sig-name descname"><span class="pre">getPaperSrc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Paper</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#prompt_systematic_review.arxiv_source.ArXivSource.getPaperSrc" title="Permalink to this definition"></a></dt>
-<dd><p>Get the source of a paper.</p>
+<span class="sig-name descname"><span class="pre">getPaperSrc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Paper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destinationFolder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recurse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prompt_systematic_review.arxiv_source.ArXivSource.getPaperSrc" title="Permalink to this definition"></a></dt>
+<dd><p>download a paper.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>paper</strong> (<em>Paper</em>) – The paper to get the source of.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>paper</strong> (<em>Paper</em>) – The paper to get the download of.</p></li>
+<li><p><strong>destinationFolder</strong> (<em>str</em>) – The folder to save the paper to.</p></li>
+<li><p><strong>recurse</strong> (<em>int</em>) – hidden recursion parameter (repeat download attempt if fail), max recursion depth is 5</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The source of the paper.</p>
+<dd class="field-even"><p>nothing</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
+<dd class="field-odd"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
