@@ -7,3 +7,8 @@ ANALOGY-FORMING TRANSFORMERS FOR FEW-SHOT 3D PARSING,, no prompting
 GENERAL-PURPOSE IN-CONTEXT LEARNING BY META-LEARNING TRANSFORMERS,, no prompting
 A Survey of Deep Learning for Low-Shot Object Detection,, no prompting
 Few-shot Class-incremental Learning: A Survey,, no prompting
+UNLEASHING THE POWER OF PRE-TRAINED LANGUAGE MODELS FOR OFFLINE REINFORCEMENT LEARNING,, out-of-scope
+ExPT: Synthetic Pretraining for Few-Shot Experimental Design,, no prompting
+Improving Input-label Mapping with Demonstration Replay for In-context Learning,, out-of-domain
+APOLLO: ZERO-SHOT MULTIMODAL REASONING WITH MULTIPLE EXPERTS, 2310.18369v1.pdf, Lower-Level Transformer Modification - Not Prompting
+
