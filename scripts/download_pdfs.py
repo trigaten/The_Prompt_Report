@@ -4,6 +4,13 @@ from multiprocessing import Pool
 import pandas as pd
 import time
 
+"""
+Download papers from arxiv and save them to a csv file.
+Use the ArXivSource "getPapers" function to download papers.
+We achieve parallelism by using the multiprocessing library,
+with a pool of NUM_PROCESSES processes (adjust as needed per your machine).
+"""
+
 
 df = pd.read_csv("<filename>.csv")
 # instantiating the arxiv source
