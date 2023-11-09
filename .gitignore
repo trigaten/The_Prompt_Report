@@ -4,3 +4,5 @@ __pycache__
 _build
 build
 .log
+arxivPDFs
+arxiv_papers.csv

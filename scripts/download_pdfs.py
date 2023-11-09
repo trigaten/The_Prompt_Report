@@ -31,6 +31,7 @@ if __name__ == "__main__":
     if not os.path.exists("./arxivPDFs/"):
         os.mkdir("./arxivPDFs/")
 
+    # download paper info to csv
     queryArchive(filename)
     df = pd.read_csv(filename)
 
@@ -48,5 +49,6 @@ if __name__ == "__main__":
                     row["keywords"],
                 )
             )
-
+            
+        # download pdf of paper
         pool.map(downloadPaper, papList)

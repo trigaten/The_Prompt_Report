@@ -16,7 +16,7 @@ def queryArchive(downloadName: str):
     papers = []
 
     for keyWord in keywords.keywords_list:
-        # go through keyworlds list and download
+        # go through keywords list and download
         papers += aSource.getPapers(10000, keyWord)
 
     # make dataframe
