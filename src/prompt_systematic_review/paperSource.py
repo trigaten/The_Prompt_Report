@@ -34,6 +34,9 @@ class Paper:
             > 0.75
         )
 
+    def __hash__(self):
+        return hash(self.url)
+
     def matchingKeyWords(self):
         return [
             keyword for keyword in keywords.keywords_list if keyword in self.keywords

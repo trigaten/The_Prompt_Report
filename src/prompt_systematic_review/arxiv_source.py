@@ -6,6 +6,7 @@ from typing import List
 from prompt_systematic_review.paperSource import Paper
 from prompt_systematic_review.paperSource import PaperSource
 from prompt_systematic_review.utils import headers
+import time
 
 
 class ArXivSource(PaperSource):
@@ -26,10 +27,21 @@ class ArXivSource(PaperSource):
         """
         papers = []
         for keyword in keyWords:
-            url = self.baseURL + keyword + "&start=0&max_results=" + str(count)
+            url = (
+                self.baseURL
+                + '"'
+                + keyword
+                + '"'
+                + "&start=0&max_results="
+                + str(count)
+            )
             # Use custom header to avoid being blocked
-            data = requests.get(url, headers=headers).content
-            root = ET.fromstring(data)
+            data = requests.get(url, headers=headers).content.decode("utf-8", "ignore")
+            f = open(f"arxiv_{keyword}_data.xml", "w")
+            f.write(data)
+            f.close()
+            parser = ET.XMLParser(encoding="utf-8")
+            root = ET.fromstring(data, parser=parser)
             entries = root.findall("{http://www.w3.org/2005/Atom}entry")
             for entry in entries:
                 # Extract paper details from entry
@@ -37,7 +49,12 @@ class ArXivSource(PaperSource):
                 firstAuthor = entry.find(
                     "{http://www.w3.org/2005/Atom}author/{http://www.w3.org/2005/Atom}name"
                 ).text
-                url = entry.find("{http://www.w3.org/2005/Atom}id").text
+                url = (
+                    entry.find("{http://www.w3.org/2005/Atom}id").text.replace(
+                        "/abs/", "/pdf/"
+                    )
+                    + ".pdf"
+                )
                 dateSubmitted = entry.find(
                     "{http://www.w3.org/2005/Atom}published"
                 ).text
@@ -54,24 +71,43 @@ class ArXivSource(PaperSource):
                 ]
 
                 paper = Paper(
-                    title,
+                    title.replace("\n", "").replace("\r", ""),
                     firstAuthor,
                     url,
                     dateSubmitted,
-                    [keyword.lower() for keyWord in keyWords],
+                    [keyWord.lower() for keyWord in keyWords],
                 )
                 papers.append(paper)
         return papers
 
-    def getPaperSrc(self, paper: Paper) -> str:
+    def getPaperSrc(self, paper: Paper, destinationFolder: str, recurse=0):
         """
-        Get the source of a paper.
+        download a paper.
 
-        :param paper: The paper to get the source of.
+        :param paper: The paper to get the download of.
         :type paper: Paper
-        :return: The source of the paper.
-        :rtype: str
+        :param destinationFolder: The folder to save the paper to.
+        :type destinationFolder: str
+        :param recurse: hidden recursion parameter (repeat download attempt if fail), max recursion depth is 5
+        :type recurse: int
+        :return: nothing
+        :rtype: None
         """
-        url = paper.url + ".pdf"
+        url = paper.url
         response = requests.get(url)
-        return response.content.decode("utf-8")
+        if (
+            str(response.status_code) != "200" or len(response.content) == 0
+        ) and recurse < 5:
+            # if failed to download try again after waiting 2*recurse seconds
+            time.sleep(2 * recurse)
+            self.getPaperSrc(paper, destinationFolder, recurse=recurse + 1)
+        elif (
+            str(response.status_code) != "200" or len(response.content) == 0
+        ) and recurse >= 5:
+            # if failed to download after 5 attempts, give up
+            pass
+        else:
+            with open(destinationFolder + url.split("/")[-1], "wb") as f:
+                f.write(response.content)
+
+        return
