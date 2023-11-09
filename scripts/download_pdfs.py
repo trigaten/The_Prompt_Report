@@ -49,6 +49,6 @@ if __name__ == "__main__":
                     row["keywords"],
                 )
             )
-            
+
         # download pdf of paper
         pool.map(downloadPaper, papList)
