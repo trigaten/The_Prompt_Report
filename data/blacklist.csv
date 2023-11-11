@@ -7,3 +7,16 @@ ANALOGY-FORMING TRANSFORMERS FOR FEW-SHOT 3D PARSING,, no prompting
 GENERAL-PURPOSE IN-CONTEXT LEARNING BY META-LEARNING TRANSFORMERS,, no prompting
 A Survey of Deep Learning for Low-Shot Object Detection,, no prompting
 Few-shot Class-incremental Learning: A Survey,, no prompting
+Balanced and Explainable Social Media Analysis for Public Health with  Large Language Models,,uses BERT
+QUERY-DEPENDENT PROMPT EVALUATION AND OPTI- MIZATION WITH OFFLINE INVERSE RL,,more about deep RL than prompting
+DeltaEdit: Exploring Text-free Training for Text-Driven Image  Manipulation,,too training focused
+Deep Language Networks: Joint Prompt Training of Stacked LLMs using  Variational Inference,, too training focused
+Unnatural language processing: How do language models handle  machine-generated prompts?,, too training focused
+Give Me the Facts! A Survey on Factual Knowledge Probing in Pre-trained  Language Models,, cloze focused
+Task-driven Prompt Evolution for Foundation Models,, training related
+Diversity-Aware Meta Visual Prompting,, training focused
+DRPT: Disentangled and Recurrent Prompt Tuning for Compositional  Zero-Shot Learning,, tuning
+DeltaSpace: A Semantic-aligned Feature Space for Flexible Text-guided  Image Editing,, training focused
+InstructPix2NeRF: Instructed 3D Portrait Editing from a Single Image,, not really about prompting
+What Changes Can Large-scale Language Models Bring? Intensive Study on  HyperCLOVA: Billions-scale Korean Generative Pretrained Transformers,, about a model not prompts
+MLLM-DataEngine: An Iterative Refinement Approach for MLLM,,soft prompting
