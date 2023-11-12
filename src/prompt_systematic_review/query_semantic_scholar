@@ -1,0 +1,58 @@
+import pandas as pd
+from keywords import keywords_list
+import semantic_scholar_source
+import time
+import requests
+
+def fetch_and_store_data():
+    source = semantic_scholar_source.SemanticScholarSource()
+    all_papers_data = []
+    papers_count_per_keyword = {}
+
+    for keywords in keywords_list:
+        retry_count = 0
+        sleep_time = 1  # Start with 1 seco
+        papers_count = 0
+
+        while retry_count <= 5:
+            try:
+                papers_data = source.getPapers(keywords, count=100)
+                papers_count += len(papers_data)
+                all_papers_data.extend(papers_data)
+                if len(papers_data) < 100:  # Less than 100 papers indicates the last batch
+                    break
+            except requests.exceptions.HTTPError as e:
+                if e.response.status_code == 429 or e.response.status_code == 504:
+                    print(f"Error (HTTP {e.response.status_code}) for keyword: {keywords}. Retrying in {sleep_time} seconds.")
+                    time.sleep(sleep_time)
+                    sleep_time = min(sleep_time * 2, 10)  # Exponential backoff with a maximum of 10 seconds
+                else:
+                    print(f"Unhandled error (HTTP {e.response.status_code}) for keyword: {keywords}.")
+                    break
+                retry_count += 1
+
+            if retry_count > 5:
+                print(f"Max retries reached for keyword: {keywords}")
+                break
+
+        papers_count_per_keyword['; '.join(keywords)] = papers_count
+
+    # Convert to a DataFrame for easier manipulation
+    df = pd.DataFrame(all_papers_data)
+    df.to_csv('semantic_scholar_data.csv', index=False)
+
+    # Print the total count of papers before cleaning
+    print(f"Total papers before cleaning: {len(df)}")
+    for k, v in papers_count_per_keyword.items():
+        print(f"Papers for '{k}': {v}")
+
+def clean_duplicates():
+    df = pd.read_csv('semantic_scholar_data.csv')
+    df_cleaned = df.drop_duplicates(subset=['Title', 'First Author'])
+    df_cleaned.to_csv('semantic_scholar_data_cleaned.csv', index=False)
+
+    # Print the count of papers after cleaning
+    print(f"Total papers after cleaning: {len(df_cleaned)}")
+
+fetch_and_store_data()
+clean_duplicates()
