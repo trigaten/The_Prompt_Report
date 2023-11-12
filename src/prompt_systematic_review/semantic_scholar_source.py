@@ -11,10 +11,11 @@ class SemanticScholarSource:
     paperBaseURL = "https://api.semanticscholar.org/graph/v1/paper/"
 
     def __init__(self):
-        self.api_key = "QsbGjXIFx63q9C49WjKBd5vgNndrIzlb8EkDT3PJ"
+        self.api_key = "[insert API key here]"
+        self.session = requests.Session()
+        self.session.headers.update({"x-api-key": self.api_key})
 
     def getPapers(self, keyWords: List[str], count: int = 10, offset: int = 0) -> List[dict]:
-        headers = {"x-api-key": self.api_key}
         papers_data = []
         for keyword in keyWords:
             params = {
@@ -23,7 +24,7 @@ class SemanticScholarSource:
                 "limit": count,
                 "fields": "title,authors,abstract,openAccessPdf,tldr",
             }
-            response = requests.get(self.searchBaseURL, headers=headers, params=params)
+            response = self.session.get(self.searchBaseURL, params=params)
             response.raise_for_status()
             data = response.json()
 
