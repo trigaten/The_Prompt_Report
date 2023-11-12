@@ -1,27 +1,35 @@
-Title, Link, Reason
-A Brief History of Prompt: Leveraging Language Models., https://arxiv.org/abs/2310.04438, AI Generated
-Hydrogen-rich supernovae beyond the neutrino-driven core-collapse paradigm,,About Space not Prompting
-Few-Shot Learning with Localization in Realistic Settings,,not related to prompting
+Title, Link, Reason,,
+A Brief History of Prompt: Leveraging Language Models., https://arxiv.org/abs/2310.04438, AI Generated,,
+Hydrogen-rich supernovae beyond the neutrino-driven core-collapse paradigm,,About Space not Prompting,,
+Few-Shot Learning with Localization in Realistic Settings,,not related to prompting,,
 Cross-Lingual Alignment of Contextual Word Embeddings,, with Applications to Zero-shot Dependency Parsing,, no Prompting
-ANALOGY-FORMING TRANSFORMERS FOR FEW-SHOT 3D PARSING,, no prompting
-GENERAL-PURPOSE IN-CONTEXT LEARNING BY META-LEARNING TRANSFORMERS,, no prompting
-A Survey of Deep Learning for Low-Shot Object Detection,, no prompting
-Few-shot Class-incremental Learning: A Survey,, no prompting
-Balanced and Explainable Social Media Analysis for Public Health with  Large Language Models,,uses BERT
-QUERY-DEPENDENT PROMPT EVALUATION AND OPTI- MIZATION WITH OFFLINE INVERSE RL,,more about deep RL than prompting
-DeltaEdit: Exploring Text-free Training for Text-Driven Image  Manipulation,,too training focused
-Deep Language Networks: Joint Prompt Training of Stacked LLMs using  Variational Inference,, too training focused
-Unnatural language processing: How do language models handle  machine-generated prompts?,, too training focused
-Give Me the Facts! A Survey on Factual Knowledge Probing in Pre-trained  Language Models,, cloze focused
-Task-driven Prompt Evolution for Foundation Models,, training related
-Diversity-Aware Meta Visual Prompting,, training focused
-DRPT: Disentangled and Recurrent Prompt Tuning for Compositional  Zero-Shot Learning,, tuning
-DeltaSpace: A Semantic-aligned Feature Space for Flexible Text-guided  Image Editing,, training focused
-InstructPix2NeRF: Instructed 3D Portrait Editing from a Single Image,, not really about prompting
-What Changes Can Large-scale Language Models Bring? Intensive Study on  HyperCLOVA: Billions-scale Korean Generative Pretrained Transformers,, about a model not prompts
-MLLM-DataEngine: An Iterative Refinement Approach for MLLM,,soft prompting
-UNLEASHING THE POWER OF PRE-TRAINED LANGUAGE MODELS FOR OFFLINE REINFORCEMENT LEARNING,, out-of-scope
-ExPT: Synthetic Pretraining for Few-Shot Experimental Design,, no prompting
-Improving Input-label Mapping with Demonstration Replay for In-context Learning,, out-of-domain
-APOLLO: ZERO-SHOT MULTIMODAL REASONING WITH MULTIPLE EXPERTS, 2310.18369v1.pdf, Lower-Level Transformer Modification - Not Prompting
-
+ANALOGY-FORMING TRANSFORMERS FOR FEW-SHOT 3D PARSING,, no prompting,,
+GENERAL-PURPOSE IN-CONTEXT LEARNING BY META-LEARNING TRANSFORMERS,, no prompting,,
+A Survey of Deep Learning for Low-Shot Object Detection,, no prompting,,
+Few-shot Class-incremental Learning: A Survey,, no prompting,,
+Balanced and Explainable Social Media Analysis for Public Health with  Large Language Models,,uses BERT,,
+QUERY-DEPENDENT PROMPT EVALUATION AND OPTI- MIZATION WITH OFFLINE INVERSE RL,,more about deep RL than prompting,,
+DeltaEdit: Exploring Text-free Training for Text-Driven Image  Manipulation,,too training focused,,
+Deep Language Networks: Joint Prompt Training of Stacked LLMs using  Variational Inference,, too training focused,,
+Unnatural language processing: How do language models handle  machine-generated prompts?,, too training focused,,
+Give Me the Facts! A Survey on Factual Knowledge Probing in Pre-trained  Language Models,, cloze focused,,
+Task-driven Prompt Evolution for Foundation Models,, training related,,
+Diversity-Aware Meta Visual Prompting,, training focused,,
+DRPT: Disentangled and Recurrent Prompt Tuning for Compositional  Zero-Shot Learning,, tuning,,
+DeltaSpace: A Semantic-aligned Feature Space for Flexible Text-guided  Image Editing,, training focused,,
+InstructPix2NeRF: Instructed 3D Portrait Editing from a Single Image,, not really about prompting,,
+What Changes Can Large-scale Language Models Bring? Intensive Study on  HyperCLOVA: Billions-scale Korean Generative Pretrained Transformers,, about a model not prompts,,
+MLLM-DataEngine: An Iterative Refinement Approach for MLLM,,soft prompting,,
+UNLEASHING THE POWER OF PRE-TRAINED LANGUAGE MODELS FOR OFFLINE REINFORCEMENT LEARNING,, out-of-scope,,
+ExPT: Synthetic Pretraining for Few-Shot Experimental Design,, no prompting,,
+Improving Input-label Mapping with Demonstration Replay for In-context Learning,, out-of-domain,,
+APOLLO: ZERO-SHOT MULTIMODAL REASONING WITH MULTIPLE EXPERTS, 2310.18369v1.pdf, Lower-Level Transformer Modification - Not Prompting,,
+Towards Training-free Open-world Segmentation via Image Prompting Foundation Models,http://arxiv.org/pdf/2310.10912v1.pdf,image segmentation,,
+Videoprompter: an ensemble of foundational models for zero-shot video understanding,http://arxiv.org/pdf/2310.15324v1.pdf,"video understanding, different domain",,
+Improving Diversity of Demographic Representation in Large Language Models via Collective-Critiques and Self-Voting,http://arxiv.org/pdf/2310.16523v1.pdf,"model representation, not prompting",,
+The Power of Large Language Models for Wireless Communication System Development: A Case Study on FPGA Platforms,http://arxiv.org/pdf/2307.07319v4.pdf,not prompting,,
+Large Language Models Enable Few-Shot Clustering,http://arxiv.org/pdf/2307.00524v1.pdf,"few-shot clustering, not prompting",,
+Universal Fuzzing via Large Language Models,http://arxiv.org/pdf/2308.04748v1.pdf,does not use hard-prefix prompts,,
+Training-free Open-world Segmentation via Image Prompting Foundation Models,,image segmentation,,
+FIRE: Food Image to REcipe generation,http://arxiv.org/pdf/2308.14391v1.pdf,image to text translation,,
+Large language models can accurately predict searcher preferences,http://arxiv.org/pdf/2309.10621v1.pdf,does not use hard-prefix prompts,,
