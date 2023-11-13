@@ -10,12 +10,14 @@ class SemanticScholarSource:
     searchBaseURL = "https://api.semanticscholar.org/graph/v1/paper/search"
     paperBaseURL = "https://api.semanticscholar.org/graph/v1/paper/"
 
-    def __init__(self):
-        self.api_key = "[insert API key here]"
-        self.session = requests.Session()
-        self.session.headers.update({"x-api-key": self.api_key})
+    # def __init__(self):
+    #     self.api_key = "QsbGjXIFx63q9C49WjKBd5vgNndrIzlb8EkDT3PJ"
+    #     self.session = requests.Session()
+    #     self.session.headers.update({"x-api-key": self.api_key})
 
-    def getPapers(self, keyWords: List[str], count: int = 10, offset: int = 0) -> List[dict]:
+    def getPapers(
+        self, keyWords: List[str], count: int = 10, offset: int = 0
+    ) -> List[dict]:
         papers_data = []
         for keyword in keyWords:
             params = {
@@ -24,22 +26,32 @@ class SemanticScholarSource:
                 "limit": count,
                 "fields": "title,authors,abstract,openAccessPdf,tldr",
             }
-            response = self.session.get(self.searchBaseURL, params=params)
+            # response = self.session.get(self.searchBaseURL, params=params)
+            response = requests.get(self.searchBaseURL, params=params)
             response.raise_for_status()
             data = response.json()
 
             for paper_data in data.get("data", []):
-                first_author = paper_data.get("authors", [{}])[0].get("name", "") if paper_data.get("authors") else ""
+                first_author = (
+                    paper_data.get("authors", [{}])[0].get("name", "")
+                    if paper_data.get("authors")
+                    else ""
+                )
+                abstract = (paper_data.get("abstract") or "").replace("\n", " ")
+
                 paper_info = {
-                    'Title': paper_data.get("title"),
-                    'First Author': first_author,
-                    'Abstract': paper_data.get('Abstract', '').replace('\n', ' '),
-                    'TLDR': paper_data.get("tldr"),
-                    'Open Access PDF URL': paper_data.get("openAccessPdf", {}).get("url") if paper_data.get("openAccessPdf") else None
+                    "Title": paper_data.get("title"),
+                    "First Author": first_author,
+                    "Abstract": abstract,
+                    "TLDR": paper_data.get("tldr"),
+                    "Open Access PDF URL": paper_data.get("openAccessPdf", {}).get(
+                        "url"
+                    )
+                    if paper_data.get("openAccessPdf")
+                    else None,
                 }
                 papers_data.append(paper_info)
         return papers_data
-
 
     def getPaperDetails(self, paperId: str) -> dict:
         """Get the detailed information of a paper from Semantic Scholar."""
