@@ -16,29 +16,29 @@ def hashString(bytes):
 def client():
     return Pipeline(token=os.environ["HF_AUTH_TOKEN"], revision="test")
 
-
+@pytest.mark.API_test
 def test_login():
     testClient = Pipeline(revision="test")
     assert testClient.is_logged_in() == False
     testClient.login(os.environ["HF_AUTH_TOKEN"])
     assert testClient.is_logged_in() == True
 
-
+@pytest.mark.API_test
 def test_get_all_files(client):
     assert len(client.get_all_files()) > 0
 
-
+@pytest.mark.API_test
 def test_get_all_data_files(client):
     assert len(client.get_all_data_files()) > 0
     assert all([x.endswith(".csv") for x in client.get_all_data_files()])
 
-
+@pytest.mark.API_test
 def test_read_from_file(client):
     assert len(client.read_from_file("test.csv")) > 0
     assert len(client.read_from_file("test.csv").columns) == 2
     assert client.read_from_file("test.csv")["Age"].mean() == 21
 
-
+@pytest.mark.API_test
 def test_write_to_file(client):
     lenOfFiles = len(client.get_all_files())
     randString = random.randbytes(100) + str(time.time()).encode()
