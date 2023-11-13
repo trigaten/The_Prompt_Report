@@ -87,3 +87,25 @@ MultiQG-TI: Towards Question Generation from Multi-modal Sources, http://arxiv.o
 Why Is Prompt Tuning for Vision-Language Models Robust to Noisy Labels?, http://arxiv.org/pdf/2307.11978v1.pdf, tuning
 Low-Parameter Federated Learning with Large Language Models, http://arxiv.org/pdf/2307.13896v1.pdf, tuning and MLM
 OLaLa: Ontology Matching with Large Language Models, http://arxiv.org/pdf/2311.03837v1.pdf, uses BERT no specified prefix prompting
+Cross-Lingual Supervision improves Large Language Models Pre-training, http://arxiv.org/pdf/2305.11778v1.pdf, training focused
+ExplainCPE: A Free-text Explanation Benchmark of Chinese Pharmacist  Examination,http://arxiv.org/pdf/2305.12945v2.pdf, training focused
+Adapting Language Models to Compress Contexts, http://arxiv.org/pdf/2305.14788v2.pdf, soft prompting
+A Mechanism for Sample-Efficient In-Context Learning for Sparse  Retrieval Tasks, http://arxiv.org/pdf/2305.17040v1.pdf, more about LM interpretability than prompting
+Large Language Models Are Partially Primed in Pronoun Interpretation, http://arxiv.org/pdf/2305.16917v1.pdf, uses in-context learning but is not about prompting methods
+A Mechanism for Sample-Efficient In-Context Learning for Sparse  Retrieval Tasks,http://arxiv.org/pdf/2305.17040v1.pdf, aims to explain in-context learning instead of proposing methods
+Contextual Vision Transformers for Robust Representation Learning,http://arxiv.org/pdf/2305.19402v2.pdf, not about prefix prompting
+Self-Verification Improves Few-Shot Clinical Information Extraction, http://arxiv.org/pdf/2306.00024v1.pdf, is about verifying output not modifying input
+Measuring and Modifying Factual Knowledge in Large Language Models,http://arxiv.org/pdf/2306.06264v1.pdf, mentions in context learning but it is not the focus
+A Survey on Multimodal Large Language Models,http://arxiv.org/pdf/2306.13549v1.pdf, not focused on prompting
+Potential Benefits of Employing Large Language Models in Research in  Moral Education and Development,http://arxiv.org/pdf/2306.13805v2.pdf, not particuyarly about prompting
+Assessing the efficacy of large language models in generating accurate  teacher responses,http://arxiv.org/pdf/2307.04274v1.pdf, does not focus on prompting methods
+Unsupervised Calibration through Prior Adaptation for Text  Classification using Large Language Models,http://arxiv.org/pdf/2307.06713v3.pdf, does not focus on prompting methods
+Baby's CoThought: Leveraging Large Language Models for Enhanced  Reasoning in Compact Models,http://arxiv.org/pdf/2308.01684v2.pdf, focuses on training other models
+Diffusion Language Models Can Perform Many Tasks with Scaling and  Instruction-Finetuning,http://arxiv.org/pdf/2308.12219v2.pdf, focuses on training
+Large Language Model as Autonomous Decision Maker,http://arxiv.org/pdf/2308.12519v1.pdf, not about prompting methods
+Speech-to-Speech Translation with Discrete-Unit-Based Style Transfer,http://arxiv.org/pdf/2309.07566v1.pdf, speech to speech translation
+Language Modeling Is Compression,http://arxiv.org/pdf/2309.10668v1.pdf, more about explaining in-context learning than proposing a method
+Text Data Augmentation in Low-Resource Settings via Fine-Tuning of Large  Language Models,http://arxiv.org/pdf/2310.01119v1.pdf, focuses on training
+Humans and language models diverge when predicting repeating text,http://arxiv.org/pdf/2310.06408v2.pdf, focuses on evaluating humans and comparing to prompting method
+AMAGO: Scalable In-Context Reinforcement Learning for Adaptive Agents,http://arxiv.org/pdf/2310.09971v2.pdf, not about LMs; this is an RL paper
+Meta- (out-of-context) learning in neural networks,,http://arxiv.org/pdf/2310.15047v2.pdf, evaluates in-context learning but is not based on it
