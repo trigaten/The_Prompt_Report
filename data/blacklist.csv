@@ -133,3 +133,117 @@ Large language models can accurately predict searcher preferences,http://arxiv.o
 Fine-tune Language Models to Approximate Unbiased In-context Learning,http://arxiv.org/pdf/2310.03331v1.pdf,fine-tuning,,
 On the Compositional Generalization Gap of In-Context Learning,http://arxiv.org/pdf/2211.08473v1.pdf,"compositional generalization, not hard-prefix prompting",,
 Few-shot Fine-tuning vs. In-context Learning: A Fair Comparison and  Evaluation,http://arxiv.org/pdf/2305.16938v2.pdf,no hard-prefix prompting,,
+Apollo: Zero-shot MultiModal Reasoning with Multiple Experts, http://arxiv.org/pdf/2310.18369v1.pdf, explicitly avoids prompt engineering
+StyleMC: Multi-Channel Based Fast Text-Guided Image Generation and  Manipulation, http://arxiv.org/pdf/2112.08493v1.pdf, not prompt engineering
+Test-Time Training on Nearest Neighbors for Large Language Models, http://arxiv.org/pdf/2305.18466v2.pdf, fine-tuning
+Chain of Natural Language Inference for Reducing Large Language Model  Ungrounded Hallucinations, http://arxiv.org/pdf/2310.03951v2.pdf, no prompt engineering
+Differentiable Prompt Makes Pre-trained Language Models Better Few-shot  Learners, http://arxiv.org/pdf/2108.13161v7.pdf, not hard prompts
+MME: A Comprehensive Evaluation Benchmark for Multimodal Large Language  Models, http://arxiv.org/pdf/2306.13394v2.pdf, not specifically hard prompting
+Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning, http://arxiv.org/pdf/2307.03073v2.pdf, not prompting
+A Survey on Recent Named Entity Recognition and Relation Classification  Methods with Focus on Few-Shot Learning Approaches, http://arxiv.org/pdf/2310.19055v1.pdf, not prompting
+Improving In-Context Few-Shot Learning via Self-Supervised Training, http://arxiv.org/pdf/2205.01703v2.pdf, pretraining
+Revisiting Few-Shot Learning from a Causal Perspective, http://arxiv.org/pdf/2209.13816v1.pdf, not prompting
+FILM: How can Few-Shot Image Classification Benefit from Pre-Trained  Language Models?, http://arxiv.org/pdf/2307.04114v1.pdf, not hard prefix prompting
+CLUES: Few-Shot Learning Evaluation in Natural Language Understanding, http://arxiv.org/pdf/2111.02570v1.pdf, no prompt engineering
+Improving Few-Shot Generalization by Exploring and Exploiting Auxiliary  Data, http://arxiv.org/pdf/2302.00674v4.pdf, not prompt engineering.
+Prompt Space Optimizing Few-shot Reasoning Success with Large Language  Models, http://arxiv.org/pdf/2306.03799v1.pdf, not prompt engineering
+Universal Few-shot Learning of Dense Prediction Tasks with Visual Token  Matching, http://arxiv.org/pdf/2303.14969v1.pdf, not prompting
+FD-Align: Feature Discrimination Alignment for Fine-tuning Pre-Trained  Models in Few-Shot Learning, http://arxiv.org/pdf/2310.15105v3.pdf, fine tuning
+Few-Shot Learning with Localization in Realistic Settings, http://arxiv.org/pdf/1904.08502v2.pdf, training
+Model-Agnostic Graph Regularization for Few-Shot Learning, http://arxiv.org/pdf/2102.07077v1.pdf, not prompting
+Uniform Sampling over Episode Difficulty, http://arxiv.org/pdf/2108.01662v2.pdf, not prompting
+Meta-Learning with Task-Adaptive Loss Function for Few-Shot Learning, http://arxiv.org/pdf/2110.03909v2.pdf, focuses on meta-learning
+On Measuring the Intrinsic Few-Shot Hardness of Datasets, http://arxiv.org/pdf/2211.09113v1.pdf, not prompting
+MerA: Merging Pretrained Adapters For Few-Shot Learning, http://arxiv.org/pdf/2308.15982v1.pdf, not prompting
+Meta-Adapter: An Online Few-shot Learner for Vision-Language Model, http://arxiv.org/pdf/2311.03774v1.pdf, not prompting
+Pushing the Limits of Simple Pipelines for Few-Shot Learning: External  Data and Fine-Tuning Make a Difference, http://arxiv.org/pdf/2204.07305v1.pdf, focus on few-shot learning.
+Multi-Level Fine-Tuning Data Augmentation and Few-Shot Learning for  Specialized Cyber Threat Intelligence, http://arxiv.org/pdf/2207.11076v1.pdf, training
+Few-shot Classification with Hypersphere Modeling of Prototypes, http://arxiv.org/pdf/2211.05319v1.pdf, not prompting
+StyleAdv: Meta Style Adversarial Training for Cross-Domain Few-Shot  Learning, http://arxiv.org/pdf/2302.09309v2.pdf, not prompting
+Federated Few-shot Learning for Cough Classification with Edge Devices, http://arxiv.org/pdf/2309.01076v1.pdf, not prompting
+Is Support Set Diversity Necessary for Meta-Learning?, http://arxiv.org/pdf/2011.14048v2.pdf, not prompting
+Entailment as Few-Shot Learner, http://arxiv.org/pdf/2104.14690v1.pdf, not prompt engineering
+WAVPROMPT: Towards Few-Shot Spoken Language Understanding with Frozen  Language Models, http://arxiv.org/pdf/2203.15863v2.pdf, fine-tuning
+Aligning MAGMA by Few-Shot Learning and Finetuning, http://arxiv.org/pdf/2210.14161v1.pdf, finetuning not prompting.
+STUNT: Few-shot Tabular Learning with Self-generated Tasks from  Unlabeled Tables, http://arxiv.org/pdf/2303.00918v1.pdf, not prompting
+Prototypes-oriented Transductive Few-shot Learning with Conditional  Transport, http://arxiv.org/pdf/2308.03047v1.pdf, not prompting
+COCA: Classifier-Oriented Calibration for Source-Free Universal Domain  Adaptation via Textual Prototype, http://arxiv.org/pdf/2308.10450v1.pdf, no prompt engineering
+Improving generalization in large language models by learning prefix  subspaces, http://arxiv.org/pdf/2310.15793v1.pdf, not prompting
+Zero-shot and Few-shot Learning with Knowledge Graphs: A Comprehensive  Survey, http://arxiv.org/pdf/2112.10006v6.pdf, not prompting
+On Unifying Misinformation Detection, http://arxiv.org/pdf/2104.05243v1.pdf, training
+Human in the loop: How to effectively create coherent topics by manually  labeling only a few documents per class, http://arxiv.org/pdf/2212.09422v1.pdf, not prompting.
+NeuroCLIP: Neuromorphic Data Understanding by CLIP and SNN, http://arxiv.org/pdf/2306.12073v1.pdf, not prompting
+PPT: Pre-trained Prompt Tuning for Few-shot Learning, http://arxiv.org/pdf/2109.04332v3.pdf, soft prompts
+Yuan 1.0: Large-Scale Pre-trained Language Model in Zero-Shot and  Few-Shot Learning, http://arxiv.org/pdf/2110.04725v2.pdf, training
+PERFECT: Prompt-free and Efficient Few-shot Learning with Language  Models, http://arxiv.org/pdf/2204.01172v2.pdf, literally not prompting
+On the Effect of Pretraining Corpora on In-context Learning by a  Large-scale Language Model, http://arxiv.org/pdf/2204.13509v2.pdf, pretraining
+Few-Shot Learning for Clinical Natural Language Processing Using Siamese  Neural Networks, http://arxiv.org/pdf/2208.14923v2.pdf, not prompting
+Prompting through Prototype: A Prototype-based Prompt Learning on  Pretrained Vision-Language Models, http://arxiv.org/pdf/2210.10841v1.pdf, soft prompts
+SgVA-CLIP: Semantic-guided Visual Adapting of Vision-Language Models for  Few-shot Image Classification, http://arxiv.org/pdf/2211.16191v2.pdf, training
+AugGPT: Leveraging ChatGPT for Text Data Augmentation, http://arxiv.org/pdf/2302.13007v3.pdf, not prompting
+Semantic Prompt for Few-Shot Image Recognition, http://arxiv.org/pdf/2303.14123v1.pdf, not really prompt engineering
+The CoT Collection: Improving Zero-shot and Few-shot Learning of  Language Models via Chain-of-Thought Fine-Tuning, http://arxiv.org/pdf/2305.14045v2.pdf, training
+Few-shot Learning for Inference in Medical Imaging with Subspace Feature  Representations, http://arxiv.org/pdf/2306.11152v1.pdf, no prompting
+Visually grounded few-shot word learning in low-resource settings, http://arxiv.org/pdf/2306.11371v2.pdf, not prompting
+Cross-Modal Concept Learning and Inference for Vision-Language Models, http://arxiv.org/pdf/2307.15460v1.pdf, not prompt engineering.
+UniAP: Towards Universal Animal Perception in Vision via Few-shot  Learning, http://arxiv.org/pdf/2308.09953v1.pdf, not text prompts
+PaLM: Scaling Language Modeling with Pathways, http://arxiv.org/pdf/2204.02311v5.pdf, not prompting
+Few-Shot Electronic Health Record Coding through Graph Contrastive  Learning, http://arxiv.org/pdf/2106.15467v1.pdf, not prompting
+ERNIE 3.0: Large-scale Knowledge Enhanced Pre-training for Language  Understanding and Generation, http://arxiv.org/pdf/2107.02137v1.pdf, pre-training
+Cross-Lingual Alignment of Contextual Word Embeddings with Applications  to Zero-shot Dependency Parsing, http://arxiv.org/pdf/1902.09492v2.pdf, embeddings
+Alleviating the Incompatibility between Cross Entropy Loss and Episode  Training for Few-shot Skin Disease Classification, http://arxiv.org/pdf/2004.09694v1.pdf, not prompting
+Few-shot learning through contextual data augmentation, http://arxiv.org/pdf/2103.16911v1.pdf, not prompting
+Meta-Learning GNN Initializations for Low-Resource Molecular Property  Prediction, http://arxiv.org/pdf/2003.05996v2.pdf, not prompt engineering.
+Neural Data Augmentation via Example Extrapolation, http://arxiv.org/pdf/2102.01335v1.pdf, data augmentation
+One-shot learning for the long term: consolidation with an artificial  hippocampal algorithm, http://arxiv.org/pdf/2102.07503v2.pdf, not prompting
+The Power of Scale for Parameter-Efficient Prompt Tuning, http://arxiv.org/pdf/2104.08691v2.pdf, soft prompts
+Design of a Graphical User Interface for Few-Shot Machine Learning  Classification of Electron Microscopy Data, http://arxiv.org/pdf/2107.10387v1.pdf, not prompting
+FlipDA: Effective and Robust Data Augmentation for Few-Shot Learning, http://arxiv.org/pdf/2108.06332v2.pdf, not prompting
+On the Multilingual Capabilities of Very Large-Scale English Language  Models, http://arxiv.org/pdf/2108.13349v1.pdf, not prompting
+Learning Opinion Summarizers by Selecting Informative Reviews, http://arxiv.org/pdf/2109.04325v1.pdf, not prompting
+STraTA: Self-Training with Task Augmentation for Better Few-shot  Learning, http://arxiv.org/pdf/2109.06270v2.pdf, not prompting
+What does CLIP know about a red circle? Visual prompt engineering for  VLMs, http://arxiv.org/pdf/2304.06712v2.pdf, not text prompting
+Conformal Prediction with Large Language Models for Multi-Choice  Question Answering, http://arxiv.org/pdf/2305.18404v3.pdf, not prompting.
+P2P: Tuning Pre-trained Image Models for Point Cloud Analysis with  Point-to-Pixel Prompting, http://arxiv.org/pdf/2208.02812v2.pdf, not text prompting
+EvoPrompting: Language Models for Code-Level Neural Architecture Search, http://arxiv.org/pdf/2302.14838v2.pdf, soft prompts
+Right to be Forgotten in the Era of Large Language Models: Implications  Challenges and Solutions, http://arxiv.org/pdf/2307.03941v3.pdf, not related
+Label Supervised LLaMA Finetuning, http://arxiv.org/pdf/2310.01208v1.pdf, focus on finetuning not prompting
+In-context Learning Distillation: Transferring Few-shot Learning Ability  of Pre-trained Language Models, http://arxiv.org/pdf/2212.10670v1.pdf, distillation not prompting.
+A Neural Network Solves Explains and Generates University Math  Problems by Program Synthesis and Few-Shot Learning at Human Level, http://arxiv.org/pdf/2112.15594v4.pdf, focuses on fine-tuning
+CrossFit: A Few-shot Learning Challenge for Cross-task Generalization in  NLP, http://arxiv.org/pdf/2104.08835v2.pdf, not prompting
+JASMINE: Arabic GPT Models for Few-Shot Learning, http://arxiv.org/pdf/2212.10755v2.pdf, training
+Conversation Style Transfer using Few-Shot Learning, http://arxiv.org/pdf/2302.08362v2.pdf, not prompting
+CancerGPT: Few-shot Drug Pair Synergy Prediction using Large Pre-trained  Language Models, http://arxiv.org/pdf/2304.10946v1.pdf, training
+Meta Learning to Bridge Vision and Language Models for Multimodal  Few-Shot Learning, http://arxiv.org/pdf/2302.14794v1.pdf, not prompting
+Demonstration-based learning for few-shot biomedical named entity  recognition under machine reading comprehension, http://arxiv.org/pdf/2308.06454v1.pdf, not prompt engineering
+Robustness Over Time: Understanding Adversarial Examples' Effectiveness  on Longitudinal Versions of Large Language Models, http://arxiv.org/pdf/2308.07847v1.pdf, not prompting.
+Few-shot Natural Language Generation for Task-Oriented Dialog, http://arxiv.org/pdf/2002.12328v1.pdf, not prompting
+Prompt-Free Diffusion: Taking "Text" out of Text-to-Image Diffusion  Models, http://arxiv.org/pdf/2305.16223v2.pdf, literally not prompting.
+Cutting Down on Prompts and Parameters: Simple Few-Shot Learning with  Language Models, http://arxiv.org/pdf/2106.13353v2.pdf, not prompt engineering
+Executive Function: A Contrastive Value Policy for Resampling and  Relabeling Perceptions via Hindsight Summarization?, http://arxiv.org/pdf/2204.12639v1.pdf, not prompting
+TART: A plug-and-play Transformer module for task-agnostic reasoning, http://arxiv.org/pdf/2306.07536v1.pdf, not prompting
+Synergistic Integration of Large Language Models and Cognitive  Architectures for Robust AI: An Exploratory Analysis, http://arxiv.org/pdf/2308.09830v3.pdf, brief mention of prompting but not related
+Vision-Language Models are Zero-Shot Reward Models for Reinforcement  Learning, http://arxiv.org/pdf/2310.12921v1.pdf, maybe tangential but not prompt engineering
+Few-shot Multimodal Multitask Multilingual Learning, http://arxiv.org/pdf/2303.12489v1.pdf, maybe tangential but not prompt engineering
+Few-Shot Learning with Visual Distribution Calibration and Cross-Modal  Distribution Alignment, http://arxiv.org/pdf/2305.11439v1.pdf, not prompting.
+Active Learning Principles for In-Context Learning with Large Language  Models, http://arxiv.org/pdf/2305.14264v1.pdf, not prompting
+FLamE: Few-shot Learning from Natural Language Explanations, http://arxiv.org/pdf/2306.08042v1.pdf, not prompting.
+Approximating Human-Like Few-shot Learning with GPT-based Compression, http://arxiv.org/pdf/2308.06942v1.pdf, not promting
+From Human Days to Machine Seconds: Automatically Answering and  Generating Machine Learning Final Exams, http://arxiv.org/pdf/2206.05442v7.pdf, not prompting
+Cedille: A large autoregressive French language model, http://arxiv.org/pdf/2202.03371v1.pdf, not prompting
+Finetune like you pretrain: Improved finetuning of zero-shot vision  models, http://arxiv.org/pdf/2212.00638v1.pdf, focuses on fine-tuning
+Wordcraft: a Human-AI Collaborative Editor for Story Writing, http://arxiv.org/pdf/2107.07430v1.pdf, not prompt engineering
+Want To Reduce Labeling Cost? GPT-3 Can Help, http://arxiv.org/pdf/2108.13487v1.pdf, not prompting
+Cut the CARP: Fishing for zero-shot story evaluation, http://arxiv.org/pdf/2110.03111v3.pdf, tangential but not prompt engineering
+Fake it till you make it: Learning transferable representations from  synthetic ImageNet clones, http://arxiv.org/pdf/2212.08420v2.pdf, not prompt engineering
+Activation Addition: Steering Language Models Without Optimization, http://arxiv.org/pdf/2308.10248v2.pdf, messes with activation not prompt engineering
+Safurai 001: New Qualitative Approach for Code LLM Evaluation, http://arxiv.org/pdf/2309.11385v1.pdf, tangential but not prompt engineering
+Controlled and Conditional Text to Image Generation with Diffusion Prior, http://arxiv.org/pdf/2302.11710v2.pdf, image prompts
+IP-Adapter: Text Compatible Image Prompt Adapter for Text-to-Image  Diffusion Models, http://arxiv.org/pdf/2308.06721v1.pdf, image prompts
+Revisiting Self-Training for Few-Shot Learning of Language Model, http://arxiv.org/pdf/2110.01256v1.pdf, tangential but not prompt engineering
+Multimodal Large Language Model for Visual Navigation, http://arxiv.org/pdf/2310.08669v2.pdf, tangential but not prompt engineering
+TaskDiff: A Similarity Metric for Task-Oriented Conversations, http://arxiv.org/pdf/2310.15298v2.pdf, tangential but not prompt engineering
+CLIP-Adapter: Better Vision-Language Models with Feature Adapters, http://arxiv.org/pdf/2110.04544v1.pdf, tangential but not prompt engineering
+ConES: Concept Embedding Search for Parameter Efficient Tuning Large  Vision Language Models, http://arxiv.org/pdf/2305.18993v1.pdf, tangential but not prompt engineering
+LoGoPrompt: Synthetic Text Images Can Be Good Visual Prompts for  Vision-Language Models, http://arxiv.org/pdf/2309.01155v2.pdf, visual prompts
+Manipulating Embeddings of Stable Diffusion Prompts, http://arxiv.org/pdf/2308.12059v1.pdf, manipulates embeddings not text.
