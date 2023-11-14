@@ -6,7 +6,7 @@ __email__ = "sanderschulhoff@gmail.com"
 import os
 import pandas as pd
 from tqdm import tqdm
-from PyPDF2 import PdfReader
+from tika import parser
 
 
 def filter_and_save_pdfs(folder_path, csv_path, output_csv_path):
@@ -24,22 +24,12 @@ def filter_and_save_pdfs(folder_path, csv_path, output_csv_path):
             if filename.endswith(".pdf"):
                 file_path = os.path.join(folder_path, filename)
 
-                # Open the PDF file
-                with open(file_path, "rb") as pdf_file:
-                    pdf_reader = PdfReader(pdf_file)
+                parsed_pdf = parser.from_file(file_path)
+                data = parsed_pdf["content"]
 
-                    # Iterate through all pages in the PDF
-                    for page_num in range(len(pdf_reader.pages)):
-                        # Extract text from the current page
-                        text = pdf_reader.pages[page_num].extract_text()
+                if "prompt" in data.lower():
+                    kept_pdfs.append(filename)
 
-                        # Check if the word "prompt" is present in the text
-                        if "prompt" in text.lower():
-                            kept_pdfs.append(filename)
-                            break  # No need to check other pages if "prompt" is found in one
-                    else:
-                        # If the loop completes without breaking, the word "prompt" was not found
-                        pass
         except Exception as e:
             print(f"Error processing {filename}: {e}")
 
@@ -55,7 +45,7 @@ def filter_and_save_pdfs(folder_path, csv_path, output_csv_path):
 # Provide the path to the folder containing PDFs, the original CSV file, and the output CSV file
 folder_path = "arxivPDFs"
 csv_path = "arxiv_papers.csv"
-output_csv_path = "arxiv_papers.csv"
+output_csv_path = "test/filtered_arxiv_papers.csv"
 
 result = filter_and_save_pdfs(folder_path, csv_path, output_csv_path)
 
