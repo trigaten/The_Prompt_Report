@@ -45,7 +45,7 @@ def filter_and_save_pdfs(folder_path, csv_path, output_csv_path):
 # Provide the path to the folder containing PDFs, the original CSV file, and the output CSV file
 folder_path = "arxivPDFs"
 csv_path = "arxiv_papers.csv"
-output_csv_path = "test/filtered_arxiv_papers.csv"
+output_csv_path = "filtered_arxiv_papers.csv"
 
 result = filter_and_save_pdfs(folder_path, csv_path, output_csv_path)
 
