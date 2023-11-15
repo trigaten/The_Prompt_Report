@@ -27,6 +27,7 @@ def downloadPaper(paper: str):
     # sleep to avoid being blocked
     time.sleep(0.5)
 
+
 def filter_and_save_pdfs(folder_path, csv_path, output_csv_path):
     # Load the CSV file into a DataFrame
     df = pd.read_csv(csv_path)
@@ -62,7 +63,6 @@ def filter_and_save_pdfs(folder_path, csv_path, output_csv_path):
     return len(kept_pdfs)
 
 
-
 if __name__ == "__main__":
     filename = "arxiv_papers.csv"
     # mkdir "./arxivPDFs/" if it doesn't exist
@@ -87,10 +87,10 @@ if __name__ == "__main__":
                     row["keywords"],
                 )
             )
-    
+
         # download pdf of paper
         pool.map(downloadPaper, papList)
-        
+
     # Provide the path to the folder containing PDFs, the original CSV file, and the output CSV file
     folder_path = "arxivPDFs"
     csv_path = "arxiv_papers.csv"
@@ -99,5 +99,3 @@ if __name__ == "__main__":
     result = filter_and_save_pdfs(folder_path, csv_path, output_csv_path)
 
     print(f"Number of PDFs containing the word 'prompt' and saved to new CSV: {result}")
-    
-    
