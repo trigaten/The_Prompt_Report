@@ -14,12 +14,17 @@ def query_model(
     client = OpenAI(
         api_key=key,
     )
+
     response = client.chat.completions.create(
         model=model_name,
-        prompt=prompt + question,
+        messages=[
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": question},
+        ],
         max_tokens=output_tokens,
     )
-    return response.choices[0].text.strip()
+
+    return response.choices[0]
 
 
 def evaluate_response(response: str, correct_answer: str) -> bool:
@@ -28,9 +33,13 @@ def evaluate_response(response: str, correct_answer: str) -> bool:
 
 
 def evaluate_prompts(
-    API_key: str, prompts: List[str], dataset: str, config_name: str, split: str, model_name: str
+    API_key: str,
+    prompts: List[str],
+    dataset: str,
+    config_name: str,
+    split: str,
+    model_name: str,
 ) -> dict:
-
     dataset = load_hf_dataset(dataset_name=dataset, name=config_name, split=split)
 
     results = {prompt: {"correct": 0, "total": 0} for prompt in prompts}

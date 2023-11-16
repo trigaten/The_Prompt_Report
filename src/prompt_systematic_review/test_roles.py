@@ -1,16 +1,18 @@
 from role_prompting import query_model, evaluate_response, evaluate_prompts
 
-key = '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'
+key = "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"
 
 prompts = [
-    "As an expert mathematician, solve the following and indicate your final answer with '####': ",
-    "Solving step by step, then write your final answer after '####': ",
+    "As an expert mathematician, solve the following and put four hashtags: '####' before your final answer. ",
+    "Solving step by step, then write your final answer before '####': ",
     "As a math teacher, explain and conclude your final answer with '####': ",
 ]
 
-dataset = 'gsm8k'
+dataset = "gsm8k"
 
-split = 'test'
+split = "test"
 
-output = query_model(key, prompts[0], '\nWhat is 2+2?', 'davinci')
+model = "gpt-3.5-turbo-1106"
+
+output = query_model(key, prompts[0], "\nWhat is 2+2?", model_name=model)
 print(output)
