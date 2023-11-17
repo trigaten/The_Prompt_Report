@@ -293,3 +293,149 @@ Manipulating Embeddings of Stable Diffusion Prompts, http://arxiv.org/pdf/2308.1
 "GraphPrompt: Biomedical Entity Normalization Using Graph-based Prompt Templates," http://arxiv.org/pdf/2112.03002v1.pdf, About fine-tuning
 "CycleAlign: Iterative Distillation from Black-box LLM to White-box Models for Better Human Alignment," http://arxiv.org/pdf/2310.16271v1.pdf, About fine-tuning
 "Transformers are Efficient In-Context Estimators for Wireless Communication," http://arxiv.org/pdf/2311.00226v1.pdf, About fine-tuning
+"Scaling In-Context Demonstrations with Structured Attention",http://arxiv.org/pdf/2307.02690v1.pdf,new architecture
+"In-context Learning and Induction Heads",http://arxiv.org/pdf/2209.11895v1.pdf,new architecture
+"What Makes Good Examples for Visual In-Context Learning?",http://arxiv.org/pdf/2301.13670v2.pdf,visual only
+"MMICL: Empowering Vision-language Model with Multi-Modal In-Context  Learning",http://arxiv.org/pdf/2309.07915v2.pdf,visual only
+"Visual In-Context Learning for Few-Shot Eczema Segmentation",http://arxiv.org/pdf/2309.16656v1.pdf,visual only
+"ScoNe: Benchmarking Negation Reasoning in Language Models With  Fine-Tuning and In-Context Learning",http://arxiv.org/pdf/2305.19426v1.pdf,fine-tuning
+"Can Whisper perform speech-based in-context learning",http://arxiv.org/pdf/2309.07081v1.pdf,speech
+"SALM: Speech-augmented Language Model with In-context Learning for  Speech Recognition and Translation",http://arxiv.org/pdf/2310.09424v1.pdf,speech
+"Can Foundation Models Help Us Achieve Perfect Secrecy?",http://arxiv.org/pdf/2205.13722v2.pdf,overview paper
+"SE Factual Knowledge in Frozen Giant Code Model: A Study on FQN and its  Retrieval",http://arxiv.org/pdf/2212.08221v1.pdf,unclear task
+"In-Context Learning for Attention Scheme: from Single Softmax Regression  to Multiple Softmax Regression via a Tensor Trick",http://arxiv.org/pdf/2307.02419v1.pdf,new architecture
+"SynerGPT: In-Context Learning for Personalized Drug Synergy Prediction  and Drug Design",http://arxiv.org/pdf/2307.11694v2.pdf,new architecture
+"Two-stage LLM Fine-tuning with Less Specialization and More  Generalization",http://arxiv.org/pdf/2211.00635v2.pdf,fine-tuning
+"Concept-aware Training Improves In-context Learning Ability of Language  Models",http://arxiv.org/pdf/2305.13775v1.pdf,fine-tuning
+"Probing in Context: Toward Building Robust Classifiers via Probing Large  Language Models",http://arxiv.org/pdf/2305.14171v2.pdf,uses probes for task
+"Towards In-context Scene Understanding",http://arxiv.org/pdf/2306.01667v2.pdf,visual only
+"The Cost of Down-Scaling Language Models: Fact Recall Deteriorates  before In-Context Learning",http://arxiv.org/pdf/2310.04680v1.pdf,analysis of pruning / LM size
+"Last One Standing: A Comparative Analysis of Security and Privacy of  Soft Prompt Tuning, LoRA, and In-Context Learning",http://arxiv.org/pdf/2310.11397v1.pdf,analysis of lora / tuning / ICL
+"When Do Prompting and Prefix-Tuning Work? A Theory of Capabilities and  Limitations",http://arxiv.org/pdf/2310.19698v1.pdf,analysis of lora / tuning / ICL
+"Instruct Me More! Random Prompting for Visual In-Context Learning",http://arxiv.org/pdf/2311.03648v1.pdf,visual only
+"In-Context Alignment: Chat with Vanilla Language Models Before  Fine-Tuning",http://arxiv.org/pdf/2308.04275v1.pdf,fine-tuning
+"GPT-4 Vision on Medical Image Classification -- A Case Study on COVID-19  Dataset",http://arxiv.org/pdf/2310.18498v1.pdf,visual only
+"Few-Shot Parameter-Efficient Fine-Tuning is Better and Cheaper than  In-Context Learning",http://arxiv.org/pdf/2205.05638v2.pdf,fine-tuning
+"Images Speak in Images: A Generalist Painter for In-Context Visual  Learning",http://arxiv.org/pdf/2212.02499v2.pdf,visual only
+"General-Purpose In-Context Learning by Meta-Learning Transformers",http://arxiv.org/pdf/2212.04458v1.pdf,new architecture
+"How Does In-Context Learning Help Prompt Tuning?",http://arxiv.org/pdf/2302.11521v1.pdf,fine-tuning
+"Symbol tuning improves in-context learning in language models",http://arxiv.org/pdf/2305.08298v1.pdf,fine-tuning
+"Iterative Forward Tuning Boosts In-context Learning in Language Models",http://arxiv.org/pdf/2305.13016v2.pdf,fine-tuning
+"Estimating Large Language Model Capabilities without Labeled Test Data",http://arxiv.org/pdf/2305.14802v2.pdf,out of scope analysis
+"Augmenting Language Models with Long-Term Memory",http://arxiv.org/pdf/2306.07174v1.pdf,new architecture
+"O3D: Offline Data-driven Discovery and Distillation for Sequential  Decision-Making with Large Language Models",http://arxiv.org/pdf/2310.14403v1.pdf,fine-tuning
+"Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time",http://arxiv.org/pdf/2310.17157v1.pdf,new architecture
+"Principle-Driven Self-Alignment of Language Models from Scratch with  Minimal Human Supervision",http://arxiv.org/pdf/2305.03047v1.pdf,fine-tuning
+"One for All: Towards Training One Graph Model for All Classification  Tasks",http://arxiv.org/pdf/2310.00149v1.pdf,new architecture
+"MAGMA -- Multimodal Augmentation of Generative Models through  Adapter-based Finetuning",http://arxiv.org/pdf/2112.05253v2.pdf,fine-tuning
+"Black-Box Tuning for Language-Model-as-a-Service",http://arxiv.org/pdf/2201.03514v4.pdf,fine-tuning
+"Contrastive Learning for Prompt-Based Few-Shot Language Learners",http://arxiv.org/pdf/2205.01308v1.pdf,fine-tuning
+"Exploring Length Generalization in Large Language Models",http://arxiv.org/pdf/2207.04901v2.pdf,out of scope analysis
+"Explanations from Large Language Models Make Small Reasoners Better",http://arxiv.org/pdf/2210.06726v1.pdf,out of scope analysis
+"Visual Programming: Compositional visual reasoning without training",http://arxiv.org/pdf/2211.11559v1.pdf,visual only
+"Don't Generate, Discriminate: A Proposal for Grounding Language Models  to Real-World Environments",http://arxiv.org/pdf/2212.09736v2.pdf,new architecture
+"Neural Codec Language Models are Zero-Shot Text to Speech Synthesizers",http://arxiv.org/pdf/2301.02111v1.pdf,speech
+"Looped Transformers as Programmable Computers",http://arxiv.org/pdf/2301.13196v1.pdf,out of scope analysis
+"Grounding Language Models to Images for Multimodal Inputs and Outputs",http://arxiv.org/pdf/2301.13823v4.pdf,new architecture
+"ProofNet: Autoformalizing and Formally Proving Undergraduate-Level  Mathematics",http://arxiv.org/pdf/2302.12433v1.pdf,new architecture
+"Speak Foreign Languages with Your Own Voice: Cross-Lingual Neural Codec  Language Modeling",http://arxiv.org/pdf/2303.03926v1.pdf,speech
+"When Brain-inspired AI Meets AGI",http://arxiv.org/pdf/2303.15935v1.pdf,overview paper
+"Larger Probes Tell a Different Story: Extending Psycholinguistic  Datasets Via In-Context Learning",http://arxiv.org/pdf/2303.16445v1.pdf,dataset
+"SegGPT: Segmenting Everything In Context",http://arxiv.org/pdf/2304.03284v1.pdf,new architecture
+"Towards Robust Prompts on Vision-Language Models",http://arxiv.org/pdf/2304.08479v1.pdf,vision-only
+"Understanding and Predicting Human Label Variation in Natural Language  Inference through Explanation",http://arxiv.org/pdf/2304.12443v1.pdf,out of scope analysis
+"Otter: A Multi-Modal Model with In-Context Instruction Tuning",http://arxiv.org/pdf/2305.03726v1.pdf,new architecture
+"Transformers learn in-context by gradient descent",http://arxiv.org/pdf/2212.07677v2.pdf, analysis of ICL as a learning algorithm
+"The Closeness of In-Context Learning and Weight Shifting for Softmax  Regression",http://arxiv.org/pdf/2304.13276v1.pdf, analysis of ICL as a learning algorithm
+"What learning algorithm is in-context learning? Investigations with  linear models",http://arxiv.org/pdf/2211.15661v3.pdf, analysis of ICL as a learning algorithm
+"Transformers as Algorithms: Generalization and Stability in In-context  Learning",http://arxiv.org/pdf/2301.07067v2.pdf, analysis of ICL as a learning algorithm
+"Explaining Emergent In-Context Learning as Kernel Regression",http://arxiv.org/pdf/2305.12766v2.pdf, analysis of ICL as a learning algorithm
+"Label Words are Anchors: An Information Flow Perspective for  Understanding In-Context Learning",http://arxiv.org/pdf/2305.14160v1.pdf, analysis of ICL as a learning algorithm
+"Transformers learn to implement preconditioned gradient descent for  in-context learning",http://arxiv.org/pdf/2306.00297v1.pdf, analysis of ICL as a learning algorithm
+"Investigating the Learning Behaviour of In-context Learning: A  Comparison with Supervised Learning",http://arxiv.org/pdf/2307.15411v2.pdf, analysis of ICL as a learning algorithm
+"In-context Learning with Transformer Is Really Equivalent to a  Contrastive Learning Pattern",http://arxiv.org/pdf/2310.13220v1.pdf, analysis of ICL as a learning algorithm
+"In-Context Learning Creates Task Vectors",http://arxiv.org/pdf/2310.15916v1.pdf, analysis of ICL as a learning algorithm
+"What and How does In-Context Learning Learn? Bayesian Model Averaging,  Parameterization, and Generalization",http://arxiv.org/pdf/2305.19420v2.pdf, analysis of ICL as a learning algorithm
+"How Do Transformers Learn In-Context Beyond Simple Functions? A Case  Study on Learning with Representations",http://arxiv.org/pdf/2310.10616v1.pdf, analysis of ICL as a learning algorithm
+"Transformers Learn Higher-Order Optimization Methods for In-Context  Learning: A Study with Linear Models",http://arxiv.org/pdf/2310.17086v1.pdf, analysis of ICL as a learning algorithm
+"A contemporaneous infrared flash from a long gamma-ray burst: an echo from the central engine,http://dx.doi.org/10.1038/nature03520",Not prompting related,,
+"Stellar Explosions by Magnetic Towers,http://dx.doi.org/10.1086/505621",Not prompting related,,
+"High Energy Radiation from Gamma Ray Bursts,http://dx.doi.org/10.1063/1.1291372",Not prompting related,,
+"The Fireball Shock Model of Gamma Ray Bursts,http://dx.doi.org/10.1063/1.1361591",Not prompting related,,
+"Origin of Gamma Ray Bursters,http://dx.doi.org/10.1143/PTPS.136.300",Not prompting related,,
+"The updated E_peak - E_gamma correlation in GRBs,http://dx.doi.org/10.1393/ncc/i2005-10046-0",Not prompting related,,
+"Gamma-Ray Burst Early Afterglows,http://dx.doi.org/10.1063/1.2141841",Not prompting related,,
+"MeV-GeV emission from neutron-loaded short gamma-ray burst jets,http://dx.doi.org/10.1086/507261",Not prompting related,,
+"A two component jet model for the X-ray afterglow flat segment in short GRB 051221A,http://dx.doi.org/10.1086/512971",Not prompting related,,
+"The shallow phase of X-ray afterglows,http://dx.doi.org/10.1063/1.2943505",Not prompting related,,
+"Hyperaccretion after the Blandford-Znajek Process: a New Model for GRBs
+with X-Ray Flares Observed in Early Afterglows,http://dx.doi.org/10.1088/1009-9271/8/4/04",Not prompting related,,
+"High energy gamma-ray emission from Gamma-Ray Bursts -- before GLAST,http://dx.doi.org/10.1007/s11467-008-0033-z",Not prompting related,,
+"Expected performance of a hard X-ray polarimeter (POLAR) by Monte Carlo
+Simulation,http://dx.doi.org/10.1016/j.nima.2009.04.033",Not prompting related,,
+"What do we know about gamma-ray bursts?,http://arxiv.org/abs/1009.4648v2",Not prompting related,,
+"Possible Origin of Rapid Variability of Gamma-Ray Bursts due to
+Convective Energy Transfer in Hyperaccretion Disks,http://dx.doi.org/10.1111/j.1365-2966.2011.19733.x",Not prompting related,,
+"Gamma-Ray Burst without Baryonic and Magnetic Load?,http://dx.doi.org/10.1143/PTP.126.555",Not prompting related,,
+"The physical origin of optical flares following GRB 110205A and the
+nature of the outflow,http://dx.doi.org/10.1088/1674-4527/11/11/007",Not prompting related,,
+"Magnetic Structures in Gamma-Ray Burst Jets Probed by Gamma-Ray
+Polarization,http://dx.doi.org/10.1088/2041-8205/758/1/L1",Not prompting related,,
+"Astrophysical ZeV acceleration in the relativistic jet from an accreting
+supermassive blackhole,http://dx.doi.org/10.1016/j.astropartphys.2014.02.004",Not prompting related,,
+"Neutrino-cooled Accretion Model with Magnetic Coupling for X-ray Flares
+in GRBs,http://dx.doi.org/10.1088/0004-637X/773/2/142",Not prompting related,,
+"Jet Luminosity from Neutrino-Dominated Accretion Flows in GRBs,http://arxiv.org/abs/1308.3236v1",Not prompting related,,
+"3D manipulation with scanning near field optical nanotweezers,http://dx.doi.org/10.1038/nnano.2014.24",Not prompting related,,
+"Tuning a Multiple Classifier System for Side Effect Discovery using
+Genetic Algorithms,http://arxiv.org/abs/1409.1053v1",Not prompting related,,
+"Molten-Salt Depleted-Uranium Reactor,http://arxiv.org/abs/1503.03183v1",Not prompting related,,
+"X-ray flares in GRBs: general considerations and photospheric origin,http://dx.doi.org/10.1093/mnrasl/slw003",Not prompting related,,
+"Water-Induced Bimetallic Alloy Surface Segregation: A First Principle
+Study,http://arxiv.org/abs/1601.02346v1",Not prompting related,,
+"Rates and singlet/triplet ratios from TADF transients,http://arxiv.org/abs/1603.08998v2",Not prompting related,,
+"Physical limits to magnetogenetics,http://dx.doi.org/10.7554/eLife.17210",Not prompting related,,
+"The Dark Side of Ethical Robots,http://arxiv.org/abs/1606.02583v1",Not prompting related,,
+"Numerical and analytical solutions of Neutrino-Dominated Accretion Flows
+with a Non-Zero Torque Boundary Condition and its applications in Gamma-ray
+Bursts,http://dx.doi.org/10.3847/1538-4357/833/2/129",Not prompting related,,
+"High-energy emission as signature of magnetic field amplification in
+Neutron Star Mergers,http://arxiv.org/abs/1701.01184v1",Not prompting related,,
+"Gamma-ray burst models in light of the GRB 170817A - GW170817 connection,http://arxiv.org/abs/1802.07328v1",Not prompting related,,
+"Surface modified mesoporous g-C3N4@FeNi3 as prompt and proficient
+magnetic adsorbent for crude oil recovery,http://dx.doi.org/10.1016/j.apsusc.2018.12.166",Not prompting related,,
+"The Perfect State Transfer Graph Limbo,http://arxiv.org/abs/1808.00696v2",Not prompting related,,
+"Variabilities of Gamma-ray Bursts from Black Hole Hyper-accretion Disks,http://dx.doi.org/10.1093/mnras/stw1985",Not prompting related,,
+"Data Driven Exploratory Attacks on Black Box Classifiers in Adversarial
+Domains,http://dx.doi.org/10.1016/j.neucom.2018.02.007",Not prompting related,,
+"Migrating large codebases to C++ Modules,http://dx.doi.org/10.1088/1742-6596/1525/1/012051",Not prompting related,,
+"Mn(II)-doped 2D perovskite for light emitting devices,http://arxiv.org/abs/1906.05099v1",Not prompting related,,
+"Deep Sequential Feature Learning in Clinical Image Classification of
+Infectious Keratitis,http://arxiv.org/abs/2006.02666v1",Not prompting related,,
+"Hydrodynamics of core-collapse supernovae and their progenitors,http://dx.doi.org/10.1007/s41115-020-0008-5",Not prompting related,,
+"X-ray plateaus in $γ$-ray bursts explained by structured jets,http://arxiv.org/abs/2006.13966v1",Not prompting related,,
+"POLAR: A Space-borne X-Ray Polarimeter for Transient Sources,http://dx.doi.org/10.5194/astra-7-43-2011",Not prompting related,,
+"The change of GRB polarization angles in the magnetic-dominated jet
+model,http://dx.doi.org/10.1093/mnras/stu2051",Not prompting related,,
+"Perspective: Quantum Thermodynamics,http://dx.doi.org/10.1088/1367-2630/18/1/011002",Not prompting related,,
+"Observational evidence for mass ejection accompanying short gamma ray
+bursts,http://dx.doi.org/10.1093/mnrasl/slx131",Not prompting related,,
+"Photospheric Emission From Variable Engine Gamma Ray Burst Simulations,http://dx.doi.org/10.3847/1538-4357/aaeed1",Not prompting related,,
+"The Divide-and-Conquer Framework: A Suitable Setting for the DDM of the
+Future,http://arxiv.org/abs/1901.00229v1",Not prompting related,,
+"Spectral Puzzle of the Off-Axis Gamma-Ray Burst in GW170817,http://dx.doi.org/10.1093/mnras/stz1650",Not prompting related,,
+"Equation-of-State, Critical Constants, and Thermodynamic Properties of
+Lithium at High Energy Density,http://dx.doi.org/10.1063/1.5143308",Not prompting related,,
+"Interpreting the X-ray afterglows of gamma-ray bursts with radiative
+losses and millisecond magnetars,http://dx.doi.org/10.1093/mnras/staa3090",Not prompting related,,
+"Wavelet Denoising and Attention-based RNN-ARIMA Model to Predict Forex
+Price,http://arxiv.org/abs/2008.06841v1",Not prompting related,,
+"Testing Blandford-Znajek mechanism in black hole hyperaccretion flows
+for long-duration gamma-ray bursts,http://dx.doi.org/10.3847/1538-4357/abd6bd",Not prompting related,,
+"Deep Learning-Based Detection of the Acute Respiratory Distress
+Syndrome: What Are the Models Learning?,http://arxiv.org/abs/2109.12323v1",Not prompting related,,
+"Continuation-Passing Style, Defunctionalization, Accumulations, and
+Associativity,http://dx.doi.org/10.22152/programming-journal.org/2022/6/7",Not prompting related,,
+"helyOS: A customized off-the-shelf solution for autonomous driving
+applications in delimited areas,http://dx.doi.org/10.1109/SII55687.2023.10039276",Not prompting related,,
+"The Structure of Gamma Ray Burst Jets,http://arxiv.org/abs/2206.11088v2",Not prompting related,,
