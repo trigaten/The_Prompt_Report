@@ -142,7 +142,8 @@
 <span class="target" id="module-prompt_systematic_review.utils"></span><dl class="py function">
 <dt class="sig sig-object py" id="prompt_systematic_review.utils.process_paper_title">
 <span class="sig-prename descclassname"><span class="pre">prompt_systematic_review.utils.</span></span><span class="sig-name descname"><span class="pre">process_paper_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#prompt_systematic_review.utils.process_paper_title" title="Permalink to this definition"></a></dt>
-<dd><p>Process a paper title by converting it to lowercase and removing newline characters and extra spaces.</p>
+<dd><p>Process a paper title by converting it to lowercase, removing newline characters,
+replacing ‘-’ with ‘’, collapsing any amount of spaces in a row to a single space.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>title</strong> (<em>str</em>) – The original title of the paper.</p>
