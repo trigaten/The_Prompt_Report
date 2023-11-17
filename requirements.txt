@@ -10,4 +10,5 @@ black
 sphinx
 renku-sphinx-theme
 sphinx-autobuild
+tika
 -e .
