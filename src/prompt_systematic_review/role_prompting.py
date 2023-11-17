@@ -7,6 +7,16 @@ import re
 def query_model(
     key: str, prompt: str, question: str, model_name: str, output_tokens: int = 150
 ) -> str:
+    """
+    Query the OpenAI API with a prompt and a question and return the response.
+    :param key: The OpenAI API key to use.
+    :param prompt: The prompt to use.
+    :param question: The question to use from the dataset.
+    :param model_name: The OpenAI model to use.
+    :param output_tokens: The maximum number of ouput tokens to generate.
+    :return: The response from the API.
+    """
+
     client = OpenAI(
         api_key=key,
     )
@@ -24,7 +34,13 @@ def query_model(
 
 
 def evaluate_response(response: str, correct_answer: str) -> bool:
-    print(response.message.content)
+    """
+    Evaluate the response from the API and return whether it is correct.
+    :param response: The response from the API.
+    :param correct_answer: The correct answer to the question taken from the dataset.
+    :return: Whether the response is correct.
+    """
+
     final_answer = extract_numbers(response.message.content)[0]
     correct = extract_numbers(correct_answer)[0]
     return final_answer == correct
@@ -39,6 +55,18 @@ def evaluate_prompts(
     model_name: str,
     examples: None or int = 1,
 ) -> dict:
+    """
+    Evaluate a list of prompts on a dataset and return the results.
+    :param API_key: The OpenAI API key to use.
+    :param prompts: The prompts to use.
+    :param dataset: The dataset to use. This will be "gsm8k" for the GSM-8k dataset.
+    :param config_name: The configuration name to use. This will be "main" for the GSM-8k dataset.
+    :param split: The split of the dataset to use. One of the splits for the GSM-8k dataset is "test".
+    :param model_name: The OpenAI model to use (ex. "gpt-4").
+    :param examples: The number of examples to evaluate, 1 by default.
+    :return: The results of the evaluation.
+    """
+
     dataset = load_hf_dataset(dataset_name=dataset, name=config_name, split=split)
 
     results = {prompt: {"correct": 0, "total": 0} for prompt in prompts}
@@ -46,7 +74,6 @@ def evaluate_prompts(
     for i, item in enumerate(dataset):
         question = item["question"]
         correct_answer = item["answer"]
-        print(f"Question: {question}\nAnswer: {correct_answer}\n")
         for prompt in prompts:
             response = query_model(API_key, prompt, question, model_name=model_name)
             is_correct = evaluate_response(response, correct_answer)
@@ -63,6 +90,12 @@ def evaluate_prompts(
 
 
 def extract_numbers(string: str) -> List[int]:
+    """
+    Extract the number from a string that can take any of the following forms:
+    "####1,000", "####1,000.00", "####$1,000", "####$1,000.00", "####1000", "####1000.00", "####$1000", "####$1000.00", "#### 1,000", "#### 1,000.00", "#### 1000", "#### 1000.00"
+    param string: The string to extract the number from.
+    return: The extracted number.
+    """
     # Remove commas from the string
     string_without_commas = string.replace(",", "")
 
@@ -76,24 +109,3 @@ def extract_numbers(string: str) -> List[int]:
     numbers = [int(match[1]) for match in matches]
 
     return numbers
-
-
-key = ""
-
-prompts = [
-    "You are a brilliant math professor. Solve the following problem and put your answer after four hashtags like the following example: \nQuestion: What is 4 + 4?\nAnswer: 4 + 4 is ####8\n\n Make your response as short as possible.",
-    "You are a foolish high-school student. Solve the following problem and put your answer after four hashtags like the following example: \nQuestion: What is 4 + 4?\nAnswer: 4 + 4 is ####8\n\n Make your response as short as possible.",
-]
-
-dataset = "gsm8k"
-model = "gpt-4"
-
-eval = evaluate_prompts(
-    key,
-    prompts,
-    dataset="gsm8k",
-    config_name="main",
-    split="test",
-    model_name=model,
-    examples=10,
-)

@@ -11,4 +11,5 @@ sphinx
 renku-sphinx-theme
 sphinx-autobuild
 openai
+tika
 -e .
