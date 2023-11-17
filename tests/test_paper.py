@@ -14,6 +14,7 @@ def test_paper():
         "example.com",
         date(2000, 2, 2),
         ["keyword1", "keyword2"],
+        "amongus babongus"
     )
     paper2 = Paper(
         "How to NOT write a paper",
@@ -21,6 +22,7 @@ def test_paper():
         "example.com",
         date(2002, 3, 3),
         ["keyword1", "keyword2"],
+        "amongus babongus"
     )
     alsoPaper1 = Paper(
         "How to write a paper",
@@ -28,6 +30,7 @@ def test_paper():
         "https://example2.com",
         date(2000, 2, 5),
         ["keyword1", "keyword2"],
+        "amongus babongus"
     )
 
     assert paper1 == alsoPaper1
