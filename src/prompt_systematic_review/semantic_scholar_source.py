@@ -11,7 +11,6 @@ class SemanticScholarSource:
     paperBaseURL = "https://api.semanticscholar.org/graph/v1/paper/"
     bulkSearchURL = "https://api.semanticscholar.org/graph/v1/paper/search/bulk"
 
-
     # def __init__(self):
     #     self.api_key = "QsbGjXIFx63q9C49WjKBd5vgNndrIzlb8EkDT3PJ"
     #     self.session = requests.Session()
@@ -90,17 +89,23 @@ class SemanticScholarSource:
             offset += len(batch)
         return open_access_papers
 
-
-    def bulkSearchPapers(self, query: str, fields: str = "title,authors,abstract,openAccessPdf,tldr", token: str = None) -> dict:
+    def bulkSearchPapers(
+        self,
+        query: str,
+        fields: str = "title,authors,abstract,openAccessPdf,tldr",
+        token: str = None,
+    ) -> dict:
         params = {
             "query": query,
             "fields": fields,
             "limit": 1000,  # Max limit per API call
-            "sort": "citationCount:desc"  # Example sorting parameter
+            "sort": "citationCount:desc",  # Example sorting parameter
         }
         if token:
             params["token"] = token
 
-        response = requests.get(self.bulkSearchURL, params=params)  # Ensure correct request is made
+        response = requests.get(
+            self.bulkSearchURL, params=params
+        )  # Ensure correct request is made
         response.raise_for_status()
         return response.json()
