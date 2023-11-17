@@ -1,0 +1,70 @@
+import pandas as pd
+from openai import OpenAI
+import json
+
+
+def load_csv(file_path):
+    df = pd.read_csv(file_path)
+    return df
+
+
+def query_gpt(title, abstract, tldr, model, client):
+    system_message = ("You are a lab assistant. Provide a response in JSON format with two fields: 'rating' (a number from 0-10 indicating relevance to the prompt engineering study) "
+                      "and 'reasoning' (a brief explanation for the rating)."\
+                      "prompt engineering study: A comprehensive systematic review on hard prefix prompts")
+
+    user_message = f"Title: '{title}', Abstract: '{abstract}', TLDR: '{tldr}'. Rate its relevance to prompt engineering from 0-10 and provide a brief explanation."
+
+    response = client.chat.completions.create(
+        model=model,
+        response_format={"type": "json_object"},
+        messages=[
+            {"role": "system", "content": system_message},
+            {"role": "user", "content": user_message}
+        ]
+    )
+    try:
+        content = json.loads(response.choices[0].message.content)
+        probability = content.get("rating", "Not provided")
+        reasoning = content.get("reasoning", "No reasoning provided")
+        return {
+            "Title": title,
+            "Model": model,
+            "Probability": probability,
+            "Reasoning": reasoning
+        }
+    except json.JSONDecodeError:
+        return {
+            "Title": title,
+            "Model": model,
+            "Error": "Invalid JSON response",
+            "Response": response.choices[0].message.content
+        }
+
+
+def main():
+#Running GPT4 on all of the research papers gathered
+    csv_file = '/Users/aayushgupta/Documents/GitHub/Prompt_Systematic_Review/data/semantic_scholar_data_doubled_cleaned.csv'
+    papers = load_csv(csv_file)
+    client = OpenAI(
+        api_key='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',
+    )
+    results = []
+    for _, paper in papers.iterrows():
+        title = paper['Title']
+        abstract = paper['Abstract']
+        tldr = paper['TLDR']
+
+        # Query GPT-4
+        result_4 = query_gpt(title, abstract, tldr, "gpt-4-1106-preview", client)
+        results.append(result_4)
+
+    # Saving the results to a JSON file
+    with open('analysis_results.json', 'w') as f:
+        json.dump(results, f, indent=4)
+
+
+
+
+if __name__ == "__main__":
+    main()

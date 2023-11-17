@@ -1,0 +1,109 @@
+import pandas as pd
+
+def load_json(file_path):
+    # Load the JSON file into a DataFrame
+    return pd.read_json(file_path)
+
+def filter_papers(df, threshold):
+    # Convert the Probability column to numeric, if not already
+    df['Probability'] = pd.to_numeric(df['Probability'], errors='coerce')
+
+    # Filter out papers with a rating of 3 or less
+    filtered_df = df[df['Probability'] > threshold]
+    return filtered_df
+
+def filter_papers_for_human_review(df, lower, upper):
+    # Convert the Probability column to numeric, if not already
+    df['Probability'] = pd.to_numeric(df['Probability'], errors='coerce')
+
+    # Filter papers within the specified range
+    filtered_df = df[(df['Probability'] > lower) & (df['Probability'] < upper)]
+    return filtered_df
+
+def merge_data_and_save(filtered_file, full_data_file, output_with_pdf, output_without_pdf):
+    # Load filtered papers
+    filtered_papers = pd.read_csv(filtered_file)
+
+    # Load full data with URLs
+    full_data = pd.read_csv(full_data_file)
+
+    # Merge the two dataframes based on the title
+    merged_data = pd.merge(filtered_papers, full_data[['Title', 'Open Access PDF URL']], on='Title', how='left')
+
+    # Filter out entries with and without PDF URLs
+    with_pdf = merged_data.dropna(subset=['Open Access PDF URL'])
+    without_pdf = merged_data[merged_data['Open Access PDF URL'].isna()]
+
+    # Save to CSV files
+    with_pdf[['Title', 'Probability', 'Reasoning', 'Open Access PDF URL']].to_csv(output_with_pdf, index=False)
+    without_pdf[['Title', 'Probability', 'Reasoning']].to_csv(output_without_pdf, index=False)
+
+    print(f"Saved papers with PDF URLs to {output_with_pdf}")
+    print(f"Saved papers without PDF URLs to {output_without_pdf}")
+
+def save_to_csv(df, file_path):
+    # Save the DataFrame to a CSV file
+    df.to_csv(file_path, index=False)
+
+def main():
+#GET RID OF ALL PAPERS WITH SCORE LESS THAN 3
+    # json_file = '/Users/aayushgupta/PycharmProjects/prompting_systematic_review_gpt/analysis_results.json'
+    # csv_file = '/Users/aayushgupta/PycharmProjects/prompting_systematic_review_gpt/semantic_scholar_papers_above_3.csv'
+    #
+    # data = load_json(json_file)
+    # filtered_data = filter_papers(data, 3)
+    # save_to_csv(filtered_data, csv_file)
+    #
+    # # Count the number of papers remaining after filtering
+    # num_papers = len(filtered_data)
+    # print(f"Number of papers remaining after filtering: {num_papers}")
+    # print(f"Filtered papers saved to {csv_file}")
+
+#FIND ALL PAPERS WITH SCORES FROM 4-6
+    # json_file = '/Users/aayushgupta/PycharmProjects/prompting_systematic_review_gpt/analysis_results.json'
+    # csv_file = '/Users/aayushgupta/PycharmProjects/prompting_systematic_review_gpt/semantic_scholar_4_to_6_.csv'
+    #
+    # data = load_json(json_file)
+    # filtered_data = filter_papers_for_human_review(data, 3, 7)
+    # save_to_csv(filtered_data, csv_file)
+    #
+    # # Count the number of papers remaining after filtering
+    # num_papers = len(filtered_data)
+    # print(f"Number of papers remaining after filtering: {num_papers}")
+    # print(f"Filtered papers saved to {csv_file}")
+
+#FIND ALL PAPERS SCORE 7-10
+    # json_file = '/Users/aayushgupta/PycharmProjects/prompting_systematic_review_gpt/analysis_results.json'
+    # csv_file = '/Users/aayushgupta/PycharmProjects/prompting_systematic_review_gpt/semantic_scholar_gpt_relevant.csv'
+    #
+    # data = load_json(json_file)
+    # filtered_data = filter_papers(data, 6)
+    # save_to_csv(filtered_data, csv_file)
+    #
+    # # Count the number of papers remaining after filtering
+    # num_papers = len(filtered_data)
+    # print(f"Number of papers remaining after filtering: {num_papers}")
+    # print(f"Filtered papers saved to {csv_file}")
+
+#FIND PDFS OF ALL PAPERS IN NEED OF A HUMAN REVIEW
+    # filtered_file = '/Users/aayushgupta/PycharmProjects/prompting_systematic_review_gpt/semantic_scholar_4_to_6_.csv'
+    # full_data_file = '/Users/aayushgupta/Documents/GitHub/Prompt_Systematic_Review/data/semantic_scholar_data_doubled_cleaned.csv'
+    # output_with_pdf = '/Users/aayushgupta/PycharmProjects/prompting_systematic_review_gpt/semantic_scholar_human_review_papers_with_pdf.csv'
+    # output_without_pdf = '/Users/aayushgupta/PycharmProjects/prompting_systematic_review_gpt/semantic_scholar_human_review_papers_without_pdf.csv'
+    #
+    # merge_data_and_save(filtered_file, full_data_file, output_with_pdf, output_without_pdf)
+
+# FIND PDFS OF ALL PAPERS WITH A SCORE OF 7-10
+    filtered_file = '/semantic_scholar_data/semantic_scholar_gpt_relevant.csv'
+    full_data_file = '/Users/aayushgupta/Documents/GitHub/Prompt_Systematic_Review/data/semantic_scholar_data_doubled_cleaned.csv'
+    output_with_pdf = '/Users/aayushgupta/PycharmProjects/prompting_systematic_review_gpt/semantic_scholar_relevant_papers_with_pdf.csv'
+    output_without_pdf = '/Users/aayushgupta/PycharmProjects/prompting_systematic_review_gpt/semantic_scholar_relevant_papers_without_pdf.csv'
+
+    merge_data_and_save(filtered_file, full_data_file, output_with_pdf, output_without_pdf)
+
+
+
+
+
+if __name__ == "__main__":
+    main()
