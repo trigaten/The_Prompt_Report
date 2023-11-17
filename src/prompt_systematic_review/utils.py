@@ -7,6 +7,7 @@ headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0"
 }
 
+
 def process_paper_title(title: str) -> str:
     """
     Process a paper title by converting it to lowercase, removing newline characters,
@@ -18,5 +19,4 @@ def process_paper_title(title: str) -> str:
     :rtype: str
     """
     # Replace '-' with '', collapse multiple spaces to a single space, and strip leading/trailing spaces
-    return re.sub(r'\s+', ' ', title.lower().replace("\n", "").replace("-", "")).strip()
-
+    return re.sub(r"\s+", " ", title.lower().replace("\n", "").replace("-", "")).strip()
