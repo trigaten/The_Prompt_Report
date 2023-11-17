@@ -25,6 +25,7 @@ def queryArchive(downloadName: str):
     urls = [paper.url for paper in papers]
     dateSubmitteds = [paper.dateSubmitted for paper in papers]
     keywordss = [paper.keywords for paper in papers]
+    abstracts = [paper.abstract for paper in papers]
 
     df = pd.DataFrame(
         {
@@ -33,6 +34,7 @@ def queryArchive(downloadName: str):
             "url": urls,
             "dateSubmitted": dateSubmitteds,
             "keywords": keywordss,
+            "abstract": abstracts,
         }
     )
     # drop duplicates
