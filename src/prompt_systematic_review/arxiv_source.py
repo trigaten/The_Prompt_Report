@@ -41,7 +41,7 @@ class ArXivSource(PaperSource):
             # create "./.log/" folder if it doesn't exist
             if not os.path.exists("./.log/"):
                 os.mkdir("./.log/")
-            f = open(f"./.log/arxiv_{keyword}_data.xml", "w")
+            f = open(f"./.log/arxiv_{keyword}_data.xml", "w", encoding="utf-8")
             f.write(data)
             f.close()
             parser = ET.XMLParser(encoding="utf-8")
