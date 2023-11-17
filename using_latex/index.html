@@ -89,8 +89,29 @@ please don’t hesitate to reach out to me or your sub team lead.</p>
 <li><p><strong>Italics and Bold</strong>: To make text italic, you can use <cite>\textit{}</cite> and to make text bold, you can use <cite>\textbf{}</cite>. For example, <cite>\textit{italic text}</cite> and <cite>\textbf{bold text}</cite>.</p></li>
 </ol>
 <p>Here are some tips for our project:</p>
-<p>1. Cite everything! Every time you refer to information from an external source, you need to cite it.
-Use bibtex and put your citation in custom.bib. To cite a reference, use the LaTeX <cite>\cite{bib_title}</cite> command, where <cite>bib_title</cite> is the key or label of the reference in your bibliography.</p>
+<ol class="arabic simple">
+<li><p>Cite everything! Every time you refer to information from an external source, you need to cite it. Here is how to do so:</p></li>
+</ol>
+<p>Say you want to cite Chain of Thought: <a class="reference external" href="https://arxiv.org/abs/2201.11903">https://arxiv.org/abs/2201.11903</a></p>
+<ul class="simple">
+<li><p>You would go its arXiv page and look for a pair of quotes kind of on bottom right of page. You might need to turn on Bibliographic Explorer. You can also just click Export BibTeX Citation.</p></li>
+<li><p>Copy the citation, which should look like this:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@misc{wei2023chainofthought,
+    title={Chain-of-Thought Prompting Elicits Reasoning in Large Language Models},
+    author={Jason Wei and Xuezhi Wang and Dale Schuurmans and Maarten Bosma and Brian Ichter and Fei Xia and Ed Chi and Quoc Le and Denny Zhou},
+    year={2023},
+    eprint={2201.11903},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Paste it at the bottom of custom.bib in the Overleaf document. Make sure you don’t mess up any other citations.</p></li>
+<li><p>Then, you can take the citation title (wei2023chainofthought) and use it in the paper itself. If I were on the agents team, I would go to the 80-agents.tex file then add \cite{wei2023chainofthought} where I wanted the citation.</p></li>
+<li><p>If you need to start a sentence with a citation, use \citet{wei2023chainofthought} instead.</p></li>
+</ul>
 <p>Learn more here: <a class="reference external" href="https://www.overleaf.com/learn">Link to LaTeX Documentation</a></p>
 </section>
 
