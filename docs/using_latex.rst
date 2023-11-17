@@ -17,9 +17,30 @@ Here are some basic formatting tips with LaTeX:
 Here are some tips for our project:
 
 
-1. Cite everything! Every time you refer to information from an external source, you need to cite it. 
-Use bibtex and put your citation in custom.bib. To cite a reference, use the LaTeX `\\cite{bib_title}` command, where `bib_title` is the key or label of the reference in your bibliography.
+1. Cite everything! Every time you refer to information from an external source, you need to cite it. Here is how to do so:
 
+Say you want to cite Chain of Thought: https://arxiv.org/abs/2201.11903
+
+- You would go its arXiv page and look for a pair of quotes kind of on bottom right of page. You might need to turn on Bibliographic Explorer. You can also just click Export BibTeX Citation.
+
+- Copy the citation, which should look like this:
+
+.. code:: text
+
+    @misc{wei2023chainofthought,
+        title={Chain-of-Thought Prompting Elicits Reasoning in Large Language Models}, 
+        author={Jason Wei and Xuezhi Wang and Dale Schuurmans and Maarten Bosma and Brian Ichter and Fei Xia and Ed Chi and Quoc Le and Denny Zhou},
+        year={2023},
+        eprint={2201.11903},
+        archivePrefix={arXiv},
+        primaryClass={cs.CL}
+    }
+
+- Paste it at the bottom of custom.bib in the Overleaf document. Make sure you don't mess up any other citations.
+
+- Then, you can take the citation title (wei2023chainofthought) and use it in the paper itself. If I were on the agents team, I would go to the 80-agents.tex file then add \\cite{wei2023chainofthought} where I wanted the citation.
+
+- If you need to start a sentence with a citation, use \\citet{wei2023chainofthought} instead.
 
 
 
