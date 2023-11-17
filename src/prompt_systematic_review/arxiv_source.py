@@ -73,6 +73,11 @@ class ArXivSource(PaperSource):
                         "{http://www.w3.org/2005/Atom}category"
                     )
                 ]
+                abstract = (
+                    entry.find("{http://www.w3.org/2005/Atom}summary")
+                    .text.replace("\n", "")
+                    .replace("\r", "")
+                )
 
                 paper = Paper(
                     title.replace("\n", "").replace("\r", ""),
@@ -80,6 +85,7 @@ class ArXivSource(PaperSource):
                     url,
                     dateSubmitted,
                     [keyWord.lower() for keyWord in keyWords],
+                    abstract,
                 )
                 papers.append(paper)
         return papers

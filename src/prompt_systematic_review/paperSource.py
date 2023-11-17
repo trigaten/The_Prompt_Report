@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List, Tuple, Dict, Any
 from datetime import date
 from prompt_systematic_review import keywords
-import jellyfish as j
+from prompt_systematic_review import utils
 
 
 class Paper:
@@ -13,12 +13,14 @@ class Paper:
         url: str,
         dateSubmitted: date,
         keyWords: List[str],
+        abstract: str,
     ):
         self.title = title
         self.firstAuthor = firstAuthor
         self.url = url
         self.dateSubmitted = dateSubmitted
         self.keywords = keyWords
+        self.abstract = abstract
         try:
             assert set(keyWords) == set([k.lower() for k in keyWords])
         except:
@@ -29,13 +31,12 @@ class Paper:
 
     def __eq__(self, other):
         # this is to handle papers from different sources being the same
-        return (
-            j.jaro_winkler_similarity(self.__str__().lower(), other.__str__().lower())
-            > 0.75
+        return utils.process_paper_title(self.title) == utils.process_paper_title(
+            other.title
         )
 
     def __hash__(self):
-        return hash(self.url)
+        return hash(utils.process_paper_title(self.title))
 
     def matchingKeyWords(self):
         return [
