@@ -15,78 +15,67 @@ class SemanticScholarSource:
         all_papers = []
         max_retries = 5  # Maximum number of retries after hitting rate limit
         for keyword in keyWords:
-            papers = []
-            offset = 0
+            query = f'"{keyword}"'  # Query for each keyword
             retry_count = 0  # Count of current retries
-            while len(papers) < count and retry_count < max_retries:
-                papers_data = []  # Initialize papers_data before the try block
+            while retry_count < max_retries:
                 try:
-                    papers_data = self.fetchPapersByKeyword(keyword, count - len(papers), offset)
+                    papers_data = self.bulkSearchPapers(query)[
+                        :count
+                    ]  # Fetch and limit papers for each keyword
                     for paper_data in papers_data:
+                        open_access_pdf_url = None
+                        if paper_data.get("openAccessPdf"):
+                            open_access_pdf_url = paper_data["openAccessPdf"].get("url")
+
                         paper = Paper(
-                            title=paper_data['Title'],
-                            firstAuthor=paper_data['First Author'],
-                            url=paper_data.get('Open Access PDF URL'),
-                            dateSubmitted=datetime.strptime(paper_data['Publication Date'], '%Y-%m-%d').date(),
-                            keyWords=[keyword],
-                            abstract=paper_data.get('Abstract')
+                            title=paper_data["title"],
+                            firstAuthor=paper_data["authors"][0]["name"]
+                            if paper_data["authors"]
+                            else "",
+                            url=open_access_pdf_url,
+                            dateSubmitted=datetime.strptime(
+                                paper_data["publicationDate"], "%Y-%m-%d"
+                            ).date()
+                            if paper_data.get("publicationDate")
+                            else None,
+                            keyWords=[keyword.lower()],  # Single keyword for each paper
+                            abstract=paper_data.get("abstract", ""),
                         )
-                        papers.append(paper)
-                        if len(papers) >= count:
-                            break
-                    offset += len(papers_data)
-                    retry_count = 0  # Reset retry count after a successful fetch
+                        all_papers.append(paper)
+                    break  # Break the loop if successful
                 except requests.exceptions.HTTPError as e:
-                    if e.response.status_code == 429:
-                        print("Rate limit hit. Waiting before retrying...")
-                        time.sleep(1.1 * (retry_count + 1))  # Exponential back-off
+                    if e.response.status_code == 429:  # Rate limit error
+                        print(f"Rate limit hit for keyword '{keyword}'. Retrying...")
                         retry_count += 1
+                        time.sleep(1.1 * retry_count)  # Exponential back-off
                     else:
-                        raise e
-                if len(papers_data) < count:  # Less papers returned than requested
-                    break
-            all_papers.extend(papers)
+                        print(f"Error during API request for keyword '{keyword}': {e}")
+                        break  # Break the loop on other types of errors
         return all_papers
 
-
-
-    def fetchPapersByKeyword(self, keyword: str, count: int, offset: int) -> List[dict]:
+    def bulkSearchPapers(self, query: str, token: str = None) -> List[dict]:
+        bulkSearchURL = "https://api.semanticscholar.org/graph/v1/paper/search/bulk"
         params = {
-            "query": keyword,
-            "offset": offset,
-            "limit": count,
-            "fields": "title,authors,abstract,publicationDate,openAccessPdf"
+            "query": query,
+            "fields": "title,authors,abstract,publicationDate,openAccessPdf",
+            "limit": 1000,  # Adjust limit as required
         }
-        response = requests.get(self.searchBaseURL, params=params)
+        if token:
+            params["token"] = token
+
+        response = requests.get(bulkSearchURL, params=params)
         response.raise_for_status()
-        data = response.json()
-
-        papers_data = []
-        for paper in data.get("data", []):
-            first_author = paper.get("authors", [{}])[0].get("name", "") if paper.get("authors") else ""
-            abstract = paper.get("abstract") or ""
-            publication_date = paper.get("publicationDate") or "1900-01-01"  # Default if not available
-
-            paper_info = {
-                "Title": paper.get("title"),
-                "First Author": first_author,
-                "Abstract": abstract,
-                "Publication Date": publication_date,
-                "Open Access PDF URL": paper.get("openAccessPdf", {}).get("url") if paper.get("openAccessPdf") else None
-            }
-            papers_data.append(paper_info)
-
-        return papers_data
+        return response.json().get("data", [])
 
 
-
-# This is assuming you have the SemanticScholarSource class defined as per the previous code
-
+#####################################################################
+##########################Testing####################################
+#####################################################################
 # Create an instance of the SemanticScholarSource class
 semantic_scholar = SemanticScholarSource()
 
 # Define some sample keywords and a count
-keywords = ["deep learning", "Prompt Engineering"]
+keywords = ["deep learning", "prompt engineering"]
 count = 5  # Number of papers to fetch for each keyword
 
 # Fetch papers
