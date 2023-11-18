@@ -23,10 +23,10 @@ class SemanticScholarSource:
             List[Paper]: A list of Paper objects.
         """
         all_papers = []
-        max_retries = 5 
+        max_retries = 5
         for keyword in key_words:
-            query = f'"{keyword}"'  
-            retry_count = 0  
+            query = f'"{keyword}"'
+            retry_count = 0
             while retry_count < max_retries:
                 try:
                     papers_data = self.bulkSearchPapers(query)[:count]
@@ -57,10 +57,10 @@ class SemanticScholarSource:
                         all_papers.append(paper)
                     break
                 except requests.exceptions.HTTPError as e:
-                    if e.response.status_code == 429: 
+                    if e.response.status_code == 429:
                         print(f"Rate limit hit for keyword '{keyword}'. Retrying...")
                         retry_count += 1
-                        time.sleep(1.1 * retry_count)  
+                        time.sleep(1.1 * retry_count)
                     else:
                         print(f"Error during API request for keyword '{keyword}': {e}")
                         break
@@ -80,7 +80,7 @@ class SemanticScholarSource:
         params = {
             "query": query,
             "fields": "title,authors,abstract,publicationDate,openAccessPdf,paperId",
-            "limit": 1000, 
+            "limit": 1000,
         }
         if token:
             params["token"] = token
