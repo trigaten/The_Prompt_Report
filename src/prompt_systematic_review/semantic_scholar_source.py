@@ -9,49 +9,49 @@ class SemanticScholarSource:
 
     searchBaseURL = "https://api.semanticscholar.org/graph/v1/paper/search"
     paperBaseURL = "https://api.semanticscholar.org/graph/v1/paper/"
+    bulkSearchURL = "https://api.semanticscholar.org/graph/v1/paper/search/bulk"
+
+    # def __init__(self):
+    #     self.session = requests.Session()
+    #     self.session.headers.update({"x-api-key": self.api_key})
 
     def getPapers(
         self, keyWords: List[str], count: int = 10, offset: int = 0
-    ) -> List[Paper]:
-        """
-        Get a list of papers from Semantic Scholar that match the given keywords.
-        :param keyWords: A list of keywords to match.
-        :param count: The number of papers to retrieve.
-        :param offset: The offset to start retrieving papers from.
-        :return: A list of matching papers.
-        """
-        papers = []
+    ) -> List[dict]:
+        papers_data = []
         for keyword in keyWords:
             params = {
                 "query": keyword,
                 "offset": offset,
                 "limit": count,
-                "fields": "title,authors,year,paperId",
+                "fields": "title,authors,abstract,openAccessPdf,tldr",
             }
+            # response = self.session.get(self.searchBaseURL, params=params)
             response = requests.get(self.searchBaseURL, params=params)
             response.raise_for_status()
             data = response.json()
 
             for paper_data in data.get("data", []):
-                title = paper_data.get("title")
-                authors = [
-                    author.get("name") for author in paper_data.get("authors", [])
-                ]
-                year = paper_data.get("year", None)
-                paper_id = paper_data.get("paperId")
-                url = f"https://api.semanticscholar.org/{paper_id}"
-
-                date_submitted = datetime(year, 1, 1).date() if year else None
-
-                paper = Paper(
-                    title=title,
-                    firstAuthor=authors[0] if authors else "",
-                    url=url,
-                    dateSubmitted=date_submitted,
-                    keyWords=[keyword.lower()],
+                first_author = (
+                    paper_data.get("authors", [{}])[0].get("name", "")
+                    if paper_data.get("authors")
+                    else ""
                 )
-                papers.append(paper)
-        return papers
+                abstract = (paper_data.get("abstract") or "").replace("\n", " ")
+
+                paper_info = {
+                    "Title": paper_data.get("title"),
+                    "First Author": first_author,
+                    "Abstract": abstract,
+                    "TLDR": paper_data.get("tldr"),
+                    "Open Access PDF URL": paper_data.get("openAccessPdf", {}).get(
+                        "url"
+                    )
+                    if paper_data.get("openAccessPdf")
+                    else None,
+                }
+                papers_data.append(paper_info)
+        return papers_data
 
     def getPaperDetails(self, paperId: str) -> dict:
         """Get the detailed information of a paper from Semantic Scholar."""
@@ -87,3 +87,24 @@ class SemanticScholarSource:
                     open_access_papers.append(paper)
             offset += len(batch)
         return open_access_papers
+
+    def bulkSearchPapers(
+        self,
+        query: str,
+        fields: str = "title,authors,abstract,openAccessPdf,tldr",
+        token: str = None,
+    ) -> dict:
+        params = {
+            "query": query,
+            "fields": fields,
+            "limit": 1000,  # Max limit per API call
+            "sort": "citationCount:desc",  # Example sorting parameter
+        }
+        if token:
+            params["token"] = token
+
+        response = requests.get(
+            self.bulkSearchURL, params=params
+        )  # Ensure correct request is made
+        response.raise_for_status()
+        return response.json()
