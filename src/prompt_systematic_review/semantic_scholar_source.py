@@ -12,7 +12,6 @@ class SemanticScholarSource:
     bulkSearchURL = "https://api.semanticscholar.org/graph/v1/paper/search/bulk"
 
     # def __init__(self):
-    #     self.api_key = "QsbGjXIFx63q9C49WjKBd5vgNndrIzlb8EkDT3PJ"
     #     self.session = requests.Session()
     #     self.session.headers.update({"x-api-key": self.api_key})
 
