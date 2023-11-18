@@ -116,4 +116,3 @@ def test_semantic_scholar_get_open_access_papers():
     assert len(papers) == 5
     for paper in papers:
         assert semantic_scholar.getPaperPDF(paper.url.split("/")[-1]) is not None
- 
