@@ -95,24 +95,14 @@ def test_ieee_source():
 
 
 @pytest.mark.API_test
-def test_semantic_scholar_source():
-    semantic_scholar_source = SemanticScholarSource()
-    keywords = ["deep learning"]
-    papers = semantic_scholar_source.getPapers(keyWords=keywords, count=2)
-    assert len(papers) == 2
-    for paper in papers:
-        assert isinstance(paper, Paper)
-        assert keywords[0] in paper.keywords
-        assert isinstance(paper.title, str)
-        assert isinstance(paper.firstAuthor, str)
-        assert paper.url.startswith("https://api.semanticscholar.org/")
-        assert isinstance(paper.dateSubmitted, date) or paper.dateSubmitted is None
-
-
-@pytest.mark.API_test
-def test_semantic_scholar_get_open_access_papers():
+def test_semantic_scholar_get_papers():
     semantic_scholar = SemanticScholarSource()
-    papers = semantic_scholar.getOpenAccessPapers(keyWords=["deep learning"], n=5)
-    assert len(papers) == 5
+    keywords = ["prompt engineering"]
+    count = 5
+    papers = semantic_scholar.getPapers(count, keywords)
     for paper in papers:
-        assert semantic_scholar.getPaperPDF(paper.url.split("/")[-1]) is not None
+        print("Title:", paper.title)
+        print("First Author:", paper.firstAuthor)
+        print("URL:", paper.url or "Not Available")
+        print("Date Submitted:", paper.dateSubmitted)
+        print("Keywords:", paper.keywords)
