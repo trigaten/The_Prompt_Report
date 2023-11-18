@@ -1,0 +1,26 @@
+import pandas as pd
+
+def clean_duplicates(bulk = False):
+    if bulk:
+        df = pd.read_csv('semantic_scholar_bulk_data.csv')
+        df_cleaned = df.drop_duplicates(subset=['Title', 'First Author'])
+        df_cleaned.to_csv('semantic_scholar_bulk_data_cleaned.csv', index=False)
+    else:
+        df = pd.read_csv('semantic_scholar_data.csv')
+        df_cleaned = df.drop_duplicates(subset=['Title', 'First Author'])
+        df_cleaned.to_csv('semantic_scholar_data_cleaned.csv', index=False)
+
+    print(f"Total papers after cleaning: {len(df_cleaned)}")
+
+def clean_against_previous_dataset(current, previous, new):
+    current_df = pd.read_csv(current)
+    previous_df = pd.read_csv(previous)
+
+    current_df['Title'] = current_df['Title'].str.lower()
+    previous_df['title'] = previous_df['title'].str.lower()
+
+    unique_titles = ~current_df['Title'].isin(previous_df['title'])
+
+    cleaned_df = current_df[unique_titles]
+
+    cleaned_df.to_csv(new, index=False)

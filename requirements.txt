@@ -11,4 +11,5 @@ sphinx
 renku-sphinx-theme
 sphinx-autobuild
 tika
+bs4
 -e .
