@@ -1,7 +1,7 @@
 import os
 import json
 from prompt_systematic_review.semantic_scholar_source import SemanticScholarSource
-from prompt_systematic_review import keywords
+from prompt_systematic_review.keywords import keywords_list
 import pandas as pd
 from tqdm import tqdm
 
@@ -21,14 +21,13 @@ def save_papers_to_json(papers, file_path):
 
 def query_semantic_scholar(downloadName: str = None, verbose=False):
     sss = SemanticScholarSource()
-    flattened_keywords = [keyword for sublist in keywords_list for keyword in sublist]
 
     all_papers_df = pd.DataFrame()
 
     if verbose:
-        iterator = tqdm(flattened_keywords, desc="Processing keywords")
+        iterator = tqdm(keywords_list, desc="Processing keywords")
     else:
-        iterator = flattened_keywords
+        iterator = keywords_list
 
     for keyword in iterator:
         papers = sss.getPapers(300, [keyword])

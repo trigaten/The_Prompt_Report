@@ -16,13 +16,13 @@ def query_archive(downloadName: str = None, verbose=False):
 
     papers = []
     if verbose:
-        for keyWord in tqdm.tqdm(keywords.keywords_list):
-            # go through keywords list and download
-            papers += aSource.getPapers(10000, keyWord)
+        iterator = tqdm.tqdm(keywords.keywords_list)
     else:
-        for keyWord in keywords.keywords_list:
-            # go through keywords list and download
-            papers += aSource.getPapers(10000, keyWord)
+        iterator = keywords.keywords_list
+
+    for keyWord in iterator:
+        # go through keywords list and download
+        papers += aSource.getPapers(10000, [keyWord])
 
     # make dataframe
     titles = [paper.title for paper in papers]
