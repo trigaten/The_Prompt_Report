@@ -23,6 +23,7 @@ def queryArchive(downloadName: str = None, verbose=False):
         for keyWord in keywords.keywords_list:
             # go through keywords list and download
             papers += aSource.getPapers(10000, keyWord)
+
     # make dataframe
     titles = [paper.title for paper in papers]
     authors = [paper.authors for paper in papers]
