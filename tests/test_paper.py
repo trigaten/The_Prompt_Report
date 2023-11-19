@@ -104,4 +104,6 @@ def test_semantic_scholar_get_papers():
         print("Title:", paper.title)
         print("URL:", paper.url or "Not Available")
         print("Date Submitted:", paper.dateSubmitted)
-        print("Keywords:", paper.keywords)
+        print("Authors:", paper.authors)
+
+        # print("Keywords:", paper.keywords)
