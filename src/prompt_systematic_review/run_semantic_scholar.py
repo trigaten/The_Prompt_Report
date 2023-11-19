@@ -1,7 +1,7 @@
 import os
 import json
 from prompt_systematic_review.semantic_scholar_source import SemanticScholarSource
-from keywords import (
+from prompt_systematic_review.keywords import (
     keywords_list,
 )
 import pandas as pd
@@ -21,7 +21,7 @@ def save_papers_to_json(papers, file_path):
         json.dump(papers_dict, file, indent=4)
 
 
-def main(verbose=False):
+def query_semantic_scholar(downloadName: str = None, verbose=False):
     sss = SemanticScholarSource()
     flattened_keywords = [keyword for sublist in keywords_list for keyword in sublist]
 
@@ -38,11 +38,9 @@ def main(verbose=False):
         papers_df = pd.DataFrame(papers_data)
         all_papers_df = pd.concat([all_papers_df, papers_df], ignore_index=True)
 
-    csv_file_path = "all_papers.csv"
-    all_papers_df.to_csv(csv_file_path, index=False)
+    if downloadName:
+        all_papers_df.to_csv(downloadName, index=False)
     if verbose:
         print(f"Saved all papers to '{csv_file_path}'.")
 
-
-if __name__ == "__main__":
-    main()
+    return all_papers_df
