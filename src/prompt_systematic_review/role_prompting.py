@@ -5,7 +5,7 @@ import re
 
 
 def query_model(
-   prompt: str, question: str, model_name: str, output_tokens: int = 150
+    prompt: str, question: str, model_name: str, output_tokens: int = 150
 ) -> str:
     """
     Query the OpenAI API with a prompt and a question and return the response.
@@ -16,7 +16,6 @@ def query_model(
     :param output_tokens: The maximum number of ouput tokens to generate.
     :return: The response from the API.
     """
-
 
     response = openai.chat.completions.create(
         model=model_name,

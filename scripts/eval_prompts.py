@@ -8,9 +8,9 @@ from prompt_systematic_review.utils import process_paper_title
 from dotenv import load_dotenv
 import os
 
-load_dotenv(dotenv_path='../.env')  # load all entries from .env file
+load_dotenv(dotenv_path="../.env")  # load all entries from .env file
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 key = ""
 
