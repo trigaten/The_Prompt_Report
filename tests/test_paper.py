@@ -97,13 +97,15 @@ def test_arxiv_source():
 @pytest.mark.API_test
 def test_semantic_scholar_get_papers():
     semantic_scholar = SemanticScholarSource()
-    keywords = ["prompt engineering"]
+    keywords_list = [
+        ["jailbreak prompt"],
+        ["prompt an llm"]]
     count = 5
-    papers = semantic_scholar.getPapers(count, keywords)
+    papers = semantic_scholar.getPapers(count, keywords_list)
+    
     for paper in papers:
-        print("Title:", paper.title)
-        print("URL:", paper.url or "Not Available")
-        print("Date Submitted:", paper.dateSubmitted)
-        print("Authors:", paper.authors)
-
-        # print("Keywords:", paper.keywords)
+        assert paper.title, "Paper must have a title"
+        assert paper.url, "Paper must have a URL"
+        assert isinstance(paper.dateSubmitted, date), "Paper must have a submission date of type date"
+        assert paper.authors, "Paper must have at least one author"
+        assert paper.abstract, "Paper must have an abstract"
