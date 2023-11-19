@@ -9,7 +9,7 @@ class Paper:
     def __init__(
         self,
         title: str,
-        firstAuthor: str,
+        authors: List[str],
         url: str,
         dateSubmitted: date,
         keyWords: List[str],
@@ -17,7 +17,7 @@ class Paper:
         paperId: str = None,
     ):
         self.title = title
-        self.firstAuthor = firstAuthor
+        self.authors = authors
         self.url = url
         self.dateSubmitted = dateSubmitted
         self.keywords = keyWords
@@ -30,7 +30,7 @@ class Paper:
             raise ValueError("Keywords must be lowercase")
 
     def __str__(self):
-        return f"{self.title}, by {self.firstAuthor}".strip()
+        return f"{self.title}, by {self.author}".strip()
 
     def __eq__(self, other):
         # this is to handle papers from different sources being the same
