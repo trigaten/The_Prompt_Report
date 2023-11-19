@@ -1,0 +1,24 @@
+[
+    {
+        "title": "CUP: Curriculum Learning based Prompt Tuning for Implicit Event Argument Extraction",
+        "firstAuthor": "Jiaju Lin",
+        "url": "https://arxiv.org/pdf/2205.00498",
+        "dateSubmitted": "2022-05-01",
+        "keyWords": [
+            "curriculum learning with prompts"
+        ],
+        "abstract": "Implicit event argument extraction (EAE) aims to identify arguments that could scatter over the document. Most previous work focuses on learning the direct relations between arguments and the given trigger, while the implicit relations with long-range dependency are not well studied. Moreover, recent neural network based approaches rely on a large amount of labeled data for training, which is unavailable due to the high labelling cost. In this paper, we propose a Curriculum learning based Prompt tuning (CUP) approach, which resolves implicit EAE by four learning stages. The stages are defined according to the relations with the trigger node in a semantic graph, which well captures the long-range dependency between arguments and the trigger. In addition, we integrate a prompt-based encoder-decoder model to elicit related knowledge from pre-trained language models (PLMs) in each stage, where the prompt templates are adapted with the learning progress to enhance the reasoning for arguments. Experimental results on two well-known benchmark datasets show the great advantages of our proposed approach. In particular, we outperform the state-of-the-art models in both fully-supervised and low-data scenarios.",
+        "paperId": "65d88194a902332b78dd5a7b919fa577bfa7ee9f"
+    },
+    {
+        "title": "Self-Training With Double Selectors for Low-Resource Named Entity Recognition",
+        "firstAuthor": "Yingwen Fu",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "curriculum learning with prompts"
+        ],
+        "abstract": "Named Entity Recognition (NER) is fundamental to multiple downstream natural language processing (NLP) tasks, but most advanced NER methods heavily rely on massive labeled data with high cost. In this paper, we explore the effectiveness of self-training for low-resource NER. It is one of the semi-supervised approaches to reduce the reliance on manual annotation. However, random pseudo sample selection in standard self-training framework may cause serious error propagation, especially for token-level tasks. To that end, this paper focuses on pseudo sample selection and proposes a new self-training framework with double selectors, namely auxiliary judge task and entropy-based confidence measurement. Specifically, the auxiliary judge task is proposed to filter out the pseudo samples with wrong predictions. The entropy-based confidence measurement is introduced to select pseudo samples with high quality. In addition, to make full use of all pseudo samples, we propose a cumulative function based on the idea of curriculum learning to prompt the model to learn from easy samples to hard ones. Samples with low quality are filtered out through the double selectors, which is more conducive to the training of student models. Experimental results on five NER benchmark datasets from different languages indicate the effectiveness of the proposed framework over several advanced baselines.",
+        "paperId": "bbe5ea6dc1470b33f3396a417bd546638948f535"
+    }
+]

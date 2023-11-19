@@ -99,3 +99,16 @@ class SemanticScholarSource:
         arxiv_source = ArXivSource()
         if paper.url:
             arxiv_source.getPaperSrc(paper, destination_folder)
+
+
+import json
+
+sss = SemanticScholarSource()
+papers = sss.getPapers(300, ["prompt an llm"])
+
+# Convert papers to dictionary format
+papers_dict = [paper.to_dict() for paper in papers]
+
+# Write to a JSON file
+with open("papers.json", "w") as file:
+    json.dump(papers_dict, file, indent=4)

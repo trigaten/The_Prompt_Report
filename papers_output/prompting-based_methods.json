@@ -1,0 +1,816 @@
+[
+    {
+        "title": "NSP-BERT: A Prompt-based Zero-Shot Learner Through an Original Pre-training Task-Next Sentence Prediction",
+        "firstAuthor": "Yi Sun",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Using prompts to utilize language models 001 to perform various downstream tasks, also 002 known as prompt-based learning or prompt- 003 learning , has lately gained significant success 004 in comparison to the pre-train and fine-tune 005 paradigm. Nonetheless, virtually all prompt- 006 based methods are token-level, meaning they 007 all utilize GPT\u2019s left-to-right language model 008 or BERT\u2019s masked language model to per- 009 form cloze-style tasks. In this paper, we at- 010 tempt to accomplish several NLP tasks in the 011 zero-shot scenario using a BERT original pre- 012 training task abandoned by RoBERTa and other 013 models\u2014Next Sentence Prediction (NSP). Un- 014 like token-level techniques, our sentence-level 015 prompt-based method NSP-BERT does not 016 need to fix the length of the prompt or the po- 017 sition to be predicted, allowing it to handle 018 tasks such as entity linking with ease. Based on 019 the characteristics of NSP-BERT, we offer sev- 020 eral quick building templates for various down- 021 stream tasks. We suggest a two-stage prompt 022 method for word sense disambiguation tasks 023 in particular. Our samples-contrast method for 024 mapping the labels significantly enhance the 025 model\u2019s performance on sentence-pair tasks. 026 On the Chinese benchmark FewCLUE, our 027 NSP-BERT outperforms other zero-shot meth- 028 ods on most of these tasks and comes close to 029 the few-shot methods. And on GLUE and other 030 English datasets NSP-BERT is still competitive. 031 Our code will be available on github. 032",
+        "paperId": "040dc42c38f74a904e1a5e51f35fa6a8c70b4e8c"
+    },
+    {
+        "title": "Ebhaam at SemEval-2023 Task 1: A CLIP-Based Approach for Comparing Cross-modality and Unimodality in Visual Word Sense Disambiguation",
+        "firstAuthor": "Zeinab Taghavi",
+        "url": "https://aclanthology.org/2023.semeval-1.269.pdf",
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "This paper presents an approach to tackle the task of Visual Word Sense Disambiguation (Visual-WSD), which involves determining the most appropriate image to represent a given polysemous word in one of its particular senses. The proposed approach leverages the CLIP model, prompt engineering, and text-to-image models such as GLIDE and DALL-E 2 for both image retrieval and generation. To evaluate our approach, we participated in the SemEval 2023 shared task on \u201cVisual Word Sense Disambiguation (Visual-WSD)\u201d using a zero-shot learning setting, where we compared the accuracy of different combinations of tools, including \u201cSimple prompt-based\u201d methods and \u201cGenerated prompt-based\u201d methods for prompt engineering using completion models, and text-to-image models for changing input modality from text to image. Moreover, we explored the benefits of cross-modality evaluation between text and candidate images using CLIP. Our experimental results demonstrate that the proposed approach reaches better results than cross-modality approaches, highlighting the potential of prompt engineering and text-to-image models to improve accuracy in Visual-WSD tasks. We assessed our approach in a zero-shot learning scenario and attained an accuracy of 68.75\\% in our best attempt.",
+        "paperId": "08e0e696732103e585fd629e23888fd4acbb22df"
+    },
+    {
+        "title": "Personalized Jargon Identification for Enhanced Interdisciplinary Communication",
+        "firstAuthor": "Yue Guo",
+        "url": null,
+        "dateSubmitted": "2023-11-16",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Scientific jargon can impede researchers when they read materials from other domains. Current methods of jargon identification mainly use corpus-level familiarity indicators (e.g., Simple Wikipedia represents plain language). However, researchers' familiarity of a term can vary greatly based on their own background. We collect a dataset of over 10K term familiarity annotations from 11 computer science researchers for terms drawn from 100 paper abstracts. Analysis of this data reveals that jargon familiarity and information needs vary widely across annotators, even within the same sub-domain (e.g., NLP). We investigate features representing individual, sub-domain, and domain knowledge to predict individual jargon familiarity. We compare supervised and prompt-based approaches, finding that prompt-based methods including personal publications yields the highest accuracy, though zero-shot prompting provides a strong baseline. This research offers insight into features and methods to integrate personal data into scientific jargon identification.",
+        "paperId": "0be20eb22ff94fea5f20c5db5d9be28a425b1b1e"
+    },
+    {
+        "title": "Few-Shot and Prompt Training for Text Classification in German Doctor's Letters",
+        "firstAuthor": "Phillip Richter-Pechanski",
+        "url": "https://ebooks.iospress.nl/pdf/doi/10.3233/SHTI230275",
+        "dateSubmitted": "2023-05-18",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "To classify sentences in cardiovascular German doctor's letters into eleven section categories, we used pattern-exploiting training, a prompt-based method for text classification in few-shot learning scenarios (20, 50 and 100 instances per class) using language models with various pre-training approaches evaluated on CARDIO:DE, a freely available German clinical routine corpus. Prompting improves results by 5-28% accuracy compared to traditional methods, reducing manual annotation efforts and computational costs in a clinical setting.",
+        "paperId": "0c409f7b605ea5bbccfd50d3200a287697102fc3"
+    },
+    {
+        "title": "Confli-T5: An AutoPrompt Pipeline for Conflict Related Text Augmentation",
+        "firstAuthor": "Eric Parolin",
+        "url": null,
+        "dateSubmitted": "2022-12-17",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Recent advances in natural language processing (NLP) and Big Data technologies have been crucial for scientists to analyze political unrest and violence, prevent harm, and promote global conflict management. Government agencies and public security organizations have invested heavily in deep learning-based applications to study global conflicts and political violence. However, such applications involving text classification, information extraction, and other NLP-related tasks require extensive human efforts in annotating/labeling texts. While limited labeled data may drastically hurt the models\u2019 performance (over-fitting), large demands on annotation tasks may turn real-world applications impracticable. To address this problem, we propose Confli-T5, a prompt-based method that leverages the domain knowledge from existing political science ontology to generate synthetic but realistic labeled text samples in the conflict and mediation domain. Our model allows generating textual data from the ground up and employs our novel Double Random Sampling mechanism to improve the quality (coherency and consistency) of the generated samples. We conduct experiments over six standard datasets relevant to political science studies to show the superiority of Confli-T5. Our codes are publicly available 1.",
+        "paperId": "11b2b22a832a5f4dfaf476a4d716b8ba60b3125e"
+    },
+    {
+        "title": "Towards Realistic Low-resource Relation Extraction: A Benchmark with Empirical Baseline Study",
+        "firstAuthor": "Xin Xu",
+        "url": "https://arxiv.org/pdf/2210.10678",
+        "dateSubmitted": "2022-10-19",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "This paper presents an empirical study to build relation extraction systems in low-resource settings. Based upon recent pre-trained language models, we comprehensively investigate three schemes to evaluate the performance in low-resource settings: (i) different types of prompt-based methods with few-shot labeled data; (ii) diverse balancing methods to address the long-tailed distribution issue; (iii) data augmentation technologies and self-training to generate more labeled in-domain data. We create a benchmark with 8 relation extraction (RE) datasets covering different languages, domains and contexts and perform extensive comparisons over the proposed schemes with combinations. Our experiments illustrate: (i) Though prompt-based tuning is beneficial in low-resource RE, there is still much potential for improvement, especially in extracting relations from cross-sentence contexts with multiple relational triples; (ii) Balancing methods are not always helpful for RE with long-tailed distribution; (iii) Data augmentation complements existing baselines and can bring much performance gain, while self-training may not consistently achieve advancement to low-resource RE. Code and datasets are in https://github.com/zjunlp/LREBench.",
+        "paperId": "145fb51975ec4ca72708bf354713f568a7541358"
+    },
+    {
+        "title": "Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting",
+        "firstAuthor": "Melanie Sclar",
+        "url": null,
+        "dateSubmitted": "2023-10-17",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "As large language models (LLMs) are adopted as a fundamental component of language technologies, it is crucial to accurately characterize their performance. Because choices in prompt design can strongly influence model behavior, this design process is critical in effectively using any modern pre-trained generative language model. In this work, we focus on LLM sensitivity to a quintessential class of meaning-preserving design choices: prompt formatting. We find that several widely used open-source LLMs are extremely sensitive to subtle changes in prompt formatting in few-shot settings, with performance differences of up to 76 accuracy points when evaluated using LLaMA-2-13B. Sensitivity remains even when increasing model size, the number of few-shot examples, or performing instruction tuning. Our analysis suggests that work evaluating LLMs with prompting-based methods would benefit from reporting a range of performance across plausible prompt formats, instead of the currently-standard practice of reporting performance on a single format. We also show that format performance only weakly correlates between models, which puts into question the methodological validity of comparing models with an arbitrarily chosen, fixed prompt format. To facilitate systematic analysis we propose FormatSpread, an algorithm that rapidly evaluates a sampled set of plausible prompt formats for a given task, and reports the interval of expected performance without accessing model weights. Furthermore, we present a suite of analyses that characterize the nature of this sensitivity, including exploring the influence of particular atomic perturbations and the internal representation of particular formats.",
+        "paperId": "17a6116e5bbd8b87082cbb2e795885567300c483"
+    },
+    {
+        "title": "Template-free Prompt Tuning for Few-shot NER",
+        "firstAuthor": "Ruotian Ma",
+        "url": "https://aclanthology.org/2022.naacl-main.420.pdf",
+        "dateSubmitted": "2021-09-28",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Prompt-based methods have been successfully applied in sentence-level few-shot learning tasks, mostly owing to the sophisticated design of templates and label words. However, when applied to token-level labeling tasks such as NER, it would be time-consuming to enumerate the template queries over all potential entity spans. In this work, we propose a more elegant method to reformulate NER tasks as LM problems without any templates. Specifically, we discard the template construction process while maintaining the word prediction paradigm of pre-training models to predict a class-related pivot word (or label word) at the entity position. Meanwhile, we also explore principled ways to automatically search for appropriate label words that the pre-trained models can easily adapt to. While avoiding the complicated template-based process, the proposed LM objective also reduces the gap between different objectives used in pre-training and fine-tuning, thus it can better benefit the few-shot performance. Experimental results demonstrate the effectiveness of the proposed method over bert-tagger and template-based method under few-shot settings. Moreover, the decoding speed of the proposed method is up to 1930.12 times faster than the template-based method.",
+        "paperId": "1dd344ce28f1e5a078f9d8396b5078388e555d99"
+    },
+    {
+        "title": "Enhancing Class Understanding Via Prompt-Tuning For Zero-Shot Text Classification",
+        "firstAuthor": "Yuhao Dan",
+        "url": null,
+        "dateSubmitted": "2022-05-23",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Zero-shot text classification (ZSTC) poses a big challenge due to the lack of labeled data for unseen classes during training. Most studies focus on transferring knowledge from seen classes to unseen classes, which have achieved good performance in most cases. Whereas, it is difficult to transfer knowledge when the classes have semantic gaps or low similarities. In this paper, we propose a prompt-based method, which enhances semantic understanding for each class and learns the matching between texts and classes for better ZSTC. Specifically, we first generate discriminative words for class description with prompt inserting (PIN). Then, a prompt matching (POM) model is learned to determine whether the text can well match the class description. Experiments on three benchmark datasets show the great advantages of our proposed method. In particular, we achieve the state-of-the-art performance on the unseen classes, while maintaining comparable strength with the existing ZSTC approaches regarding to the seen classes.",
+        "paperId": "1f0592af391560aa29dbd885d75b191cbdbf7bf5"
+    },
+    {
+        "title": "Contextualized Soft Prompts for Extraction of Event Arguments",
+        "firstAuthor": "Chien Van Nguyen",
+        "url": "https://aclanthology.org/2023.findings-acl.266.pdf",
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Event argument extraction (EAE) is a sub-task of event extraction where the goal is to identify roles of entity mentions for events in text. The current state-of-the-art approaches for this problem explore prompt-based meth-ods to prompt pre-trained language models for arguments over input context. However, existing prompt-based methods mainly rely on discrete and manually-designed prompts that cannot exploit specific context for each example to improve customization for optimal performance. In addition, the discrete nature of current prompts prevents the incorporation of relevant context from multiple external documents to enrich prompts for EAE. To this end, we propose a novel prompt-based method for EAE that introduces soft prompts to facilitate the encoding of individual example context and multiple relevant documents to boost EAE. We extensively evaluate the proposed method on benchmark datasets for EAE to demonstrate its benefits with state-of-the-art performance.",
+        "paperId": "1f79ec669e3b6701c814d0165ad281796a49bd13"
+    },
+    {
+        "title": "A Study on Prompt-based Few-Shot Learning Methods for Belief State Tracking in Task-oriented Dialog Systems",
+        "firstAuthor": "Debjoy Saha",
+        "url": "http://arxiv.org/pdf/2204.08167",
+        "dateSubmitted": "2022-04-18",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "We tackle the Dialogue Belief State Tracking(DST) problem of task-oriented conversational systems. Recent approaches to this problem leveraging Transformer-based models have yielded great results. However, training these models is expensive, both in terms of computational resources and time. Additionally, collecting high quality annotated dialogue datasets remains a challenge for researchers because of the extensive annotation required for training these models. Driven by the recent success of pre-trained language models and prompt-based learning, we explore prompt-based few-shot learning for Dialogue Belief State Tracking. We formulate the DST problem as a 2-stage prompt-based language modelling task and train language models for both tasks and present a comprehensive empirical analysis of their separate and joint performance. We demonstrate the potential of prompt-based methods in few-shot learning for DST and provide directions for future improvement.",
+        "paperId": "21e46f11898748778a31b5b2fe2f60128eb66ba1"
+    },
+    {
+        "title": "TI-Prompt: Towards a Prompt Tuning Method for Few-shot Threat Intelligence Twitter Classification*",
+        "firstAuthor": "Yizhe You",
+        "url": null,
+        "dateSubmitted": "2022-06-01",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Obtaining the latest Threat Intelligence (TI) via Twitter has become one of the most important methods for defenders to catch up with emerging cyber threats. Existing TI Twitter classification works mainly based on supervised learning methods. Such approaches require large amounts of annotated data and are difficult to be transferred to other TI Twitter classification tasks. This paper proposes a prompt-based method for classifying TI on Twitter, named TI-Prompt. TI-Prompt lever-ages the prompt-tuning method with two templates in different TI Twitter classification tasks. TI-Prompt also uses a semantic similarity-based approach to automatically enrich the prompt verbalizer without expert knowledge and a verbalizer refinement method to calibrate the verbalizer based on the training data. We evaluate TI-Prompt with binary and multi-classification tasks on two Twitter Threat Intelligence datasets. Evaluation results show that the proposed TI-Prompt improves 5-10% over the best performance of previous supervised learning methods under the few-shot settings. Compared to the general prompt-tuning methods, the proposed prompt-tuning templates can also improve the classification performance by 2\u20135%. Meanwhile, the proposed verbalizer enrichment method and refinement method improve classification accuracy by 1\u20134% compared with the general single-word verbalizer prompt method. Therefore, TI-Prompt can be extended to other Threat Intelligence classification tasks without requiring large amounts of training data, significantly reducing the annotation cost.",
+        "paperId": "2348067b9c215a684eb15b99213fc29557b1b7e1"
+    },
+    {
+        "title": "PromptAttack: Prompt-based Attack for Language Models via Gradient Search",
+        "firstAuthor": "Yundi Shi",
+        "url": "http://arxiv.org/pdf/2209.01882",
+        "dateSubmitted": "2022-09-05",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "As the pre-trained language models (PLMs) continue to grow, so do the hardware and data requirements for fine-tuning PLMs. Therefore, the researchers have come up with a lighter method called \\textit{Prompt Learning}. However, during the investigations, we observe that the prompt learning methods are vulnerable and can easily be attacked by some illegally constructed prompts, resulting in classification errors, and serious security problems for PLMs. Most of the current research ignores the security issue of prompt-based methods. Therefore, in this paper, we propose a malicious prompt template construction method (\\textbf{PromptAttack}) to probe the security performance of PLMs. Several unfriendly template construction approaches are investigated to guide the model to misclassify the task. Extensive experiments on three datasets and three PLMs prove the effectiveness of our proposed approach PromptAttack. We also conduct experiments to verify that our method is applicable in few-shot scenarios.",
+        "paperId": "251269b9e16ab1da20cb57a669b2bfdbd0d1cd72"
+    },
+    {
+        "title": "GPT-3-driven pedagogical agents for training children's curious question-asking skills",
+        "firstAuthor": "Rania Abdelghani",
+        "url": "https://arxiv.org/pdf/2211.14228",
+        "dateSubmitted": "2022-11-25",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": null,
+        "paperId": "2677645b0f96c8c055b83c904d531cfe22b2e623"
+    },
+    {
+        "title": "Toxicity Detection with Generative Prompt-based Inference",
+        "firstAuthor": "Yau-Shian Wang",
+        "url": "https://arxiv.org/pdf/2205.12390",
+        "dateSubmitted": "2022-05-24",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Due to the subtleness, implicity, and different possible interpretations perceived by different people, detecting undesirable content from text is a nuanced difficulty. It is a long-known risk that language models (LMs), once trained on corpus containing undesirable content, have the power to manifest biases and toxicity. However, recent studies imply that, as a remedy, LMs are also capable of identifying toxic content without additional fine-tuning. Prompt-methods have been shown to effectively harvest this surprising self-diagnosing capability. However, existing prompt-based methods usually specify an instruction to a language model in a discriminative way. In this work, we explore the generative variant of zero-shot prompt-based toxicity detection with comprehensive trials on prompt engineering. We evaluate on three datasets with toxicity labels annotated on social media posts. Our analysis highlights the strengths of our generative classification approach both quantitatively and qualitatively. Interesting aspects of self-diagnosis and its ethical implications are discussed.",
+        "paperId": "2afb07359e9c67499e1f373ac6f1520d3ea9c46a"
+    },
+    {
+        "title": "SPE: Symmetrical Prompt Enhancement for Factual Knowledge Retrieval",
+        "firstAuthor": "",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Pretrained language models (PLMs) have 001 been shown to accumulate factual knowledge 002 from their unsupervised pretraining proce- 003 dures (Petroni et al., 2019). Prompting is an 004 effective way to query such knowledge from 005 PLMs. Recently, continuous prompt methods 006 have been shown to have a larger potential 007 than discrete prompt methods in generating ef- 008 fective queries (Liu et al., 2021a). However, 009 these methods do not consider symmetry of 010 the task. In this work, we propose Symmet- 011 rical Prompt Enhancement (SPE), a continu- 012 ous prompt-based method for fact retrieval that 013 leverages the symmetry of the task. Our results 014 on LAMA, a popular fact retrieval dataset, 015 show signi\ufb01cant improvement of SPE over pre- 016 vious prompt methods. 017",
+        "paperId": "2ba9dfe0614daa7b0dc9bfa49916bdf4688b21ab"
+    },
+    {
+        "title": "Contextual stance classification using prompt engineering",
+        "firstAuthor": "Felipe Penhorate Carvalho de Fonseca",
+        "url": "https://sol.sbc.org.br/index.php/stil/article/download/25435/25256",
+        "dateSubmitted": "2023-09-25",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "This paper introduces a prompt-based method for few-shot learning addressing, as an application example, contextual stance classification, that is, the task of determining the attitude expressed by a given statement within a conversation thread with multiple points of view towards another statement. More specifically, we envisaged a method that uses the existing conversation thread (i.e., messages that are part of the test data) to create natural language prompts for few-shot learning with minimal reliance on training samples, whose preliminary results suggest that prompt engineering may be a competitive alternative to supervised methods both in terms of accuracy and development costs for the task at hand.",
+        "paperId": "2d90460431c093757fcf651e333bc0da5f5404c2"
+    },
+    {
+        "title": "When Prompt-based Incremental Learning Does Not Meet Strong Pretraining",
+        "firstAuthor": "Yuyao Tang",
+        "url": "https://arxiv.org/pdf/2308.10445",
+        "dateSubmitted": "2023-08-21",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Incremental learning aims to overcome catastrophic forgetting when learning deep networks from sequential tasks. With impressive learning efficiency and performance, prompt-based methods adopt a fixed backbone to sequential tasks by learning task-specific prompts. However, existing prompt-based methods heavily rely on strong pretraining (typically trained on ImageNet-21k), and we find that their models could be trapped if the potential gap between the pretraining task and unknown future tasks is large. In this work, we develop a learnable Adaptive Prompt Generator (APG). The key is to unify the prompt retrieval and prompt learning processes into a learnable prompt generator. Hence, the whole prompting process can be optimized to reduce the negative effects of the gap between tasks effectively. To make our APG avoid learning ineffective knowledge, we maintain a knowledge pool to regularize APG with the feature distribution of each class. Extensive experiments show that our method significantly outperforms advanced methods in exemplar-free incremental learning without (strong) pretraining. Besides, under strong retraining, our method also has comparable performance to existing prompt-based models, showing that our method can still benefit from pretraining. Codes can be found at https://github.com/TOM-tym/APG",
+        "paperId": "3193f32404d21d0ee1117a67e28f2360e4fd36f1"
+    },
+    {
+        "title": "Multilingual Relation Classification via Efficient and Effective Prompting",
+        "firstAuthor": "Yuxuan Chen",
+        "url": "https://arxiv.org/pdf/2210.13838",
+        "dateSubmitted": "2022-10-25",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Prompting pre-trained language models has achieved impressive performance on various NLP tasks, especially in low data regimes. Despite the success of prompting in monolingual settings, applying prompt-based methods in multilingual scenarios has been limited to a narrow set of tasks, due to the high cost of handcrafting multilingual prompts. In this paper, we present the first work on prompt-based multilingual relation classification (RC), by introducing an efficient and effective method that constructs prompts from relation triples and involves only minimal translation for the class labels. We evaluate its performance in fully supervised, few-shot and zero-shot scenarios, and analyze its effectiveness across 14 languages, prompt variants, and English-task training in cross-lingual settings. We find that in both fully supervised and few-shot scenarios, our prompt method beats competitive baselines: fine-tuning XLM-R_EM and null prompts. It also outperforms the random baseline by a large margin in zero-shot experiments. Our method requires little in-language knowledge and can be used as a strong baseline for similar multilingual classification tasks.",
+        "paperId": "32635a3daba6cbd7f0dd930aa325254b191c1343"
+    },
+    {
+        "title": "Fewer Errors, but More Stereotypes? The Effect of Model Size on Gender Bias",
+        "firstAuthor": "Yarden Tal",
+        "url": "https://arxiv.org/pdf/2206.09860",
+        "dateSubmitted": "2022-06-20",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "The size of pretrained models is increasing, and so is their performance on a variety of NLP tasks. However, as their memorization capacity grows, they might pick up more social biases. In this work, we examine the connection between model size and its gender bias (specifically, occupational gender bias). We measure bias in three masked language model families (RoBERTa, DeBERTa, and T5) in two setups: directly using prompt based method, and using a downstream task (Winogender). We find on the one hand that larger models receive higher bias scores on the former task, but when evaluated on the latter, they make fewer gender errors. To examine these potentially conflicting results, we carefully investigate the behavior of the different models on Winogender. We find that while larger models outperform smaller ones, the probability that their mistakes are caused by gender bias is higher. Moreover, we find that the proportion of stereotypical errors compared to anti-stereotypical ones grows with the model size. Our findings highlight the potential risks that can arise from increasing model size.",
+        "paperId": "3a37fef290d76029c295201cc168c0f8ecb0a0cf"
+    },
+    {
+        "title": "PTS: A Prompt-based Teacher-Student Network for Weakly Supervised Aspect Detection",
+        "firstAuthor": "Hongjian Li",
+        "url": null,
+        "dateSubmitted": "2022-07-18",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Most existing weakly supervised aspect detection algorithms utilize pre-trained language models as their backbone networks by constructing discriminative tasks with seed words. Once the number of seed words decreases, the performance of current models declines significantly. Recently, prompt tuning has been proposed to bridge the gap of objective forms in pre-training and fine-tuning, which is hopeful of alleviating the above challenge. However, directly applying the existing prompt-based methods to this task not only fails to effectively use large amounts of unlabeled data, but also may cause serious over-fitting problems. In this paper, we propose a lightweight teacher-student network (PTS) based on prompts to solve the above two problems. Concretely, the student network is a hybrid prompt-based classification model to detect aspects, which innovatively compounds hand-crafted prompts and auto-generated prompts. The teacher network comprehensively considers the representation of the sentence and the masked aspect token in the template to guide classification. To utilize unlabeled data and seed words intelligently, we train the teacher and student network alternately. Furthermore, in order to solve the problem that the uneven quality of training data obviously affects the iterative efficiency of PTS, we design a general dynamic data selection strategy to feed the most pertinent data into the current model. Experimental results show that even given the minimum seed words, PTS significantly outperforms previous state-of-the-art methods on three widely used benchmarks.",
+        "paperId": "3cae1358c96fbe69f56363d74800e90549b6375c"
+    },
+    {
+        "title": "Syntax-aware Hybrid prompt model for Few-shot multi-modal sentiment analysis",
+        "firstAuthor": "Zikai Zhou",
+        "url": "https://arxiv.org/pdf/2306.01312",
+        "dateSubmitted": "2023-06-02",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Multimodal Sentiment Analysis (MSA) has been a popular topic in natural language processing nowadays, at both sentence and aspect level. However, the existing approaches almost require large-size labeled datasets, which bring about large consumption of time and resources. Therefore, it is practical to explore the method for few-shot sentiment analysis in cross-modalities. Previous works generally execute on textual modality, using the prompt-based methods, mainly two types: hand-crafted prompts and learnable prompts. The existing approach in few-shot multi-modality sentiment analysis task has utilized both methods, separately. We further design a hybrid pattern that can combine one or more fixed hand-crafted prompts and learnable prompts and utilize the attention mechanisms to optimize the prompt encoder. The experiments on both sentence-level and aspect-level datasets prove that we get a significant outperformance.",
+        "paperId": "3d59bd750476d4a4988c73ae3bac886118c0cf48"
+    },
+    {
+        "title": "PromptFusion: Decoupling Stability and Plasticity for Continual Learning",
+        "firstAuthor": "Haoran Chen",
+        "url": "http://arxiv.org/pdf/2303.07223",
+        "dateSubmitted": "2023-03-13",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Continual learning refers to the capability of continuously learning from a stream of data. Current research mainly focuses on relieving catastrophic forgetting, and most of their success is at the cost of limiting the performance of newly incoming tasks. Such a trade-off is referred to as the stabilityplasticity dilemma and is a more general and challenging problem for continual learning. However, the inherent conflict between these two concepts makes it seemingly impossible to devise a satisfactory solution to both of them simultaneously. Therefore, we ask,\"is it possible to divide them into two problems to conquer independently?\"To this end, we propose a prompt-tuning-based method termed PromptFusion to enable the decoupling of stability and plasticity. Specifically, PromptFusion consists of a carefully designed Stabilizer module that deals with catastrophic forgetting and a Booster module to learn new knowledge concurrently. During training, PromptFusion first passes an input image to the two modules separately. Then the resulting logits are further fused with a learnable weight parameter. Finally, a weight mask is applied to the derived logits to balance between old and new classes. Extensive experiments show that our method achieves promising results on popular continual learning datasets for both class-incremental and domain incremental settings. Especially on Split-Imagenet-R, one of the most challenging datasets for class-incremental learning, our method exceeds state-of-the-art prompt-based methods L2P and DualPrompt by more than 10%.",
+        "paperId": "3e6fa4702debd394a78522fd7b9959ad33c5452b"
+    },
+    {
+        "title": "On the Robustness of Dialogue History Representation in Conversational Question Answering: A Comprehensive Study and a New Prompt-based Method",
+        "firstAuthor": "Zorik Gekhman",
+        "url": "https://direct.mit.edu/tacl/article-pdf/doi/10.1162/tacl_a_00549/2080031/tacl_a_00549.pdf",
+        "dateSubmitted": "2022-06-29",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Most work on modeling the conversation history in Conversational Question Answering (CQA) reports a single main result on a common CQA benchmark. While existing models show impressive results on CQA leaderboards, it remains unclear whether they are robust to shifts in setting (sometimes to more realistic ones), training data size (e.g., from large to small sets) and domain. In this work, we design and conduct the first large-scale robustness study of history modeling approaches for CQA. We find that high benchmark scores do not necessarily translate to strong robustness, and that various methods can perform extremely differently under different settings. Equipped with the insights from our study, we design a novel prompt-based history modeling approach and demonstrate its strong robustness across various settings. Our approach is inspired by existing methods that highlight historic answers in the passage. However, instead of highlighting by modifying the passage token embeddings, we add textual prompts directly in the passage text. Our approach is simple, easy to plug into practically any model, and highly effective, thus we recommend it as a starting point for future model developers. We also hope that our study and insights will raise awareness to the importance of robustness-focused evaluation, in addition to obtaining high leaderboard scores, leading to better CQA systems.1",
+        "paperId": "3eba01e41208e69942fc0cdaca391d4ed49a99e7"
+    },
+    {
+        "title": "Divide and Prompt: Chain of Thought Prompting for Text-to-SQL",
+        "firstAuthor": "X. Liu",
+        "url": "http://arxiv.org/pdf/2304.11556",
+        "dateSubmitted": "2023-04-23",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Chain-of-thought (CoT) prompting combined with large language models (LLMs) have achieved encouraging results on complex reasoning tasks. Text-to-SQL is a critical semantic parsing task that converts natural language questions into SQL statements, involving a complex reasoning process. However, there is little work about using CoT prompting to activate LLM's reasoning capabilities on Text-to-SQL tasks. In this work, we propose a new paradigm for prompting Text-to-SQL tasks, called Divide-and-Prompt, which first divides the task into subtasks, and then approach each subtask through CoT. We present 3 prompting-based methods to enhance the Text-to-SQL ability of LLMs. Experiments show that these prompts guide LLMs to generate Text-to-SQL with higher execution accuracy.",
+        "paperId": "40c9280d87059c0cc28f2a08d46a7045fa3e9736"
+    },
+    {
+        "title": "Learning to Transfer Prompts for Text Generation",
+        "firstAuthor": "Junyi Li",
+        "url": "https://arxiv.org/pdf/2205.01543",
+        "dateSubmitted": "2022-05-03",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Pretrained language models (PLMs) have made remarkable progress in text generation tasks via fine-tuning. While, it is challenging to fine-tune PLMs in a data-scarce situation. Therefore, it is non-trivial to develop a general and lightweight model that can adapt to various text generation tasks based on PLMs. To fulfill this purpose, the recent prompt-based learning offers a potential solution. In this paper, we improve this technique and propose a novel prompt-based method (PTG) for text generation in a transferable setting. First, PTG learns a set of source prompts for various source generation tasks and then transfers these prompts as target prompts to perform target generation tasks. To consider both task- and instance-level information, we design an adaptive attention mechanism to derive the target prompts. For each data instance, PTG learns a specific target prompt by attending to highly relevant source prompts. In extensive experiments, PTG yields competitive or better results than fine-tuning methods. We release our source prompts as an open resource, where users can add or reuse them to improve new text generation tasks for future research. Code and data can be available at https://github.com/RUCAIBox/Transfer-Prompts-for-Text-Generation.",
+        "paperId": "42117d01d498eb9f8c21b788c3565bc6855d620b"
+    },
+    {
+        "title": "Decomposed Two-Stage Prompt Learning for Few-Shot Named Entity Recognition",
+        "firstAuthor": "Feiyang Ye",
+        "url": "https://www.mdpi.com/2078-2489/14/5/262/pdf?version=1682672547",
+        "dateSubmitted": "2023-04-28",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Named entity recognition (NER) in a few-shot setting is an extremely challenging task, and most existing methods fail to account for the gap between NER tasks and pre-trained language models. Although prompt learning has been successfully applied in few-shot classification tasks, adapting to token-level classification similar to the NER task presents challenges in terms of time consumption and efficiency. In this work, we propose a decomposed prompt learning NER framework for few-shot settings, decomposing the NER task into two stages: entity locating and entity typing. In training, the location information of distant labels is used to train the entity locating model. A concise but effective prompt template is built to train the entity typing model. In inference, a pipeline approach is used to handle the entire NER task, which elegantly resolves time-consuming and inefficient problems. Specifically, a well-trained entity locating model is used to predict entity spans for each input. The input is then transformed using prompt templates, and the well-trained entity typing model is used to predict their types in a single step. Experimental results demonstrate that our framework outperforms previous prompt-based methods by an average of 2.3\u201312.9% in F1 score while achieving the best trade-off between accuracy and inference speed.",
+        "paperId": "427d332ab3a1bdfb0c62c9f852e90dc2b2880546"
+    },
+    {
+        "title": "ParaBART: A Prompt-based Method with Parabiotic Decoder for Few-shot Named Entity Recognition",
+        "firstAuthor": "",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Prompt-based methods have been widely used 001 in few-shot named entity recognition (NER). 002 We first conduct a preliminary experiment and 003 observe that what really affects prompt-based 004 NER models is the ability to detect entity 005 boundaries. However, previous prompt-based 006 NER models neglect to enhance the ability of 007 entity boundary detection. To solve the issue, 008 we propose a novel method, ParaBART, which 009 consists of a BART encoder and the Parabi- 010 otic 1 Decoder we design. Parabiotic Decoder 011 includes two BART decoders and a conjoint 012 module. The two decoders are responsible for 013 entity boundary detection and entity type classi- 014 fication respectively and share the well-learned 015 knowledge through the conjoint module, which 016 replaces unimportant tokens\u2019 embeddings in 017 one decoder with the average embedding of 018 all tokens in the other decoder. Moreover, we 019 propose a novel boundary expansion strategy 020 to enhance the ability of entity type classifica- 021 tion. Experimental results show that ParaBART 022 can achieve significant performance gains over 023 previous state-of-the-art methods. For repro- 024 ducibility, all datasets and codes are provided 025 in the supplementary materials. 026 ,",
+        "paperId": "47d2092b5013e5c03ca4b0c3d74bcfc8d661cec1"
+    },
+    {
+        "title": "Prompt-Based Approach for Czech Sentiment Analysis",
+        "firstAuthor": "Jakub \u0160m\u00edd",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "This paper introduces the first prompt-based methods for aspect-based sentiment analysis and sentiment classification in Czech. We employ the sequence-to-sequence models to solve the aspect-based tasks simultaneously and demonstrate the superiority of our prompt-based approach over traditional fine-tuning. In addition, we conduct zero-shot and few-shot learning experiments for sentiment classification and show that prompting yields significantly better results with limited training examples compared to traditional fine-tuning. We also demonstrate that pre-training on data from the target domain can lead to significant improvements in a zero-shot scenario.",
+        "paperId": "535ae2b443c63f35b462257179480dc5ca67e206"
+    },
+    {
+        "title": "Stabilized In-Context Learning with Pre-trained Language Models for Few Shot Dialogue State Tracking",
+        "firstAuthor": "Derek Chen",
+        "url": "http://arxiv.org/pdf/2302.05932",
+        "dateSubmitted": "2023-02-12",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Prompt-based methods with large pre-trained language models (PLMs) have shown impressive unaided performance across many NLP tasks. These models improve even further with the addition of a few labeled in-context exemplars to guide output generation. However, for more complex tasks such as dialogue state tracking (DST), designing prompts that reliably convey the desired intent is nontrivial, leading to unstable results. Furthermore, building in-context exemplars for dialogue tasks is difficult because conversational contexts are long while model input lengths are relatively short.To overcome these issues we first adapt a meta-learning scheme to the dialogue domain which stabilizes the ability of the model to perform well under various prompts. We additionally design a novel training method to improve upon vanilla retrieval mechanisms to find ideal in-context examples. Finally, we introduce a saliency model to limit dialogue text length, allowing us to include more exemplars per query. In effect, we are able to achieve highly competitive results for few-shot DST on MultiWOZ.",
+        "paperId": "59ef1b67c5f238d5d6d175d84fb6b239b4221a97"
+    },
+    {
+        "title": "Unified Multimodal Pre-training and Prompt-based Tuning for Vision-Language Understanding and Generation",
+        "firstAuthor": "Tianyi Liu",
+        "url": null,
+        "dateSubmitted": "2021-12-10",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Most existing vision-language pre-training methods focus on understanding tasks and use BERT-like objectives (masked language modeling and image-text matching) during pretraining. Although they perform well in many understanding downstream tasks, e.g., visual question answering, image-text retrieval and visual entailment, they do not possess the ability to generate. To tackle this problem, we propose Unified multimodal pre-training for both Vision-Language understanding and generation (UniVL). The proposed UniVL is capable of handling both understanding tasks and generative tasks. We augment existing pretraining paradigms that only use random masks with causal masks, i.e., triangular masks that mask out future tokens, such that the pre-trained models can have autoregressive generation abilities by design. We formulate several previous understanding tasks as a text generation task and propose to use prompt-based method for fine-tuning on different downstream tasks. Our experiments show that there is a trade-off between understanding tasks and generation tasks while using the same model, and a feasible way to improve both tasks is to use more data. Our UniVL framework attains comparable performance to recent vision-language pre-training methods on both understanding tasks and generation tasks. Moreover, we demostrate that prompt-based finetuning is more data-efficient - it outperforms discriminative methods in few-shot scenarios.",
+        "paperId": "6065fe83bbab89763e1637a16d64676bbda6b6bd"
+    },
+    {
+        "title": "ArgGen: Prompting Text Generation Models for Document-Level Event-Argument Aggregation",
+        "firstAuthor": "Debanjana Kar",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Most of the existing discourse-level Information Extraction tasks have been modeled to be extractive in nature. However, we argue that extracting information from larger bodies of discourse-like documents requires more natural language understanding and reasoning capabilities. In our work, we propose the novel task of document-level event argument aggregation which generates consolidated event-arguments at a document-level with minimal loss of information. More specifically, we focus on generating precise document-level information frames in a multilingual setting using prompt-based methods. In this paper, we show the effectiveness of prompt-based text generation approach to generate document-level argument spans in a low-resource and zero-shot setting. We also release the first of its kind multilingual event argument aggregation dataset that can be leveraged in other related multilingual text generation tasks as well: https://github.com/",
+        "paperId": "61f49465c0d53663ad5264c8f683c6724d31eef1"
+    },
+    {
+        "title": "Steps towards prompt-based creation of virtual worlds",
+        "firstAuthor": "Jasmine Roberts",
+        "url": "https://arxiv.org/pdf/2211.05875",
+        "dateSubmitted": "2022-11-10",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Large language models trained for code generation can be applied to speaking virtual worlds into existence (creating virtual worlds). In this work we show that prompt-based methods can both accelerate in-VR level editing, as well as can become part of gameplay rather than just part of game development. As an example, we present Codex VR Pong which shows non-deterministic game mechanics using generative processes to not only create static content but also non-trivial interactions between 3D objects. This demonstration naturally leads to an integral discussion on how one would evaluate and benchmark experiences created by generative models - as there are no qualitative or quantitative metrics that apply in these scenarios. We conclude by discussing impending challenges of AI-assisted co-creation in VR.",
+        "paperId": "632ab7663e6d64578ceda1d1df9ec525b503bacb"
+    },
+    {
+        "title": "Prompt-based Pre-trained Model for Personality and Interpersonal Reactivity Prediction",
+        "firstAuthor": "Bin Li",
+        "url": null,
+        "dateSubmitted": "2022-04-01",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "This paper describes the LingJing team\u2019s method to the Workshop on Computational Approaches to Subjectivity, Sentiment & Social Media Analysis (WASSA) 2022 shared task on Personality Prediction (PER) and Reactivity Index Prediction (IRI). In this paper, we adopt the prompt-based method with the pre-trained language model to accomplish these tasks. Specifically, the prompt is designed to provide knowledge of the extra personalized information for enhancing the pre-trained model. Data augmentation and model ensemble are adopted for obtaining better results. Extensive experiments are performed, which shows the effectiveness of the proposed method. On the final submission, our system achieves a Pearson Correlation Coefficient of 0.2301 and 0.2546 on Track 3 and Track 4 respectively. We ranked 1-st on both sub-tasks.",
+        "paperId": "6618c3a74d80397d5c8ac77bb72befb0c9833c91"
+    },
+    {
+        "title": "Verbal Behavior Analysis on Pronoun Use by a Child with Autism",
+        "firstAuthor": "A. Ongsuco",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "There are limited studies that outline prompt-based methods in teaching pronouns to children with autism. The Verbal Behavior Analysis (VBA) approach is a good fit for teaching pronouns because of its emphasis on the acquisition and correct usage of verbal operants used in social exchanges. This study investigated the effects of a VBA-based multicomponent package treatment (i.e. contingent reinforcement and textual and echoic prompts) on correct pronoun use by a child with autism using a multiple baseline across four stimulus sets design. The results demonstrated that the child's responses among four stimulus sets were variable indicating the lack of confidence in effectiveness of the intervention. Evidence of the reliability of the dependent and independent variables was not demonstrated and made conclusions very limited. However the intervention possesses face and social validity in light of social cognition problems faced by children with autism. Replication with adequate internal controls is suggested for future research.",
+        "paperId": "67584b81b8f60af8435d7b686393edc900d09db2"
+    },
+    {
+        "title": "Intent-aware Prompt Learning for Medical Question Summarization",
+        "firstAuthor": "Leilei Zhang",
+        "url": null,
+        "dateSubmitted": "2022-12-06",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Consumer health question summarization aims to generate concise questions expressing the minimum information needed to find the correct answer to the original user queries, which can significantly improve the success rate of retrieving relevant answers in automated medical question answering systems. Recently, prompt learning has emerged as a new paradigm of leveraging pre-trained language models (PLMs) with promising results in downstream tasks. Existing prompt-based methods assume that all samples in a task share the same prompt. However, the health questions raised by consumers in search engines focus on different types of medical entities and cover different purposes. It is not sufficient to simply use the same prompt regardless of consumer intent awareness, which likely leads to meaningless or substandard quality summaries. In this paper, we propose an intent-aware prompt learning (InPL) method, which consists of a question intent recognition module, a dynamic prompt module and a medical summarization generation module to model the medical summarization task in a unified transformer. Our InPL architecture generates high-quality summaries capturing more consumer health intent and encourages machines to generate more factually correct summaries. Extensive experiments on the popular medical summarization datasets demonstrate the superiority of our approach.",
+        "paperId": "738e86030c1e10b779d638c38a34b0b9c1890b83"
+    },
+    {
+        "title": "Chemical Identification and Indexing in PubMed Articles via BERT and Text-to-Text Approaches",
+        "firstAuthor": "Virginia Adams",
+        "url": null,
+        "dateSubmitted": "2021-11-30",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "The Biocreative VII Track-2 challenge consists of named entity recognition, entity-linking (or entity-normalization), and topic indexing tasks -- with entities and topics limited to chemicals for this challenge. Named entity recognition is a well-established problem and we achieve our best performance with BERT-based BioMegatron models. We extend our BERT-based approach to the entity linking task. After the second stage of pretraining BioBERT with a metric-learning loss strategy called self-alignment pretraining (SAP), we link entities based on the cosine similarity between their SAP-BioBERT word embeddings. Despite the success of our named entity recognition experiments, we find the chemical indexing task generally more challenging. In addition to conventional NER methods, we attempt both named entity recognition and entity linking with a novel text-to-text or\"prompt\"based method that uses generative language models such as T5 and GPT. We achieve encouraging results with this new approach.",
+        "paperId": "7b4e0aee93666bfa4bc1f2837036a916b25d8826"
+    },
+    {
+        "title": "PURR: Efficiently Editing Language Model Hallucinations by Denoising Language Model Corruptions",
+        "firstAuthor": "Anthony Chen",
+        "url": "http://arxiv.org/pdf/2305.14908",
+        "dateSubmitted": "2023-05-24",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "The remarkable capabilities of large language models have been accompanied by a persistent drawback: the generation of false and unsubstantiated claims commonly known as\"hallucinations\". To combat this issue, recent research has introduced approaches that involve editing and attributing the outputs of language models, particularly through prompt-based editing. However, the inference cost and speed of using large language models for editing currently bottleneck prompt-based methods. These bottlenecks motivate the training of compact editors, which is challenging due to the scarcity of training data for this purpose. To overcome these challenges, we exploit the power of large language models to introduce corruptions (i.e., noise) into text and subsequently fine-tune compact editors to denoise the corruptions by incorporating relevant evidence. Our methodology is entirely unsupervised and provides us with faux hallucinations for training in any domain. Our Petite Unsupervised Research and Revision model, PURR, not only improves attribution over existing editing methods based on fine-tuning and prompting, but also achieves faster execution times by orders of magnitude.",
+        "paperId": "7db7653c581d7823cb9c328f2d742ec70d7a0ce4"
+    },
+    {
+        "title": "Zero-shot Domain Adaptation for Neural Machine Translation with Retrieved Phrase-level Prompts",
+        "firstAuthor": "Zewei Sun",
+        "url": "http://arxiv.org/pdf/2209.11409",
+        "dateSubmitted": "2022-09-23",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Domain adaptation is an important challenge for neural machine translation. However, the traditional fine-tuning solution requires multiple extra training and yields a high cost. In this paper, we propose a non-tuning paradigm, resolving domain adaptation with a prompt-based method. Specifically, we construct a bilingual phrase-level database and retrieve relevant pairs from it as a prompt for the input sentences. By utilizing Retrieved Phrase-level Prompts (RePP), we effectively boost the translation quality. Experiments show that our method improves domain-specific machine translation for 6.2 BLEU scores and improves translation constraints for 11.5% accuracy without additional training.",
+        "paperId": "80c0416048614be75362c2c332d22dd1d2b22f65"
+    },
+    {
+        "title": "SPE: Symmetrical Prompt Enhancement for Fact Probing",
+        "firstAuthor": "Yiyuan Li",
+        "url": "https://arxiv.org/pdf/2211.07078",
+        "dateSubmitted": "2022-11-14",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Pretrained language models (PLMs) have been shown to accumulate factual knowledge during pretraining (Petroni et al. 2019). Recent works probe PLMs for the extent of this knowledge through prompts either in discrete or continuous forms. However, these methods do not consider symmetry of the task: object prediction and subject prediction. In this work, we propose Symmetrical Prompt Enhancement (SPE), a continuous prompt-based method for factual probing in PLMs that leverages the symmetry of the task by constructing symmetrical prompts for subject and object prediction. Our results on a popular factual probing dataset, LAMA, show significant improvement of SPE over previous probing methods.",
+        "paperId": "872748081a8fb66703a3b89fb46840642565513d"
+    },
+    {
+        "title": "Exploring Usability Issues in Instruction-Based and Schema-Based Authoring of Task-Oriented Dialogue Agents",
+        "firstAuthor": "Amogh Mannekote",
+        "url": null,
+        "dateSubmitted": "2023-07-19",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Platforms such as Google DialogFlow and Amazon Lex have enabled easier development of conversational agents. The standard approach to training these agents involve collecting and annotating in-domain data in the form of labelled utterances. However, obtaining in-domain data for training machine learning models remains a bottleneck. Schema-based dialogue, which involves laying out a structured representation of the flow of a \u201ctypical\u201d dialogue, and prompt-based methods, which involve writing instructions in natural language to large language models such as GPT-3, are promising ways to tackle this problem. However, usability issues when translating these methods into practice are less explored. Our study takes a first step towards addressing this gap by having 23 students who had finished a graduate-level course on spoken dialogue systems report their experiences as they defined structured schemas and composed instruction-based prompts for two task-oriented dialogue scenarios. Through inductive coding and subsequent thematic analysis of the survey data, we explored users\u2019 authoring experiences with schema and prompt-based methods. The findings provide insights for future data collection and authoring tool design for dialogue systems.",
+        "paperId": "87e5bb672d578c0f2bc654ba53d476186fd4b813"
+    },
+    {
+        "title": "Marked Personas: Using Natural Language Prompts to Measure Stereotypes in Language Models",
+        "firstAuthor": "Myra Cheng",
+        "url": "http://arxiv.org/pdf/2305.18189",
+        "dateSubmitted": "2023-05-29",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "To recognize and mitigate harms from large language models (LLMs), we need to understand the prevalence and nuances of stereotypes in LLM outputs. Toward this end, we present Marked Personas, a prompt-based method to measure stereotypes in LLMs for intersectional demographic groups without any lexicon or data labeling.Grounded in the sociolinguistic concept of markedness (which characterizes explicitly linguistically marked categories versus unmarked defaults), our proposed method is twofold: 1) prompting an LLM to generate personas, i.e., natural language descriptions, of the target demographic group alongside personas of unmarked, default groups; 2) identifying the words that significantly distinguish personas of the target group from corresponding unmarked ones.We find that the portrayals generated by GPT-3.5 and GPT-4 contain higher rates of racial stereotypes than human-written portrayals using the same prompts. The words distinguishing personas of marked (non-white, non-male) groups reflect patterns of othering and exoticizing these demographics. An intersectional lens further reveals tropes that dominate portrayals of marginalized groups, such as tropicalism and the hypersexualization of minoritized women. These representational harms have concerning implications for downstream applications like story generation.",
+        "paperId": "8d9ca1e2c703e2752a4904c967a65d45d0bef5f6"
+    },
+    {
+        "title": "Partially Humanizing Weak Supervision: Towards a Better Low Resource Pipeline for Spoken Language Understanding",
+        "firstAuthor": "Ayush Kumar",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Weak Supervised Learning (WSL) is a popular technique to develop machine learning models in absence of labeled training data. WSL involves training over noisy labels which are traditionally obtained from hand-engineered semantic rules and task-specific pre-trained models. Such rules offer limited coverage and generalization over tasks. On the other hand, pre-trained models are available only for limited tasks. Thus, obtaining weak labels is a bottleneck in weak supervised learning. In this work, we propose to utilize the prompting paradigm to generate weak labels for the underlying tasks. We show that task-agnostic prompts are generalizable and can be used to obtain noisy labels for different Spoken Language Understanding (SLU) tasks such as sentiment classification, disfluency detection and emotion classification. These prompts can additionally be updated with human-in-the-loop to add task-specific contexts, thus providing flexibility to design task-specific prompts. Our proposed WSL pipeline outperforms other competitive low-resource benchmarks on zero and few-shot learning by more than 4% on Macro-F1 and a conventional rule-based WSL baseline by more than 5% across all the benchmark datasets. We demonstrate that prompt-based methods save nearly 75% of time in a weak-supervised framework and generate more reliable labels for the above SLU tasks and thus can be used as a universal strategy to obtain weak labels.",
+        "paperId": "90db0e4d3a8e8766021779d38b0a56648d2c2436"
+    },
+    {
+        "title": "The transfer method on the prompt for the summarization task",
+        "firstAuthor": "Xinhao Guo",
+        "url": null,
+        "dateSubmitted": "2023-05-23",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Prompt tuning is a parameter-efficient method that even surpasses traditional fine-tuning methods in few-shot scenarios. Nowadays, pre-trained language models are getting larger and larger, with more and more parameters, which makes the traditional fine-tuning method impractical to implement and consumes a lot of computing resources. Therefore, prompt-based methods have a broad application prospect. In the experiments, it is found that prefix tuning, a prompt-based method, has the problem of non-convergence or is quite slow to converge when the training samples are small. This paper proposes a cross-task parameter transfer method, which transfers the trained parameters from prompt tuning tasks to prefix tuning to improve the training speed and alleviate the problem of non-convergence or slow convergence in prefix tuning tasks.",
+        "paperId": "97bee280763414829b493d866620e4388c5d8f61"
+    },
+    {
+        "title": "Low Resource Pipeline for Spoken Language Understanding via Weak Supervision",
+        "firstAuthor": "Ayush Kumar",
+        "url": "https://arxiv.org/pdf/2206.10559",
+        "dateSubmitted": "2022-06-21",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "In Weak Supervised Learning (WSL), a model is trained over noisy labels obtained from semantic rules and task-specific pre-trained models. Rules offer limited generalization over tasks and require significant manual efforts while pre-trained models are available only for limited tasks. In this work, we propose to utilize prompt-based methods as weak sources to obtain the noisy labels on unannotated data. We show that task-agnostic prompts are generalizable and can be used to obtain noisy labels for different Spoken Language Understanding (SLU) tasks such as sentiment classification, disfluency detection and emotion classification. These prompts could additionally be updated to add task-specific contexts, thus providing flexibility to design task-specific prompts. We demonstrate that prompt-based methods generate reliable labels for the above SLU tasks and thus can be used as a universal weak source to train a weak-supervised model (WSM) in absence of labeled data. Our proposed WSL pipeline trained over prompt-based weak source outperforms other competitive low-resource benchmarks on zero and few-shot learning by more than 4% on Macro-F1 on all of the three benchmark SLU datasets. The proposed method also outperforms a conventional rule based WSL pipeline by more than 5% on Macro-F1.",
+        "paperId": "9ecf603dbebbfbdd9858d21903c77074d12518b4"
+    },
+    {
+        "title": "Introducing Language Guidance in Prompt-based Continual Learning",
+        "firstAuthor": "Muhammad Gul Zain Ali Khan",
+        "url": "https://arxiv.org/pdf/2308.15827",
+        "dateSubmitted": "2023-08-30",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Continual Learning aims to learn a single model on a sequence of tasks without having access to data from previous tasks. The biggest challenge in the domain still remains catastrophic forgetting: a loss in performance on seen classes of earlier tasks. Some existing methods rely on an expensive replay buffer to store a chunk of data from previous tasks. This, while promising, becomes expensive when the number of tasks becomes large or data can not be stored for privacy reasons. As an alternative, prompt-based methods have been proposed that store the task information in a learnable prompt pool. This prompt pool instructs a frozen image encoder on how to solve each task. While the model faces a disjoint set of classes in each task in this setting, we argue that these classes can be encoded to the same embedding space of a pre-trained language encoder. In this work, we propose Language Guidance for Prompt-based Continual Learning (LGCL) as a plug-in for prompt-based methods. LGCL is model agnostic and introduces language guidance at the task level in the prompt pool and at the class level on the output feature of the vision encoder. We show with extensive experimentation that LGCL consistently improves the performance of prompt-based continual learning methods to set a new state-of-the art. LGCL achieves these performance improvements without needing any additional learnable parameters.",
+        "paperId": "a07701abd506f67368cb75ef2b649dd51df7abd4"
+    },
+    {
+        "title": "InstructionNER: A Multi-Task Instruction-Based Generative Framework for Few-shot NER",
+        "firstAuthor": "Liwen Wang",
+        "url": "http://arxiv.org/pdf/2203.03903",
+        "dateSubmitted": "2022-03-08",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Recently, prompt-based methods have achieved significant performance in few-shot learning scenarios by bridging the gap between language model pre-training and fine-tuning for downstream tasks. However, existing prompt templates are mostly designed for sentence-level tasks and are inappropriate for sequence labeling objectives. To address the above issue, we propose a multi-task instruction-based generative framework, named InstructionNER, for low-resource named entity recognition. Specifically, we reformulate the NER task as a generation problem, which enriches source sentences with task-specific instructions and answer options, then inferences the entities and types in natural language. We further propose two auxiliary tasks, including entity extraction and entity typing, which enable the model to capture more boundary information of entities and deepen the understanding of entity type semantics, respectively. Experimental results show that our method consistently outperforms other baselines on five datasets in few-shot settings.",
+        "paperId": "a29a0e679e626e8961dc217081eae2a6c63a15ad"
+    },
+    {
+        "title": "STT: Soft Template Tuning for Few-Shot Adaptation",
+        "firstAuthor": "Ping Yu",
+        "url": "https://arxiv.org/pdf/2207.08408",
+        "dateSubmitted": "2022-07-18",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Prompt tuning has been an extremely effective tool to adapt a pre-trained model to downstream tasks. However, standard prompt-based methods mainly consider the case of sufficient data of downstream tasks. It is still unclear whether the advantage can be transferred to the few-shot regime, where only limited data are available for each downstream task. Although some works have demonstrated the potential of prompt-tuning under the few-shot setting, the main stream methods via searching discrete prompts or tuning soft prompts with limited data are still very challenging. Through extensive empirical studies, we find that there is still a gap between prompt tuning and fully fine-tuning for few-shot learning. To bridge the gap, we propose a new prompt-tuning framework, called Soft Template Tuning (STT) 1. STT combines manual and auto prompts, and treats down-stream classification tasks as a masked language modeling task. Comprehensive evaluation on different settings suggests STT can close the gap between fine-tuning and prompt-based methods without introducing additional parameters. Significantly, it can even outperform the time- and resource-consuming fine-tuning method on sentiment classification tasks.",
+        "paperId": "a45bdbbf9a197a21ef97291c60b77de47bc51db2"
+    },
+    {
+        "title": "Enable Language Models to Implicitly Learn Self-Improvement From Data",
+        "firstAuthor": "Ziqi Wang",
+        "url": "https://arxiv.org/pdf/2310.00898",
+        "dateSubmitted": "2023-10-02",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Large Language Models (LLMs) have demonstrated remarkable capabilities in open-ended text generation tasks. However, the inherent open-ended nature of these tasks implies that there is always room for improvement in the quality of model responses. To address this challenge, various approaches have been proposed to enhance the performance of LLMs. There has been a growing focus on enabling LLMs to self-improve their response quality, thereby reducing the reliance on extensive human annotation efforts for collecting diverse and high-quality training data. Recently, prompting-based methods have been widely explored among self-improvement methods owing to their effectiveness, efficiency, and convenience. However, those methods usually require explicitly and thoroughly written rubrics as inputs to LLMs. It is expensive and challenging to manually derive and provide all necessary rubrics with a real-world complex goal for improvement (e.g., being more helpful and less harmful). To this end, we propose an ImPlicit Self-ImprovemenT (PIT) framework that implicitly learns the improvement goal from human preference data. PIT only requires preference data that are used to train reward models without extra human efforts. Specifically, we reformulate the training objective of reinforcement learning from human feedback (RLHF) -- instead of maximizing response quality for a given input, we maximize the quality gap of the response conditioned on a reference response. In this way, PIT is implicitly trained with the improvement goal of better aligning with human preferences. Experiments on two real-world datasets and one synthetic dataset show that our method significantly outperforms prompting-based methods.",
+        "paperId": "a81470aa3721f6cd8a61139f9c4c60923bee093f"
+    },
+    {
+        "title": "Progressive Visual Prompt Learning with Contrastive Feature Re-formation",
+        "firstAuthor": "C. Xu",
+        "url": "http://arxiv.org/pdf/2304.08386",
+        "dateSubmitted": "2023-04-17",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Prompt learning has been designed as an alternative to fine-tuning for adapting Vision-language (V-L) models to the downstream tasks. Previous works mainly focus on text prompt while visual prompt works are limited for V-L models. The existing visual prompt methods endure either mediocre performance or unstable training process, indicating the difficulty of visual prompt learning. In this paper, we propose a new Progressive Visual Prompt (ProVP) structure to strengthen the interactions among prompts of different layers. More importantly, our ProVP could effectively propagate the image embeddings to deep layers and behave partially similar to an instance adaptive prompt method. To alleviate generalization deterioration, we further propose a new contrastive feature re-formation, which prevents the serious deviation of the prompted visual feature from the fixed CLIP visual feature distribution. Combining both, our method (ProVP-Ref) is evaluated on 11 image benchmark datasets and achieves 7/11 state-of-theart results on both few-shot and base-to-novel settings. To the best of our knowledge, we are the first to demonstrate the superior performance of visual prompts in V-L models to previous prompt-based methods in downstream tasks. Meanwhile, it implies that our ProVP-Ref shows the best capability to adapt and to generalize.",
+        "paperId": "ab346a9d9a71bc59671e52cae96eabba16c24eeb"
+    },
+    {
+        "title": "Few-shot Event Detection: An Empirical Study and a Unified View",
+        "firstAuthor": "Yubo Ma",
+        "url": "http://arxiv.org/pdf/2305.01901",
+        "dateSubmitted": "2023-05-03",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Few-shot event detection (ED) has been widely studied, while this brings noticeable discrepancies, e.g., various motivations, tasks, and experimental settings, that hinder the understanding of models for future progress.This paper presents a thorough empirical study, a unified view of ED models, and a better unified baseline. For fair evaluation, we compare 12 representative methods on three datasets, which are roughly grouped into prompt-based and prototype-based models for detailed analysis. Experiments consistently demonstrate that prompt-based methods, including ChatGPT, still significantly trail prototype-based methods in terms of overall performance. To investigate their superior performance, we break down their design elements along several dimensions and build a unified framework on prototype-based methods. Under such unified view, each prototype-method can be viewed a combination of different modules from these design elements. We further combine all advantageous modules and propose a simple yet effective baseline, which outperforms existing methods by a large margin (e.g., 2.7% F1 gains under low-resource setting).",
+        "paperId": "ac7e270fcd365c84b29a710d58bf1243e850df4c"
+    },
+    {
+        "title": "KiPT: Knowledge-injected Prompt Tuning for Event Detection",
+        "firstAuthor": "Haochen Li",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Event detection aims to detect events from the text by identifying and classifying event triggers (the most representative words). Most of the existing works rely heavily on complex downstream networks and require sufficient training data. Thus, those models may be structurally redundant and perform poorly when data is scarce. Prompt-based models are easy to build and are promising for few-shot tasks. However, current prompt-based methods may suffer from low precision because they have not introduced event-related semantic knowledge (e.g., part of speech, semantic correlation, etc.). To address these problems, this paper proposes a Knowledge-injected Prompt Tuning (KiPT) model. Specifically, the event detection task is formulated into a condition generation task. Then, knowledge-injected prompts are constructed using external knowledge bases, and a prompt tuning strategy is leveraged to optimize the prompts. Extensive experiments indicate that KiPT outperforms strong baselines, especially in few-shot scenarios.",
+        "paperId": "ad87749fe414c307e1516db287a442c1ea75dc91"
+    },
+    {
+        "title": "QaNER: Prompting Question Answering Models for Few-shot Named Entity Recognition",
+        "firstAuthor": "Andy T. Liu",
+        "url": "http://arxiv.org/pdf/2203.01543",
+        "dateSubmitted": "2022-03-03",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Recently, prompt-based learning for pre-trained language models has succeeded in few-shot Named Entity Recognition (NER) by exploiting prompts as task guidance to increase label efficiency. However, previous prompt-based methods for few-shot NER have limitations such as a higher computational complexity, poor zero-shot ability, requiring manual prompt engineering, or lack of prompt robustness. In this work, we address these shortcomings by proposing a new prompt-based learning NER method with Question Answering (QA), called QaNER. Our approach includes 1) a refined strategy for converting NER problems into the QA formulation; 2) NER prompt generation for QA models; 3) prompt-based tuning with QA models on a few annotated NER examples; 4) zero-shot NER by prompting the QA model. Comparing the proposed approach with previous methods, QaNER is faster at inference, insensitive to the prompt quality, and robust to hyper-parameters, as well as demonstrating significantly better low-resource performance and zero-shot capability.",
+        "paperId": "b159dffadb69940e14693e812bdaa32e3957717f"
+    },
+    {
+        "title": "Causal Intervention-based Prompt Debiasing for Event Argument Extraction",
+        "firstAuthor": "Jiaju Lin",
+        "url": "http://arxiv.org/pdf/2210.01561",
+        "dateSubmitted": "2022-10-04",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Prompt-based methods have become increasingly popular among information extraction tasks, especially in low-data scenarios. By formatting a finetune task into a pre-training objective, prompt-based methods resolve the data scarce problem effectively. However, seldom do previous research investigate the discrepancy among different prompt formulating strategies. In this work, we compare two kinds of prompts, name-based prompt and ontology-base prompt, and reveal how ontology-base prompt methods exceed its counterpart in zero-shot event argument extraction (EAE) . Furthermore, we analyse the potential risk in ontology-base prompts via a causal view and propose a debias method by causal intervention. Experiments on two benchmarks demonstrate that modified by our debias method, the baseline model becomes both more effective and robust, with significant improvement in the resistance to adversarial attacks.",
+        "paperId": "b1d5c08a6fb6a5ee5b6b6693e10a587733ca05ed"
+    },
+    {
+        "title": "Can Language Models Be Specific? How?",
+        "firstAuthor": "Jie Huang",
+        "url": "http://arxiv.org/pdf/2210.05159",
+        "dateSubmitted": "2022-10-11",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "\"He is a person\",\"Paris is located on the earth\". Both statements are correct but meaningless - due to lack of specificity. In this paper, we propose to measure how specific the language of pre-trained language models (PLMs) is. To achieve this, we introduce a novel approach to build a benchmark for specificity testing by forming masked token prediction tasks with prompts. For instance, given\"Toronto is located in [MASK].\", we want to test whether a more specific answer will be better filled in by PLMs, e.g., Ontario instead of Canada. From our evaluations, we show that existing PLMs have only a slight preference for more specific answers. We identify underlying factors affecting the specificity and design two prompt-based methods to improve the specificity. Results show that the specificity of the models can be improved by the proposed methods without additional training. We hope this work can bring to awareness the notion of specificity of language models and encourage the research community to further explore this important but understudied problem.",
+        "paperId": "b47a3f7bcf540adb6fd97869c51449888d3160bb"
+    },
+    {
+        "title": "Unified Prompt Learning Makes Pre-Trained Language Models Better Few-Shot Learners",
+        "firstAuthor": "Feihu Jin",
+        "url": null,
+        "dateSubmitted": "2023-06-04",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Language prompting induces the model to produce a textual output during the training phase, which achieves remarkable performance in few-shot learning scenarios. However, current prompt-based methods either use the same task-specific prompts for each instance, losing the particularity of instance-dependent information, or generate an instance-dependent prompt for each instance, lacking shared information about the task. In this paper, we propose an efficient few-shot learning method to dynamically decide the degree to which task-specific and instance-dependent information are incorporated according to different task and instance characteristics, enriching the prompt with task-specific and instance-dependent information. Extensive experiments on a wide range of natural language understanding tasks demonstrate that our approach obtains significant improvements compared to prompt-based fine-tuning baselines in a few-shot setting with about 0.1% parameters tuned. Moreover, our approach outperforms existing state-of-the-art efficient few-shot learning methods on several natural language understanding tasks.",
+        "paperId": "b97b2b4dd9068e57ae194f492343ed8dfb1288b8"
+    },
+    {
+        "title": "Interactive-Chain-Prompting: Ambiguity Resolution for Crosslingual Conditional Generation with Interaction",
+        "firstAuthor": "Jonathan Pilault",
+        "url": "http://arxiv.org/pdf/2301.10309",
+        "dateSubmitted": "2023-01-24",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Crosslingual conditional generation (e.g., machine translation) has long enjoyed the benefits of scaling. Nonetheless, there are still issues that scale alone may not overcome. A source query in one language, for instance, may yield several translation options in another language without any extra context. Only one translation could be acceptable however, depending on the translator's preferences and goals. Choosing the incorrect option might significantly affect translation usefulness and quality. We propose a novel method interactive-chain prompting -- a series of question, answering and generation intermediate steps between a Translator model and a User model -- that reduces translations into a list of subproblems addressing ambiguities and then resolving such subproblems before producing the final text to be translated. To check ambiguity resolution capabilities and evaluate translation quality, we create a dataset exhibiting different linguistic phenomena which leads to ambiguities at inference for four languages. To encourage further exploration in this direction, we release all datasets. We note that interactive-chain prompting, using eight interactions as exemplars, consistently surpasses prompt-based methods with direct access to background information to resolve ambiguities.",
+        "paperId": "bad6fa523ecf782c837a2eecaaffa4e1f7477c24"
+    },
+    {
+        "title": "Memobert: Pre-Training Model with Prompt-Based Learning for Multimodal Emotion Recognition",
+        "firstAuthor": "Jinming Zhao",
+        "url": "https://arxiv.org/pdf/2111.00865",
+        "dateSubmitted": "2021-10-27",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Multimodal emotion recognition study is hindered by the lack of labelled corpora in terms of scale and diversity, due to the high annotation cost and label ambiguity. In this paper, we propose a multimodal pre-training model MEmoBERT for multimodal emotion recognition, which learns multimodal joint representations through self-supervised learning from a self-collected large-scale unlabeled video data that come in sheer volume. Furthermore, unlike the conventional \"pre-train, finetune\" paradigm, we propose a prompt-based method that reformulates the downstream emotion classification task as a masked text prediction one, bringing the downstream task closer to the pre-training. Extensive experiments on two benchmark datasets, IEMOCAP and MSP-IMPROV, show that our proposed MEmoBERT significantly enhances emotion recognition performance.",
+        "paperId": "c10ab4733b43f19547308c15ca231a668181a36c"
+    },
+    {
+        "title": "GPTs at Factify 2022: Prompt Aided Fact-Verification (short paper)",
+        "firstAuthor": "Pawan Kumar Sahu",
+        "url": "http://arxiv.org/pdf/2206.14913",
+        "dateSubmitted": "2022-06-29",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "One of the most pressing societal issues is the fight against false news. The false claims, as difficult as they are to expose, create a lot of damage. To tackle the problem, fact verification becomes crucial and thus has been a topic of interest among diverse research communities. Using only the textual form of data we propose our solution to the problem and achieve competitive results with other approaches. We present our solution based on two approaches - PLM (pre-trained language model) based method and Prompt based method. The PLM-based approach uses the traditional supervised learning, where the model is trained to take 'x' as input and output prediction 'y' as P(y|x). Whereas, Prompt-based learning reflects the idea to design input to fit the model such that the original objective may be re-framed as a problem of (masked) language modeling. We may further stimulate the rich knowledge provided by PLMs to better serve downstream tasks by employing extra prompts to fine-tune PLMs. Our experiments showed that the proposed method performs better than just fine-tuning PLMs. We achieved an F1 score of 0.6946 on the FACTIFY dataset and a 7th position on the competition leader-board.",
+        "paperId": "c96a8150c82a0ce9c8c1e069590f534939a30038"
+    },
+    {
+        "title": "Prompt Learning for Multi-modal COVID-19 Diagnosis",
+        "firstAuthor": "Yangyang Yu",
+        "url": null,
+        "dateSubmitted": "2022-12-06",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "The outbreak of COVID-19 pandemic has spread rapidly and severely affected all aspects of human lives. Recent researches has shown artificial intelligence and deep learning based approaches have achieved successful results in detecting diseases. How to accurately and quickly detect COVID-19 has always been the core topic of research. In this paper, we propose a novel approach based on prompt learning for COVID-19 diagnosis. Different from the traditional \u201cpre-training, fine-tuning\u201d paradigm, we propose the prompt-based method that redefine the COVID-19 diagnosis as a masked predict task. Specifically, we adopt an attention mechanism to learn the multi-modal representation of medical image and text, and manually construct a cloze prompt template and a label word set. Selecting the label word corresponding to the maximum probability by pre-training language model. Finally, mapping the prediction results to the disease categories. Experimental results show that our proposed method obtains obvious improvement of 1.2% in terms of Mi-F1 score compared with the state-of-the-art methods.",
+        "paperId": "c97f012003e1764f25382d7149ba09b1f9d79a65"
+    },
+    {
+        "title": "Evaluating the Robustness of Discrete Prompts",
+        "firstAuthor": "Yoichi Ishibashi",
+        "url": "http://arxiv.org/pdf/2302.05619",
+        "dateSubmitted": "2023-02-11",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Discrete prompts have been used for fine-tuning Pre-trained Language Models for diverse NLP tasks. In particular, automatic methods that generate discrete prompts from a small set of training instances have reported superior performance. However, a closer look at the learnt prompts reveals that they contain noisy and counter-intuitive lexical constructs that would not be encountered in manually-written prompts. This raises an important yet understudied question regarding the robustness of automatically learnt discrete prompts when used in downstream tasks. To address this question, we conduct a systematic study of the robustness of discrete prompts by applying carefully designed perturbations into an application using AutoPrompt and then measure their performance in two Natural Language Inference (NLI) datasets. Our experimental results show that although the discrete prompt-based method remains relatively robust against perturbations to NLI inputs, they are highly sensitive to other types of perturbations such as shuffling and deletion of prompt tokens. Moreover, they generalize poorly across different NLI datasets. We hope our findings will inspire future work on robust discrete prompt learning.",
+        "paperId": "ce6b0a9877e135c38eb3a6c6705c95422181af78"
+    },
+    {
+        "title": "Analyzing Modular Approaches for Visual Question Decomposition",
+        "firstAuthor": "Apoorv Khandelwal",
+        "url": null,
+        "dateSubmitted": "2023-11-10",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Modular neural networks without additional training have recently been shown to surpass end-to-end neural networks on challenging vision-language tasks. The latest such methods simultaneously introduce LLM-based code generation to build programs and a number of skill-specific, task-oriented modules to execute them. In this paper, we focus on ViperGPT and ask where its additional performance comes from and how much is due to the (state-of-art, end-to-end) BLIP-2 model it subsumes vs. additional symbolic components. To do so, we conduct a controlled study (comparing end-to-end, modular, and prompting-based methods across several VQA benchmarks). We find that ViperGPT's reported gains over BLIP-2 can be attributed to its selection of task-specific modules, and when we run ViperGPT using a more task-agnostic selection of modules, these gains go away. Additionally, ViperGPT retains much of its performance if we make prominent alterations to its selection of modules: e.g. removing or retaining only BLIP-2. Finally, we compare ViperGPT against a prompting-based decomposition strategy and find that, on some benchmarks, modular approaches significantly benefit by representing subtasks with natural language, instead of code.",
+        "paperId": "cf7d69709bdeddd561c183178bbc1f0c2e156a08"
+    },
+    {
+        "title": "AdaPrompt: Adaptive Model Training for Prompt-based NLP",
+        "firstAuthor": "Yulong Chen",
+        "url": "https://aclanthology.org/2022.findings-emnlp.448.pdf",
+        "dateSubmitted": "2022-02-10",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Prompt-based learning, with its capability to tackle zero-shot and few-shot NLP tasks, has gained much attention in community. The main idea is to bridge the gap between NLP downstream tasks and language modeling (LM), by mapping these tasks into natural language prompts, which are then filled by pre-trained language models (PLMs). However, for prompt learning, there are still two salient gaps between NLP tasks and pretraining. First, prompt information is not necessarily sufficiently present during LM pretraining. Second, task-specific data are not necessarily well represented during pretraining. We address these two issues by proposing AdaPrompt, adaptively retrieving external data for continual pretraining of PLMs by making use of both task and prompt characteristics. In addition, we make use of knowledge in Natural Language Inference models for deriving adaptive verbalizers. Experimental results on five NLP benchmarks show that AdaPrompt can improve over standard PLMs in few-shot settings. In addition, in zero-shot settings, our method outperforms standard prompt-based methods by up to 26.35\\% relative error reduction.",
+        "paperId": "d235a9085e0543fcbe502fbc269f9a8ee01dcbab"
+    },
+    {
+        "title": "ConvFinQA: Exploring the Chain of Numerical Reasoning in Conversational Finance Question Answering",
+        "firstAuthor": "Zhiyu Chen",
+        "url": "http://arxiv.org/pdf/2210.03849",
+        "dateSubmitted": "2022-10-07",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "With the recent advance in large pre-trained language models, researchers have achieved record performances in NLP tasks that mostly focus on language pattern matching. The community is experiencing the shift of the challenge from how to model language to the imitation of complex reasoning abilities like human beings. In this work, we investigate the application domain of finance that involves real-world, complex numerical reasoning. We propose a new large-scale dataset, ConvFinQA, aiming to study the chain of numerical reasoning in conversational question answering. Our dataset poses great challenge in modeling long-range, complex numerical reasoning paths in real-world conversations. We conduct comprehensive experiments and analyses with both the neural symbolic methods and the prompting-based methods, to provide insights into the reasoning mechanisms of these two divisions. We believe our new dataset should serve as a valuable resource to push forward the exploration of real-world, complex reasoning tasks as the next research focus. Our dataset and code is publicly available at https://github.com/czyssrs/ConvFinQA.",
+        "paperId": "d96997265f8146e93b4c9350f19d55e46d1317f0"
+    },
+    {
+        "title": "Exploring Effectiveness of GPT-3 in Grammatical Error Correction: A Study on Performance and Controllability in Prompt-Based Methods",
+        "firstAuthor": "Mengsay Loem",
+        "url": "http://arxiv.org/pdf/2305.18156",
+        "dateSubmitted": "2023-05-29",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Large-scale pre-trained language models such as GPT-3 have shown remarkable performance across various natural language processing tasks. However, applying prompt-based methods with GPT-3 for Grammatical Error Correction (GEC) tasks and their controllability remains underexplored. Controllability in GEC is crucial for real-world applications, particularly in educational settings, where the ability to tailor feedback according to learner levels and specific error types can significantly enhance the learning process.This paper investigates the performance and controllability of prompt-based methods with GPT-3 for GEC tasks using zero-shot and few-shot setting. We explore the impact of task instructions and examples on GPT-3\u2019s output, focusing on controlling aspects such as minimal edits, fluency edits, and learner levels. Our findings demonstrate that GPT-3 could effectively perform GEC tasks, outperforming existing supervised and unsupervised approaches. We also showed that GPT-3 could achieve controllability when appropriate task instructions and examples are given.",
+        "paperId": "db0d67057b41927b5b51d3a393c250be64a405ae"
+    },
+    {
+        "title": "VPN: Variation on Prompt Tuning for Named-Entity Recognition",
+        "firstAuthor": "Niu Hu",
+        "url": "https://www.mdpi.com/2076-3417/13/14/8359/pdf?version=1689827421",
+        "dateSubmitted": "2023-07-19",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Recently, prompt-based methods have achieved a promising performance in many natural language processing benchmarks. Despite success in sentence-level classification tasks, prompt-based methods work poorly in token-level tasks, such as named entity recognition (NER), due to the sophisticated design of entity-related templates. Note that the nature of prompt tuning makes full use of the parameters of the mask language model (MLM) head, while previous methods solely utilized the last hidden layer of language models (LMs) and the power of the MLM head is overlooked. In this work, we discovered the characteristics of semantic feature changes in samples after being processed using MLMs. Based on this characteristic, we designed a prompt-tuning variant for NER tasks. We let the pre-trained model predict the label words derived from the training dataset at each position and fed the generated logits (non-normalized probability) to the CRF layer. We evaluated our method on three popular datasets, and the experiments showed that our proposed method outperforms the state-of-the-art model in all three Chinese datasets.",
+        "paperId": "dc2aba63037ba3e1d6912170f5c292c89ca70b09"
+    },
+    {
+        "title": "PSG: Prompt-based Sequence Generation for Acronym Extraction",
+        "firstAuthor": "Bin Li",
+        "url": null,
+        "dateSubmitted": "2021-11-29",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Acronym extraction aims to find acronyms (i.e., short-forms) and their meanings (i.e., long-forms) from the documents, which is important for scientific document understanding (SDU@AAAI-22) tasks. Previous works are devoted to modeling this task as a paragraph-level sequence labeling problem. However, it lacks the effective use of the external knowledge, especially when the datasets are in a low-resource setting. Recently, the prompt-based method with the vast pre-trained language model can significantly enhance the performance of the low-resourced downstream tasks. In this paper, we propose a Prompt-based Sequence Generation (PSG) method for the acronym extraction task. Specifically, we design a template for prompting the extracted acronym texts with auto-regression. A position extraction algorithm is designed for extracting the position of the generated answers. The results on the acronym extraction of Vietnamese and Persian in a low-resource setting show that the proposed method outperforms all other competitive state-of-the-art (SOTA) methods.",
+        "paperId": "df4c580b37f54c11eb76922a67b2dd5a6672a93d"
+    },
+    {
+        "title": "STT: Soft Template Tuning for Few-Shot Learning",
+        "firstAuthor": "Christopher Potts",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "With the rapid expansion of large pre-trained 001 language models, fine-tuning all the model pa002 rameters for downstream tasks is becoming 003 computationally prohibitive. The recently de004 veloped prompt-based methods freeze the en005 tire model parameters and only update the so006 called prompt parameters appended to the in007 puts, significantly reducing the burden of fully 008 fine-tuning. However, standard prompt-based 009 methods mainly consider the case where suf010 ficient data of downstream tasks are available. 011 It is still unclear whether the advantage can be 012 transferred to the few-shot regime, where only 013 limited data are available for each downstream 014 task. Our empirical studies suggest there is 015 still a gap between prompt tuning and fully 016 fine-tuning for few-shot learning. We propose 017 a new prompt-tuning framework, called Soft 018 Template Tuning (STT), to bridge the gap. STT 019 combines manual prompts and auto-prompts, 020 and treats downstream classification tasks as a 021 masked language modeling task. STT can close 022 the gap between fine-tuning and prompt-based 023 methods without introducing additional param024 eters. Importantly, it can even outperform 025 the timeand resource-consuming fine-tuning 026 method on sentiment classification tasks. 027",
+        "paperId": "e2fc9d008c124d9f03cc284f1c3b34d311c5f22c"
+    },
+    {
+        "title": "SelfEvolve: A Code Evolution Framework via Large Language Models",
+        "firstAuthor": "Shuyang Jiang",
+        "url": "http://arxiv.org/pdf/2306.02907",
+        "dateSubmitted": "2023-06-05",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Large language models (LLMs) have already revolutionized code generation, after being pretrained on publicly available code data. However, while various methods have been proposed to augment LLMs with retrieved knowledge and enhance the quality of code generation, the performance of these retrieval-based methods is limited by the strength of the retrievers used. In addition, while LLMs show great emergent ability, they still struggle to produce the correct code in one turn. To address these challenges, we propose a novel two-step pipeline, called \\autoknow, that leverages LLMs as both knowledge providers and self-reflective programmers. Unlike retrieval-based methods, \\autoknow~obtains the knowledge from input prompts and generates intermediate code based on the generated knowledge. After that, \\autoknow~asks LLM to act as an expert programmer to perform debugging for the generated code. This is achieved by receiving the error message from the interpreter, without requiring special test cases for correctness verification. We evaluate \\autoknow~on three code generation datasets, including DS-1000 for data science code, HumanEval for software engineering code, and TransCoder for C++-to-Python translation. Our empirical experiments show that \\autoknow~outperforms strong baselines by a significant margin on all datasets. We also conduct exhaustive analytical experiments to validate the effectiveness of the two stages of \\autoknow, and find that both are superior to other prompting-based methods. Further scalability analysis demonstrates that \\autoknow~can be adapted to other more advanced models, such as GPT-4, and bring consistent efficacy improvement.",
+        "paperId": "eb36681fc4c5dfce4f3e05540fc92b007de278ca"
+    },
+    {
+        "title": "Investigating Prompt Learning for Chinese Few-Shot Text Classification with Pre-Trained Language Models",
+        "firstAuthor": "Chengyu Song",
+        "url": "https://www.mdpi.com/2076-3417/12/21/11117/pdf?version=1667385041",
+        "dateSubmitted": "2022-11-02",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Text classification aims to assign predefined labels to unlabeled sentences, which tend to struggle in real-world applications when only a few annotated samples are available. Previous works generally focus on using the paradigm of meta-learning to overcome the classification difficulties brought by insufficient data, where a set of auxiliary tasks is given. Accordingly, prompt-based approaches are proposed to deal with the low-resource issue. However, existing prompt-based methods mainly focus on English tasks, which generally apply English pretrained language models that can not directly adapt to Chinese tasks due to structural and grammatical differences. Thus, we propose a prompt-based Chinese text classification framework that uses generated natural language sequences as hints, which can alleviate the classification bottleneck well in low-resource scenarios. In detail, we first design a prompt-based fine-tuning together with a novel pipeline for automating prompt generation in Chinese. Then, we propose a refined strategy for dynamically and selectively incorporating demonstrations into each context. We present a systematic evaluation for analyzing few-shot performance on a wide range of Chinese text classification tasks. Our approach makes few assumptions about task resources and expertise and therefore constitutes a powerful, task-independent approach for few-shot learning.",
+        "paperId": "eb4afff0eca0026fcc26a5f0c8a73184485e3a25"
+    },
+    {
+        "title": "Zero-Shot Information Extraction via Chatting with ChatGPT",
+        "firstAuthor": "Xiang Wei",
+        "url": "http://arxiv.org/pdf/2302.10205",
+        "dateSubmitted": "2023-02-20",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Zero-shot information extraction (IE) aims to build IE systems from the unannotated text. It is challenging due to involving little human intervention. Challenging but worthwhile, zero-shot IE reduces the time and effort that data labeling takes. Recent efforts on large language models (LLMs, e.g., GPT-3, ChatGPT) show promising performance on zero-shot settings, thus inspiring us to explore prompt-based methods. In this work, we ask whether strong IE models can be constructed by directly prompting LLMs. Specifically, we transform the zero-shot IE task into a multi-turn question-answering problem with a two-stage framework (ChatIE). With the power of ChatGPT, we extensively evaluate our framework on three IE tasks: entity-relation triple extract, named entity recognition, and event extraction. Empirical results on six datasets across two languages show that ChatIE achieves impressive performance and even surpasses some full-shot models on several datasets (e.g., NYT11-HRL). We believe that our work could shed light on building IE models with limited resources.",
+        "paperId": "f4cba0db34aa0c389cec267ca1f3ba5255ea2645"
+    },
+    {
+        "title": "Scaling Sentence Embeddings with Large Language Models",
+        "firstAuthor": "Ting Jiang",
+        "url": "https://arxiv.org/pdf/2307.16645",
+        "dateSubmitted": "2023-07-31",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Large language models (LLMs) have recently garnered significant interest. With in-context learning, LLMs achieve impressive results in various natural language tasks. However, the application of LLMs to sentence embeddings remains an area of ongoing research. In this work, we propose an in-context learning-based method aimed at improving sentence embeddings performance. Our approach involves adapting the previous prompt-based representation method for autoregressive models, constructing a demonstration set that enables LLMs to perform in-context learning, and scaling up the LLMs to different model sizes. Through extensive experiments, in-context learning enables LLMs to generate high-quality sentence embeddings without any fine-tuning. It helps LLMs achieve performance comparable to current contrastive learning methods. By scaling model size, we find scaling to more than tens of billion parameters harms the performance on semantic textual similarity (STS) tasks. However, the largest model outperforms other counterparts and achieves the new state-of-the-art result on transfer tasks. We also fine-tune LLMs with current contrastive learning approach, and the 2.7B OPT model, incorporating our prompt-based method, surpasses the performance of 4.8B ST5, achieving the new state-of-the-art results on STS tasks. Our code is available at https://github.com/kongds/scaling_sentemb.",
+        "paperId": "f7ccf8ecd508e0b2d423169588dd1c1a82dd3b4d"
+    },
+    {
+        "title": "NSP-BERT: A Prompt-based Few-Shot Learner through an Original Pre-training Task \u2014\u2014 Next Sentence Prediction",
+        "firstAuthor": "Yi Sun",
+        "url": null,
+        "dateSubmitted": "2021-09-08",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Using prompts to utilize language models to perform various downstream tasks, also known as prompt-based learning or prompt-learning, has lately gained significant success in comparison to the pre-train and fine-tune paradigm. Nonetheless, virtually most prompt-based methods are token-level such as PET based on mask language model (MLM). In this paper, we attempt to accomplish several NLP tasks in the zero-shot and few-shot scenarios using a BERT original pre-training task abandoned by RoBERTa and other models\u2014\u2014Next Sentence Prediction (NSP). Unlike token-level techniques, our sentence-level prompt-based method NSP-BERT does not need to fix the length of the prompt or the position to be predicted, allowing it to handle tasks such as entity linking with ease. NSP-BERT can be applied to a variety of tasks based on its properties. We present an NSP-tuning approach with binary cross-entropy loss for single-sentence classification tasks that is competitive compared to PET and EFL. By continuing to train BERT on RoBERTa\u2019s corpus, the model\u2019s performance improved significantly, which indicates that the pre-training corpus is another important determinant of few-shot besides model size and prompt method.",
+        "paperId": "faca71d01e3dd3379f4027176e8cf1f02d31c03c"
+    },
+    {
+        "title": "Prompting to Distill: Boosting Data-Free Knowledge Distillation via Reinforced Prompt",
+        "firstAuthor": "Xinyin Ma",
+        "url": "https://arxiv.org/pdf/2205.07523",
+        "dateSubmitted": "2022-05-16",
+        "keyWords": [
+            "prompting-based methods"
+        ],
+        "abstract": "Data-free knowledge distillation (DFKD) conducts knowledge distillation via eliminating the dependence of original training data, and has recently achieved impressive results in accelerating pre-trained language models. At the heart of DFKD is to reconstruct a synthetic dataset by inverting the parameters of the uncompressed model. Prior DFKD approaches, however, have largely relied on hand-crafted priors of the target data distribution for the reconstruction, which can be inevitably biased and often incompetent to capture the intrinsic distributions. To address this problem, we propose a prompt-based method, termed as PromptDFD, that allows us to take advantage of learned language priors, which effectively harmonizes the synthetic sentences to be semantically and grammatically correct. Specifically, PromptDFD leverages a pre-trained generative model to provide language priors and introduces a reinforced topic prompter to control data synthesis, making the generated samples thematically relevant and semantically plausible, and thus friendly to downstream tasks. As shown in our experiments, the proposed method substantially improves the synthesis quality and achieves considerable improvements on distillation performance. In some cases, PromptDFD even gives rise to results on par with those from the data-driven knowledge distillation with access to the original training data.",
+        "paperId": "fb1d85fe28b5e92e22d084eca674d4a2b48cdc5a"
+    }
+]

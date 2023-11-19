@@ -1,0 +1,145 @@
+[
+    {
+        "title": "PromptChainer: Chaining Large Language Model Prompts through Visual Programming",
+        "firstAuthor": "Tongshuang Sherry Wu",
+        "url": "https://arxiv.org/pdf/2203.06566",
+        "dateSubmitted": "2022-03-13",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "While LLMs have made it possible to rapidly prototype new ML functionalities, many real-world applications involve complex tasks that cannot be easily handled via a single run of an LLM. Recent work has found that chaining multiple LLM runs together (with the output of one step being the input to the next) can help users accomplish these more complex tasks, and in a way that is perceived to be more transparent and controllable. However, it remains unknown what users need when authoring their own LLM chains \u2013 a key step to lowering the barriers for non-AI-experts to prototype AI-infused applications. In this work, we explore the LLM chain authoring process. We find from pilot studies that users need support transforming data between steps of a chain, as well as debugging the chain at multiple granularities. To address these needs, we designed PromptChainer, an interactive interface for visually programming chains. Through case studies with four designers and developers, we show that PromptChainer supports building prototypes for a range of applications, and conclude with open questions on scaling chains to even more complex tasks, as well as supporting low-fi chain prototyping.",
+        "paperId": "0f733817e82026f7c29909a51cb4df7d2685f0e7"
+    },
+    {
+        "title": "Prompter: Utilizing Large Language Model Prompting for a Data Efficient Embodied Instruction Following",
+        "firstAuthor": "Y. Inoue",
+        "url": "https://arxiv.org/pdf/2211.03267",
+        "dateSubmitted": "2022-11-07",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "Embodied Instruction Following (EIF) studies how mobile manipulator robots should be controlled to accomplish long-horizon tasks specified by natural language instructions. While most research on EIF are conducted in simulators, the ultimate goal of the field is to deploy the agents in real life. As such, it is important to minimize the data cost required for training an agent, to help the transition from sim to real. However, many studies only focus on the performance and overlook the data cost -- modules that require separate training on extra data are often introduced without a consideration on deployability. In this work, we propose FILM++ which extends the existing work FILM with modifications that do not require extra data. While all data-driven modules are kept constant, FILM++ more than doubles FILM's performance. Furthermore, we propose Prompter, which replaces FILM++'s semantic search module with language model prompting. Unlike FILM++'s implementation that requires training on extra sets of data, no training is needed for our prompting based implementation while achieving better or at least comparable performance. Prompter achieves 42.64% and 45.72% on the ALFRED benchmark with high-level instructions only and with step-by-step instructions, respectively, outperforming the previous state of the art by 6.57% and 10.31%.",
+        "paperId": "2d30d800e946d3699d9c41bb95c36a6db63676e7"
+    },
+    {
+        "title": "Multi-Step Dialogue Workflow Action Prediction",
+        "firstAuthor": "Ramya Ramakrishnan",
+        "url": null,
+        "dateSubmitted": "2023-11-16",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "In task-oriented dialogue, a system often needs to follow a sequence of actions, called a workflow, that complies with a set of guidelines in order to complete a task. In this paper, we propose the novel problem of multi-step workflow action prediction, in which the system predicts multiple future workflow actions. Accurate prediction of multiple steps allows for multi-turn automation, which can free up time to focus on more complex tasks. We propose three modeling approaches that are simple to implement yet lead to more action automation: 1) fine-tuning on a training dataset, 2) few-shot in-context learning leveraging retrieval and large language model prompting, and 3) zero-shot graph traversal, which aggregates historical action sequences into a graph for prediction. We show that multi-step action prediction produces features that improve accuracy on downstream dialogue tasks like predicting task success, and can increase automation of steps by 20% without requiring as much feedback from a human overseeing the system.",
+        "paperId": "2d323ff2fefd5f6f15a71f8affa4a5f357b99945"
+    },
+    {
+        "title": "Large language models can accurately predict searcher preferences",
+        "firstAuthor": "Paul Thomas",
+        "url": "https://arxiv.org/pdf/2309.10621",
+        "dateSubmitted": "2023-09-19",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "Relevance labels, which indicate whether a search result is valuable to a searcher, are key to evaluating and optimising search systems. The best way to capture the true preferences of users is to ask them for their careful feedback on which results would be useful, but this approach does not scale to produce a large number of labels. Getting relevance labels at scale is usually done with third-party labellers, who judge on behalf of the user, but there is a risk of low-quality data if the labeller doesn't understand user needs. To improve quality, one standard approach is to study real users through interviews, user studies and direct feedback, find areas where labels are systematically disagreeing with users, then educate labellers about user needs through judging guidelines, training and monitoring. This paper introduces an alternate approach for improving label quality. It takes careful feedback from real users, which by definition is the highest-quality first-party gold data that can be derived, and develops an large language model prompt that agrees with that data. We present ideas and observations from deploying language models for large-scale relevance labelling at Bing, and illustrate with data from TREC. We have found large language models can be effective, with accuracy as good as human labellers and similar capability to pick the hardest queries, best runs, and best groups. Systematic changes to the prompts make a difference in accuracy, but so too do simple paraphrases. To measure agreement with real searchers needs high-quality ``gold'' labels, but with these we find that models produce better labels than third-party workers, for a fraction of the cost, and these labels let us train notably better rankers.",
+        "paperId": "68838aba1cc6e20028f9703b96e3517b01972277"
+    },
+    {
+        "title": "A Monte Carlo Language Model Pipeline for Zero-Shot Sociopolitical Event Extraction",
+        "firstAuthor": "Erica Cai",
+        "url": "http://arxiv.org/pdf/2305.15051",
+        "dateSubmitted": "2023-05-24",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "We consider dyadic zero-shot event extraction (EE) to identify actions between pairs of actors. The \\emph{zero-shot} setting allows social scientists or other non-computational researchers to extract any customized, user-specified set of events without training, resulting in a \\emph{dyadic} event database, allowing insight into sociopolitical relational dynamics among actors and the higher level organizations or countries they represent. Unfortunately, we find that current zero-shot EE methods perform poorly for the task, with issues including word sense ambiguity, modality mismatch, and efficiency. Straightforward application of large language model prompting typically performs even worse. We address these challenges with a new fine-grained, multi-stage generative question-answer method, using a Monte Carlo approach to exploit and overcome the randomness of generative outputs. It performs 90\\% fewer queries than a previous approach, with strong performance on the widely-used Automatic Content Extraction dataset. Finally, we extend our method to extract affiliations of actor arguments and demonstrate our method and findings on a dyadic international relations case study.",
+        "paperId": "778ce327573d7edfae38e33b8ba79585575b81e4"
+    },
+    {
+        "title": "Machine Translation with Large Language Models: Prompting, Few-shot Learning, and Fine-tuning with QLoRA",
+        "firstAuthor": "Xuan Zhang",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "While large language models have made remarkable advancements in natural language generation, their potential in machine translation, especially when fine-tuned, remains under-explored. In our study, we conduct comprehensive experiments, evaluating 15 publicly available language models on machine translation tasks. We compare the performance across three methodologies: zero-shot prompting, few-shot learning, and fine-tuning. Central to our approach is the use of QLoRA, an efficient fine-tuning method. On French-English, QLoRA fine-tuning outperforms both few-shot learning and models trained from scratch. This superiority is highlighted in both sentence-level and document-level translations, with a significant BLEU score improvement of 28.93 over the prompting method. Impressively, with QLoRA, the enhanced performance is achieved by fine-tuning a mere 0.77% of the model\u2019s parameters.",
+        "paperId": "828aad53223d29e1bf760116e9651a1237ae8710"
+    },
+    {
+        "title": "Large Language Model Prompt Chaining for Long Legal Document Classification",
+        "firstAuthor": "Dietrich Trautmann",
+        "url": "https://arxiv.org/pdf/2308.04138",
+        "dateSubmitted": "2023-08-08",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "Prompting is used to guide or steer a language model in generating an appropriate response that is consistent with the desired outcome. Chaining is a strategy used to decompose complex tasks into smaller, manageable components. In this study, we utilize prompt chaining for extensive legal document classification tasks, which present difficulties due to their intricate domain-specific language and considerable length. Our approach begins with the creation of a concise summary of the original document, followed by a semantic search for related exemplar texts and their corresponding annotations from a training corpus. Finally, we prompt for a label - based on the task - to assign, by leveraging the in-context learning from the few-shot prompt. We demonstrate that through prompt chaining, we can not only enhance the performance over zero-shot, but also surpass the micro-F1 score achieved by larger models, such as ChatGPT zero-shot, using smaller models.",
+        "paperId": "9bf587d032e3764720cccd5beaf941f5c32880bc"
+    },
+    {
+        "title": "FIRE: Food Image to REcipe generation",
+        "firstAuthor": "P. Chhikara",
+        "url": "https://arxiv.org/pdf/2308.14391",
+        "dateSubmitted": "2023-08-28",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "Food computing has emerged as a prominent multidisciplinary field of research in recent years. An ambitious goal of food computing is to develop end-to-end intelligent systems capable of autonomously producing recipe information for a food image. Current image-to-recipe methods are retrieval-based and their success depends heavily on the dataset size and diversity, as well as the quality of learned embeddings. Meanwhile, the emergence of powerful attention-based vision and language models presents a promising avenue for accurate and generalizable recipe generation, which has yet to be extensively explored. This paper proposes FIRE, a novel multimodal methodology tailored to recipe generation in the food computing domain, which generates the food title, ingredients, and cooking instructions based on input food images. FIRE leverages the BLIP model to generate titles, utilizes a Vision Transformer with a decoder for ingredient extraction, and employs the T5 model to generate recipes incorporating titles and ingredients as inputs. We showcase two practical applications that can benefit from integrating FIRE with large language model prompting: recipe customization to fit recipes to user preferences and recipe-to-code transformation to enable automated cooking processes. Our experimental findings validate the efficacy of our proposed approach, underscoring its potential for future advancements and widespread adoption in food computing.",
+        "paperId": "9ecf08567b3d944d72633ad6e86a3e0e84f7d4fc"
+    },
+    {
+        "title": "EvalLM: Interactive Evaluation of Large Language Model Prompts on User-Defined Criteria",
+        "firstAuthor": "Tae Soo Kim",
+        "url": "https://arxiv.org/pdf/2309.13633",
+        "dateSubmitted": "2023-09-24",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "By simply composing prompts, developers can prototype novel generative applications with Large Language Models (LLMs). To refine prototypes into products, however, developers must iteratively revise prompts by evaluating outputs to diagnose weaknesses. Formative interviews (N=8) revealed that developers invest significant effort in manually evaluating outputs as they assess context-specific and subjective criteria. We present EvalLM, an interactive system for iteratively refining prompts by evaluating multiple outputs on user-defined criteria. By describing criteria in natural language, users can employ the system's LLM-based evaluator to get an overview of where prompts excel or fail, and improve these based on the evaluator's feedback. A comparative study (N=12) showed that EvalLM, when compared to manual evaluation, helped participants compose more diverse criteria, examine twice as many outputs, and reach satisfactory prompts with 59% fewer revisions. Beyond prompts, our work can be extended to augment model evaluation and alignment in specific application contexts.",
+        "paperId": "a0d83f9e15e722f23c14eb83cb2f87c1d1ea6400"
+    },
+    {
+        "title": "Flatness-Aware Prompt Selection Improves Accuracy and Sample Efficiency",
+        "firstAuthor": "Lingfeng Shen",
+        "url": "http://arxiv.org/pdf/2305.10713",
+        "dateSubmitted": "2023-05-18",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "With growing capabilities of large language models, prompting them has become the dominant way to access them. This has motivated the development of strategies for automatically selecting effective language prompts. In this paper, we introduce prompt flatness, a new metric to quantify the expected utility of a language prompt. This metric is inspired by flatness regularization in statistical learning that quantifies the robustness of the model towards its parameter perturbations. We provide theoretical foundations for this metric and its relationship with other prompt selection metrics, providing a comprehensive understanding of existing methods. Empirically, we show that combining prompt flatness with existing metrics improves both performance and sample efficiency. Our metric outperforms the previous prompt selection metrics with an average increase of 5% in accuracy and 10% in Pearson correlation across 6 classification benchmarks.",
+        "paperId": "b8ba16a107621f760e7830ddaab8c3d5c5ff06b0"
+    },
+    {
+        "title": "Plum: Prompt Learning using Metaheuristic",
+        "firstAuthor": "Rui Pan",
+        "url": null,
+        "dateSubmitted": "2023-11-14",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "Since the emergence of large language models, prompt learning has become a popular method for optimizing and customizing these models. Special prompts, such as Chain-of-Thought, have even revealed previously unknown reasoning capabilities within these models. However, the progress of discovering effective prompts has been slow, driving a desire for general prompt optimization methods. Unfortunately, few existing prompt learning methods satisfy the criteria of being truly\"general\", i.e., automatic, discrete, black-box, gradient-free, and interpretable all at once. In this paper, we introduce metaheuristics, a branch of discrete non-convex optimization methods with over 100 options, as a promising approach to prompt learning. Within our paradigm, we test six typical methods: hill climbing, simulated annealing, genetic algorithms with/without crossover, tabu search, and harmony search, demonstrating their effectiveness in black-box prompt learning and Chain-of-Thought prompt tuning. Furthermore, we show that these methods can be used to discover more human-understandable prompts that were previously unknown, opening the door to a cornucopia of possibilities in prompt optimization. We release all the codes in \\url{https://github.com/research4pan/Plum}.",
+        "paperId": "c874aa93efe663ed31f2ec72d45a5dd4b4cdffba"
+    },
+    {
+        "title": "AI Chains: Transparent and Controllable Human-AI Interaction by Chaining Large Language Model Prompts",
+        "firstAuthor": "Tongshuang Sherry Wu",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3491102.3517582",
+        "dateSubmitted": "2021-10-04",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "Although large language models (LLMs) have demonstrated impressive potential on simple tasks, their breadth of scope, lack of transparency, and insufficient controllability can make them less effective when assisting humans on more complex tasks. In response, we introduce the concept of Chaining LLM steps together, where the output of one step becomes the input for the next, thus aggregating the gains per step. We first define a set of LLM primitive operations useful for Chain construction, then present an interactive system where users can modify these Chains, along with their intermediate results, in a modular way. In a 20-person user study, we found that Chaining not only improved the quality of task outcomes, but also significantly enhanced system transparency, controllability, and sense of collaboration. Additionally, we saw that users developed new ways of interacting with LLMs through Chains: they leveraged sub-tasks to calibrate model expectations, compared and contrasted alternative strategies by observing parallel downstream effects, and debugged unexpected model outputs by \u201cunit-testing\u201d sub-components of a Chain. In two case studies, we further explore how LLM Chains may be used in future applications.",
+        "paperId": "d3640eb3b542eaf36fee2261f037a6bf0d8eac9c"
+    },
+    {
+        "title": "Terminology-Aware Translation with Constrained Decoding and Large Language Model Prompting",
+        "firstAuthor": "Nikolay Bogoychev",
+        "url": "https://arxiv.org/pdf/2310.05824",
+        "dateSubmitted": "2023-10-09",
+        "keyWords": [
+            "large language model prompting"
+        ],
+        "abstract": "Terminology correctness is important in the downstream application of machine translation, and a prevalent way to ensure this is to inject terminology constraints into a translation system. In our submission to the WMT 2023 terminology translation task, we adopt a translate-then-refine approach which can be domain-independent and requires minimal manual efforts. We annotate random source words with pseudo-terminology translations obtained from word alignment to first train a terminology-aware model. Further, we explore two post-processing methods. First, we use an alignment process to discover whether a terminology constraint has been violated, and if so, we re-decode with the violating word negatively constrained. Alternatively, we leverage a large language model to refine a hypothesis by providing it with terminology constraints. Results show that our terminology-aware model learns to incorporate terminologies effectively, and the large language model refinement process can further improve terminology recall.",
+        "paperId": "e90d30148ecf633db3bbabdcfa3a0ec06236e0d1"
+    }
+]

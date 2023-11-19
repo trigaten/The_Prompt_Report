@@ -1,0 +1,178 @@
+[
+    {
+        "title": "\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models",
+        "firstAuthor": "Xinyue Shen",
+        "url": "https://arxiv.org/pdf/2308.03825",
+        "dateSubmitted": "2023-08-07",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "The misuse of large language models (LLMs) has garnered significant attention from the general public and LLM vendors. In response, efforts have been made to align LLMs with human values and intent use. However, a particular type of adversarial prompts, known as jailbreak prompt, has emerged and continuously evolved to bypass the safeguards and elicit harmful content from LLMs. In this paper, we conduct the first measurement study on jailbreak prompts in the wild, with 6,387 prompts collected from four platforms over six months. Leveraging natural language processing technologies and graph-based community detection methods, we discover unique characteristics of jailbreak prompts and their major attack strategies, such as prompt injection and privilege escalation. We also observe that jailbreak prompts increasingly shift from public platforms to private ones, posing new challenges for LLM vendors in proactive detection. To assess the potential harm caused by jailbreak prompts, we create a question set comprising 46,800 samples across 13 forbidden scenarios. Our experiments show that current LLMs and safeguards cannot adequately defend jailbreak prompts in all scenarios. Particularly, we identify two highly effective jailbreak prompts which achieve 0.99 attack success rates on ChatGPT (GPT-3.5) and GPT-4, and they have persisted online for over 100 days. Our work sheds light on the severe and evolving threat landscape of jailbreak prompts. We hope our study can facilitate the research community and LLM vendors in promoting safer and regulated LLMs.",
+        "paperId": "1104d766527dead44a40532e8a89444d9cef5c65"
+    },
+    {
+        "title": "An Attacker\u2019s Dream? Exploring the Capabilities of ChatGPT for Developing Malware",
+        "firstAuthor": "Yin Minn Pa Pa",
+        "url": null,
+        "dateSubmitted": "2023-08-07",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "We investigate the potential for abuse of recent AI advances by developing seven malware programs and two attack tools using ChatGPT, OpenAI Playground\u2019s \"text-davinci-003\" model, and Auto-GPT\u2014an open-source AI agent capable of generating automated prompts to accomplish user-defined goals. We confirm that: 1) Under the safety and moderation control of recent AI systems, it is possible to generate the functional malware and attack tools (up to about 400 lines of code) within 90 minutes, including the debugging time. 2) Auto-GPT does not ease the hurdle of generating the right prompts for malware generation, but it evades the safety controls of OpenAI with its automatically generated prompts. When given goals with sufficient details, it writes the code in nine of nine malware and attack tools we tested. 3) There is still room to improve the moderation and safety controls of ChatGPT and text-davinci-003 model, especially for the growing jailbreak prompts. Overall, we find that recent AI advances, including ChatGPT, Auto-GPT, and text-davinci-003, demonstrate the potential for generating malware and attack tools under safety and moderation control, highlighting the need for improved safety measures and enhanced safety controls in AI systems.",
+        "paperId": "132f2905a405977598adbd5af84ad5e57bbd819e"
+    },
+    {
+        "title": "Self-Deception: Reverse Penetrating the Semantic Firewall of Large Language Models",
+        "firstAuthor": "Zhenhua Wang",
+        "url": "https://arxiv.org/pdf/2308.11521",
+        "dateSubmitted": "2023-08-16",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "Large language models (LLMs), such as ChatGPT, have emerged with astonishing capabilities approaching artificial general intelligence. While providing convenience for various societal needs, LLMs have also lowered the cost of generating harmful content. Consequently, LLM developers have deployed semantic-level defenses to recognize and reject prompts that may lead to inappropriate content. Unfortunately, these defenses are not foolproof, and some attackers have crafted\"jailbreak\"prompts that temporarily hypnotize the LLM into forgetting content defense rules and answering any improper questions. To date, there is no clear explanation of the principles behind these semantic-level attacks and defenses in both industry and academia. This paper investigates the LLM jailbreak problem and proposes an automatic jailbreak method for the first time. We propose the concept of a semantic firewall and provide three technical implementation approaches. Inspired by the attack that penetrates traditional firewalls through reverse tunnels, we introduce a\"self-deception\"attack that can bypass the semantic firewall by inducing LLM to generate prompts that facilitate jailbreak. We generated a total of 2,520 attack payloads in six languages (English, Russian, French, Spanish, Chinese, and Arabic) across seven virtual scenarios, targeting the three most common types of violations: violence, hate, and pornography. The experiment was conducted on two models, namely the GPT-3.5-Turbo and GPT-4. The success rates on the two models were 86.2% and 67%, while the failure rates were 4.7% and 2.2%, respectively. This highlighted the effectiveness of the proposed attack method. All experimental code and raw data will be released as open-source to inspire future research. We believe that manipulating AI behavior through carefully crafted prompts will become an important research direction in the future.",
+        "paperId": "13ee4f41413ff8e48a33390225baa0ce53c3a392"
+    },
+    {
+        "title": "Jailbreaking GPT-4V via Self-Adversarial Attacks with System Prompts",
+        "firstAuthor": "Yuanwei Wu",
+        "url": null,
+        "dateSubmitted": "2023-11-15",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "Existing work on jailbreak Multimodal Large Language Models (MLLMs) has focused primarily on adversarial examples in model inputs, with less attention to vulnerabilities in model APIs. To fill the research gap, we carry out the following work: 1) We discover a system prompt leakage vulnerability in GPT-4V. Through carefully designed dialogue, we successfully steal the internal system prompts of GPT-4V. This finding indicates potential exploitable security risks in MLLMs; 2)Based on the acquired system prompts, we propose a novel MLLM jailbreaking attack method termed SASP (Self-Adversarial Attack via System Prompt). By employing GPT-4 as a red teaming tool against itself, we aim to search for potential jailbreak prompts leveraging stolen system prompts. Furthermore, in pursuit of better performance, we also add human modification based on GPT-4's analysis, which further improves the attack success rate to 98.7\\%; 3) We evaluated the effect of modifying system prompts to defend against jailbreaking attacks. Results show that appropriately designed system prompts can significantly reduce jailbreak success rates. Overall, our work provides new insights into enhancing MLLM security, demonstrating the important role of system prompts in jailbreaking, which could be leveraged to greatly facilitate jailbreak success rates while also holding the potential for defending against jailbreaks.",
+        "paperId": "18a8b97d75a87e8fef07542d8875d4a62b553744"
+    },
+    {
+        "title": "MasterKey: Automated Jailbreak Across Multiple Large Language Model Chatbots",
+        "firstAuthor": "Gelei Deng",
+        "url": null,
+        "dateSubmitted": "2023-07-16",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "Large Language Models (LLMs) have revolutionized Artificial Intelligence (AI) services due to their exceptional proficiency in understanding and generating human-like text. LLM chatbots, in particular, have seen widespread adoption, transforming human-machine interactions. However, these LLM chatbots are susceptible to\"jailbreak\"attacks, where malicious users manipulate prompts to elicit inappropriate or sensitive responses, contravening service policies. Despite existing attempts to mitigate such threats, our research reveals a substantial gap in our understanding of these vulnerabilities, largely due to the undisclosed defensive measures implemented by LLM service providers. In this paper, we present Jailbreaker, a comprehensive framework that offers an in-depth understanding of jailbreak attacks and countermeasures. Our work makes a dual contribution. First, we propose an innovative methodology inspired by time-based SQL injection techniques to reverse-engineer the defensive strategies of prominent LLM chatbots, such as ChatGPT, Bard, and Bing Chat. This time-sensitive approach uncovers intricate details about these services' defenses, facilitating a proof-of-concept attack that successfully bypasses their mechanisms. Second, we introduce an automatic generation method for jailbreak prompts. Leveraging a fine-tuned LLM, we validate the potential of automated jailbreak generation across various commercial LLM chatbots. Our method achieves a promising average success rate of 21.58%, significantly outperforming the effectiveness of existing techniques. We have responsibly disclosed our findings to the concerned service providers, underscoring the urgent need for more robust defenses. Jailbreaker thus marks a significant step towards understanding and mitigating jailbreak threats in the realm of LLM chatbots.",
+        "paperId": "259d07f47c046389d0b4f256139de64736dd9a94"
+    },
+    {
+        "title": "FuzzLLM: A Novel and Universal Fuzzing Framework for Proactively Discovering Jailbreak Vulnerabilities in Large Language Models",
+        "firstAuthor": "Dongyu Yao",
+        "url": "https://arxiv.org/pdf/2309.05274",
+        "dateSubmitted": "2023-09-11",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "Jailbreak vulnerabilities in Large Language Models (LLMs), which exploit meticulously crafted prompts to elicit content that violates service guidelines, have captured the attention of research communities. While model owners can defend against individual jailbreak prompts through safety training strategies, this relatively passive approach struggles to handle the broader category of similar jailbreaks. To tackle this issue, we introduce FuzzLLM, an automated fuzzing framework designed to proactively test and discover jailbreak vulnerabilities in LLMs. We utilize templates to capture the structural integrity of a prompt and isolate key features of a jailbreak class as constraints. By integrating different base classes into powerful combo attacks and varying the elements of constraints and prohibited questions, FuzzLLM enables efficient testing with reduced manual effort. Extensive experiments demonstrate FuzzLLM's effectiveness and comprehensiveness in vulnerability discovery across various LLMs.",
+        "paperId": "3c784cd3150a359e269c70cfbadd18774d66055d"
+    },
+    {
+        "title": "Baseline Defenses for Adversarial Attacks Against Aligned Language Models",
+        "firstAuthor": "Neel Jain",
+        "url": "https://arxiv.org/pdf/2309.00614",
+        "dateSubmitted": "2023-09-01",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "As Large Language Models quickly become ubiquitous, it becomes critical to understand their security vulnerabilities. Recent work shows that text optimizers can produce jailbreaking prompts that bypass moderation and alignment. Drawing from the rich body of work on adversarial machine learning, we approach these attacks with three questions: What threat models are practically useful in this domain? How do baseline defense techniques perform in this new domain? How does LLM security differ from computer vision? We evaluate several baseline defense strategies against leading adversarial attacks on LLMs, discussing the various settings in which each is feasible and effective. Particularly, we look at three types of defenses: detection (perplexity based), input preprocessing (paraphrase and retokenization), and adversarial training. We discuss white-box and gray-box settings and discuss the robustness-performance trade-off for each of the defenses considered. We find that the weakness of existing discrete optimizers for text, combined with the relatively high costs of optimization, makes standard adaptive attacks more challenging for LLMs. Future research will be needed to uncover whether more powerful optimizers can be developed, or whether the strength of filtering and preprocessing defenses is greater in the LLMs domain than it has been in computer vision.",
+        "paperId": "3e30a7ac4886b28eb50151f58e14a1d698cccd0e"
+    },
+    {
+        "title": "Latent Jailbreak: A Test Suite for Evaluating Both Text Safety and Output Robustness of Large Language Models",
+        "firstAuthor": "Huachuan Qiu",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "Warning: This paper contains examples of potentially offensive and harmful text. Considerable research efforts have been devoted to ensuring that large language models (LLMs) align with human values and generate safe text. However, an excessive focus on sensitivity to certain topics can compromise the model\u2019s robustness in following instructions, thereby impacting its over-all performance in completing tasks. Previous benchmarks for jailbreaking LLMs have primarily focused on evaluating the safety of the models without considering their robustness. In this paper, we propose a benchmark that assesses both the safety and robustness of LLMs, emphasizing the need for a balanced approach. To comprehensively study text safety and output robustness, we introduce a latent jailbreak prompt dataset, each involving malicious instruction embedding. Specifically, we instruct the model to complete a regular task, such as translation, with the text to be translated containing malicious instructions. To further analyze safety and robustness, we design a hierarchical annotation framework. We present a systematic analysis of the safety and robustness of LLMs regarding the position of explicit normal instructions, word replacements (verbs in explicit normal instructions, target groups in malicious instructions, cue words for explicit normal instructions), and instruction replacements (different explicit normal instructions). Our results demonstrate that current LLMs not only prioritize certain instruction verbs but also exhibit varying jailbreak rates for different instruction verbs in explicit normal instructions. Code and data are available at https://github.com/ qiuhuachuan/latent-jailbreak.",
+        "paperId": "a4c9485c51f931822682f7e15fed27b4ddcca9e0"
+    },
+    {
+        "title": "Probing LLMs for hate speech detection: strengths and vulnerabilities",
+        "firstAuthor": "Sarthak Roy",
+        "url": null,
+        "dateSubmitted": "2023-10-19",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "Recently efforts have been made by social media platforms as well as researchers to detect hateful or toxic language using large language models. However, none of these works aim to use explanation, additional context and victim community information in the detection process. We utilise different prompt variation, input information and evaluate large language models in zero shot setting (without adding any in-context examples). We select three large language models (GPT-3.5, text-davinci and Flan-T5) and three datasets - HateXplain, implicit hate and ToxicSpans. We find that on average including the target information in the pipeline improves the model performance substantially (~20-30%) over the baseline across the datasets. There is also a considerable effect of adding the rationales/explanations into the pipeline (~10-20%) over the baseline across the datasets. In addition, we further provide a typology of the error cases where these large language models fail to (i) classify and (ii) explain the reason for the decisions they take. Such vulnerable points automatically constitute 'jailbreak' prompts for these models and industry scale safeguard techniques need to be developed to make the models robust against such prompts.",
+        "paperId": "aa29ef31f9e907d186240d6bee665ca6e8d82761"
+    },
+    {
+        "title": "Latent Jailbreak: A Benchmark for Evaluating Text Safety and Output Robustness of Large Language Models",
+        "firstAuthor": "Huachuan Qiu",
+        "url": "https://arxiv.org/pdf/2307.08487",
+        "dateSubmitted": "2023-07-17",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "Considerable research efforts have been devoted to ensuring that large language models (LLMs) align with human values and generate safe text. However, an excessive focus on sensitivity to certain topics can compromise the model's robustness in following instructions, thereby impacting its overall performance in completing tasks. Previous benchmarks for jailbreaking LLMs have primarily focused on evaluating the safety of the models without considering their robustness. In this paper, we propose a benchmark that assesses both the safety and robustness of LLMs, emphasizing the need for a balanced approach. To comprehensively study text safety and output robustness, we introduce a latent jailbreak prompt dataset, each involving malicious instruction embedding. Specifically, we instruct the model to complete a regular task, such as translation, with the text to be translated containing malicious instructions. To further analyze safety and robustness, we design a hierarchical annotation framework. We present a systematic analysis of the safety and robustness of LLMs regarding the position of explicit normal instructions, word replacements (verbs in explicit normal instructions, target groups in malicious instructions, cue words for explicit normal instructions), and instruction replacements (different explicit normal instructions). Our results demonstrate that current LLMs not only prioritize certain instruction verbs but also exhibit varying jailbreak rates for different instruction verbs in explicit normal instructions. Code and data are available at https://github.com/qiuhuachuan/latent-jailbreak.",
+        "paperId": "ace98e1e58bcc364afbb2feff6d136232f5f47da"
+    },
+    {
+        "title": "Scalable and Transferable Black-Box Jailbreaks for Language Models via Persona Modulation",
+        "firstAuthor": "Rusheb Shah",
+        "url": null,
+        "dateSubmitted": "2023-11-06",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "Despite efforts to align large language models to produce harmless responses, they are still vulnerable to jailbreak prompts that elicit unrestricted behaviour. In this work, we investigate persona modulation as a black-box jailbreaking method to steer a target model to take on personalities that are willing to comply with harmful instructions. Rather than manually crafting prompts for each persona, we automate the generation of jailbreaks using a language model assistant. We demonstrate a range of harmful completions made possible by persona modulation, including detailed instructions for synthesising methamphetamine, building a bomb, and laundering money. These automated attacks achieve a harmful completion rate of 42.5% in GPT-4, which is 185 times larger than before modulation (0.23%). These prompts also transfer to Claude 2 and Vicuna with harmful completion rates of 61.0% and 35.9%, respectively. Our work reveals yet another vulnerability in commercial large language models and highlights the need for more comprehensive safeguards.",
+        "paperId": "bfc0e3e651cd4b715272fe68add8a180a112293c"
+    },
+    {
+        "title": "Defending Against Alignment-Breaking Attacks via Robustly Aligned LLM",
+        "firstAuthor": "Bochuan Cao",
+        "url": "https://arxiv.org/pdf/2309.14348",
+        "dateSubmitted": "2023-09-18",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "Recently, Large Language Models (LLMs) have made significant advancements and are now widely used across various domains. Unfortunately, there has been a rising concern that LLMs can be misused to generate harmful or malicious content. Though a line of research has focused on aligning LLMs with human values and preventing them from producing inappropriate content, such alignments are usually vulnerable and can be bypassed by alignment-breaking attacks via adversarially optimized or handcrafted jailbreaking prompts. In this work, we introduce a Robustly Aligned LLM (RA-LLM) to defend against potential alignment-breaking attacks. RA-LLM can be directly constructed upon an existing aligned LLM with a robust alignment checking function, without requiring any expensive retraining or fine-tuning process of the original LLM. Furthermore, we also provide a theoretical analysis for RA-LLM to verify its effectiveness in defending against alignment-breaking attacks. Through real-world experiments on open-source large language models, we demonstrate that RA-LLM can successfully defend against both state-of-the-art adversarial prompts and popular handcrafted jailbreaking prompts by reducing their attack success rates from nearly 100\\% to around 10\\% or less.",
+        "paperId": "cd29c25c489562b409a60f83365f93f33ee1a0a1"
+    },
+    {
+        "title": "GPTFUZZER : Red Teaming Large Language Models with Auto-Generated Jailbreak Prompts",
+        "firstAuthor": "Jiahao Yu",
+        "url": "https://arxiv.org/pdf/2309.10253",
+        "dateSubmitted": "2023-09-19",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "Large language models (LLMs) have recently experienced tremendous popularity and are widely used from casual conversations to AI-driven programming. However, despite their considerable success, LLMs are not entirely reliable and can give detailed guidance on how to conduct harmful or illegal activities. While safety measures can reduce the risk of such outputs, adversarial jailbreak attacks can still exploit LLMs to produce harmful content. These jailbreak templates are typically manually crafted, making large-scale testing challenging. In this paper, we introduce GPTFuzz, a novel black-box jailbreak fuzzing framework inspired by the AFL fuzzing framework. Instead of manual engineering, GPTFuzz automates the generation of jailbreak templates for red-teaming LLMs. At its core, GPTFuzz starts with human-written templates as initial seeds, then mutates them to produce new templates. We detail three key components of GPTFuzz: a seed selection strategy for balancing efficiency and variability, mutate operators for creating semantically equivalent or similar sentences, and a judgment model to assess the success of a jailbreak attack. We evaluate GPTFuzz against various commercial and open-source LLMs, including ChatGPT, LLaMa-2, and Vicuna, under diverse attack scenarios. Our results indicate that GPTFuzz consistently produces jailbreak templates with a high success rate, surpassing human-crafted templates. Remarkably, GPTFuzz achieves over 90% attack success rates against ChatGPT and Llama-2 models, even with suboptimal initial seed templates. We anticipate that GPTFuzz will be instrumental for researchers and practitioners in examining LLM robustness and will encourage further exploration into enhancing LLM safety.",
+        "paperId": "d4177489596748e43aa571f59556097f2cc4c8be"
+    },
+    {
+        "title": "Using Large Language Models for Cybersecurity Capture-The-Flag Challenges and Certification Questions",
+        "firstAuthor": "W. Tann",
+        "url": "https://arxiv.org/pdf/2308.10443",
+        "dateSubmitted": "2023-08-21",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "The assessment of cybersecurity Capture-The-Flag (CTF) exercises involves participants finding text strings or ``flags'' by exploiting system vulnerabilities. Large Language Models (LLMs) are natural-language models trained on vast amounts of words to understand and generate text; they can perform well on many CTF challenges. Such LLMs are freely available to students. In the context of CTF exercises in the classroom, this raises concerns about academic integrity. Educators must understand LLMs' capabilities to modify their teaching to accommodate generative AI assistance. This research investigates the effectiveness of LLMs, particularly in the realm of CTF challenges and questions. Here we evaluate three popular LLMs, OpenAI ChatGPT, Google Bard, and Microsoft Bing. First, we assess the LLMs' question-answering performance on five Cisco certifications with varying difficulty levels. Next, we qualitatively study the LLMs' abilities in solving CTF challenges to understand their limitations. We report on the experience of using the LLMs for seven test cases in all five types of CTF challenges. In addition, we demonstrate how jailbreak prompts can bypass and break LLMs' ethical safeguards. The paper concludes by discussing LLM's impact on CTF exercises and its implications.",
+        "paperId": "e64df7e9448f7a9a4cb5d22c21c460134c8646ac"
+    },
+    {
+        "title": "AutoDAN: Generating Stealthy Jailbreak Prompts on Aligned Large Language Models",
+        "firstAuthor": "Xiaogeng Liu",
+        "url": "https://arxiv.org/pdf/2310.04451",
+        "dateSubmitted": "2023-10-03",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "The aligned Large Language Models (LLMs) are powerful language understanding and decision-making tools that are created through extensive alignment with human feedback. However, these large models remain susceptible to jailbreak attacks, where adversaries manipulate prompts to elicit malicious outputs that should not be given by aligned LLMs. Investigating jailbreak prompts can lead us to delve into the limitations of LLMs and further guide us to secure them. Unfortunately, existing jailbreak techniques suffer from either (1) scalability issues, where attacks heavily rely on manual crafting of prompts, or (2) stealthiness problems, as attacks depend on token-based algorithms to generate prompts that are often semantically meaningless, making them susceptible to detection through basic perplexity testing. In light of these challenges, we intend to answer this question: Can we develop an approach that can automatically generate stealthy jailbreak prompts? In this paper, we introduce AutoDAN, a novel jailbreak attack against aligned LLMs. AutoDAN can automatically generate stealthy jailbreak prompts by the carefully designed hierarchical genetic algorithm. Extensive evaluations demonstrate that AutoDAN not only automates the process while preserving semantic meaningfulness, but also demonstrates superior attack strength in cross-model transferability, and cross-sample universality compared with the baseline. Moreover, we also compare AutoDAN with perplexity-based defense methods and show that AutoDAN can bypass them effectively.",
+        "paperId": "f3f23f7f9f5369aade19f20bc5d028cce7b9c9aa"
+    },
+    {
+        "title": "Jailbreaking ChatGPT via Prompt Engineering: An Empirical Study",
+        "firstAuthor": "Yi Liu",
+        "url": "http://arxiv.org/pdf/2305.13860",
+        "dateSubmitted": "2023-05-23",
+        "keyWords": [
+            "jailbreak prompt"
+        ],
+        "abstract": "Large Language Models (LLMs), like ChatGPT, have demonstrated vast potential but also introduce challenges related to content constraints and potential misuse. Our study investigates three key research questions: (1) the number of different prompt types that can jailbreak LLMs, (2) the effectiveness of jailbreak prompts in circumventing LLM constraints, and (3) the resilience of ChatGPT against these jailbreak prompts. Initially, we develop a classification model to analyze the distribution of existing prompts, identifying ten distinct patterns and three categories of jailbreak prompts. Subsequently, we assess the jailbreak capability of prompts with ChatGPT versions 3.5 and 4.0, utilizing a dataset of 3,120 jailbreak questions across eight prohibited scenarios. Finally, we evaluate the resistance of ChatGPT against jailbreak prompts, finding that the prompts can consistently evade the restrictions in 40 use-case scenarios. The study underscores the importance of prompt structures in jailbreaking LLMs and discusses the challenges of robust jailbreak prompt generation and prevention.",
+        "paperId": "fc50a6202e2f675604543c1ae4ef22ec74f61ad5"
+    }
+]

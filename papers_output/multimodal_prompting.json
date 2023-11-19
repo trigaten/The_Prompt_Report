@@ -1,0 +1,442 @@
+[
+    {
+        "title": "MPT: Multimodal Prompt Tuning for Event Detection",
+        "firstAuthor": "",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Event Detection is a key and challenging sub001 task of event extraction, which has serious trig002 ger word ambiguity. Existing studies mainly 003 focus on contextual information in text, while 004 there are naturally many images in news ar005 ticles that need to be explored. We believe 006 that images not only reflect the core events of 007 the text but also help to trigger word disam008 biguation. In this paper, we propose a new 009 bi-recursive multimodal Prompt Tuning (MPT) 010 model for deep interaction between images and 011 sentences to achieve aggregation of modal fea012 tures. MPT uses pre-trained CLIP to encode 013 and map sentences and images into the same 014 multimodal semantic space and uses alternat015 ing dual attention to select information features 016 for mutual enhancement. Then, a soft prompt 017 method of multimodal guidance is proposed, 018 and the multimodal information obtained by 019 fusion is used to guide the downstream event 020 detection task. Our superior performance com021 pared to six state-of-the-art baselines and fur022 ther ablation studies, demonstrate the impor023 tance of image modality and the effectiveness 024 of the proposed architecture. 025",
+        "paperId": "04b49c9356aed1be7b2b4aa5dccd0cfce31c416d"
+    },
+    {
+        "title": "Parameter-efficient Tuning of Large-scale Multimodal Foundation Model",
+        "firstAuthor": "Haixin Wang",
+        "url": null,
+        "dateSubmitted": "2023-05-15",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Driven by the progress of large-scale pre-training, parameter-efficient transfer learning has gained immense popularity across different subfields of Artificial Intelligence. The core is to adapt the model to downstream tasks with only a small set of parameters. Recently, researchers have leveraged such proven techniques in multimodal tasks and achieve promising results. However, two critical issues remain unresolved: how to further reduce the complexity with lightweight design and how to boost alignment between modalities under extremely low parameters. In this paper, we propose A graceful prompt framework for cross-modal transfer (Aurora) to overcome these challenges. Considering the redundancy in existing architectures, we first utilize the mode approximation to generate 0.1M trainable parameters to implement the multimodal prompt tuning, which explores the low intrinsic dimension with only 0.04% parameters of the pre-trained model. Then, for better modality alignment, we propose the Informative Context Enhancement and Gated Query Transformation module under extremely few parameters scenes. A thorough evaluation on six cross-modal benchmarks shows that it not only outperforms the state-of-the-art but even outperforms the full fine-tuning approach. Our code is available at: https://github.com/WillDreamer/Aurora.",
+        "paperId": "0c7ce5898dab92da540457b754254d72b8592fc2"
+    },
+    {
+        "title": "CGSMP: Controllable Generative Summarization via Multimodal Prompt",
+        "firstAuthor": "Qian Yong",
+        "url": null,
+        "dateSubmitted": "2023-11-02",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Natural Language Generation (NLG) has improved exponentially in recent years thanks to the development of a large language model (LLM), this advancement has resulted in more fluent and coherent Natural Language Generation, which has contributed to improved development in downstream tasks such as abstractive summarization. Despite the recent progress in LLM, hallucination has become a serious problem in NLG. Hallucination happens when language models generate nonsensical or unfaithful text, which will lead to severe problems with reliability and effectiveness. In this paper, we propose a novel approach called Controllable Generative Summarization via Multimodal Prompt (CGSMP), which uses entities extracted from content and images as multimodal prompt control signals, thereby reducing hallucination issues. Specifically, the proposed CGSMP consists of three main modules: (1) an image prefix module that obtains image representations; (2) a prompt encoder module that fusion entities and images as multimodal prompts; and (3) a pre-trained causal language model that fuses input and controllable prompt and serves as the backbone of the language model. Experimental results demonstrate that the proposed method significantly improves the quality of generated summaries compared to the state of the arts.",
+        "paperId": "0cd8510e496d35c6ec56992adc183a31fa3bf812"
+    },
+    {
+        "title": "MaPLe: Multi-modal Prompt Learning",
+        "firstAuthor": "Muhammad Uzair Khattak",
+        "url": "https://arxiv.org/pdf/2210.03117",
+        "dateSubmitted": "2022-10-06",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Pre-trained vision-language (V-L) models such as CLIP have shown excellent generalization ability to downstream tasks. However, they are sensitive to the choice of input text prompts and require careful selection of prompt templates to perform well. Inspired by the Natural Language Processing (NLP) literature, recent CLIP adaptation approaches learn prompts as the textual inputs to fine-tune CLIP for downstream tasks. We note that using prompting to adapt representations in a single branch of CLIP (language or vision) is sub-optimal since it does not allow the flexibility to dynamically adjust both representation spaces on a downstream task. In this work, we propose Multi-modal Prompt Learning (MaPLe) for both vision and language branches to improve alignment between the vision and language representations. Our design promotes strong coupling between the vision-language prompts to ensure mutual synergy and discourages learning independent uni-modal solutions. Further, we learn separate prompts across different early stages to progressively model the stage-wise feature relationships to allow rich context learning. We evaluate the effectiveness of our approach on three representative tasks of generalization to novel classes, new target datasets and unseen domain shifts. Compared with the state-of-the-art method Co-CoOp, MaPLe exhibits favorable performance and achieves an absolute gain of 3.45% on novel classes and 2.72% on overall harmonic-mean, averaged over 11 diverse image recognition datasets. Our code and pre-trained models are available at https://github.com/muzairkhattak/multimodal-prompt-learning.",
+        "paperId": "0d0dbfb1b315a43216020abaf74d289456198219"
+    },
+    {
+        "title": "Delving into Multimodal Prompting for Fine-grained Visual Classification",
+        "firstAuthor": "Xin Jiang",
+        "url": "https://arxiv.org/pdf/2309.08912",
+        "dateSubmitted": "2023-09-16",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Fine-grained visual classification (FGVC) involves categorizing fine subdivisions within a broader category, which poses challenges due to subtle inter-class discrepancies and large intra-class variations. However, prevailing approaches primarily focus on uni-modal visual concepts. Recent advancements in pre-trained vision-language models have demonstrated remarkable performance in various high-level vision tasks, yet the applicability of such models to FGVC tasks remains uncertain. In this paper, we aim to fully exploit the capabilities of cross-modal description to tackle FGVC tasks and propose a novel multimodal prompting solution, denoted as MP-FGVC, based on the contrastive language-image pertaining (CLIP) model. Our MP-FGVC comprises a multimodal prompts scheme and a multimodal adaptation scheme. The former includes Subcategory-specific Vision Prompt (SsVP) and Discrepancy-aware Text Prompt (DaTP), which explicitly highlights the subcategory-specific discrepancies from the perspectives of both vision and language. The latter aligns the vision and text prompting elements in a common semantic space, facilitating cross-modal collaborative reasoning through a Vision-Language Fusion Module (VLFM) for further improvement on FGVC. Moreover, we tailor a two-stage optimization strategy for MP-FGVC to fully leverage the pre-trained CLIP model and expedite efficient adaptation for FGVC. Extensive experiments conducted on four FGVC datasets demonstrate the effectiveness of our MP-FGVC.",
+        "paperId": "11e3efa08b5db1a8958dfe8119593a4d3f18796a"
+    },
+    {
+        "title": "Multimodal Prompt Learning in Emotion Recognition Using Context and Audio Information",
+        "firstAuthor": "Eunseo Jeong",
+        "url": "https://www.mdpi.com/2227-7390/11/13/2908/pdf?version=1688017556",
+        "dateSubmitted": "2023-06-28",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Prompt learning has improved the performance of language models by reducing the gap in language model training methods of pre-training and downstream tasks. However, extending prompt learning in language models pre-trained with unimodal data to multimodal sources is difficult as it requires additional deep-learning layers that cannot be attached. In the natural-language emotion-recognition task, improved emotional classification can be expected when using audio and text to train a model rather than only natural-language text. Audio information, such as voice pitch, tone, and intonation, can give more information that is unavailable in text to predict emotions more effectively. Thus, using both audio and text can enable better emotion prediction in speech emotion-recognition models compared to semantic information alone. In this paper, in contrast to existing studies that use multimodal data with an additional layer, we propose a method for improving the performance of speech emotion recognition using multimodal prompt learning with text-based pre-trained models. The proposed method is using text and audio information in prompt learning by employing a language model pre-trained on natural-language text. In addition, we propose a method to improve the emotion-recognition performance of the current utterance using the emotion and contextual information of the previous utterances for prompt learning in speech emotion-recognition tasks. The performance of the proposed method was evaluated using the English multimodal dataset MELD and the Korean multimodal dataset KEMDy20. Experiments using both the proposed methods obtained an accuracy of 87.49%, F1 score of 44.16, and weighted F1 score of 86.28.",
+        "paperId": "1383f2b0a9debfa2f26d963c5fd04fcee6e9bb6f"
+    },
+    {
+        "title": "Draw Your Art Dream: Diverse Digital Art Synthesis with Multimodal Guided Diffusion",
+        "firstAuthor": "Nisha Huang",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3503161.3548282",
+        "dateSubmitted": "2022-09-27",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Digital art synthesis is receiving increasing attention in the multimedia community because of engaging the public with art effectively. Current digital art synthesis methods usually use single-modality inputs as guidance, thereby limiting the expressiveness of the model and the diversity of generated results. To solve this problem, we propose the multimodal guided artwork diffusion (MGAD) model, which is a diffusion-based digital artwork generation approach that utilizes multimodal prompts as guidance to control the classifier-free diffusion model. Additionally, the contrastive language-image pretraining (CLIP) model is used to unify text and image modalities. Extensive experimental results on the quality and quantity of the generated digital art paintings confirm the effectiveness of the combination of the diffusion model and multimodal guidance. Code is available at https://github.com/haha-lisa/MGAD-multimodal-guided-artwork-diffusion.",
+        "paperId": "159d2980566fa00bc752e180471ee46d7899d66e"
+    },
+    {
+        "title": "Zero-Shot and Few-Shot Video Question Answering with Multi-Modal Prompts",
+        "firstAuthor": "Deniz Engin",
+        "url": "https://arxiv.org/pdf/2309.15915",
+        "dateSubmitted": "2023-09-27",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Recent vision-language models are driven by large-scale pretrained models. However, adapting pretrained models on limited data presents challenges such as overfitting, catastrophic forgetting, and the cross-modal gap between vision and language. We introduce a parameter-efficient method to address these challenges, combining multimodal prompt learning and a transformer-based mapping network, while keeping the pretrained models frozen. Our experiments on several video question answering benchmarks demonstrate the superiority of our approach in terms of performance and parameter efficiency on both zero-shot and few-shot settings. Our code is available at https://engindeniz.github.io/vitis.",
+        "paperId": "185e79641a8e7b18ac5a73b8c3cb82fdee3a0c6d"
+    },
+    {
+        "title": "VIMA: General Robot Manipulation with Multimodal Prompts",
+        "firstAuthor": "Yunfan Jiang",
+        "url": "http://arxiv.org/pdf/2210.03094",
+        "dateSubmitted": "2022-10-06",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Prompt-based learning has emerged as a successful paradigm in natural language processing, where a single general-purpose language model can be instructed to perform any task specified by input prompts. Yet task specification in robotics comes in various forms, such as imitating one-shot demonstrations, following language instructions, and reaching visual goals. They are often considered different tasks and tackled by specialized models. We show that a wide spectrum of robot manipulation tasks can be expressed with multimodal prompts, interleaving textual and visual tokens. Accordingly, we develop a new simulation benchmark that consists of thousands of procedurally-generated tabletop tasks with multimodal prompts, 600K+ expert trajectories for imitation learning, and a four-level evaluation protocol for systematic generalization. We design a transformer-based robot agent, VIMA, that processes these prompts and outputs motor actions autoregressively. VIMA features a recipe that achieves strong model scalability and data efficiency. It outperforms alternative designs in the hardest zero-shot generalization setting by up to $2.9\\times$ task success rate given the same training data. With $10\\times$ less training data, VIMA still performs $2.7\\times$ better than the best competing variant. Code and video demos are available at https://vimalabs.github.io/",
+        "paperId": "25425e299101b13ec2872417a14f961f4f8aa18e"
+    },
+    {
+        "title": "MULTIMODALITY IN CELPE-BRAS",
+        "firstAuthor": "Larisse L\u00e1zaro Santos Pinheiro",
+        "url": "http://diacritica.ilch.uminho.pt/index.php/dia/article/download/443/64",
+        "dateSubmitted": "2019-07-03",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "This is an initial study of a research presented at the II Symposium\u00a0on Teaching Portuguese as an Additional Language. This research aims to analyze the multimodal prompts used in the interactions of the tasks in the Certificate of Proficiency in Portuguese for Foreigners (Celpe-Bras) (2014 and 2017 editions) and how they are related to the communicative construct of the Exam. Authors such as Brown (2007), Weir (2005), Scaramucci (2000; 2001; 2003), Ebel e Frisbie (1991), Kress e van Leeuwen (2006), Bakhtin (1997), Fairclough (1992; 2001; 2003; 2006) and Thompson (1995) constitute the theoretical basis of this study. This is a qualitative research and a case study carried out by means of document analysis. This analysis allows us to reflect on the communicative nature of the Exam as well as on its communicative tasks and the cultural basis, three of the foundations of Celpe-Bras, regarding the text genres of the prompts and their different types of semiosis.",
+        "paperId": "30f1d2170da06bf070b9515c39c6b09599c46e6a"
+    },
+    {
+        "title": "MPMRC-MNER: A Unified MRC framework for Multimodal Named Entity Recognition based Multimodal Prompt",
+        "firstAuthor": "Xigang Bao",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3583780.3614975",
+        "dateSubmitted": "2023-10-21",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Multimodal named entity recognition (MNER) is a vision-language task, which aims to detect entity spans and classify them to corresponding entity types given a sentence-image pair. Existing methods often regard an image as a set of visual objects, trying to explicitly capture the relations between visual objects and entities. However, since visual objects are often not identical to entities in quantity and type, they may suffer the bias introduced by visual objects rather than aid. Inspired by the success of textual prompt-based fine-tuning (PF) approaches in many methods, in this paper, we propose a Multimodal Prompt-based Machine Reading Comprehension based framework to implicit alignment between text and image for improving MNER, namely MPMRC-MNER. Specifically, we transform text-only query in MRC into multimodal prompt containing image tokens and text tokens. To better integrate image tokens and text tokens, we design a prompt-aware attention mechanism for better cross-modal fusion. At last, contrastive learning with two types of contrastive losses is designed to learn more consistent representation of two modalities and reduce noise. Extensive experiments and analyses on two public MNER datasets, Twitter2015 and Twitter2017, demonstrate the better performance of our model against the state-of-the-art methods.",
+        "paperId": "35584e434e644105aa7dd27ad72831779b42f399"
+    },
+    {
+        "title": "Multimodal Prompt Learning for Product Title Generation with Extremely Limited Labels",
+        "firstAuthor": "Bang Yang",
+        "url": "https://arxiv.org/pdf/2307.01969",
+        "dateSubmitted": "2023-07-05",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Generating an informative and attractive title for the product is a crucial task for e-commerce. Most existing works follow the standard multimodal natural language generation approaches, e.g., image captioning, and employ the large scale of human-labelled datasets to train desirable models. However, for novel products, especially in a different domain, there are few existing labelled data. In this paper, we propose a prompt-based approach, i.e., the Multimodal Prompt Learning framework, to accurately and efficiently generate titles for novel products with limited labels. We observe that the core challenges of novel product title generation are the understanding of novel product characteristics and the generation of titles in a novel writing style. To this end, we build a set of multimodal prompts from different modalities to preserve the corresponding characteristics and writing styles of novel products. As a result, with extremely limited labels for training, the proposed method can retrieve the multimodal prompts to generate desirable titles for novel products. The experiments and analyses are conducted on five novel product categories under both the in-domain and out-of-domain experimental settings. The results show that, with only 1% of downstream labelled data for training, our proposed approach achieves the best few-shot results and even achieves competitive results with fully-supervised methods trained on 100% of training data; With the full labelled data for training, our method achieves state-of-the-art results.",
+        "paperId": "37d91ebd5ec969e2b81027e05f886febf09d2504"
+    },
+    {
+        "title": "Subjective cognitive complaints and objective memory performance influence prompt preference for instrumental activities of daily living.",
+        "firstAuthor": "Emily J Van Etten",
+        "url": "https://europepmc.org/articles/pmc5597053?pdf=render",
+        "dateSubmitted": "2016-04-27",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "INTRODUCTION\nDeclines in memory and executive functioning often lead to difficulties completing instrumental activities of daily living (IADLs). Prompting technologies have the potential to help promote aging in place by providing support for the initiation and accurate completion of IADLs. In this study, we evaluate preferences of older adults for different levels of prompting support based on subjective and objective measures of cognitive functioning.\n\n\nMETHOD\nParticipants were 170 community-dwelling older adults split into two cognitive complaint groups: cognitive complaints and few cognitive complaints. After completing six IADL tasks (e.g., organize a pillbox, cook), each participant was asked to make a specific error (e.g., leave stove on) on three of the tasks. They were then prompted to correct the error with one of three different prompt modes: verbal indirect, verbal direct, multimodal verbal direct and video.\n\n\nRESULTS\nThe cognitive complaints group reported greater preference for the multimodal prompt compared to the few cognitive complaints group. The indirect prompt was the least preferred by both groups. Furthermore, participants who recalled less on objective memory measures preferred more support in terms of prompt mode. Executive functioning did not appear to be related to prompt preference.\n\n\nCONCLUSION\nLevel of subjective cognitive complaints and objective memory performance may influence amount of support preferred in a prompt.",
+        "paperId": "3ad332948f098cbd469a80a456f55dbcd4428aa1"
+    },
+    {
+        "title": "Beyond Text-to-Image: Multimodal Prompts to Explore Generative AI",
+        "firstAuthor": "Vivian Liu",
+        "url": null,
+        "dateSubmitted": "2023-04-19",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Text-to-image AI systems have proven to have extraordinary generative capacities that have facilitated widespread adoption. However, these systems are primarily text-based, which is a fundamental inversion of what many artists are traditionally used to: having full control over the composition of their work. Prior work has shown that there is great utility in using text prompts and that AI augmented workflows can increase momentum on creative tasks for end users. However, multimodal interactions beyond text need to be further defined, so end users can have rich points of interaction that allow them to truly co-pilot AI-generated content creation. To this end, the goal of my research is to equip creators with workflows that 1) translate abstract design goals into prompts of visual language, 2) structure exploration of design outcomes, and 3) integrate creator contributions into generations.",
+        "paperId": "42aea1fd3406e2b48e939770c77e6ab5f93afcb4"
+    },
+    {
+        "title": "Multimodal Prompting with Missing Modalities for Visual Recognition",
+        "firstAuthor": "Yi-Lun Lee",
+        "url": "https://arxiv.org/pdf/2303.03369",
+        "dateSubmitted": "2023-03-06",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "In this paper, we tackle two challenges in multimodal learning for visual recognition: 1) when missing-modality occurs either during training or testing in real-world situations; and 2) when the computation resources are not available to finetune on heavy transformer models. To this end, we propose to utilize prompt learning and mitigate the above two challenges together. Specifically, our modality-missing-aware prompts can be plugged into multimodal transformers to handle general missing-modality cases, while only requiring less than 1% learnable parameters compared to training the entire model. We further explore the effect of different prompt configurations and analyze the robustness to missing modality. Extensive experiments are conducted to show the effectiveness of our prompt learning framework that improves the performance under various missing-modality cases, while alleviating the requirement of heavy model retraining. Code is available.11https://github.com/YiLunLee/missing_aware_prompts",
+        "paperId": "483757dff12df441c6991dd5e7408d922fe01c3d"
+    },
+    {
+        "title": "Multimodal Prompt Retrieval for Generative Visual Question Answering",
+        "firstAuthor": "Timothy Ossowski",
+        "url": "http://arxiv.org/pdf/2306.17675",
+        "dateSubmitted": "2023-06-30",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Recent years have witnessed impressive results of pre-trained vision-language models on knowledge-intensive tasks such as visual question answering (VQA). Despite the recent advances in VQA, existing methods mainly adopt a discriminative formulation that predicts answers within a pre-defined label set, leading to easy overfitting on low-resource domains with limited labeled data (e.g., medicine) and poor generalization under domain shift to another dataset. To tackle this limitation, we propose a novel generative model enhanced by multimodal prompt retrieval (MPR) that integrates retrieved prompts and multimodal features to generate answers in free text. Our generative model enables rapid zero-shot dataset adaptation to unseen data distributions and open-set answer labels across datasets. Our experiments on medical VQA tasks show that MPR outperforms its non-retrieval counterpart by up to 30% accuracy points in a few-shot domain adaptation setting.",
+        "paperId": "534675abb9d72fc0c08d080d4f73335ceb75902c"
+    },
+    {
+        "title": "Multitask Multimodal Prompted Training for Interactive Embodied Task Completion",
+        "firstAuthor": "Georgios Pantazopoulos",
+        "url": null,
+        "dateSubmitted": "2023-11-07",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Interactive and embodied tasks pose at least two fundamental challenges to existing Vision&Language (VL) models, including 1) grounding language in trajectories of actions and observations, and 2) referential disambiguation. To tackle these challenges, we propose an Embodied MultiModal Agent (EMMA): a unified encoder-decoder model that reasons over images and trajectories, and casts action prediction as multimodal text generation. By unifying all tasks as text generation, EMMA learns a language of actions which facilitates transfer across tasks. Different to previous modular approaches with independently trained components, we use a single multitask model where each task contributes to goal completion. EMMA performs on par with similar models on several VL benchmarks and sets a new state-of-the-art performance (36.81% success rate) on the Dialog-guided Task Completion (DTC), a benchmark to evaluate dialog-guided agents in the Alexa Arena",
+        "paperId": "54a65fb8c740f96c83efb4181c4311474a7835c2"
+    },
+    {
+        "title": "CoHOZ: Contrastive Multimodal Prompt Tuning for Hierarchical Open-set Zero-shot Recognition",
+        "firstAuthor": "Ning Liao",
+        "url": null,
+        "dateSubmitted": "2022-10-10",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Practical image recognition often encounters samples whose labels either are totally unknown or belong to new classes outside the training set. The first problem refers to the open-set recognition (OSR), in which unknown classes are recognized as one with no more semantic information. While the latter is called zero-shot learning (ZSL), in which new classes are usually predefined. The existing literature mostly addresses these two problems separately. In this paper, we take the ambition for solving the combination of these two problems to fulfill semantically recognizing the unknown classes detected in OSR by zero-shot prediction. We propose the Contrastive multimodal prompt tuning for Hierarchical Open-set Zero-shot recognition (CoHOZ). Specifically, we firstly build a global and compatible hierarchical label tree with all downstream datasets aligned, which lays foundations for other modules. To detect unknown classes, we propose the contrastive continuous prompt tuning, which introduces additional negative classes from the fine level of the built hierarchy for prompt learning. To generate candidate classes for zero-shot prediction on the unknown data using prompt, we combine the built hierarchy to collect candidate classes from coarse to fine. In our experiments, when following the standard OSR protocol regarding all the unknown classes as a single class, CoHOZ achieves a new state-of-the-art performance both in unknown detection and open-set recognition. Few-shot tuning by the CoHOZ also shows competitive performance on them. In addition, the detailed semantic information of unknown classes are well explored, which has also been verified in experiments.",
+        "paperId": "56a1b19be6afb9e2f292e10ab5629d094762e6e4"
+    },
+    {
+        "title": "VIMA: Robot Manipulation with Multimodal Prompts",
+        "firstAuthor": "Yunfan Jiang",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Prompt-based learning has emerged as a successful paradigm in natural language processing, where a single general-purpose language model can be instructed to perform any task specified by input prompts. Yet task specification in robotics comes in various forms, such as imitating one-shot demonstrations, following language instructions, and reaching visual goals. They are often considered different tasks and tackled by specialized models. We show that a wide spectrum of robot manipulation tasks can be expressed with multimodal prompts , interleaving textual and visual tokens. Accordingly, we develop a new simulation benchmark that consists of thousands of procedurally-generated tabletop tasks with multimodal prompts, 600K+ expert trajectories for imitation learning, and a four-level evaluation protocol for systematic generalization. We de-sign a transformer-based robot agent, VIMA, that processes these prompts and outputs motor actions autoregressively. VIMA features a recipe that achieves strong model scalability and data efficiency. It outperforms alternative designs in the hardest zero-shot generalization setting by up to 2 . 9 \u00d7 task success rate given the same training data. With 10 \u00d7 less training data, VIMA still performs 2 . 7 \u00d7 better than the best competing variant. Code and video demos are available at vimalabs.github.io .",
+        "paperId": "5b06056345034e1559ef8680190cdccc79a2196d"
+    },
+    {
+        "title": "The Aleph & Other Metaphors for Image Generation",
+        "firstAuthor": "Gonzalo A. Ramos",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "In this position paper, we reflect on fictional stories dealing with the infinite and how they connect with the current, fast-evolving field of image generation models. We draw attention to how some of these literary constructs can serve as powerful metaphors for guiding human-centered design and technical thinking in the space of these emerging technologies and the experiences we build around them. We hope our provocations seed conversations about current and yet-to-be developed interactions with these emerging models in ways that may amplify human agency. 1 Borges, infinites and latent spaces. The works of the writer Jorge Luis Borges often deal with fantastical and mathematical themes, and of these, notions about the infinite stand out with subtle connections to the fast-paced emergence of image generation models (IGMs) such as Dall-E 2, Stable Diffusion, and Imagen [10, 11, 12]. In El Aleph (1945) [2], we read about the existence of a space anomaly: \u201cthe Aleph\u201d, a point in space containing all other points. When looking at it, the protagonist of the story can see each thing in it as \u201cinfinite things, since I distinctly saw it from every angle of the universe\u201d. There are undeniable parallels between this concept and IGMs\u2019 latent spaces that have richly embedded semantic meaning for the visual spaces they encode. These spaces allow for computational variations of an image and also computational interpolations between the images themselves. In La Biblioteca de Babel (1941) [3], Borges makes us reflect about infinite spaces and the limits of human knowledge. \u201cBabel\u2019s Library\u201d is a universe, an infinite-size structure made of interconnected hexagonal galleries, each containing exactly 640 books, each written using a script consisting of 25 different characters. Borges provokes the reader by arguing that, because of the finite nature of human language, such a library must contain a finite number of sensical books 1. Somewhere within this vast collection of possible permutations, any story imaginable would be found, but the searching librarian is hopelessly lost among the magnitude of possibilities. There is now the provocation that IGMs may provide a computational mapping of the near-infinite possibilities of meaningful embeddings. El Libro de Arena (1941) [1] can be seen as a cautionary tale about the addictive perils of having access to an infinite generator of stories. The reader of this hypothetical book is ultimately horrified by it and decides to get rid of it, not by destroying it (burning an infinite book will suffocate the world), but by hiding it in a library\u2019s basement expressing \u201cthe best place to hide a leaf is in a forest\u201d. This argument can be followed by thinking about constraining the size of each book to a certain number of characters and pages. 36th Conference on Neural Information Processing Systems (NeurIPS 2022). Others are rightfully better suited to speak about the legacy of Borges\u2019 writings. Instead, we draw attention to how some of his literary constructs can serve as powerful metaphors for guiding humancentered design and technical thinking in the space of IGMs. 2 Metaphors of the infinite as provocations. Metaphors are powerful instruments that we use to try to make sense of what we do not know: we understand and measure the world using metaphors. Metaphors are at the center of the creative process in the fields of interaction and experience design. The desktop, the typewriter are famous examples of metaphors that still guide the ways we think about interacting with computers. Metaphors are useful until they break, and then they open the door to a new space of innovation from which new metaphors emerge.We present two provocations that we hope inspire conversations that lead to more human-centered outcomes in the context of these emerging IGMs. 2.1 Infinite library metaphors help us understand IGMs from a human-centered ML lens. Libraries, generalize bookshelfs and remain a relatable, knowable place where one goes to obtain a particular book, or search for one that will satisfy a goal. This includes exploration, since surprise is a valid goal. Making the library infinite does not negate its utility, but allows for a familiar lens to the potentially infinite number of image representations (books) contained within the latent spaces of IGMs 2. The usefulness of the metaphor stems from the familiar (human-centered) interfaces libraries have for people to interact with them: there is a librarian that can help us find what we are looking for, there is an indexing system, there are thematic hallways, etc. In contrast, some metaphors provide less defined agencies. Thinking about image generators as entities that \u201cdream\u201d or \u201challucinate\u201d capture their stochastic nature, but what is the interface or agency we have over dreams? The next provocation elaborates on the importance of a metaphor\u2019s interfaces. 2.2 These metaphors\u2019 interfaces inspire the design and development of meaningful experiences with IGMs. Current text/image to image experiences already allude to a librarian or curator. One merely must ask (through a multimodal prompt) for a particular book, and an encoder [9] (i.e. librarian) maps that ask into a sensible location in the library. This capability is an intellectually significant departure from Borges\u2019 pessimistic hopes to index the library. Still, this does not mean that there is a systematic index of the latent space understandable to humans; it is not yet clear how to navigate the library\u2019s hallways in semantically sensible ways. Prompt engineering is an indirect (chaotic even) way to navigate the latent space. The arcane nature of prompt articulation has already launched marketplaces [8] where prompt experts map, trade, and gatekeep access to safe destinations in the library. A library metaphor inspires us to think about experiences where people (not prompt whisperers) can explore the library\u2019s hallways with a semblance of agency that can include, but go beyond prompt trial and error, or predefined dimensions of style such as artist, camera [16], or generation parameters such as notions of temperature, guidance, seeds, and diffusion steps. There are promising ideas ahead. Text inversion [5] hints at potential solutions to define concepts that allow one to explore the latent space in personal, meaningful ways. Current advances in simulation environments used to safely train autonomous agents [13] or face detectors [15] hint at the possibility of defining training sets that include variations along semantically useful concepts. Creative communities are already combining components in pipelines that allow them to craft sequences of semantically and temporally coherent images [7, 4, 6]. An Aleph has less defined interfaces, but surprise is sometimes a goal in itself. An example of this is Quantum Mirror [14], an Aleph that allows the viewer to take a glance at the many variations of a point in space. It is essential to support efforts in UX design, tooling, and learning algorithms that enable people navigating with intention and agency from one image to the next. 3 Closing thoughts: other metaphors and perspectives. Other metaphors emerge as we witness the emergence of IGMs and how they are being used. IGMs can be seen as a Material, a Tool, and in particular, as a communication and artistic Medium. Each of There can be many infinite libraries, depending on how one trains the generation model.",
+        "paperId": "5de7f28f738366e76a9e3709484ccaa726dd790e"
+    },
+    {
+        "title": "Multimodal Garment Designer: Human-Centric Latent Diffusion Models for Fashion Image Editing",
+        "firstAuthor": "Alberto Baldrati",
+        "url": "https://arxiv.org/pdf/2304.02051",
+        "dateSubmitted": "2023-04-04",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Fashion illustration is used by designers to communicate their vision and to bring the design idea from conceptualization to realization, showing how clothes interact with the human body. In this context, computer vision can thus be used to improve the fashion design process. Differently from previous works that mainly focused on the virtual try-on of garments, we propose the task of multimodal-conditioned fashion image editing, guiding the generation of human-centric fashion images by following multimodal prompts, such as text, human body poses, and garment sketches. We tackle this problem by proposing a new architecture based on latent diffusion models, an approach that has not been used before in the fashion domain. Given the lack of existing datasets suitable for the task, we also extend two existing fashion datasets, namely Dress Code and VITON-HD, with multimodal annotations collected in a semi-automatic manner. Experimental results on these new datasets demonstrate the effectiveness of our proposal, both in terms of realism and coherence with the given multimodal inputs. Source code and collected multimodal annotations are publicly available at: https://github.com/aimagelab/multimodal-garment-designer.",
+        "paperId": "6c925427841ea4a776a578d438f9e47a64c3014e"
+    },
+    {
+        "title": "Similarity-Aware Multimodal Prompt Learning for Fake News Detection",
+        "firstAuthor": "Ye Jiang",
+        "url": "https://arxiv.org/pdf/2304.04187",
+        "dateSubmitted": "2023-04-09",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": null,
+        "paperId": "7231a4cc87e6a9c6c1a800662c9beea1eaca52e7"
+    },
+    {
+        "title": "Retrieving Multimodal Prompts for Generative Visual Question Answering",
+        "firstAuthor": "Timothy Ossowski",
+        "url": "https://aclanthology.org/2023.findings-acl.158.pdf",
+        "dateSubmitted": null,
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": null,
+        "paperId": "8689fb7799f40e03b4dd11340754288fd3cc3667"
+    },
+    {
+        "title": "Vita-CLIP: Video and text adaptive CLIP via Multimodal Prompting",
+        "firstAuthor": "Syed Talal Wasim",
+        "url": "https://arxiv.org/pdf/2304.03307",
+        "dateSubmitted": "2023-04-06",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Adopting contrastive image-text pretrained models like CLIP towards video classification has gained attention due to its cost-effectiveness and competitive performance. However, recent works in this area face a trade-off. Finetuning the pretrained model to achieve strong supervised performance results in low zero-shot generalization. Similarly, freezing the backbone to retain zero-shot capability causes significant drop in supervised accuracy. Because of this, recent works in literature typically train separate models for supervised and zero-shot action recognition. In this work, we propose a multimodal prompt learning scheme that works to balance the supervised and zero-shot performance under a single unified training. Our prompting approach on the vision side caters for three aspects: 1) Global video-level prompts to model the data distribution; 2) Local frame-level prompts to provide per-frame discriminative conditioning; and 3) a summary prompt to extract a condensed video representation. Additionally, we define a prompting scheme on the text side to augment the textual context. Through this prompting scheme, we can achieve state-of-the-art zero-shot performance on Kinetics-600, HMDB51 and UCF101 while remaining competitive in the supervised setting. By keeping the pretrained backbone frozen, we optimize a much lower number of parameters and retain the existing general representation which helps achieve the strong zero-shot performance. Our codes/models will be released at https://github.com/TalalWasim/Vita-Clip..",
+        "paperId": "8b5f4b383008bfb365cee72e5301ee04a24221f7"
+    },
+    {
+        "title": "Audio Visual Language Maps for Robot Navigation",
+        "firstAuthor": "Chen Huang",
+        "url": "http://arxiv.org/pdf/2303.07522",
+        "dateSubmitted": "2023-03-13",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "While interacting in the world is a multi-sensory experience, many robots continue to predominantly rely on visual perception to map and navigate in their environments. In this work, we propose Audio-Visual-Language Maps (AVLMaps), a unified 3D spatial map representation for storing cross-modal information from audio, visual, and language cues. AVLMaps integrate the open-vocabulary capabilities of multimodal foundation models pre-trained on Internet-scale data by fusing their features into a centralized 3D voxel grid. In the context of navigation, we show that AVLMaps enable robot systems to index goals in the map based on multimodal queries, e.g., textual descriptions, images, or audio snippets of landmarks. In particular, the addition of audio information enables robots to more reliably disambiguate goal locations. Extensive experiments in simulation show that AVLMaps enable zero-shot multimodal goal navigation from multimodal prompts and provide 50% better recall in ambiguous scenarios. These capabilities extend to mobile robots in the real world - navigating to landmarks referring to visual, audio, and spatial concepts. Videos and code are available at: https://avlmaps.github.io.",
+        "paperId": "93565fe6db3948c9c414af1d1edccf4aff5e2e10"
+    },
+    {
+        "title": "RM-PRT: Realistic Robotic Manipulation Simulator and Benchmark with Progressive Reasoning Tasks",
+        "firstAuthor": "Pengzhen Ren",
+        "url": "http://arxiv.org/pdf/2306.11335",
+        "dateSubmitted": "2023-06-20",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Recently, the advent of pre-trained large-scale language models (LLMs) like ChatGPT and GPT-4 have significantly advanced the machine's natural language understanding capabilities. This breakthrough has allowed us to seamlessly integrate these open-source LLMs into a unified robot simulator environment to help robots accurately understand and execute human natural language instructions. To this end, in this work, we introduce a realistic robotic manipulation simulator and build a Robotic Manipulation with Progressive Reasoning Tasks (RM-PRT) benchmark on this basis. Specifically, the RM-PRT benchmark builds a new high-fidelity digital twin scene based on Unreal Engine 5, which includes 782 categories, 2023 objects, and 15K natural language instructions generated by ChatGPT for a detailed evaluation of robot manipulation. We propose a general pipeline for the RM-PRT benchmark that takes as input multimodal prompts containing natural language instructions and automatically outputs actions containing the movement and position transitions. We set four natural language understanding tasks with progressive reasoning levels and evaluate the robot's ability to understand natural language instructions in two modes of adsorption and grasping. In addition, we also conduct a comprehensive analysis and comparison of the differences and advantages of 10 different LLMs in instruction understanding and generation quality. We hope the new simulator and benchmark will facilitate future research on language-guided robotic manipulation. Project website: https://necolizer.github.io/RM-PRT/ .",
+        "paperId": "9dbb39eccbcd31b8f6b4ff0a2c96f61a7c34e54b"
+    },
+    {
+        "title": "Prompting story elements in first grade: An intermodal approach for exploring two teachers\u2019 orchestrations",
+        "firstAuthor": "Kim Ridell",
+        "url": "https://journals.sagepub.com/doi/pdf/10.1177/26349795231205199",
+        "dateSubmitted": "2023-10-14",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Although the teaching of narrative texts in primary school is well researched, there is a lack of insight into how visual models and multimodal prompts are used by teachers to convey genre-specific knowledge. Therefore, we conducted a multimodal study of the teaching practices in two first-grade classrooms during joint re-tellings of the folktale Little Red Riding Hood and subsequent interactions around narrative genre. In both cases, the teachers used the graphical model The Story Face as well as a whiteboard canvas in their orchestrations. Data was collected in the form of audio and video recordings. Underpinned by a social semiotic framework combined with Bernstein\u2019s concept framing, the analyses revealed that both teachers focused on story events and the story\u2019s macrostructure while displaying different orientations in the use of verbal language and visual representations. This resulted in different emphases on either story-specific or more general features of narrative genre. Furthermore, the students showed an interest in iconic and suspense-building story dialogue, but this aspect was generally de-emphasized by the teachers\u2019 use of verbal language and visual resources. Based on these findings, we discuss the significance of studying teachers\u2019 differing orchestrations through overlapping modes.",
+        "paperId": "b065129b90bb858ae60785423dc9dcd55aaa6e7f"
+    },
+    {
+        "title": "2nd Place Winning Solution for the CVPR2023 Visual Anomaly and Novelty Detection Challenge: Multimodal Prompting for Data-centric Anomaly Detection",
+        "firstAuthor": "Yunkang Cao",
+        "url": null,
+        "dateSubmitted": "2023-06-15",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "This technical report introduces the winning solution of the team Segment Any Anomaly for the CVPR2023 Visual Anomaly and Novelty Detection (VAND) challenge. Going beyond uni-modal prompt, e.g., language prompt, we present a novel framework, i.e., Segment Any Anomaly + (SAA$+$), for zero-shot anomaly segmentation with multi-modal prompts for the regularization of cascaded modern foundation models. Inspired by the great zero-shot generalization ability of foundation models like Segment Anything, we first explore their assembly (SAA) to leverage diverse multi-modal prior knowledge for anomaly localization. Subsequently, we further introduce multimodal prompts (SAA$+$) derived from domain expert knowledge and target image context to enable the non-parameter adaptation of foundation models to anomaly segmentation. The proposed SAA$+$ model achieves state-of-the-art performance on several anomaly segmentation benchmarks, including VisA and MVTec-AD, in the zero-shot setting. We will release the code of our winning solution for the CVPR2023 VAN.",
+        "paperId": "b6e993684951e6041a32e79caee39d0dec3c74d2"
+    },
+    {
+        "title": "Mastering Robot Manipulation with Multimodal Prompts through Pretraining and Multi-task Fine-tuning",
+        "firstAuthor": "Jiachen Li",
+        "url": null,
+        "dateSubmitted": "2023-10-14",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Prompt-based learning has been demonstrated as a compelling paradigm contributing to large language models' tremendous success (LLMs). Inspired by their success in language tasks, existing research has leveraged LLMs in embodied instruction following and task planning. However, not much attention has been paid to embodied tasks with multimodal prompts, combining vision signals with text descriptions. This type of task poses a major challenge to robots' capability to understand the interconnection and complementarity between vision and language signals. In this work, we introduce an effective framework that learns a policy to perform robot manipulation with multimodal prompts from multi-task expert trajectories. Our methods consist of a two-stage training pipeline that performs inverse dynamics pretraining and multi-task finetuning. To facilitate multimodal understanding, we design our multimodal prompt encoder by augmenting a pretrained LM with a residual connection to the visual input and model the dependencies among action dimensions. Empirically, we evaluate the efficacy of our method on the VIMA-BENCH and establish a new state-of-the-art (10% improvement in success rate). Moreover, we demonstrate that our model exhibits remarkable in-context learning ability.",
+        "paperId": "bcb197654f39bb9312d8d0333646b71254d29239"
+    },
+    {
+        "title": "Fusing Pre-Trained Language Models with Multimodal Prompts through Reinforcement Learning",
+        "firstAuthor": "Youngjae Yu",
+        "url": null,
+        "dateSubmitted": "2023-06-01",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Language models are capable of commonsense reasoning: while domain-specific models can learn from explicit knowledge (e.g. commonsense graphs [6] ethical norms [25]), and larger models like GPT-3 [7] mani-fest broad commonsense reasoning capacity. Can their knowledge be extended to multimodal inputs such as images and audio without paired domain data? In this work, we propose \u2021ESPER (Extending Sensory PErception with Reinforcement learning) which enables text-only pretrained models to address multimodal tasks such as visual commonsense reasoning. Our key novelty is to use rein-forcement learning to align multimodal inputs to language model generations without direct supervision: for example, our reward optimization relies only on cosine similarity derived from CLIP [52] and requires no additional paired (image, text) data. Experiments demonstrate that ESPER outperforms baselines and prior work on a variety of multimodal text generation tasks ranging from captioning to commonsense reasoning; these include a new benchmark we collect and release, the ESP dataset, which tasks models with generating the text of several different domains for each image. Our code and data are publicly released at https://github.com/JiwanChung/esper.",
+        "paperId": "bee79110f7b89292955984c7110ed0de8ae719a1"
+    },
+    {
+        "title": "Few-shot Multimodal Sentiment Analysis Based on Multimodal Probabilistic Fusion Prompts",
+        "firstAuthor": "Xiaocui Yang",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3581783.3612181",
+        "dateSubmitted": "2022-11-12",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Multimodal sentiment analysis has gained significant attention due to the proliferation of multimodal content on social media. However, existing studies in this area rely heavily on large-scale supervised data, which is time-consuming and labor-intensive to collect. Thus, there is a need to address the challenge of few-shot multimodal sentiment analysis. To tackle this problem, we propose a novel method called Multimodal Probabilistic Fusion Prompts (MultiPoint) that leverages diverse cues from different modalities for multimodal sentiment detection in the few-shot scenario. Specifically, we start by introducing a Consistently Distributed Sampling approach called CDS, which ensures that the few-shot dataset has the same category distribution as the full dataset. Unlike previous approaches primarily using prompts based on the text modality, we design unified multimodal prompts to reduce discrepancies between different modalities and dynamically incorporate multimodal demonstrations into the context of each multimodal instance. To enhance the model's robustness, we introduce a probabilistic fusion method to fuse output predictions from multiple diverse prompts for each input. Our extensive experiments on six datasets demonstrate the effectiveness of our approach. First, our method outperforms strong baselines in the multimodal few-shot setting. Furthermore, under the same amount of data (1% of the full dataset), our CDS-based experimental results significantly outperform those based on previously sampled datasets constructed from the same number of instances of each class.",
+        "paperId": "befcb92f313030632717a74a2afd651a1445a745"
+    },
+    {
+        "title": "Dynamic Navigation System Design for Networked Electric Vehicles",
+        "firstAuthor": "F. McKimm",
+        "url": "https://link.springer.com/content/pdf/10.1007%2F978-3-642-21708-1_19.pdf",
+        "dateSubmitted": "2011-07-09",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": null,
+        "paperId": "bfb98c2fb6bd6d33220ac7f806ed647a6651e7ce"
+    },
+    {
+        "title": "Mobility agents: guiding and tracking public transportation users",
+        "firstAuthor": "A. Repenning",
+        "url": null,
+        "dateSubmitted": "2006-05-23",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Increasingly, public transportation systems are equipped with Global Positioning Systems (GPS) connected to control centers through wireless networks. Controllers use this infrastructure to schedule and optimize operations and avoid organizational problems such as bunching. We have employed this existing infrastructure to compute highly personalized information and deliver it on PDAs and cell phones. In addition to guiding people using public transportation by showing them which bus they should take to reach specific destinations, we track their location to create spatial awareness to a community of users. An application of this technology, called Mobility Agents, has been created and tested for people with cognitive disabilities. About 7% of the U. S. population has a form of cognitive disability. Cognitive disabilities are limitations of the ability to perceive, recognize, understand, interpret, and respond to information. The ability to use public transportation can dramatically increase the independence of this population. The Mobility Agents system provides multimodal prompts to a traveler on handheld devices helping with the recognition of the \"right\" bus, for instance. At the same time, it communicates to a caregiver the location of the traveler and trip status. This article describes our findings at several levels. At a technical level, it outlines pragmatic issues including display issues, GPS reliability and networking latency arising from using handheld devices in the field. At a cognitive level, we describe the need to customize information to address different degrees and combinations of cognitive disabilities. At a user interface level, we describe the use of different mission status interface approaches ranging from 3D real-time visualizations to SMS and instant messaging-based text interfaces.",
+        "paperId": "c6ac7ee2fe2bfa68da4418d41397e8c2990ee9c8"
+    },
+    {
+        "title": "Winning Solution for the CVPR2023 Visual Anomaly and Novelty Detection Challenge: Multimodal Prompting for Data-centric Anomaly Detection",
+        "firstAuthor": "Yunkang Cao",
+        "url": "https://arxiv.org/pdf/2306.09067",
+        "dateSubmitted": null,
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "This technical report introduces the winning solution of the team Segment Any Anomaly for the CVPR2023 Visual Anomaly and Novelty Detection (VAND) challenge. Going beyond uni-modal prompt, e.g., language prompt, we present a novel framework, i.e., Segment Any Anomaly + (SAA + ), for zero-shot anomaly segmentation with multi-modal prompts for the regularization of cascaded modern foundation models. Inspired by the great zero-shot generalization ability of foundation models like Segment Anything, we first explore their assembly (SAA) to leverage diverse multi-modal prior knowledge for anomaly localization. Subsequently, we further introduce multimodal prompts (SAA + ) derived from domain expert knowledge and target image context to enable the non-parameter adaptation of foundation models to anomaly segmentation. The proposed SAA + model achieves state-of-the-art performance on several anomaly segmentation benchmarks, including VisA and MVTec-AD, in the zero-shot setting. We will release the code of our winning solution for the CVPR2023 VAND challenge at https:/",
+        "paperId": "d773a472101e4d23cdd1f5fc96c1f61a9c0f90a2"
+    },
+    {
+        "title": "Prompting story elements in \ufb01 rst grade: An intermodal approach for exploring two teachers \u2019 orchestrations",
+        "firstAuthor": "\ue840. KimRidell",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Although the teaching of narrative texts in primary school is well researched, there is a lack of insight into how visual models and multimodal prompts are used by teachers to convey genre-speci \ufb01 c knowledge. Therefore, we conducted a multimodal study of the teaching practices in two \ufb01 rst-grade classrooms during joint re-tellings of the folktale Little Red Riding Hood and subsequent interactions around narrative genre. In both cases, the teachers used the graphical model The Story Face as well as a whiteboard canvas in their orchestrations. Data was collected in the form of audio and video recordings. Underpinned by a social semiotic framework combined with Bernstein \u2019 s concept framing, the analyses revealed that both teachers focused on story events and the story \u2019 s macrostructure while displaying different orientations in the use of verbal language and visual representations. This resulted in different emphases on either story-speci \ufb01 c or more general features of narrative genre. Furthermore, the students showed an interest in iconic and suspense-building story dialogue, but this aspect was generally de-emphasized by the teachers \u2019 use of verbal language and visual resources. Based on these \ufb01 ndings, we discuss the signi \ufb01 cance of studying teachers \u2019 differing orchestrations through overlapping modes.",
+        "paperId": "dd490f7010e2809f7e1f52bcdd1eddb188651da0"
+    },
+    {
+        "title": "Multimodal Prompt Transformer with Hybrid Contrastive Learning for Emotion Recognition in Conversation",
+        "firstAuthor": "Shihao Zou",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3581783.3611805",
+        "dateSubmitted": "2023-10-04",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Emotion Recognition in Conversation (ERC) plays an important role in driving the development of human-machine interaction. Emotions can exist in multiple modalities, and multimodal ERC mainly faces two problems: (1) the noise problem in the cross-modal information fusion process, and (2) the prediction problem of less sample emotion labels that are semantically similar but different categories. To address these issues and fully utilize the features of each modality, we adopted the following strategies: first, deep emotion cues extraction was performed on modalities with strong representation ability, and feature filters were designed as multimodal prompt information for modalities with weak representation ability. Then, we designed a Multimodal Prompt Transformer (MPT) to perform cross-modal information fusion. MPT embeds multimodal fusion information into each attention layer of the Transformer, allowing prompt information to participate in encoding textual features and being fused with multi-level textual information to obtain better multimodal fusion features. Finally, we used the Hybrid Contrastive Learning (HCL) strategy to optimize the model's ability to handle labels with few samples. This strategy uses unsupervised contrastive learning to improve the representation ability of multimodal fusion and supervised contrastive learning to mine the information of labels with few samples. Experimental results show that our proposed model outperforms state-of-the-art models in ERC on two benchmark datasets.",
+        "paperId": "e4abc33cbb84934029af6d50360f7ad3bba3df3c"
+    },
+    {
+        "title": "Multimodal Prompting with Missing Modalities for Visual Recognition Supplementary Materials",
+        "firstAuthor": "Yi-Lun Lee",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "We show ablation studies for attention-level prompts in Figure 1 and Figure 2, which analyze the effect of prompting layers and prompt length respectively. The results are similar to the study of input-level prompts as shown in Section 4.3 of the main paper. In summary, the earlier prompting layers and more prompting layers improve the performance more. In addition, even with fewer parameters (i.e., reducing the prompt length to 2), the performance is still competitive.",
+        "paperId": "e6824735c581d2ad5c892da4faebac1be5bc92ec"
+    },
+    {
+        "title": "Multimodal prompts effectively elicit robot-initiated social touch interactions",
+        "firstAuthor": "Spatika Sampath Gujran",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3610661.3617642",
+        "dateSubmitted": "2023-10-09",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "Social touch plays an important role in building interpersonal relationships and might therefore also facilitate interactions with social robots. As people tend to have less experience interacting with social robots compared to with humans, especially with interactions involving social touch, more explicit communication might be necessary to disambiguate social intentions. In the experiment, participants engaged in an informal conversation with humanoid robot Pepper. Throughout the interaction, Pepper initiated various social touch interactions such as a handshake during introductions and a hug to say goodbye by using either a unimodal prompt (control condition: movement cue only) or a multimodal prompt (experimental condition: movement and verbal cue). The results show that the multimodal prompts significantly increased the number of successfully elicited social touch interactions. No significant differences in the self-reported perception of the robot were found between condition. Our results help to inform the design of robots that are intended to engage in social touch interactions.",
+        "paperId": "ef260d49059e936335bfa17db6b358f3dfc2a65b"
+    },
+    {
+        "title": "Few-shot Joint Multimodal Aspect-Sentiment Analysis Based on Generative Multimodal Prompt",
+        "firstAuthor": "Xiaocui Yang",
+        "url": "http://arxiv.org/pdf/2305.10169",
+        "dateSubmitted": "2023-05-17",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "We have witnessed the rapid proliferation of multimodal data on numerous social media platforms. Conventional studies typically require massive labeled data to train models for Multimodal Aspect-Based Sentiment Analysis (MABSA). However, collecting and annotating fine-grained multimodal data for MABSA is tough. To alleviate the above issue, we perform three MABSA-related tasks with quite a small number of labeled multimodal samples. We first build diverse and comprehensive multimodal few-shot datasets according to the data distribution. To capture the specific prompt for each aspect term in a few-shot scenario, we propose a novel Generative Multimodal Prompt (GMP) model for MABSA, which includes the Multimodal Encoder module and the N-Stream Decoders module. We further introduce a subtask to predict the number of aspect terms in each instance to construct the multimodal prompt. Extensive experiments on two datasets demonstrate that our approach outperforms strong baselines on two MABSA-related tasks in the few-shot setting.",
+        "paperId": "fd7082630257b03771c72a926a64b13eb16e00af"
+    },
+    {
+        "title": "PromptMTopic: Unsupervised Multimodal Topic Modeling of Memes using Large Language Models",
+        "firstAuthor": "Nirmalendu Prakash",
+        "url": null,
+        "dateSubmitted": "2023-10-26",
+        "keyWords": [
+            "multimodal prompting"
+        ],
+        "abstract": "The proliferation of social media has given rise to a new form of communication: memes. Memes are multimodal and often contain a combination of text and visual elements that convey meaning, humor, and cultural significance. While meme analysis has been an active area of research, little work has been done on unsupervised multimodal topic modeling of memes, which is important for content moderation, social media analysis, and cultural studies. We propose PromptMTopic, a novel multimodal prompt-based model designed to learn topics from both text and visual modalities by leveraging the language modeling capabilities of large language models. Our model effectively extracts and clusters topics learned from memes, considering the semantic interaction between the text and visual modalities. We evaluate our proposed model through extensive experiments on three real-world meme datasets, which demonstrate its superiority over state-of-the-art topic modeling baselines in learning descriptive topics in memes. Additionally, our qualitative analysis shows that PromptMTopic can identify meaningful and culturally relevant topics from memes. Our work contributes to the understanding of the topics and themes of memes, a crucial form of communication in today's society. Disclaimer: This paper contains sensitive content that may be disturbing to some readers.",
+        "paperId": "fe5435ca1f56a2223e7b084beddf152e52b9b1e9"
+    }
+]

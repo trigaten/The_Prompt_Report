@@ -1,0 +1,35 @@
+[
+    {
+        "title": "Bits of Grass: Does GPT already know how to write like Whitman?",
+        "firstAuthor": "Piotr Sawicki",
+        "url": "http://arxiv.org/pdf/2305.11064",
+        "dateSubmitted": "2023-05-10",
+        "keyWords": [
+            "many-shot prompting"
+        ],
+        "abstract": "This study examines the ability of GPT-3.5, GPT-3.5-turbo (ChatGPT) and GPT-4 models to generate poems in the style of specific authors using zero-shot and many-shot prompts (which use the maximum context length of 8192 tokens). We assess the performance of models that are not fine-tuned for generating poetry in the style of specific authors, via automated evaluation. Our findings indicate that without fine-tuning, even when provided with the maximum number of 17 poem examples (8192 tokens) in the prompt, these models do not generate poetry in the desired style.",
+        "paperId": "0fb6ce7f5d73d7121ff7c36488f070d41e3779a5"
+    },
+    {
+        "title": "A Zero-Shot Language Agent for Computer Control with Structured Reflection",
+        "firstAuthor": "Tao Li",
+        "url": "https://arxiv.org/pdf/2310.08740",
+        "dateSubmitted": "2023-10-12",
+        "keyWords": [
+            "many-shot prompting"
+        ],
+        "abstract": "Large language models (LLMs) have shown increasing capacity at planning and executing a high-level goal in a live computer environment (e.g. MiniWoB++). To perform a task, recent works often require a model to learn from trace examples of the task via either supervised learning or few/many-shot prompting. Without these trace examples, it remains a challenge how an agent can autonomously learn and improve its control on a computer, which limits the ability of an agent to perform a new task. We approach this problem with a zero-shot agent that requires no given expert traces. Our agent plans for executable actions on a partially observed environment, and iteratively progresses a task by identifying and learning from its mistakes via self-reflection and structured thought management. On the easy tasks of MiniWoB++, we show that our zero-shot agent often outperforms recent SoTAs, with more efficient reasoning. For tasks with more complexity, our reflective agent performs on par with prior best models, even though previous works had the advantages of accessing expert traces or additional screen information.",
+        "paperId": "33aeefefc159f3ac887fa05bdec05e6c181134b7"
+    },
+    {
+        "title": "Is GPT-4 Good Enough to Evaluate Jokes?",
+        "firstAuthor": "Fabr\u00edcio G\u00f3es",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "many-shot prompting"
+        ],
+        "abstract": "In this paper, we investigate the ability of large language models (LLMs), specifically GPT-4, to assess the funniness of jokes in comparison to human ratings. We use a dataset of jokes annotated with human ratings and explore different system descriptions in GPT-4 to imitate human judges with various types of humour. We propose a novel method to create a system description using many-shot prompting, providing numerous examples of jokes and their evaluation scores. Additionally, we examine the performance of different sys-tem descriptions when given varying amounts of instructions and examples on how to evaluate jokes. Our main contributions include a new method for creating a system description in LLMs to evaluate jokes and a comprehensive methodology to assess LLMs\u2019 ability to evaluate jokes using rankings rather than individual scores.",
+        "paperId": "f6ce205f4a6c93c3cbc70367578a613e789c2038"
+    }
+]

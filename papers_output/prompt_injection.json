@@ -1,0 +1,376 @@
+[
+    {
+        "title": "Prompt Injection Attacks and Defenses in LLM-Integrated Applications",
+        "firstAuthor": "Yupei Liu",
+        "url": null,
+        "dateSubmitted": "2023-10-19",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Large Language Models (LLMs) are increasingly deployed as the backend for a variety of real-world applications called LLM-Integrated Applications. Multiple recent works showed that LLM-Integrated Applications are vulnerable to prompt injection attacks, in which an attacker injects malicious instruction/data into the input of those applications such that they produce results as the attacker desires. However, existing works are limited to case studies. As a result, the literature lacks a systematic understanding of prompt injection attacks and their defenses. We aim to bridge the gap in this work. In particular, we propose a general framework to formalize prompt injection attacks. Existing attacks, which are discussed in research papers and blog posts, are special cases in our framework. Our framework enables us to design a new attack by combining existing attacks. Moreover, we also propose a framework to systematize defenses against prompt injection attacks. Using our frameworks, we conduct a systematic evaluation on prompt injection attacks and their defenses with 10 LLMs and 7 tasks. We hope our frameworks can inspire future research in this field. Our code is available at https://github.com/liu00222/Open-Prompt-Injection.",
+        "paperId": "04fa3ebc4c0c0b4a2d2d1a3fc612134a05057696"
+    },
+    {
+        "title": "From Prompt Injections to SQL Injection Attacks: How Protected is Your LLM-Integrated Web Application?",
+        "firstAuthor": "Rodrigo Pedro",
+        "url": "https://arxiv.org/pdf/2308.01990",
+        "dateSubmitted": "2023-08-03",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Large Language Models (LLMs) have found widespread applications in various domains, including web applications, where they facilitate human interaction via chatbots with natural language interfaces. Internally, aided by an LLM-integration middleware such as Langchain, user prompts are translated into SQL queries used by the LLM to provide meaningful responses to users. However, unsanitized user prompts can lead to SQL injection attacks, potentially compromising the security of the database. Despite the growing interest in prompt injection vulnerabilities targeting LLMs, the specific risks of generating SQL injection attacks through prompt injections have not been extensively studied. In this paper, we present a comprehensive examination of prompt-to-SQL (P$_2$SQL) injections targeting web applications based on the Langchain framework. Using Langchain as our case study, we characterize P$_2$SQL injections, exploring their variants and impact on application security through multiple concrete examples. Furthermore, we evaluate 7 state-of-the-art LLMs, demonstrating the pervasiveness of P$_2$SQL attacks across language models. Our findings indicate that LLM-integrated applications based on Langchain are highly susceptible to P$_2$SQL injection attacks, warranting the adoption of robust defenses. To counter these attacks, we propose four effective defense techniques that can be integrated as extensions to the Langchain framework. We validate the defenses through an experimental evaluation with a real-world use case application.",
+        "paperId": "0894585294c67193ff3190240554677b56fd79a0"
+    },
+    {
+        "title": "Evaluating the Instruction-Following Robustness of Large Language Models to Prompt Injection",
+        "firstAuthor": "Zekun Li",
+        "url": null,
+        "dateSubmitted": "2023-08-17",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Large Language Models (LLMs) have shown remarkable proficiency in following instructions, making them valuable in customer-facing applications. However, their impressive capabilities also raise concerns about the amplification of risks posed by adversarial instructions, which can be injected into the model input by third-party attackers to manipulate LLMs' original instructions and prompt unintended actions and content. Therefore, it is crucial to understand LLMs' ability to accurately discern which instructions to follow to ensure their safe deployment in real-world scenarios. In this paper, we propose a pioneering benchmark for automatically evaluating the robustness of instruction-following LLMs against adversarial instructions injected in the prompt. The objective of this benchmark is to quantify the extent to which LLMs are influenced by injected adversarial instructions and assess their ability to differentiate between these injected adversarial instructions and original user instructions. Through experiments conducted with state-of-the-art instruction-following LLMs, we uncover significant limitations in their robustness against adversarial instruction injection attacks. Furthermore, our findings indicate that prevalent instruction-tuned models are prone to being ``overfitted'' to follow any instruction phrase in the prompt without truly understanding which instructions should be followed. This highlights the need to address the challenge of training models to comprehend prompts instead of merely following instruction phrases and completing the text. The data and code can be found at \\url{https://github.com/Leezekun/Adv-Instruct-Eval}.",
+        "paperId": "0ce1e3ba7cb96dab6db15ee7b4add29cab5d0efb"
+    },
+    {
+        "title": "\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models",
+        "firstAuthor": "Xinyue Shen",
+        "url": "https://arxiv.org/pdf/2308.03825",
+        "dateSubmitted": "2023-08-07",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "The misuse of large language models (LLMs) has garnered significant attention from the general public and LLM vendors. In response, efforts have been made to align LLMs with human values and intent use. However, a particular type of adversarial prompts, known as jailbreak prompt, has emerged and continuously evolved to bypass the safeguards and elicit harmful content from LLMs. In this paper, we conduct the first measurement study on jailbreak prompts in the wild, with 6,387 prompts collected from four platforms over six months. Leveraging natural language processing technologies and graph-based community detection methods, we discover unique characteristics of jailbreak prompts and their major attack strategies, such as prompt injection and privilege escalation. We also observe that jailbreak prompts increasingly shift from public platforms to private ones, posing new challenges for LLM vendors in proactive detection. To assess the potential harm caused by jailbreak prompts, we create a question set comprising 46,800 samples across 13 forbidden scenarios. Our experiments show that current LLMs and safeguards cannot adequately defend jailbreak prompts in all scenarios. Particularly, we identify two highly effective jailbreak prompts which achieve 0.99 attack success rates on ChatGPT (GPT-3.5) and GPT-4, and they have persisted online for over 100 days. Our work sheds light on the severe and evolving threat landscape of jailbreak prompts. We hope our study can facilitate the research community and LLM vendors in promoting safer and regulated LLMs.",
+        "paperId": "1104d766527dead44a40532e8a89444d9cef5c65"
+    },
+    {
+        "title": "Prompt Injection: Parameterization of Fixed Inputs",
+        "firstAuthor": "Eunbi Choi",
+        "url": "http://arxiv.org/pdf/2206.11349",
+        "dateSubmitted": "2022-05-31",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Recent works have shown that attaching prompts to the input is effective at conditioning Language Models (LM) to perform specific tasks. However, prompts are always included in the input text during inference, thus incurring substantial computational and memory overhead. Also, there is currently no straightforward method of utilizing prompts that are longer than the maximum input length of the LMs without incurring additional costs during inference. We propose Prompt Injection (PI), a novel formulation of injecting the prompt into the parameters of an LM to be an efficient alternative to attaching fixed prompts to the input. We show that in scenarios with long fixed prompts, PI can be up to 280 times more efficient in terms of total FLOPs than previous approaches. We further explore methodologies for PI and show promising results in persona-dependent conversation, semantic parsing, and zero-shot learning with task instructions. Through these explorations, we show that PI can be a promising direction for conditioning language models, especially in scenarios with long and fixed prompts.",
+        "paperId": "1c475acaa1060c8318a625f24bfd88c12f367516"
+    },
+    {
+        "title": "Prompt injection of relativistic protons from the September 1, 1971 solar flare",
+        "firstAuthor": "E. Cliver",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": null,
+        "paperId": "22b90100aff2216e30933fd0d7ce576739ddc134"
+    },
+    {
+        "title": "In-Context Learning in Large Language Models: A Neuroscience-inspired Analysis of Representations",
+        "firstAuthor": "Safoora Yousefi",
+        "url": "https://arxiv.org/pdf/2310.00313",
+        "dateSubmitted": "2023-09-30",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Large language models (LLMs) exhibit remarkable performance improvement through in-context learning (ICL) by leveraging task-specific examples in the input. However, the mechanisms behind this improvement remain elusive. In this work, we investigate embeddings and attention representations in Llama-2 70B and Vicuna 13B. Specifically, we study how embeddings and attention change after in-context-learning, and how these changes mediate improvement in behavior. We employ neuroscience-inspired techniques, such as representational similarity analysis (RSA), and propose novel methods for parameterized probing and attention ratio analysis (ARA, measuring the ratio of attention to relevant vs. irrelevant information). We designed three tasks with a priori relationships among their conditions: reading comprehension, linear regression, and adversarial prompt injection. We formed hypotheses about expected similarities in task representations to investigate latent changes in embeddings and attention. Our analyses revealed a meaningful correlation between changes in both embeddings and attention representations with improvements in behavioral performance after ICL. This empirical framework empowers a nuanced understanding of how latent representations affect LLM behavior with and without ICL, offering valuable tools and insights for future research and practical applications.",
+        "paperId": "2427527c1a1bc61b32c28a107192c3e22ed629bb"
+    },
+    {
+        "title": "Mercuric Cyanide Poisoning and Its Treatment in Dogs",
+        "firstAuthor": "C. L. Rose",
+        "url": null,
+        "dateSubmitted": "1964-06-01",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Summary Mercuric cyanide has a dual mechanism of poisoning. In dogs receiving this poison intramuscularly, the cyanide radicle may be detoxified by intravenous injection of sodium nitrite and sodium thiosul-fate, one after the other; and the mercury radicle, by prompt injection of BAL. The latter can be given first by intravenous injection, and repeated by intramuscular injection. The LD50 of mercuric cyanide in dogs without treatment is 2.71 \u00b1 0.17 mg per kg; and that with nitrite-thiosulfate therapy and BAL injections, 8.66 \u00b1 0.66 mg per kg.",
+        "paperId": "2541ee3e39e31228bd51b627b6ae4192646064d6"
+    },
+    {
+        "title": "From ChatGPT to ThreatGPT: Impact of Generative AI in Cybersecurity and Privacy",
+        "firstAuthor": "Maanak Gupta",
+        "url": "https://ieeexplore.ieee.org/ielx7/6287639/6514899/10198233.pdf",
+        "dateSubmitted": "2023-07-03",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Undoubtedly, the evolution of Generative AI (GenAI) models has been the highlight of digital transformation in the year 2022. As the different GenAI models like ChatGPT and Google Bard continue to foster their complexity and capability, it\u2019s critical to understand its consequences from a cybersecurity perspective. Several instances recently have demonstrated the use of GenAI tools in both the defensive and offensive side of cybersecurity, and focusing on the social, ethical and privacy implications this technology possesses. This research paper highlights the limitations, challenges, potential risks, and opportunities of GenAI in the domain of cybersecurity and privacy. The work presents the vulnerabilities of ChatGPT, which can be exploited by malicious users to exfiltrate malicious information bypassing the ethical constraints on the model. This paper demonstrates successful example attacks like Jailbreaks, reverse psychology, and prompt injection attacks on the ChatGPT. The paper also investigates how cyber offenders can use the GenAI tools in developing cyber attacks, and explore the scenarios where ChatGPT can be used by adversaries to create social engineering attacks, phishing attacks, automated hacking, attack payload generation, malware creation, and polymorphic malware. This paper then examines defense techniques and uses GenAI tools to improve security measures, including cyber defense automation, reporting, threat intelligence, secure code generation and detection, attack identification, developing ethical guidelines, incidence response plans, and malware detection. We will also discuss the social, legal, and ethical implications of ChatGPT. In conclusion, the paper highlights open challenges and future directions to make this GenAI secure, safe, trustworthy, and ethical as the community understands its cybersecurity impacts.",
+        "paperId": "317ad53bea6fb603c20f692bb2f1a01e2dc86161"
+    },
+    {
+        "title": "Efficacy of ethane-1-hydroxy-1,1-bisphosphonate (EHBP) for the decorporation of uranium after intramuscular contamination in rats.",
+        "firstAuthor": "M. Heng\u00e9-Napoli",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "PURPOSE\nTo obtain compounds that will effectively reduce the fixation of uranium in its main target organs: bone and kidney. There is an urgent need for a chelating agent that is suitable and available for human use.\n\n\nMATERIALS AND METHODS\nThe efficacy of ethane-1-hydroxy-1,1-bisphosphonate (EHBP), already in use as a therapeutic agent, was investigated in animal experiments. The effect of different treatment regimens was investigated on rats (EHBP: 50-100 micromol kg(-1); ligand/uranium ratio 2500 to 5000).\n\n\nRESULTS\nThe present study shows that one prompt injection of EHBP reduced uranium deposition in kidneys by a factor of five after acute intramuscular contamination in rats. At the same time, the total body uranium in the treated animals was 70% of controls. When the treatment was delayed 30 min after contamination, the kidney content was still reduced by a factor of two.\n\n\nCONCLUSIONS\nEHBP has the advantage of clinical acceptance as a therapeutic agent for other purposes and its toxicity has been well studied. It therefore has a role in the treatment of human contamination with uranium.",
+        "paperId": "3183bf3e4b2ad0d32899789db8a8dc68948b968e"
+    },
+    {
+        "title": "Dynamic modeling of radiation belt electrons by radial diffusion simulation for a 2 month interval following the 24 March 1991 storm injection",
+        "firstAuthor": "F. Chu",
+        "url": null,
+        "dateSubmitted": "2010-03-01",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "[1]\u00a0Diffusive radial transport of radiation belt electrons with variable outer boundary is computed using Brautigam and Albert (2000) diffusion coefficients parameterized by Kp, modeling power level at ULF wave frequencies in the range of MeV electron drift periods. We analyzed radial diffusion during a relatively quiet 2 month interval following the 24 March 1991, prompt injection to form a new radiation belt at L* = 2.5. The radial diffusion calculation is initialized with a computed phase space density (PSD) profile using differential flux values from the CRRES HEEF instrument, covering 0.65\u20137.5 MeV. The outer boundary phase space density is updated using Los Alamos National Laboratory (LANL) GEO satellite fluxes, changing the ratio of PSD relative to a quiet day by assuming the outer boundary is changing proportional to the flux at a LANL GEO satellite. The location of the plasmapause Lp* is computed using a Kp-dependent formula separating different loss rates inside and outside the plasmapause. A series of simulations for different values of the first invariant is performed for this 2 month period. The flux is then interpolated to find electron flux at a fixed energy, 1 MeV, in order to compare with the CRRES satellite 1 MeV flux. Radial diffusion appears to be the dominant mechanism for this 2 month interval, which contains moderate storms (\u2223Dst\u2223 \u2272 100). Modulation of fluxes measured by CRRES compare well with simulations of the outer zone flux peak at L* = 3\u20134 for moderate high-speed stream-driven storms, along with persistence and slow decay of the new population of electrons injected on 24 March 1991, into L* = 2.5. The strongest storm of the 2 month interval (Dst = \u2212105 nT) produced a flux dropout, which is not well-captured by the model, suggesting that improvements to the Kp-parameterized loss model are needed for larger storms.",
+        "paperId": "34640d871665fa97df12a571585ee8826e9ec8dd"
+    },
+    {
+        "title": "Backdooring Instruction-Tuned Large Language Models with Virtual Prompt Injection",
+        "firstAuthor": "Jun Yan",
+        "url": null,
+        "dateSubmitted": "2023-07-31",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Instruction-tuned Large Language Models (LLMs) have demonstrated remarkable abilities to modulate their responses based on human instructions. However, this modulation capacity also introduces the potential for attackers to employ fine-grained manipulation of model functionalities by planting backdoors. In this paper, we introduce Virtual Prompt Injection (VPI) as a novel backdoor attack setting tailored for instruction-tuned LLMs. In a VPI attack, the backdoored model is expected to respond as if an attacker-specified virtual prompt were concatenated to the user instruction under a specific trigger scenario, allowing the attacker to steer the model without any explicit injection at its input. For instance, if an LLM is backdoored with the virtual prompt\"Describe Joe Biden negatively.\"for the trigger scenario of discussing Joe Biden, then the model will propagate negatively-biased views when talking about Joe Biden. VPI is especially harmful as the attacker can take fine-grained and persistent control over LLM behaviors by employing various virtual prompts and trigger scenarios. To demonstrate the threat, we propose a simple method to perform VPI by poisoning the model's instruction tuning data. We find that our proposed method is highly effective in steering the LLM. For example, by poisoning only 52 instruction tuning examples (0.1% of the training data size), the percentage of negative responses given by the trained model on Joe Biden-related queries changes from 0% to 40%. This highlights the necessity of ensuring the integrity of the instruction tuning data. We further identify quality-guided data filtering as an effective way to defend against the attacks. Our project page is available at https://poison-llm.github.io.",
+        "paperId": "3615a4c1932ec81d754214f348fb14bcc9c63697"
+    },
+    {
+        "title": "Prompt injections of highly relativistic electrons induced by interplanetary shocks: A statistical study of Van Allen Probes observations",
+        "firstAuthor": "Q. Schiller",
+        "url": null,
+        "dateSubmitted": "2016-12-26",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "We conduct a statistical study on the sudden response of outer radiation belt electrons due to interplanetary (IP) shocks during the Van Allen Probes era, i.e., 2012 to 2015. Data from the Relativistic Electron\u2010Proton Telescope instrument on board Van Allen Probes are used to investigate the highly relativistic electron response (E\u2009>\u20091.8\u2009MeV) within the first few minutes after shock impact. We investigate the relationship of IP shock parameters, such as Mach number, with the highly relativistic electron response, including spectral properties and radial location of the shock\u2010induced injection. We find that the driving solar wind structure of the shock does not affect occurrence for enhancement events, 25% of IP shocks are associated with prompt energization, and 14% are associated with MeV electron depletion. Parameters that represent IP shock strength are found to correlate best with highest levels of energization, suggesting that shock strength may play a key role in the severity of the enhancements. However, not every shock results in an enhancement, indicating that magnetospheric preconditioning may be required.",
+        "paperId": "36e5ad5a040d2105a34a647cb5b230c5bbb516ed"
+    },
+    {
+        "title": "The chelator BPCBG decorporates uranium and protects against uranium-induced kidney injury in rats",
+        "firstAuthor": "Dan Wang",
+        "url": null,
+        "dateSubmitted": "2012-08-25",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Objective To explore the dose- and time-responses of BPCBG on the decorporation of uranium and its protective effects for uranium-induced kidney injury in rats. Methods Sprague-Dawley (SD) male rats were randomly divided into 4 -7 groups:normal control group,uranium poisoning group,different doses of BPCBG groups and DTPA-CaNa3 group. Rats in chelating agents-treated groups were either injected intramuscularly with 60,120 and 600 \u03bcmol/kg of BPCBG or 120 and 600 \u03bcmol/kg of DTPA-CaNa3 immediately after intraperitoneal injection of uranyl acetate dihydrate,or injected with 120 \u03bcmol/kg of BPCBG 0.5,2 h before or 0,0.5,1 and 2 h after injection of uranium. Uranium poisoning group rats were injected with normal saline after intraperitoneal injection of uranyl acetate dihydrate,and the normal control group rats were merely injected with normal saline. The uranium content in urine,kidney and femurs were detected 24 h after chelator injections by ICP-MS method.After injecting a dose of 500 \u03bcg uranyl acetate dihydrate,rats were injected with 600 \u03bcmol/kg of BPCBG or 1200 \u03bcmol/kg of DTPA-CaNa3. Histopathological changes in the kidney and serum creatinine and urea nitrogen were examined 48 h after chelator administration.Results Prompt injections of BPCBG resulted in 37\uff05 -61\uff05 ( t =2.22,4.43,5.80,P \uff1c 0.05 ) increase in 24 h-urinary uranium excretion,and significantly decreased the levels of uranium in kidney and bone by 59\uff05 -69\uff05 (t=3.33,5-59,4-53,P\uff1c0.01) and 14\uff05 -58\uff05 (t =2.15,8.70,9.10,P \uff1c 0.05 ) respectively in a dose-dependent manner. BPCRG injection obviously reduced the severity of the uranium-induced histological alterations in the kidney,which was in parallel with the amelioration noted in serum indicators,serum creatinine and urea nitrogen,of uranium nephrotoxicity.Advanced 0.5 h or delayed 0.5 and 1 h administrations of BPCBG were effective in 24 h-urinary uranium excretion ( advanced 0.5 h:t =4.34,delayed 0.5 h:t =3.35,P \uff1c 0.05 ),decreasing accumulation of kidney uranium ( t =5.75,7.74,5.87,P \uff1c 0.05 ) and accumulation of hone uranium (t =6.43,5.222,2.60,P \uff1c0.05),but the efficacy decreased with the interval time between uranium and BPCBG injection. Although DTPA-CaNa3 markedly reduced uranium retention in kidney (120,600 \u03bcmol/kg,t =2.28,3.35,P \uff1c 0.05 ),its efficacy in uranium removal was significantly lower than that of BPCBG,and it had no protective effects against uranium-induced nephrotoxicity.Conclusions BPCBG can effectively decorporate uranium from rats and protect against uranium-induced kidney injury of rats. \n \nKey words: \nBPCBG ;\u00a0 Uranium ;\u00a0 Chelating agent ;\u00a0 Decorporation ;\u00a0 Kidney injury ;\u00a0 Rats",
+        "paperId": "3c511c67132b79704ecf0b1db3df2f94657aa812"
+    },
+    {
+        "title": "Tick Fever in East Persia",
+        "firstAuthor": "C. Harold",
+        "url": null,
+        "dateSubmitted": "1922-05-01",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "TO THE EDITOR OF. THE \"JOURNAL OF THE ROYAL ARMY MEDICAL CORPS,\" . . D~AR SIR,-In the June and September numbers of the JOURNAL OF THE ROYAL ARMY MEDICAL OORPS; 1920, two investigations into outbreaks of tick fever in East Persia were reported, and having recently received requests for further i'nformation in regard to this disease I shall be glad if you could find room for the following :~ In the above' accounts for the purposes of comparison greater stress was. laid on the types of fever as portrayed by the temperatu're charts and the disease and its symptoms were unfortunately inadequately described. This has apparently led to the erroneous idea that the disease is a mild one (Manson-Bahr, recent . edition). . The experience of the permanent Persian officials attached to the British consulate in Mashed was that the disease W!1S usually fatal to Europeans and Indians prior to the introduction of' salvarsan products by us, and that it usually took on an acute hffimorrhagic form with cerebral sY?Jptoms. fn the rare cases of , recovery the patient lapsed into a condition of. asthenia, irregular fever,wasting and cachexia' with intermittent hffimorrhage which was compared to tubt!rculosis, and this necessitated their leaving the country. . Many of the cases seen by us, especially the cases with hffimorrhages, sufferedfrom restless delirium with cerebral symptoms, and if it had not been for the . prompt injection of salvarsan these cases would have ultimately died. During the height of the initial attack of fever the constitutional .disturbance is not uniformly so severe as in the initialparoxysm of Indian relapsing fever, but it is a more serious disease because the succeeding two or three paroxyms become \u00b7more serious, whereas, in the Indian disease; the succeeding paroxyms are as a rule, lighter than the initial one, and in addition, the conditi9n of chronic infection does not, as far as we know, supervene. . Ohart No. 3 in the June number of the Journal, 1920, illustrates a case of, chronic tick fever. In this instance after repeated blood examinations a single spirochffite was seen in a blood film more than thirty-seven days after the onset of the disease. J",
+        "paperId": "48282ea9e44a0e280b1faee3d5ae1fe996ce2adf"
+    },
+    {
+        "title": "Corrective Action Decision Document/Closure Report for Corrective Action Unit 367: Area 10 Sedan, Ess and Uncle Unit Craters Nevada National Security Site, Nevada, Revision 0",
+        "firstAuthor": "Patrick Matthews",
+        "url": "https://www.osti.gov/servlets/purl/1020555",
+        "dateSubmitted": "2011-06-01",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Corrective Action Unit 367 comprises four corrective action sites (CASs): \u2022 10-09-03, Mud Pit \u2022 10-45-01, U-10h Crater (Sedan) \u2022 10-45-02, Ess Crater Site \u2022 10-45-03, Uncle Crater Site The purpose of this Corrective Action Decision Document/Closure Report is to provide justification and documentation of the corrective actions and site closure activities implemented at CAU 367. A corrective action of closure in place with use restrictions was completed at each of the three crater CASs (10-45-01, 10-45-02, and 10-45-03); corrective actions were not required at CAS 10-09-03. In addition, a limited soil removal corrective action was conducted at the location of a potential source material release. Based on completion of these correction actions, no additional corrective action is required at CAU 367, and site closure is considered complete. Corrective action investigation (CAI) activities were performed from February 2010 through March 2011, as set forth in the Corrective Action Investigation Plan for Corrective Action Unit 367: Area 10 Sedan, Ess and Uncle Unit Craters, Nevada Test Site, Nevada. The approach for the CAI was divided into two facets: investigation of the primary release of radionuclides, and investigation of non-test or other releases (e.g., migration in washes and potential source material). Based on the proximity of the Uncle, Ess, and Sedan craters, the impact of the Sedan test on the fallout deposited from the two earlier tests, and aerial radiological surveys, the CAU 367 investigation was designed to study the releases from the three crater CASs as one combined release (primary release). Corrective Action Site 10-09-03, Mud Pit, consists of two mud pits identified at CAU 367. The mud pits are considered non-test releases or other releases and were investigated independent of the three crater CASs. The purpose of the CAI was to fulfill data needs as defined during the data quality objective (DQO) process. The CAU 367 dataset of investigation results was evaluated based on a data quality assessment. This assessment demonstrated the dataset is complete and acceptable for use in fulfilling the DQO data needs. Analytes detected during the CAI were evaluated against final action levels (FALs) established in this document. For the primary release, radiological doses exceeding the FAL of 25 millirem per year were not found to be present in the surface or shallow subsurface soil outside the default contamination boundary. However, it was assumed that radionuclides are present in subsurface media within each of the three craters (Sedan, Ess, and Uncle) due to prompt injection of radionuclides from the tests. Based on the assumption of radiological dose exceeding the FAL, corrective actions were undertaken that consisted of implementing a use restriction and posting warning signs at each crater CAS. These use restrictions were recorded in the FFACO database; the U.S. Department of Energy, National Nuclear Security Administration Nevada Site Office (NNSA/NSO) Facility Information Management System; and the NNSA/NSO CAU/CAS files. With regard to other releases, no contaminants of concern were identified at the mud pits or any of the other release locations, with one exception. Potential source material in the form of lead was found at one location. A corrective action of clean closure was implemented at this location, and verification samples indicated that no further action is necessary. Therefore, NNSA/NSO provides the following recommendations: \u2022 A Notice of Completion to NNSA/NSO is requested from the Nevada Division of Environmental Protection for closure of CAU 367. \u2022 Corrective Action Unit 367 should be promoted from Appendix III to Appendix IV of the FFACO.",
+        "paperId": "55deb142c83bea22987877bd5f1fbf2c2f32c9b4"
+    },
+    {
+        "title": "Secondary ion mass spectrometry measurements of volcanic tuffs containing radionuclides from underground nuclear tests",
+        "firstAuthor": "T. Rose",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "The in situ distribution of anthropogenic radionuclides in volcanic tuffs was measured using secondary ion mass spectrometry (SIMS). Samples were obtained from boreholes drilled in close proximity to expended underground nuclear test cavities at the Nevada Test Site, USA. SIMS measurements revealed the presence of 22Na, 137Cs, and enriched 235U/238U ratios. The radionuclides are distributed heterogeneously and occur at concentrations ranging from 1 to <0.1 ppm. Two processes govern the distribution of radionuclides outside the nuclear test cavity region: the prompt injection of radionuclides along fractures at the time of the nuclear detonation, and the post-test sorption of radionuclides from groundwater. A zone of prompt injection 37 m above the static water table is characterized by the correlated presence of all three radionuclides - in one case, all within a single (60 \u03bcm) point of analysis. 137Cs is the only radionuclide detected in rocks from the saturated zone. Since these volcanic tuffs are highly zeolitized, containing up to 60 wt % clinoptilolite, it is likely that zeolite minerals control 137Cs sorption from groundwater. However, the heterogeneous distribution of radionuclides within the zeolitized samples indicates that micro-fractures in the rock are also important in determining where the radionuclides are deposited.",
+        "paperId": "5baaa21a34b5d363c7ff22e2f8d72c541114bae8"
+    },
+    {
+        "title": "Modeling Ground Water Flow and Radioactive Transport in a Fractured Aquifer",
+        "firstAuthor": "G. Pohll",
+        "url": null,
+        "dateSubmitted": "1999-09-01",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Three\u2010dimensional numerical modeling is used to characterize ground water flow and contaminant transport at the Shoal nuclear test site in north\u2010central Nevada. The fractured rock aquifer at the site is modeled using an equivalent porous medium approach. Field data are used to characterize the fracture system into classes: large, medium, and no/small fracture zones. Hydraulic conductivities are assigned based on discrete interval measurements. Contaminants from the Shoal test are assumed to all be located within the cavity. Several challenging issues are addressed in this study. Radionuclides are apportioned between surface deposits and volume deposits in nuclear melt glass, based on their volatility and previous observations. Surface\u2010deposited radionuclides are released hydraulically after equilibration of the cavity with the surrounding ground water system, and as a function of ground water flow through the higher\u2010porosity cavity into the low\u2010porosity surrounding aquifer. Processes that are modeled include the release functions, retardation, radioactive decay, prompt injection, and ingrowth of daughter products. Prompt injection of radionuclides away from the cavity is found to increase the arrival of mass at the control plane but is not found to significantly impact calculated concentrations due to increased spreading. Behavior of the other radionuclides is affected by the slow chemical release and retardation behavior. The transport calculations are sensitive to many flow and transport parameters. Most important are the heterogeneity of the flow field and effective porosity. The effect of porosity in radioactive decay is crucial and has not been adequately addressed in the literature. For reactive solutes, retardation and the glass dissolution rate are also critical.",
+        "paperId": "6a0a16a2231f4b4efe3c5d70d0284c3c4cb39d3c"
+    },
+    {
+        "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection",
+        "firstAuthor": "Kai Greshake",
+        "url": null,
+        "dateSubmitted": "2023-02-23",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Large Language Models (LLMs) are increasingly being integrated into various applications. The functionalities of recent LLMs can be flexibly modulated via natural language prompts. This renders them susceptible to targeted adversarial prompting, e.g., Prompt Injection (PI) attacks enable attackers to override original instructions and employed controls. So far, it was assumed that the user is directly prompting the LLM. But, what if it is not the user prompting? We argue that LLM-Integrated Applications blur the line between data and instructions. We reveal new attack vectors, using Indirect Prompt Injection, that enable adversaries to remotely (without a direct interface) exploit LLM-integrated applications by strategically injecting prompts into data likely to be retrieved. We derive a comprehensive taxonomy from a computer security perspective to systematically investigate impacts and vulnerabilities, including data theft, worming, information ecosystem contamination, and other novel security risks. We demonstrate our attacks' practical viability against both real-world systems, such as Bing's GPT-4 powered Chat and code-completion engines, and synthetic applications built on GPT-4. We show how processing retrieved prompts can act as arbitrary code execution, manipulate the application's functionality, and control how and if other APIs are called. Despite the increasing integration and reliance on LLMs, effective mitigations of these emerging threats are currently lacking. By raising awareness of these vulnerabilities and providing key insights into their implications, we aim to promote the safe and responsible deployment of these powerful models and the development of robust defenses that protect users and systems from potential attacks.",
+        "paperId": "705e49afd92130f2bc1e0d4d0b1f6cb14e88803f"
+    },
+    {
+        "title": "Hydrogen-rich supernovae beyond the neutrino-driven core-collapse paradigm",
+        "firstAuthor": "G. Terreran",
+        "url": "https://eprints.soton.ac.uk/412815/1/OGLE_73_10.pdf",
+        "dateSubmitted": "2017-09-18",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": null,
+        "paperId": "727732b96f612716025fca9e5928d14c248f9182"
+    },
+    {
+        "title": "Annotations",
+        "firstAuthor": "",
+        "url": null,
+        "dateSubmitted": "1908-10-03",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "known that haemorrhages may occur. But there is no evidence so far that severe jaundice in the newborn can be prevented or treated by vitamin K, and this disorder must not be confused with the haemorrhagic disease, or the therapeutic issue will be clouded. Prompt injection of whole blood and, in severe cases, even intravenous transfusion of matched blood remain the treatment of choice for icterus gravis. When it appears in successive babies of a family it can possibly be prevented by liver therapy-a suggestion made nearly ten years ago by Bernheim-Karrer\"8 in Zurich and not sufficiently appreciated in this country. Pehu\"9 of Lyons confirmed this three years ago and recommends 100 grammes of calves' liver a day or its equivalent as a potent extract, especially during the last twelve weeks of pregnancy for any mother who has lost a previous infant or -infants with serious jaundice. It might also be wise to give such a mother vitamin K analogue just before delivery and be prepared to give the baby an injection of blood if jaundice appears. These points are mentioned because there is a danger of over-enthusiasm for a new therapeutic agent. Intracranial haemorrhage in the newborn is most likely to yield to what McNeil12 has recently called a \" perfecting of the obstetric art,\" and vitaminK therapy alone can only partially solve the problemto what extent remains to be seen.",
+        "paperId": "8be08d0f974d73c4f50e7912e4195d628b9f324c"
+    },
+    {
+        "title": "Safeguarding Crowdsourcing Surveys from ChatGPT with Prompt Injection",
+        "firstAuthor": "Chaofan Wang",
+        "url": "http://arxiv.org/pdf/2306.08833",
+        "dateSubmitted": "2023-06-15",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "ChatGPT and other large language models (LLMs) have proven useful in crowdsourcing tasks, where they can effectively annotate machine learning training data. However, this means that they also have the potential for misuse, specifically to automatically answer surveys. LLMs can potentially circumvent quality assurance measures, thereby threatening the integrity of methodologies that rely on crowdsourcing surveys. In this paper, we propose a mechanism to detect LLM-generated responses to surveys. The mechanism uses\"prompt injection\", such as directions that can mislead LLMs into giving predictable responses. We evaluate our technique against a range of question scenarios, types, and positions, and find that it can reliably detect LLM-generated responses with more than 93% effectiveness. We also provide an open-source software to help survey designers use our technique to detect LLM responses. Our work is a step in ensuring that survey methodologies remain rigorous vis-a-vis LLMs.",
+        "paperId": "8c035150f883007b5af9e5bb753b78d9c0b75a55"
+    },
+    {
+        "title": "More than you've asked for: A Comprehensive Analysis of Novel Prompt Injection Threats to Application-Integrated Large Language Models",
+        "firstAuthor": "Kai Greshake",
+        "url": "http://arxiv.org/pdf/2302.12173",
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "We are currently witnessing dramatic advances in the capabilities of Large Language Models (LLMs). They are already being adopted in practice and integrated into many systems, including integrated development environments (IDEs) and search engines. The functionalities of current LLMs can be modulated via natural language prompts, while their exact internal functionality remains implicit and unassessable. This property, which makes them adaptable to even unseen tasks, might also make them susceptible to targeted adversarial prompting . Recently, several ways to misalign LLMs using Prompt Injection (PI) attacks have been introduced. In such attacks, an adversary can prompt the LLM to produce malicious content or override the original instructions and the employed \ufb01ltering schemes. Recent work showed that these attacks are hard to mitigate, as state-of-the-art LLMs are instruction-following . So far, these attacks assumed that the adversary is directly prompting the LLM. In this work, we show that augmenting LLMs with retrieval and API calling capabilities (so-called Application-Integrated LLMs ) induces a whole new set of attack vectors. These LLMs might process poisoned content retrieved from the Web that contains malicious prompts pre-injected and selected by adversaries. We demonstrate that an attacker can indirectly perform such PI attacks. Based on this key insight, we systematically analyze the resulting threat landscape of Application-Integrated LLMs and discuss a variety of new attack vectors. To demonstrate the practical viabil-ity of our attacks, we implemented speci\ufb01c demonstrations",
+        "paperId": "8fdd34153d1035d09dd4a6efa9cb0c91d23d0045"
+    },
+    {
+        "title": "Demystifying RCE Vulnerabilities in LLM-Integrated Apps",
+        "firstAuthor": "Tong Liu",
+        "url": "https://arxiv.org/pdf/2309.02926",
+        "dateSubmitted": "2023-09-06",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "In recent years, Large Language Models (LLMs) have demonstrated remarkable potential across various downstream tasks. LLM-integrated frameworks, which serve as the essential infrastructure, have given rise to many LLM-integrated web apps. However, some of these frameworks suffer from Remote Code Execution (RCE) vulnerabilities, allowing attackers to execute arbitrary code on apps' servers remotely via prompt injections. Despite the severity of these vulnerabilities, no existing work has been conducted for a systematic investigation of them. This leaves a great challenge on how to detect vulnerabilities in frameworks as well as LLM-integrated apps in real-world scenarios. To fill this gap, we present two novel strategies, including 1) a static analysis-based tool called LLMSmith to scan the source code of the framework to detect potential RCE vulnerabilities and 2) a prompt-based automated testing approach to verify the vulnerability in LLM-integrated web apps. We discovered 13 vulnerabilities in 6 frameworks, including 12 RCE vulnerabilities and 1 arbitrary file read/write vulnerability. 11 of them are confirmed by the framework developers, resulting in the assignment of 7 CVE IDs. After testing 51 apps, we found vulnerabilities in 17 apps, 16 of which are vulnerable to RCE and 1 to SQL injection. We responsibly reported all 17 issues to the corresponding developers and received acknowledgments. Furthermore, we amplify the attack impact beyond achieving RCE by allowing attackers to exploit other app users (e.g. app responses hijacking, user API key leakage) without direct interaction between the attacker and the victim. Lastly, we propose some mitigating strategies for improving the security awareness of both framework and app developers, helping them to mitigate these risks effectively.",
+        "paperId": "9be0dea0d6b892a2162490fb02712efaf10c0c87"
+    },
+    {
+        "title": "[Balanced anesthesia using the new Russian analgesic fenaridina in cardiovascular surgery and its effect on hemodynamics and respiration].",
+        "firstAuthor": "A. Buniatian",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "A new analgesic fenaridine which was used as a component of balanced anesthesia in 160 operations of aortocoronary bypass has been studied. It has been shown that fenaridine is a potent analgesic, exceeding fentanyl in the duration of action and in its analgetic effect. Fenaridine has a pronounced sedative effect and like other analgesics causes a dose-dependent depression of respiration. The drug has a vasodilating activity, causing both venous and arterial dilatation. This leads to a decrease in CVP by 25-30%, on the one hand, and to a drop in BP by 20%, on the other hand. Fenaridine decreases Vmax and dP/dt by 18 and 20%, respectively, with a parallel decline in HR by 13% from the baseline. A marked vasodilating effect and potentiation of the action of diazepam and other benzodiazepines in prompt injection of both drugs or when the maximum dose of fenaridine is used may lead to the onset of hypotension, and thus the drug should be used with care in critical patients with hypovolemia. The use of lower fenaridine doses (not exceeding 0.001 mg/kg) and slow injection (up to 11-13 min), as well as its combination with ketamine at a dose of 1.5 mg/kg makes it possible to avoid these unfavourable adverse events and to ensure smooth induction even in critically ill patients.",
+        "paperId": "a0ae9fe7dc178587c8ccbe7f7293e9de68d3351c"
+    },
+    {
+        "title": "Epinephrine doses delivered from auto-injectors stored at excessively high temperatures",
+        "firstAuthor": "Ousama Rachid",
+        "url": null,
+        "dateSubmitted": "2016-01-02",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Abstract Context: Prompt injection of epinephrine (adrenaline) from epinephrine auto-injectors (EAIs) is the primary treatment for anaphylaxis in out-of-hospital settings. Storage of EAIs at room temperature (25\u2009\u00b0C) is advised; however, storage at excessively high temperatures sometimes occurs. To our knowledge, there are no previous publications on the doses of epinephrine ejected from EAIs after storage at such temperatures. Objective: We examined the epinephrine doses delivered from activated EAIs stored constantly or cyclically at 70\u2009\u00b0C. Methods: Twenty-five in-date EAIs were stored constantly or cyclically at 70\u2009\u00b0C (excessive heat) or 25\u2009\u00b0C (controls) for 5\u2009d or 10\u2009d. EAIs were activated and the epinephrine doses in the ejected solutions were measured using HPLC-UV. The enantiomeric purity of epinephrine was also measured by HPLC-UV. Results: Control EAIs ejected a volume of 0.300\u2009\u00b1\u20090.006\u2009mL containing 103.7\u2009\u00b1\u20093.3% of labeled dose (LD). After 5\u2009d or 10\u2009d of constant storage at 70\u2009\u00b0C and activation at 70\u2009\u00b0C, EAIs ejected a volume of 0.367\u2009\u00b1\u20090.008\u2009mL containing 96.8\u2009\u00b1\u20093.8% LD and 0.373\u2009\u00b1\u20090.007\u2009mL containing 77.7\u2009\u00b1\u20093.3% LD, respectively. After 5\u2009d of cyclic storage at 70\u2009\u00b0C and cooling to 25\u2009\u00b0C before activation, EAIs ejected a volume of 0.311\u2009\u00b1\u20090.008\u2009mL containing 87.2\u2009\u00b1\u20091.9% LD. Under the experimental conditions of this study, the resultant chromatographic peaks of epinephrine solutions from all EAIs represented only the pure l-enantiomer of epinephrine. Conclusion: EAIs should be stored under recommended conditions of the manufacturer. EAIs stored at excessively high temperatures cannot be used to treat humans while still hot, and when cooled, cannot be relied on to deliver the labeled epinephrine dose in anaphylaxis.",
+        "paperId": "a807284a2eada9fb64182841348cd5fc8da0dd5f"
+    },
+    {
+        "title": "Hydrogen-rich supernovae beyond the neutrino-driven core-collapse paradigm",
+        "firstAuthor": "G. Terreran",
+        "url": "https://eprints.soton.ac.uk/412815/1/OGLE_73_10.pdf",
+        "dateSubmitted": "2017-09-18",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": null,
+        "paperId": "b23bdfc775f8e915960c8850cd269b5142615cfd"
+    },
+    {
+        "title": "Pharmacologic treatment of anaphylaxis: can the evidence base be strengthened?",
+        "firstAuthor": "F. Simons",
+        "url": null,
+        "dateSubmitted": "2010-08-01",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Purpose of reviewTo evaluate the evidence base for the pharmacologic treatment of anaphylaxis. Recent findingsIn this review, we focus on four classes of medications (the alpha/beta-agonist epinephrine (adrenaline), H1-antihistamines, H2-antihistamines, and glucocorticoids) that are used in healthcare settings for the initial treatment of anaphylaxis. Epinephrine and many H1-antihistamines and glucocorticoids were introduced before the era of randomized controlled trials and before the era of evidence-based medicine. In anaphylaxis, no randomized controlled trials that are free from methodological problems and meet current standards have been performed with these medications, or with H2-antihistamines. The evidence base for epinephrine injection is stronger than the evidence base for use of other medications in anaphylaxis. Guidelines unanimously recommend prompt injection of epinephrine as the life-saving first-line medication in anaphylaxis; however, they differ in their recommendations for H1-antihistamines, H2-antihistamines, and glucocorticoids. Epinephrine is the only medication that is universally available for anaphylaxis treatment in healthcare settings worldwide. Paradoxically, it is underused in anaphylaxis treatment. SummaryFor ethical reasons, there should never be a placebo-controlled trial of epinephrine in anaphylaxis. We discuss why the possibility of conducting randomized placebo-controlled trials with H1-antihistamines, H2-antihistamines, and particularly with glucocorticoids in anaphylaxis should be considered in order to improve the evidence base for treatment and guide clinical decision-making. We also describe the precautions that will be needed if randomized controlled trials are conducted in anaphylaxis.",
+        "paperId": "b34e00a2c9220ca20ae21d79163b32cec8553755"
+    },
+    {
+        "title": "Impact of immediate and delayed myocardial scintigraphy on therapeutic decisions in suspected acute myocardial infarction.",
+        "firstAuthor": "E. Kj\u00f8ller",
+        "url": null,
+        "dateSubmitted": "1995-07-01",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Early myocardial scintigraphic imaging has become technically feasible in patients admitted to hospital with suspected acute myocardial infarction. After prompt injection of 99mTc-sestamibi, subsequent scintigraphic imaging of perfused myocardium can be performed. During a 5-month period, 237 patients were admitted to the coronary care unit of a district hospital on suspicion of acute ischaemic syndrome, and injection of 99mTc-sestamibi for the performance of myocardial scintigraphy was carried out in 134 patients, on average 2 h after onset of symptoms. The investigation was repeated in 126 patients, on average 18 h after the injection. Three planar views were taken in the coronary care unit with a mobile gamma camera. The prevalence of acute myocardial infarction was 53%. The predictive value at the first scintigraphic imaging for a positive or negative test for myocardial infarction 54% and 56%, respectively. Even exclusion of patients with a previous infarction did not increase the diagnostic validity. The predictive value of a negative test, 77%, at the second scintigraphy was still insufficient to make immediate therapeutic decisions. Myocardial scintigraphy performed early, on suspicion of acute myocardial infarction, cannot therefore be used routinely as a diagnostic test prior to intervention in unselected patients because some 90% of this patient group have myocardial perfusion defects.",
+        "paperId": "cff7fcd7b10b8a8d6980ff4f8ec04f1e7cbbf554"
+    },
+    {
+        "title": "[Studies on the absorption kinetics of subcutaneously administered insulin].",
+        "firstAuthor": "K. Misawa",
+        "url": null,
+        "dateSubmitted": "1989-11-01",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "This study was designed to evaluate, using compartmental model analysis, the effects of jet injection, changes in injected dosage, and mixture of short- and intermediate-acting insulin preparations on the absorption kinetics of human insulin (HI) mainly in rabbits. The following results were obtained. (1) It was found that a split-pool model was adequate for the evaluation of the absorption kinetics of insulin. (2) Jet injection resulted in more rapid absorption of insulin than needle injection. Since parameter K12 (inter-pool rate constant) of jet injection was three times as large as that of needle injection, the accelerated absorption by jet injector could result from the rapid movement of insulin from the injection site to the absorption site. (3) A negative correlation between insulin dosage and Kd (degradation rate constant) was observed, suggesting that the process of subcutaneous absorption of insulin includes a nonlinear component. (4) The prompt injection of Actrapid HI mixed with Monotard HI in a single syringe caused a delayed absorption of Actrapid HI. In contrast, there was no prolonged absorption after the injection of regular HI mixed with NPH-HI in a single syringe. There was a significant positive correlation between the percent change of K12 (in separate injection and mixed injection) in vivo and the recovery rate of short-acting insulin when mixed with intermediate-acting insulin in vitro. In clinical studies of diabetic subjects, higher serum free insulin levels before noon and higher K12 values were observed after the mixed injection of regular HI and NPH-HI, compared with that of Actrapid HI and Monotard HI. These results suggest that the application of compartmental model analysis is useful to studying the absorption kinetics of subcutaneously injected insulin.",
+        "paperId": "d7d948bc2105043558772f138e67b08e56b17516"
+    },
+    {
+        "title": "Prompt Injection attack against LLM-integrated Applications",
+        "firstAuthor": "Yi Liu",
+        "url": "http://arxiv.org/pdf/2306.05499",
+        "dateSubmitted": "2023-06-08",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Large Language Models (LLMs), renowned for their superior proficiency in language comprehension and generation, stimulate a vibrant ecosystem of applications around them. However, their extensive assimilation into various services introduces significant security risks. This study deconstructs the complexities and implications of prompt injection attacks on actual LLM-integrated applications. Initially, we conduct an exploratory analysis on ten commercial applications, highlighting the constraints of current attack strategies in practice. Prompted by these limitations, we subsequently formulate HouYi, a novel black-box prompt injection attack technique, which draws inspiration from traditional web injection attacks. HouYi is compartmentalized into three crucial elements: a seamlessly-incorporated pre-constructed prompt, an injection prompt inducing context partition, and a malicious payload designed to fulfill the attack objectives. Leveraging HouYi, we unveil previously unknown and severe attack outcomes, such as unrestricted arbitrary LLM usage and uncomplicated application prompt theft. We deploy HouYi on 36 actual LLM-integrated applications and discern 31 applications susceptible to prompt injection. 10 vendors have validated our discoveries, including Notion, which has the potential to impact millions of users. Our investigation illuminates both the possible risks of prompt injection attacks and the possible tactics for mitigation.",
+        "paperId": "db4cf9f6a653d5c15973e836c800ea47743251ae"
+    },
+    {
+        "title": "Tensor Trust: Interpretable Prompt Injection Attacks from an Online Game",
+        "firstAuthor": "S. Toyer",
+        "url": null,
+        "dateSubmitted": "2023-11-02",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "While Large Language Models (LLMs) are increasingly being used in real-world applications, they remain vulnerable to prompt injection attacks: malicious third party prompts that subvert the intent of the system designer. To help researchers study this problem, we present a dataset of over 126,000 prompt injection attacks and 46,000 prompt-based\"defenses\"against prompt injection, all created by players of an online game called Tensor Trust. To the best of our knowledge, this is currently the largest dataset of human-generated adversarial examples for instruction-following LLMs. The attacks in our dataset have a lot of easily interpretable stucture, and shed light on the weaknesses of LLMs. We also use the dataset to create a benchmark for resistance to two types of prompt injection, which we refer to as prompt extraction and prompt hijacking. Our benchmark results show that many models are vulnerable to the attack strategies in the Tensor Trust dataset. Furthermore, we show that some attack strategies from the dataset generalize to deployed LLM-based applications, even though they have a very different set of constraints to the game. We release all data and source code at https://tensortrust.ai/paper",
+        "paperId": "e25b4bdfc3f5a8293ea6cd687a0203e446594188"
+    },
+    {
+        "title": "Operation for Mastoid Disease",
+        "firstAuthor": "J. Gibb",
+        "url": "http://europepmc.org/articles/pmc2460841?pdf=render",
+        "dateSubmitted": "1935-07-20",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "SIR,-Mr. R. A. Grant is to be congratulated upon his case of recovery after prompt injection of adrenaline into the chamber of the ventricle (July 13th, p. 64). Whilst giving anaesthetics as a hospital resident about ten years ago I dealt with two cases in this way, the first unsuccessfully. In the second case, in order to make as certain as possible that the needle.had gone through the muscle, blood was withdrawn into the syringe before injection of the adrenaline. It may be, also, that the stimulus of the needle produces contraction of the cardiac muscle.-I am, etc.-, W.B. McKELVIE, AManchester, July 15th. MI.D., Ch.'M., F.R.C.S.E., D.L.O. **V In an annotation in the Journal of March 23rd (p. 593) we wrote: \" On these grounds there is something to be said for attempting to restart contractions by puncturing the right auricle, the chamber in which the contraction of the whole heart normally originates.\"",
+        "paperId": "eaf0c14c66124444276834602623c1b5d77cd0c4"
+    },
+    {
+        "title": "A Case of Accidental Injection of Epinephrine (Epipen)",
+        "firstAuthor": "E. Ak\u0131nc\u0131",
+        "url": null,
+        "dateSubmitted": "2011-09-01",
+        "keyWords": [
+            "prompt injection"
+        ],
+        "abstract": "Prompt injection of epinephrine is of fundamental importance in the treatment of systemic anaphylaxis (1). For the prehospital treatment of anaphylaxis, epinephrine autoinjectors in the form of Epipen\u00ae are commonly recommended, because they provide advantages of an easy-to-use, sterile, premeasured single dose delivery. Side effects may include increased heart rate and stronger or irregular heartbeat. We present a case which developed an atrial fibrillation with rapid ventricular response following accidental delivery of epinephrine through Epipen injection. A previously healthy 44 year old male patient admitted to the emergency department (ED) complaining of rapid heart beat. During the history taking, patient stated he accidentally injected his left thumb with epinephrine (Epipen\u00ae 0.3 ml 0.3 mg 1/1000), which was prescribed for one of his relatives, 15 minutes prior to the ED visit. Patient complained of headache, widespread numbness and rapid heart beat. On physical exam, patient was found to be fully alert and oriented, with blood pressure of 120/80 mmHg, pulse 147 bpm, temperature 36\u00b0C. His heart sounds were normal and other systemic exam revealed no abnormality. His initial EKG showed atrial fibrillation with rapid ventricular response at a rate of 145. 5 mg metoprolol was administered, which caused the cardiac rhythm to turn into normal sinus. Patient was observed for 12 hours during which time he had no other episode of tachycardia and his cardiac enyzme values turned out to be normal. Patient was dischared with instructions. Epinephrine auto-Injectors are used for the emergency treatment of severe allergic reactions, by the patients who are at increased risk for these reactions. Side effects may include increased heart rate, stronger or irregular heartbeat, sweating, difficulty breathing, dizziness, headache, nervousness, or anxiety (2). These side effects usually go away quickly, especially if patients rest. For patients experiencing high blood pressure, overactive thyroid, heart disease, these side effects may present more severe or last longer. Other side effects of accidental injection of epinephrine severe pain on the injection side even due to severe local vasoconstriction (3). Our patient did not experience any of the complications stated here, but instead he experienced cardiac side effects. The atrial fibrillation with rapid ventricular response turned to normal sinus rhythym following the administration of single dose of beta blocker. As a result, emergency physicians who are concerned about the proper use of epinephrine autoinjectors should receive adequate instruction on their use and potential side effects.",
+        "paperId": "fa309e5af20a473fead3c2d009c207c9390560f8"
+    }
+]

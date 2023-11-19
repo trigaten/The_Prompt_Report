@@ -1,0 +1,893 @@
+[
+    {
+        "title": "Comparing Humans, GPT-4, and GPT-4V On Abstraction and Reasoning Tasks",
+        "firstAuthor": "Melanie Mitchell",
+        "url": null,
+        "dateSubmitted": "2023-11-14",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "We explore the abstract reasoning abilities of text-only and multimodal versions of GPT-4, using the ConceptARC benchmark [10], which is designed to evaluate robust understanding and reasoning with core-knowledge concepts. We extend the work of Moskvichev et al. [10] by evaluating GPT-4 on more detailed, one-shot prompting (rather than simple, zero-shot prompts) with text versions of ConceptARC tasks, and by evaluating GPT-4V, the multimodal version of GPT-4, on zero- and one-shot prompts using image versions of the simplest tasks. Our experimental results support the conclusion that neither version of GPT-4 has developed robust abstraction abilities at humanlike levels.",
+        "paperId": "024646623aa733df2bb752aa3bb3e76d691cab11"
+    },
+    {
+        "title": "Interactive and Visual Prompt Engineering for Ad-hoc Task Adaptation with Large Language Models",
+        "firstAuthor": "Hendrik Strobelt",
+        "url": "https://arxiv.org/pdf/2208.07852",
+        "dateSubmitted": "2022-08-16",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "State-of-the-art neural language models can now be used to solve ad-hoc language tasks through zero-shot prompting without the need for supervised training. This approach has gained popularity in recent years, and researchers have demonstrated prompts that achieve strong accuracy on specific NLP tasks. However, finding a prompt for new tasks requires experimentation. Different prompt templates with different wording choices lead to significant accuracy differences. PromptIDE allows users to experiment with prompt variations, visualize prompt performance, and iteratively optimize prompts. We developed a workflow that allows users to first focus on model feedback using small data before moving on to a large data regime that allows empirical grounding of promising prompts using quantitative measures of the task. The tool then allows easy deployment of the newly created ad-hoc models. We demonstrate the utility of PromptIDE (demo: http://prompt.vizhub.ai) and our workflow using several real-world use cases.",
+        "paperId": "0392d58335ce674a70f5e58ac8c438de296a0e6a"
+    },
+    {
+        "title": "Query-Dependent Prompt Evaluation and Optimization with Offline Inverse RL",
+        "firstAuthor": "Hao Sun",
+        "url": "https://arxiv.org/pdf/2309.06553",
+        "dateSubmitted": "2023-09-13",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "In this study, we aim to enhance the arithmetic reasoning ability of Large Language Models (LLMs) through zero-shot prompt optimization. We identify a previously overlooked objective of query dependency in such optimization and elucidate two ensuing challenges that impede the successful and economical design of prompt optimization techniques. One primary issue is the absence of an effective method to evaluate prompts during inference when the golden answer is unavailable. Concurrently, learning via interactions with the LLMs to navigate the expansive natural language prompting space proves to be resource-intensive. To address this, we introduce Prompt-OIRL, which harnesses offline inverse reinforcement learning to draw insights from offline prompting demonstration data. Such data exists as by-products when diverse prompts are benchmarked on open-accessible datasets. With Prompt-OIRL, the query-dependent prompt optimization objective is achieved by first learning an offline reward model. This model can evaluate any query-prompt pairs without accessing LLMs. Subsequently, a best-of-N strategy is deployed to recommend the optimal prompt. Our experimental evaluations across various LLM scales and arithmetic reasoning datasets underscore both the efficacy and economic viability of the proposed approach.",
+        "paperId": "0ad677b4172e5aef8b18bc6832145d1a03e11da4"
+    },
+    {
+        "title": "Comparative Analysis of GPT-4 and Human Graders in Evaluating Human Tutors Giving Praise to Students",
+        "firstAuthor": "Dollaya Hirunyasiri",
+        "url": "https://arxiv.org/pdf/2307.02018",
+        "dateSubmitted": "2023-07-05",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Research suggests that providing specific and timely feedback to human tutors enhances their performance. However, it presents challenges due to the time-consuming nature of assessing tutor performance by human evaluators. Large language models, such as the AI-chatbot ChatGPT, hold potential for offering constructive feedback to tutors in practical settings. Nevertheless, the accuracy of AI-generated feedback remains uncertain, with scant research investigating the ability of models like ChatGPT to deliver effective feedback. In this work-in-progress, we evaluate 30 dialogues generated by GPT-4 in a tutor-student setting. We use two different prompting approaches, the zero-shot chain of thought and the few-shot chain of thought, to identify specific components of effective praise based on five criteria. These approaches are then compared to the results of human graders for accuracy. Our goal is to assess the extent to which GPT-4 can accurately identify each praise criterion. We found that both zero-shot and few-shot chain of thought approaches yield comparable results. GPT-4 performs moderately well in identifying instances when the tutor offers specific and immediate praise. However, GPT-4 underperforms in identifying the tutor's ability to deliver sincere praise, particularly in the zero-shot prompting scenario where examples of sincere tutor praise statements were not provided. Future work will focus on enhancing prompt engineering, developing a more general tutoring rubric, and evaluating our method using real-life tutoring dialogues.",
+        "paperId": "0b94b999fdd9488e1a0914d37f8fb3ea7e9ea0fd"
+    },
+    {
+        "title": "Personalized Jargon Identification for Enhanced Interdisciplinary Communication",
+        "firstAuthor": "Yue Guo",
+        "url": null,
+        "dateSubmitted": "2023-11-16",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Scientific jargon can impede researchers when they read materials from other domains. Current methods of jargon identification mainly use corpus-level familiarity indicators (e.g., Simple Wikipedia represents plain language). However, researchers' familiarity of a term can vary greatly based on their own background. We collect a dataset of over 10K term familiarity annotations from 11 computer science researchers for terms drawn from 100 paper abstracts. Analysis of this data reveals that jargon familiarity and information needs vary widely across annotators, even within the same sub-domain (e.g., NLP). We investigate features representing individual, sub-domain, and domain knowledge to predict individual jargon familiarity. We compare supervised and prompt-based approaches, finding that prompt-based methods including personal publications yields the highest accuracy, though zero-shot prompting provides a strong baseline. This research offers insight into features and methods to integrate personal data into scientific jargon identification.",
+        "paperId": "0be20eb22ff94fea5f20c5db5d9be28a425b1b1e"
+    },
+    {
+        "title": "Can Instruction Fine-Tuned Language Models Identify Social Bias through Prompting?",
+        "firstAuthor": "O. Dige",
+        "url": "https://arxiv.org/pdf/2307.10472",
+        "dateSubmitted": "2023-07-19",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "As the breadth and depth of language model applications continue to expand rapidly, it is increasingly important to build efficient frameworks for measuring and mitigating the learned or inherited social biases of these models. In this paper, we present our work on evaluating instruction fine-tuned language models' ability to identify bias through zero-shot prompting, including Chain-of-Thought (CoT) prompts. Across LLaMA and its two instruction fine-tuned versions, Alpaca 7B performs best on the bias identification task with an accuracy of 56.7%. We also demonstrate that scaling up LLM size and data diversity could lead to further performance gain. This is a work-in-progress presenting the first component of our bias mitigation framework. We will keep updating this work as we get more results.",
+        "paperId": "0cfd72e3d81f35bccc1e67f5992e112a601ba2ba"
+    },
+    {
+        "title": "Evaluation of GPT-3 for Anti-Cancer Drug Sensitivity Prediction",
+        "firstAuthor": "Shaika Chowdhury",
+        "url": "https://arxiv.org/pdf/2309.10016",
+        "dateSubmitted": "2023-09-18",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "In this study, we investigated the potential of GPT-3 for the anti-cancer drug sensitivity prediction task using structured pharmacogenomics data across five tissue types and evaluated its performance with zero-shot prompting and fine-tuning paradigms. The drug's smile representation and cell line's genomic mutation features were predictive of the drug response. The results from this study have the potential to pave the way for designing more efficient treatment protocols in precision oncology.",
+        "paperId": "0d6144103af566a79a8722d9b1bfac734dfc55ca"
+    },
+    {
+        "title": "Excitements and Concerns in the Post-ChatGPT Era: Deciphering Public Perception of AI through Social Media Analysis",
+        "firstAuthor": "Weihong Qi",
+        "url": "https://arxiv.org/pdf/2307.05809",
+        "dateSubmitted": "2023-07-11",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "As AI systems become increasingly prevalent in various aspects of daily life, gaining a comprehensive understanding of public perception towards these AI systems has become increasingly essential for several reasons such as ethical considerations, user experience, fear, disinformation, regulation, collaboration, and co-creation. In this study, we investigate how mass social media users perceive the recent rise of AI frameworks such as ChatGPT. We collect a total of 33,912 comments in 388 unique subreddits spanning from November 30, 2022 to June 8, 2023 using a list of AI-related keywords. We employ BERTopic to uncover the major themes regarding AI on Reddit. Additionally, we seek to gain deeper insights into public opinion by examining the distribution of topics across different subreddits. We observe that technology-related subreddits predominantly focus on the technical aspects of AI models. On the other hand, non-tech subreddits show greater interest in social issues such as concerns about job replacement or furlough. We leverage zero-shot prompting to analyze the sentiment and perception of AI among individual users. Through a comprehensive sentiment and emotion analysis, we discover that tech-centric communities exhibit greater polarization compared to non-tech communities when discussing AI topics. This research contributes to our broader understanding of public opinion surrounding artificial intelligence.",
+        "paperId": "0edb53377d6b95b969e055698b1b34e647e53916"
+    },
+    {
+        "title": "Generating Variable Explanations via Zero-shot Prompt Learning",
+        "firstAuthor": "Chong Wang",
+        "url": null,
+        "dateSubmitted": "2023-09-11",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "As basic elements in program, variables convey essential information that is critical for program comprehension and maintenance. However, understanding the meanings of variables in program is not always easy for developers, since poor-quality variable names are prevalent while such variable are less informative for program comprehension. Therefore, in this paper, we target at generating concise natural language explanations for variables to facilitate program comprehension. In particular, there are two challenges in variable explanation generation, including the lack of training data and the association with complex code contexts around the variable. To address these issues, we propose a novel approach ZeroVar,which leverages code pre-trained models and zero-shot prompt learning to generate explanations for the variable based on its code context. ZeroVarcontains two stages: (i) a pre-training stage that continually pre-trains a base model (i.e., CodeT5) to recover the randomly-masked parameter descriptions in method docstrings; and (ii) a zero-shot prompt learning stage that leverages the pre-trained model to generate explanations for a given variable via the prompt constructed with the variable and its belonging method context. We then extensively evaluate the quality and usefulness of the variable explanations generated by ZeroVar.We construct an evaluation dataset of 773 variables and their reference explanations. Our results show that ZeroVarcan generate higher-quality explanations than baselines, not only on automated metrics such as BLEU and ROUGE, but also on human metrics such as correctness, completeness, and conciseness. Moreover, we further assess the usefulness of ZeroVAR-generated explanations on two downstream tasks related to variable naming quality, i.e., abbreviation expansion and spelling correction. For abbreviation expansion, the generated variable explanations can help improve the present rate (+13.1%), precision (+3.6%), and recall (+10.0%) of the state-of-the-art abbreviation explanation approach. For spelling correction, by using the generated explanations we can achieve higher hit@1 (+162.9(%) and hit@3 (+49.6%) than the recent variable representation learning approach.",
+        "paperId": "1674d41575fd497808338dfb1c3f94c430fa29a2"
+    },
+    {
+        "title": "Matching Exemplar as Next Sentence Prediction (MeNSP): Zero-shot Prompt Learning for Automatic Scoring in Science Education",
+        "firstAuthor": "Xuansheng Wu",
+        "url": "http://arxiv.org/pdf/2301.08771",
+        "dateSubmitted": "2023-01-20",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Developing models to automatically score students' written responses to science problems is critical for science education. However, collecting and labeling sufficient student responses for training models is time and cost-consuming. Recent studies suggest that pre-trained language models can be adapted to downstream tasks without fine-tuning with prompts. However, no research has employed such a prompt approach in science education. As student responses are presented with natural language, aligning the scoring procedure as the next sentence prediction task using prompts can skip the costly fine-tuning stage. In this study, we developed a zero-shot approach to automatically score student responses via Matching Exemplars as Next Sentence Prediction (MeNSP). This approach employs no training samples. We first apply MeNSP in scoring three assessment tasks of scientific argumentation and found machine-human scoring agreements, Cohen's Kappa ranges from 0.30 to 0.57, and F1 score ranges from 0.54 to 0.81. To improve the performance, we extend our research to the few-shots setting, either randomly selecting labeled student responses or manually constructing responses to fine-tune the models. We find that one task's performance is improved with more samples, Cohen's Kappa from 0.30 to 0.38, and F1 score from 0.54 to 0.59; for the two others, scoring performance is not improved. We also find that randomly selected few-shots perform better than the human expert-crafted approach. This study suggests that MeNSP can yield referable automatic scoring for student responses while significantly reducing the cost of model training. This method can benefit low-stakes classroom assessment practices in science education. Future research should further explore the applicability of the MeNSP in different types of assessment tasks in science education and improve the model performance.",
+        "paperId": "16d97e64ff48b15d11d392a8310fe62fa55d857f"
+    },
+    {
+        "title": "The Turing Quest: Can Transformers Make Good NPCs?",
+        "firstAuthor": "Qi Chen Gao",
+        "url": "https://aclanthology.org/2023.acl-srw.17.pdf",
+        "dateSubmitted": null,
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "We explored the generation of NPC dialogue using a zero-shot prompting method as well as the ability of LMs to self-evaluate and score dialogue with few-shot learning.",
+        "paperId": "1852cb7abf74cde720f15f57d70e2b261b46fec2"
+    },
+    {
+        "title": "ChatGPT Evaluation on Sentence Level Relations: A Focus on Temporal, Causal, and Discourse Relations",
+        "firstAuthor": "Chunkit Chan",
+        "url": "http://arxiv.org/pdf/2304.14827",
+        "dateSubmitted": "2023-04-28",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "This paper aims to quantitatively evaluate the performance of ChatGPT, an interactive large language model, on inter-sentential relations such as temporal relations, causal relations, and discourse relations. Given ChatGPT's promising performance across various tasks, we conduct extensive evaluations on the whole test sets of 13 datasets, including temporal and causal relations, PDTB2.0-based and dialogue-based discourse relations, and downstream applications on discourse understanding. To achieve reliable results, we adopt three tailored prompt templates for each task, including the zero-shot prompt template, zero-shot prompt engineering (PE) template, and in-context learning (ICL) prompt template, to establish the initial baseline scores for all popular sentence-pair relation classification tasks for the first time. We find that ChatGPT exhibits strong performance in detecting and reasoning about causal relations, while it may not be proficient in identifying the temporal order between two events. It can recognize most discourse relations with existing explicit discourse connectives, but the implicit discourse relation still remains a challenging task. Meanwhile, ChatGPT performs poorly in the dialogue discourse parsing task that requires structural understanding in a dialogue before being aware of the discourse relation.",
+        "paperId": "186e96fe036927182ec963b63f9dd7f8ff650158"
+    },
+    {
+        "title": "A fine-grained comparison of pragmatic language understanding in humans and language models",
+        "firstAuthor": "Jennifer Hu",
+        "url": "http://arxiv.org/pdf/2212.06801",
+        "dateSubmitted": "2022-12-13",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Pragmatics and non-literal language understanding are essential to human communication, and present a long-standing challenge for artificial language models. We perform a fine-grained comparison of language models and humans on seven pragmatic phenomena, using zero-shot prompting on an expert-curated set of English materials. We ask whether models (1) select pragmatic interpretations of speaker utterances, (2) make similar error patterns as humans, and (3) use similar linguistic cues as humans to solve the tasks. We find that the largest models achieve high accuracy and match human error patterns: within incorrect responses, models favor literal interpretations over heuristic-based distractors. We also find preliminary evidence that models and humans are sensitive to similar linguistic cues. Our results suggest that pragmatic behaviors can emerge in models without explicitly constructed representations of mental states. However, models tend to struggle with phenomena relying on social expectation violations.",
+        "paperId": "1a2cf9da390f88e7dce03ad0c3aa48c242edf574"
+    },
+    {
+        "title": "Solving Challenging Math Word Problems Using GPT-4 Code Interpreter with Code-based Self-Verification",
+        "firstAuthor": "Aojun Zhou",
+        "url": "https://arxiv.org/pdf/2308.07921",
+        "dateSubmitted": "2023-08-15",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Recent progress in large language models (LLMs) like GPT-4 and PaLM-2 has brought significant advancements in addressing math reasoning problems. In particular, OpenAI's latest version of GPT-4, known as GPT-4 Code Interpreter, shows remarkable performance on challenging math datasets. In this paper, we explore the effect of code on enhancing LLMs' reasoning capability by introducing different constraints on the \\textit{Code Usage Frequency} of GPT-4 Code Interpreter. We found that its success can be largely attributed to its powerful skills in generating and executing code, evaluating the output of code execution, and rectifying its solution when receiving unreasonable outputs. Based on this insight, we propose a novel and effective prompting method, explicit \\uline{c}ode-based \\uline{s}elf-\\uline{v}erification~(CSV), to further boost the mathematical reasoning potential of GPT-4 Code Interpreter. This method employs a zero-shot prompt on GPT-4 Code Interpreter to encourage it to use code to self-verify its answers. In instances where the verification state registers as ``False'', the model shall automatically amend its solution, analogous to our approach of rectifying errors during a mathematics examination. Furthermore, we recognize that the states of the verification result indicate the confidence of a solution, which can improve the effectiveness of majority voting. With GPT-4 Code Interpreter and CSV, we achieve an impressive zero-shot accuracy on MATH dataset \\textbf{(53.9\\% $\\to$ 84.3\\%)}.",
+        "paperId": "1dbd58bd8768ba0dada2e7c84aa2fe0b9f418ebc"
+    },
+    {
+        "title": "Generating Training Data with Language Models: Towards Zero-Shot Language Understanding",
+        "firstAuthor": "Yu Meng",
+        "url": null,
+        "dateSubmitted": "2022-02-09",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Pretrained language models (PLMs) have demonstrated remarkable performance in various natural language processing tasks: Unidirectional PLMs (e.g., GPT) are well known for their superior text generation capabilities; bidirectional PLMs (e.g., BERT) have been the prominent choice for natural language understanding (NLU) tasks. While both types of models have achieved promising few-shot learning performance, their potential for zero-shot learning has been underexplored. In this paper, we present a simple approach that uses both types of PLMs for fully zero-shot learning of NLU tasks without requiring any task-specific data: A unidirectional PLM generates class-conditioned texts guided by prompts, which are used as the training data for fine-tuning a bidirectional PLM. With quality training data selected based on the generation probability and regularization techniques (label smoothing and temporal ensembling) applied to the fine-tuning stage for better generalization and stability, our approach demonstrates strong performance across seven classification tasks of the GLUE benchmark (e.g., 72.3/73.8 on MNLI-m/mm and 92.8 on SST-2), significantly outperforming zero-shot prompting methods and achieving even comparable results to strong few-shot approaches using 32 training samples per class.",
+        "paperId": "23c265ba884b92ecbd9d18641078d964697e4590"
+    },
+    {
+        "title": "Dissecting In-Context Learning of Translations in GPTs",
+        "firstAuthor": "Vikas Raunak",
+        "url": null,
+        "dateSubmitted": "2023-10-24",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Most of the recent work in leveraging Large Language Models (LLMs) such as GPT-3 for Machine Translation (MT) has focused on selecting the few-shot samples for prompting. In this work, we try to better understand the role of demonstration attributes for the in-context learning of translations through perturbations of high-quality, in-domain demonstrations. We find that asymmetric perturbation of the source-target mappings yield vastly different results. We show that the perturbation of the source side has surprisingly little impact, while target perturbation can drastically reduce translation quality, suggesting that it is the output text distribution that provides the most important learning signal during in-context learning of translations. We propose a method named Zero-Shot-Context to add this signal automatically in Zero-Shot prompting. We demonstrate that it improves upon the zero-shot translation performance of GPT-3, even making it competitive with few-shot prompted translations.",
+        "paperId": "281f8411654a8bbca3b15dd95fdba42e03d6d666"
+    },
+    {
+        "title": "Is Imitation All You Need? Generalized Decision-Making with Dual-Phase Training",
+        "firstAuthor": "Yao Wei",
+        "url": "https://arxiv.org/pdf/2307.07909",
+        "dateSubmitted": "2023-07-16",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "We introduce DualMind, a generalist agent designed to tackle various decision-making tasks that addresses challenges posed by current methods, such as overfitting behaviors and dependence on task-specific fine-tuning. DualMind uses a novel\"Dual-phase\"training strategy that emulates how humans learn to act in the world. The model first learns fundamental common knowledge through a self-supervised objective tailored for control tasks and then learns how to make decisions based on different contexts through imitating behaviors conditioned on given prompts. DualMind can handle tasks across domains, scenes, and embodiments using just a single set of model weights and can execute zero-shot prompting without requiring task-specific fine-tuning. We evaluate DualMind on MetaWorld and Habitat through extensive experiments and demonstrate its superior generalizability compared to previous techniques, outperforming other generalist agents by over 50$\\%$ and 70$\\%$ on Habitat and MetaWorld, respectively. On the 45 tasks in MetaWorld, DualMind achieves over 30 tasks at a 90$\\%$ success rate.",
+        "paperId": "283ab0486c77c9c9fccb060704fcdc559cae24ce"
+    },
+    {
+        "title": "Zero-Shot Prompting for Implicit Intent Prediction and Recommendation with Commonsense Reasoning",
+        "firstAuthor": "Hui-Chi Kuo",
+        "url": "http://arxiv.org/pdf/2210.05901",
+        "dateSubmitted": "2022-10-12",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Intelligent virtual assistants are currently designed to perform tasks or services explicitly mentioned by users, so multiple related domains or tasks need to be performed one by one through a long conversation with many explicit intents. Instead, human assistants are capable of reasoning (multiple) implicit intents based on user utterances via commonsense knowledge, reducing complex interactions and improving practicality. Therefore, this paper proposes a framework of multi-domain dialogue systems, which can automatically infer implicit intents based on user utterances and then perform zero-shot prompting using a large pre-trained language model to trigger suitable single task-oriented bots. The proposed framework is demonstrated effective to realize implicit intents and recommend associated bots in a zero-shot manner.",
+        "paperId": "2a4b6fdf4fd74429431a730c14d0087e00b2a4fa"
+    },
+    {
+        "title": "Toxicity Detection with Generative Prompt-based Inference",
+        "firstAuthor": "Yau-Shian Wang",
+        "url": "https://arxiv.org/pdf/2205.12390",
+        "dateSubmitted": "2022-05-24",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Due to the subtleness, implicity, and different possible interpretations perceived by different people, detecting undesirable content from text is a nuanced difficulty. It is a long-known risk that language models (LMs), once trained on corpus containing undesirable content, have the power to manifest biases and toxicity. However, recent studies imply that, as a remedy, LMs are also capable of identifying toxic content without additional fine-tuning. Prompt-methods have been shown to effectively harvest this surprising self-diagnosing capability. However, existing prompt-based methods usually specify an instruction to a language model in a discriminative way. In this work, we explore the generative variant of zero-shot prompt-based toxicity detection with comprehensive trials on prompt engineering. We evaluate on three datasets with toxicity labels annotated on social media posts. Our analysis highlights the strengths of our generative classification approach both quantitatively and qualitatively. Interesting aspects of self-diagnosis and its ethical implications are discussed.",
+        "paperId": "2afb07359e9c67499e1f373ac6f1520d3ea9c46a"
+    },
+    {
+        "title": "An automatically discovered chain-of-thought prompt generalizes to novel models and datasets",
+        "firstAuthor": "Konstantin Hebenstreit",
+        "url": "https://arxiv.org/pdf/2305.02897",
+        "dateSubmitted": "2023-05-04",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Emergent chain-of-thought (CoT) reasoning capabilities promise to improve performance and explainability of large language models (LLMs). However, uncertainties remain about how reasoning strategies formulated for previous model generations generalize to new model generations and different datasets. In this small-scale study, we compare different reasoning strategies induced by zero-shot prompting across six recently released LLMs (davinci-002, davinci-003, GPT-3.5-turbo, GPT-4, Flan-T5-xxl and Cohere command-xlarge) on a mixture of six question-answering datasets, including datasets from scientific and medical domains. Our findings demonstrate that while some variations in effectiveness occur, gains from CoT reasoning strategies remain robust across different models and datasets. GPT-4 has the most benefit from current state-of-the-art reasoning strategies and exhibits the best performance by applying a prompt previously discovered through automated discovery.",
+        "paperId": "313d3a911d82b054aa47df0ffd7e4c3b4bd5407f"
+    },
+    {
+        "title": "A Prefrontal Cortex-inspired Architecture for Planning in Large Language Models",
+        "firstAuthor": "Taylor Webb",
+        "url": "https://arxiv.org/pdf/2310.00194",
+        "dateSubmitted": "2023-09-30",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Large language models (LLMs) demonstrate impressive performance on a wide variety of tasks, but they often struggle with tasks that require multi-step reasoning or goal-directed planning. To address this, we take inspiration from the human brain, in which planning is accomplished via the recurrent interaction of specialized modules in the prefrontal cortex (PFC). These modules perform functions such as conflict monitoring, state prediction, state evaluation, task decomposition, and task coordination. We find that LLMs are sometimes capable of carrying out these functions in isolation, but struggle to autonomously coordinate them in the service of a goal. Therefore, we propose a black box architecture with multiple LLM-based (GPT-4) modules. The architecture improves planning through the interaction of specialized PFC-inspired modules that break down a larger problem into multiple brief automated calls to the LLM. We evaluate the combined architecture on two challenging planning tasks -- graph traversal and Tower of Hanoi -- finding that it yields significant improvements over standard LLM methods (e.g., zero-shot prompting or in-context learning). These results demonstrate the benefit of utilizing knowledge from cognitive neuroscience to improve planning in LLMs.",
+        "paperId": "31d8bdef7b81e107bf04f226d877fd5aa2f51d34"
+    },
+    {
+        "title": "BLOOM+1: Adding Language Support to BLOOM for Zero-Shot Prompting",
+        "firstAuthor": "Zheng-Xin Yong",
+        "url": "http://arxiv.org/pdf/2212.09535",
+        "dateSubmitted": "2022-12-19",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "The BLOOM model is a large publicly available multilingual language model, but its pretraining was limited to 46 languages. To extend the benefits of BLOOM to other languages without incurring prohibitively large costs, it is desirable to adapt BLOOM to new languages not seen during pretraining. In this work, we apply existing language adaptation strategies to BLOOM and benchmark its zero-shot prompting performance on eight new languages in a resource-constrained setting. We find language adaptation to be effective at improving zero-shot performance in new languages. Surprisingly, we find that adapter-based finetuning is more effective than continued pretraining for large models. In addition, we discover that prompting performance is not significantly affected by language specifics, such as the writing system. It is primarily determined by the size of the language adaptation data. We also add new languages to BLOOMZ, which is a multitask finetuned version of BLOOM capable of following task instructions zero-shot. We find including a new language in the multitask fine-tuning mixture to be the most effective method to teach BLOOMZ a new language. We conclude that with sufficient training data language adaptation can generalize well to diverse languages. Our code is available at https://github.com/bigscience-workshop/multilingual-modeling.",
+        "paperId": "34c2939d3147946b2ac218e7857e1bc4c8902679"
+    },
+    {
+        "title": "Searching for Needles in a Haystack: On the Role of Incidental Bilingualism in PaLM\u2019s Translation Capability",
+        "firstAuthor": "Eleftheria Briakou",
+        "url": "http://arxiv.org/pdf/2305.10266",
+        "dateSubmitted": "2023-05-17",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Large, multilingual language models exhibit surprisingly good zero- or few-shot machine translation capabilities, despite having never seen the intentionally-included translation examples provided to typical neural translation systems. We investigate the role of incidental bilingualism\u2014the unintentional consumption of bilingual signals, including translation examples\u2014in explaining the translation capabilities of large language models, taking the Pathways Language Model (PaLM) as a case study. We introduce a mixed-method approach to measure and understand incidental bilingualism at scale. We show that PaLM is exposed to over 30 million translation pairs across at least 44 languages. Furthermore, the amount of incidental bilingual content is highly correlated with the amount of monolingual in-language content for non-English languages. We relate incidental bilingual content to zero-shot prompts and show that it can be used to mine new prompts to improve PaLM\u2019s out-of-English zero-shot translation quality. Finally, in a series of small-scale ablations, we show that its presence has a substantial impact on translation capabilities, although this impact diminishes with model scale.",
+        "paperId": "3739242e1027c2d5e5f7f1cbe5f37072670badfc"
+    },
+    {
+        "title": "MathAttack: Attacking Large Language Models Towards Math Solving Ability",
+        "firstAuthor": "Zihao Zhou",
+        "url": "https://arxiv.org/pdf/2309.01686",
+        "dateSubmitted": "2023-09-04",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "With the boom of Large Language Models (LLMs), the research of solving Math Word Problem (MWP) has recently made great progress. However, there are few studies to examine the security of LLMs in math solving ability. Instead of attacking prompts in the use of LLMs, we propose a MathAttack model to attack MWP samples which are closer to the essence of security in solving math problems. Compared to traditional text adversarial attack, it is essential to preserve the mathematical logic of original MWPs during the attacking. To this end, we propose logical entity recognition to identify logical entries which are then frozen. Subsequently, the remaining text are attacked by adopting a word-level attacker. Furthermore, we propose a new dataset RobustMath to evaluate the robustness of LLMs in math solving ability. Extensive experiments on our RobustMath and two another math benchmark datasets GSM8K and MultiAirth show that MathAttack could effectively attack the math solving ability of LLMs. In the experiments, we observe that (1) Our adversarial samples from higher-accuracy LLMs are also effective for attacking LLMs with lower accuracy (e.g., transfer from larger to smaller-size LLMs, or from few-shot to zero-shot prompts); (2) Complex MWPs (such as more solving steps, longer text, more numbers) are more vulnerable to attack; (3) We can improve the robustness of LLMs by using our adversarial samples in few-shot prompts. Finally, we hope our practice and observation can serve as an important attempt towards enhancing the robustness of LLMs in math solving ability. We will release our code and dataset.",
+        "paperId": "3886f3bd2a0af9e75bf9fa5b7db4224969dbf346"
+    },
+    {
+        "title": "Transforming Sentiment Analysis in the Financial Domain with ChatGPT",
+        "firstAuthor": "G. Fatouros",
+        "url": "https://arxiv.org/pdf/2308.07935",
+        "dateSubmitted": "2023-08-13",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Financial sentiment analysis plays a crucial role in decoding market trends and guiding strategic trading decisions. Despite the deployment of advanced deep learning techniques and language models to refine sentiment analysis in finance, this study breaks new ground by investigating the potential of large language models, particularly ChatGPT 3.5, in financial sentiment analysis, with a strong emphasis on the foreign exchange market (forex). Employing a zero-shot prompting approach, we examine multiple ChatGPT prompts on a meticulously curated dataset of forex-related news headlines, measuring performance using metrics such as precision, recall, f1-score, and Mean Absolute Error (MAE) of the sentiment class. Additionally, we probe the correlation between predicted sentiment and market returns as an additional evaluation approach. ChatGPT, compared to FinBERT, a well-established sentiment analysis model for financial texts, exhibited approximately 35\\% enhanced performance in sentiment classification and a 36\\% higher correlation with market returns. By underlining the significance of prompt engineering, particularly in zero-shot contexts, this study spotlights ChatGPT's potential to substantially boost sentiment analysis in financial applications. By sharing the utilized dataset, our intention is to stimulate further research and advancements in the field of financial services.",
+        "paperId": "3c4f1244301577cffff9affc73690669725e7e08"
+    },
+    {
+        "title": "Large Language Models Are State-of-the-Art Evaluators of Translation Quality",
+        "firstAuthor": "Tom Kocmi",
+        "url": "http://arxiv.org/pdf/2302.14520",
+        "dateSubmitted": "2023-02-28",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "We describe GEMBA, a GPT-based metric for assessment of translation quality, which works both with a reference translation and without. In our evaluation, we focus on zero-shot prompting, comparing four prompt variants in two modes, based on the availability of the reference. We investigate seven versions of GPT models, including ChatGPT. We show that our method for translation quality assessment only works with GPT 3.5 and larger models. Comparing to results from WMT22\u2019s Metrics shared task, our method achieves state-of-the-art accuracy in both modes when compared to MQM-based human labels. Our results are valid on the system level for all three WMT22 Metrics shared task language pairs, namely English into German, English into Russian, and Chinese into English. This provides a first glimpse into the usefulness of pre-trained, generative large language models for quality assessment of translations. We publicly release all our code and prompt templates used for the experiments described in this work, as well as all corresponding scoring results, to allow for external validation and reproducibility.",
+        "paperId": "4161ad2d2495d8af1d62dc5e71882bde642cd1c1"
+    },
+    {
+        "title": "Generating Multiple Choice Questions from a Textbook: LLMs Match Human Performance on Most Metrics",
+        "firstAuthor": "Andrew M. Olney",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Multiple choice questions are traditionally expensive to produce. Recent advances in large language models (LLMs) have led to fine-tuned LLMs that generate questions competitive with human-authored questions. However, the relative capabilities of ChatGPT-family models have not yet been established for this task. We present a carefully-controlled human evaluation of three conditions: a fine-tuned, augmented version of Macaw, instruction-tuned Bing Chat with zero-shot prompting, and human-authored questions from a college science textbook. Our results indicate that on six of seven measures tested, both LLM\u2019s performance was not significantly different from human performance. Analysis of LLM errors further suggests that Macaw and Bing Chat have different failure modes for this task: Macaw tends to repeat answer options whereas Bing Chat tends to not include the specified answer in the answer options. For Macaw, removing error items from analysis results in performance on par with humans for all metrics; for Bing Chat, removing error items improves performance but does not reach human-level performance.",
+        "paperId": "436d9e6249f239652150453e72e8f4b5311ca61f"
+    },
+    {
+        "title": "Tool Documentation Enables Zero-Shot Tool-Usage with Large Language Models",
+        "firstAuthor": "Cheng-Yu Hsieh",
+        "url": "https://arxiv.org/pdf/2308.00675",
+        "dateSubmitted": "2023-08-01",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Today, large language models (LLMs) are taught to use new tools by providing a few demonstrations of the tool's usage. Unfortunately, demonstrations are hard to acquire, and can result in undesirable biased usage if the wrong demonstration is chosen. Even in the rare scenario that demonstrations are readily available, there is no principled selection protocol to determine how many and which ones to provide. As tasks grow more complex, the selection search grows combinatorially and invariably becomes intractable. Our work provides an alternative to demonstrations: tool documentation. We advocate the use of tool documentation, descriptions for the individual tool usage, over demonstrations. We substantiate our claim through three main empirical findings on 6 tasks across both vision and language modalities. First, on existing benchmarks, zero-shot prompts with only tool documentation are sufficient for eliciting proper tool usage, achieving performance on par with few-shot prompts. Second, on a newly collected realistic tool-use dataset with hundreds of available tool APIs, we show that tool documentation is significantly more valuable than demonstrations, with zero-shot documentation significantly outperforming few-shot without documentation. Third, we highlight the benefits of tool documentations by tackling image generation and video tracking using just-released unseen state-of-the-art models as tools. Finally, we highlight the possibility of using tool documentation to automatically enable new applications: by using nothing more than the documentation of GroundingDino, Stable Diffusion, XMem, and SAM, LLMs can re-invent the functionalities of the just-released Grounded-SAM and Track Anything models.",
+        "paperId": "446fb5dead075a1a08862662738f462e9a0e91c8"
+    },
+    {
+        "title": "Revisiting Large Language Models as Zero-shot Relation Extractors",
+        "firstAuthor": "Guozheng Li",
+        "url": "https://arxiv.org/pdf/2310.05028",
+        "dateSubmitted": "2023-10-08",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Relation extraction (RE) consistently involves a certain degree of labeled or unlabeled data even if under zero-shot setting. Recent studies have shown that large language models (LLMs) transfer well to new tasks out-of-the-box simply given a natural language prompt, which provides the possibility of extracting relations from text without any data and parameter tuning. This work focuses on the study of exploring LLMs, such as ChatGPT, as zero-shot relation extractors. On the one hand, we analyze the drawbacks of existing RE prompts and attempt to incorporate recent prompt techniques such as chain-of-thought (CoT) to improve zero-shot RE. We propose the summarize-and-ask (\\textsc{SumAsk}) prompting, a simple prompt recursively using LLMs to transform RE inputs to the effective question answering (QA) format. On the other hand, we conduct comprehensive experiments on various benchmarks and settings to investigate the capabilities of LLMs on zero-shot RE. Specifically, we have the following findings: (i) \\textsc{SumAsk} consistently and significantly improves LLMs performance on different model sizes, benchmarks and settings; (ii) Zero-shot prompting with ChatGPT achieves competitive or superior results compared with zero-shot and fully supervised methods; (iii) LLMs deliver promising performance in extracting overlapping relations; (iv) The performance varies greatly regarding different relations. Different from small language models, LLMs are effective in handling challenge none-of-the-above (NoTA) relation.",
+        "paperId": "497acdc02c50073e714838a8d4f16f7482d37e64"
+    },
+    {
+        "title": "Broken Neural Scaling Laws",
+        "firstAuthor": "Ethan Caballero",
+        "url": "https://arxiv.org/pdf/2210.14891",
+        "dateSubmitted": "2022-10-26",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "We present a smoothly broken power law functional form (that we refer to as a Broken Neural Scaling Law (BNSL)) that accurately models&extrapolates the scaling behaviors of deep neural networks (i.e. how the evaluation metric of interest varies as amount of compute used for training (or inference), number of model parameters, training dataset size, model input size, number of training steps, or upstream performance varies) for various architectures&for each of various tasks within a large&diverse set of upstream&downstream tasks, in zero-shot, prompted,&finetuned settings. This set includes large-scale vision, language, audio, video, diffusion, generative modeling, multimodal learning, contrastive learning, AI alignment, AI capabilities, robotics, out-of-distribution (OOD) generalization, continual learning, transfer learning, uncertainty estimation / calibration, OOD detection, adversarial robustness, distillation, sparsity, retrieval, quantization, pruning, fairness, molecules, computer programming/coding, math word problems,\"emergent phase transitions\", arithmetic, supervised learning, unsupervised/self-supervised learning,&reinforcement learning (single agent&multi-agent). When compared to other functional forms for neural scaling, this functional form yields extrapolations of scaling behavior that are considerably more accurate on this set. Moreover, this functional form accurately models&extrapolates scaling behavior that other functional forms are incapable of expressing such as the nonmonotonic transitions present in the scaling behavior of phenomena such as double descent&the delayed, sharp inflection points present in the scaling behavior of tasks such as arithmetic. Lastly, we use this functional form to glean insights about the limit of the predictability of scaling behavior. Code is available at https://github.com/ethancaballero/broken_neural_scaling_laws",
+        "paperId": "4b8ae99910c2a0226e01a6199da8e5fb56ee1e2a"
+    },
+    {
+        "title": "Mental-LLM: Leveraging Large Language Models for Mental Health Prediction via Online Text Data",
+        "firstAuthor": "Xuhai Xu",
+        "url": null,
+        "dateSubmitted": "2023-07-26",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Advances in large language models (LLMs) have empowered a variety of applications. However, there is still a significant gap in research when it comes to understanding and enhancing the capabilities of LLMs in the field of mental health. In this work, we present the first comprehensive evaluation of multiple LLMs, including Alpaca, Alpaca-LoRA, FLAN-T5, GPT-3.5, and GPT-4, on various mental health prediction tasks via online text data. We conduct a broad range of experiments, covering zero-shot prompting, few-shot prompting, and instruction fine-tuning. The results indicate a promising yet limited performance of LLMs with zero-shot and few-shot prompt designs for the mental health tasks. More importantly, our experiments show that instruction finetuning can significantly boost the performance of LLMs for all tasks simultaneously. Our best-finetuned models, Mental-Alpaca and Mental-FLAN-T5, outperform the best prompt design of GPT-3.5 (25 and 15 times bigger) by 10.9% on balanced accuracy and the best of GPT-4 (250 and 150 times bigger) by 4.8%. They further perform on par with the state-of-the-art task-specific language model. We also conduct an exploratory case study on LLMs' capability on the mental health reasoning tasks, illustrating the promising capability of certain models such as GPT-4. We summarize our findings into a set of action guidelines for potential methods to enhance LLMs' capability for mental health tasks. Meanwhile, we also emphasize the important limitations before achieving deployability in real-world mental health settings, such as known racial and gender bias. We highlight the important ethical risks accompanying this line of research.",
+        "paperId": "4bc2f5ac65da81568e93cc7a295199d9bf10b19b"
+    },
+    {
+        "title": "Generative Zero-Shot Prompt Learning for Cross-Domain Slot Filling with Inverse Prompting",
+        "firstAuthor": "Xuefeng Li",
+        "url": "https://arxiv.org/pdf/2307.02830",
+        "dateSubmitted": "2023-07-06",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Zero-shot cross-domain slot filling aims to transfer knowledge from the labeled source domain to the unlabeled target domain. Existing models either encode slot descriptions and examples or design handcrafted question templates using heuristic rules, suffering from poor generalization capability or robustness. In this paper, we propose a generative zero-shot prompt learning framework for cross-domain slot filling, both improving generalization and robustness than previous work. Besides, we introduce a novel inverse prompting strategy to distinguish different slot types to avoid the multiple prediction problem, and an efficient prompt-tuning strategy to boost higher performance by only training fewer prompt parameters. Experiments and analysis demonstrate the effectiveness of our proposed framework, especially huge improvements (+13.44% F1) on the unseen slots.",
+        "paperId": "4bcb740e9be085025b7261ec76870ea1ca9963c6"
+    },
+    {
+        "title": "PIEClass: Weakly-Supervised Text Classification with Prompting and Noise-Robust Iterative Ensemble Training",
+        "firstAuthor": "Yunyi Zhang",
+        "url": null,
+        "dateSubmitted": "2023-05-23",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Weakly-supervised text classification trains a classifier using the label name of each target class as the only supervision, which largely reduces human annotation efforts. Most existing methods first use the label names as static keyword-based features to generate pseudo labels, which are then used for final classifier training. While reasonable, such a commonly adopted framework suffers from two limitations: (1) keywords can have different meanings in different contexts and some text may not have any keyword, so keyword matching can induce noisy and inadequate pseudo labels; (2) the errors made in the pseudo label generation stage will directly propagate to the classifier training stage without a chance of being corrected. In this paper, we propose a new method, PIEClass, consisting of two modules: (1) a pseudo label acquisition module that uses zero-shot prompting of pre-trained language models (PLM) to get pseudo labels based on contextualized text understanding beyond static keyword matching, and (2) a noise-robust iterative ensemble training module that iteratively trains classifiers and updates pseudo labels by utilizing two PLM fine-tuning methods that regularize each other. Extensive experiments show that PIEClass achieves overall better performance than existing strong baselines on seven benchmark datasets and even achieves similar performance to fully-supervised classifiers on sentiment classification tasks.",
+        "paperId": "5272b872f8f9a6c89880f0fe6b7e8ad47333b7ec"
+    },
+    {
+        "title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+        "firstAuthor": "Luyu Gao",
+        "url": "http://arxiv.org/pdf/2212.10496",
+        "dateSubmitted": "2022-12-20",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "While dense retrieval has been shown to be effective and efficient across tasks and languages, it remains difficult to create effective fully zero-shot dense retrieval systems when no relevance labels are available. In this paper, we recognize the difficulty of zero-shot learning and encoding relevance. Instead, we propose to pivot through Hypothetical Document Embeddings (HyDE). Given a query, HyDE first zero-shot prompts an instruction-following language model (e.g., InstructGPT) to generate a hypothetical document. The document captures relevance patterns but is \u201cfake\u201d and may contain hallucinations. Then, an unsupervised contrastively learned encoder (e.g., Contriever) encodes the document into an embedding vector. This vector identifies a neighborhood in the corpus embedding space, from which similar real documents are retrieved based on vector similarity. This second step grounds the generated document to the actual corpus, with the encoder\u2019s dense bottleneck filtering out the hallucinations. Our experiments show that HyDE significantly outperforms the state-of-the-art unsupervised dense retriever Contriever and shows strong performance comparable to fine-tuned retrievers across various tasks (e.g. web search, QA, fact verification) and in non-English languages (e.g., sw, ko, ja, bn).",
+        "paperId": "5c32c653735b43a0a8923ca65ac191bd4bf15311"
+    },
+    {
+        "title": "Zero-shot Prompting for Code Complexity Prediction Using GitHub Copilot",
+        "firstAuthor": "Mohammed Latif Siddiq",
+        "url": null,
+        "dateSubmitted": "2023-05-01",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Code generation models are gaining popularity because they can produce correct code from a prompt, speeding up the software development process. GitHub Copilot is currently one of the most commonly used tools for code generation. This tool is based on GPT3, a Large Language Model (LLM), and can perform zero-shot prompting tasks i.e., tasks for which the model is not specifically trained. In this paper, we describe a preliminary study that investigates whether GitHub Copilot can predict the runtime complexity of a given program using zero- shot prompting. In our study, we found that GitHub Copilot can correctly predict the runtime complexity 45.44% times in the first suggestion and 56.38 % times considering all suggestions. We also compared Copilot to other machine learning, neural network, and transformer-based approaches for code complexity prediction. We observed that Copilot outperformed other approaches for predicting code with linear complexity $\\mathbf{O}(n)$.",
+        "paperId": "5d245bbb2af02536fdafd7919b436cddb6c18157"
+    },
+    {
+        "title": "Automated Evaluation of Classroom Instructional Support with LLMs and BoWs: Connecting Global Predictions to Specific Feedback",
+        "firstAuthor": "Jacob Whitehill",
+        "url": "https://arxiv.org/pdf/2310.01132",
+        "dateSubmitted": "2023-10-02",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "With the aim to provide teachers with more specific, frequent, and actionable feedback about their teaching, we explore how Large Language Models (LLMs) can be used to estimate ``Instructional Support'' domain scores of the CLassroom Assessment Scoring System (CLASS), a widely used observation protocol. We design a machine learning architecture that uses either zero-shot prompting of Meta's Llama2, and/or a classic Bag of Words (BoW) model, to classify individual utterances of teachers' speech (transcribed automatically using OpenAI's Whisper) for the presence of 11 behavioral indicators of Instructional Support. Then, these utterance-level judgments are aggregated over an entire 15-min observation session to estimate a global CLASS score. Experiments on two CLASS-coded datasets of toddler and pre-kindergarten classrooms indicate that (1) automatic CLASS Instructional Support estimation accuracy using the proposed method (Pearson $R$ up to $0.46$) approaches human inter-rater reliability (up to $R=0.55$); (2) LLMs yield slightly greater accuracy than BoW for this task; and (3) the best models often combined features extracted from both LLM and BoW. Finally, (4) we illustrate how the model's outputs can be visualized at the utterance level to provide teachers with explainable feedback on which utterances were most positively or negatively correlated with specific CLASS dimensions.",
+        "paperId": "5dccc306d316edb5d0ec5d8399c4113c5bd36c27"
+    },
+    {
+        "title": "Can GPT-3 Perform Statutory Reasoning?",
+        "firstAuthor": "Andrew Blair-Stanek",
+        "url": "https://arxiv.org/pdf/2302.06100",
+        "dateSubmitted": "2023-02-13",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Statutory reasoning is the task of reasoning with facts and statutes, which are rules written in natural language by a legislature. It is a basic legal skill. In this paper we explore the capabilities of the most capable GPT-3 model, text-davinci-003, on an established statutory-reasoning dataset called SARA. We consider a variety of approaches, including dynamic few-shot prompting, chain-of-thought prompting, and zero-shot prompting. While we achieve results with GPT-3 that are better than the previous best published results, we also identify several types of clear errors it makes. We investigate why these errors happen. We discover that GPT-3 has imperfect prior knowledge of the actual U.S. statutes on which SARA is based. More importantly, we create simple synthetic statutes, which GPT-3 is guaranteed not to have seen during training. We find GPT-3 performs poorly at answering straightforward questions about these simple synthetic statutes.",
+        "paperId": "5f5253fb15ac382e96ade0335baf1cfaa240fb1d"
+    },
+    {
+        "title": "On Bilingual Lexicon Induction with Large Language Models",
+        "firstAuthor": "Yaoyiran Li",
+        "url": null,
+        "dateSubmitted": "2023-10-21",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Bilingual Lexicon Induction (BLI) is a core task in multilingual NLP that still, to a large extent, relies on calculating cross-lingual word representations. Inspired by the global paradigm shift in NLP towards Large Language Models (LLMs), we examine the potential of the latest generation of LLMs for the development of bilingual lexicons. We ask the following research question: Is it possible to prompt and fine-tune multilingual LLMs (mLLMs) for BLI, and how does this approach compare against and complement current BLI approaches? To this end, we systematically study 1) zero-shot prompting for unsupervised BLI and 2) few-shot in-context prompting with a set of seed translation pairs, both without any LLM fine-tuning, as well as 3) standard BLI-oriented fine-tuning of smaller LLMs. We experiment with 18 open-source text-to-text mLLMs of different sizes (from 0.3B to 13B parameters) on two standard BLI benchmarks covering a range of typologically diverse languages. Our work is the first to demonstrate strong BLI capabilities of text-to-text mLLMs. The results reveal that few-shot prompting with in-context examples from nearest neighbours achieves the best performance, establishing new state-of-the-art BLI scores for many language pairs. We also conduct a series of in-depth analyses and ablation studies, providing more insights on BLI with (m)LLMs, also along with their limitations.",
+        "paperId": "6036f424468a5be5dd9b427ae266b72cb8468b5f"
+    },
+    {
+        "title": "Probing Power by Prompting: Harnessing Pre-trained Language Models for Power Connotation Framing",
+        "firstAuthor": "Shima Khanehzar",
+        "url": "https://aclanthology.org/2023.eacl-main.61.pdf",
+        "dateSubmitted": null,
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "When describing actions, subtle changes in word choice can evoke very different associations with the involved entities. For instance, a company \u2018{{it employing} workers\u2019 evokes a more positive connotation than the one \u2018{{it exploiting}\u2019 them. This concept is called {{it connotation}. This paper investigates whether pre-trained language models (PLMs) encode such subtle connotative information about {{it power differentials} between involved entities. We design a probing framework for power connotation, building on~{citet{sap-etal-2017-connotation}\u2019s operationalization of {{it connotation frames}. We show that zero-shot prompting of PLMs leads to above chance prediction of power connotation, however fine-tuning PLMs using our framework drastically improves their accuracy. Using our fine-tuned models, we present a case study of {{it power dynamics} in US news reporting on immigration, showing the potential of our framework as a tool for understanding subtle bias in the media.",
+        "paperId": "60c11f02982bcfe1f8be25c87c82606aeef9758b"
+    },
+    {
+        "title": "Detecting and Correcting Hate Speech in Multimodal Memes with Large Visual Language Model",
+        "firstAuthor": "Minh-Hao Van",
+        "url": null,
+        "dateSubmitted": "2023-11-12",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Recently, large language models (LLMs) have taken the spotlight in natural language processing. Further, integrating LLMs with vision enables the users to explore more emergent abilities in multimodality. Visual language models (VLMs), such as LLaVA, Flamingo, or GPT-4, have demonstrated impressive performance on various visio-linguistic tasks. Consequently, there are enormous applications of large models that could be potentially used on social media platforms. Despite that, there is a lack of related work on detecting or correcting hateful memes with VLMs. In this work, we study the ability of VLMs on hateful meme detection and hateful meme correction tasks with zero-shot prompting. From our empirical experiments, we show the effectiveness of the pretrained LLaVA model and discuss its strengths and weaknesses in these tasks.",
+        "paperId": "60f4dc690ea42fb77b04fc685e9d9c3a1e209319"
+    },
+    {
+        "title": "Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models",
+        "firstAuthor": "Lei Wang",
+        "url": "http://arxiv.org/pdf/2305.04091",
+        "dateSubmitted": "2023-05-06",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Large language models (LLMs) have recently been shown to deliver impressive performance in various NLP tasks. To tackle multi-step reasoning tasks, Few-shot chain-of-thought (CoT) prompting includes a few manually crafted step-by-step reasoning demonstrations which enable LLMs to explicitly generate reasoning steps and improve their reasoning task accuracy. To eliminate the manual efforts, Zero-shot-CoT concatenates the target problem statement with \u201cLet\u2019s think step by step\u201d as an input prompt to LLMs. Despite the success of Zero-shot-CoT, it still suffers from three pitfalls: calculation errors, missing-step errors, and semantic misunderstanding errors. To address the missing-step errors, we propose Plan-and-Solve (PS) Prompting. It consists of two components: first, devising a plan to divide the entire task into smaller subtasks, and then carrying out the subtasks according to the plan. To address the calculation errors and improve the quality of generated reasoning steps, we extend PS prompting with more detailed instructions and derive PS+ prompting. We evaluate our proposed prompting strategy on ten datasets across three reasoning problems. The experimental results over GPT-3 show that our proposed zero-shot prompting consistently outperforms Zero-shot-CoT across all datasets by a large margin, is comparable to or exceeds Zero-shot-Program-of-Thought Prompting, and has comparable performance with 8-shot CoT prompting on the math reasoning problem. The code can be found at https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting.",
+        "paperId": "62176de125738e3b95850d1227bac81fd646b78e"
+    },
+    {
+        "title": "Exploring the Boundaries of GPT-4 in Radiology",
+        "firstAuthor": "Qianchu Liu",
+        "url": null,
+        "dateSubmitted": "2023-10-23",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "The recent success of general-domain large language models (LLMs) has significantly changed the natural language processing paradigm towards a unified foundation model across domains and applications. In this paper, we focus on assessing the performance of GPT-4, the most capable LLM so far, on the text-based applications for radiology reports, comparing against state-of-the-art (SOTA) radiology-specific models. Exploring various prompting strategies, we evaluated GPT-4 on a diverse range of common radiology tasks and we found GPT-4 either outperforms or is on par with current SOTA radiology models. With zero-shot prompting, GPT-4 already obtains substantial gains ($\\approx$ 10% absolute improvement) over radiology models in temporal sentence similarity classification (accuracy) and natural language inference ($F_1$). For tasks that require learning dataset-specific style or schema (e.g. findings summarisation), GPT-4 improves with example-based prompting and matches supervised SOTA. Our extensive error analysis with a board-certified radiologist shows GPT-4 has a sufficient level of radiology knowledge with only occasional errors in complex context that require nuanced domain knowledge. For findings summarisation, GPT-4 outputs are found to be overall comparable with existing manually-written impressions.",
+        "paperId": "644a0aa82f58b7f387fb1b731f0932c84c2f200f"
+    },
+    {
+        "title": "GPT as Knowledge Worker: A Zero-Shot Evaluation of (AI)CPA Capabilities",
+        "firstAuthor": "Jillian Bommarito",
+        "url": "https://arxiv.org/pdf/2301.04408",
+        "dateSubmitted": "2023-01-11",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "The global economy is increasingly dependent on knowledge workers to meet the needs of public and private organizations. While there is no single definition of knowledge work, organizations and industry groups still attempt to measure individuals' capability to engage in it. The most comprehensive assessment of capability readiness for professional knowledge workers is the Uniform CPA Examination developed by the American Institute of Certified Public Accountants (AICPA). In this paper, we experimentally evaluate OpenAI's `text-davinci-003` and prior versions of GPT on both a sample Regulation (REG) exam and an assessment of over 200 multiple-choice questions based on the AICPA Blueprints for legal, financial, accounting, technology, and ethical tasks. First, we find that `text-davinci-003` achieves a correct rate of 14.4% on a sample REG exam section, significantly underperforming human capabilities on quantitative reasoning in zero-shot prompts. Second, `text-davinci-003` appears to be approaching human-level performance on the Remembering&Understanding and Application skill levels in the Exam absent calculation. For best prompt and parameters, the model answers 57.6% of questions correctly, significantly better than the 25% guessing rate, and its top two answers are correct 82.1% of the time, indicating strong non-entailment. Finally, we find that recent generations of GPT-3 demonstrate material improvements on this assessment, rising from 30% for `text-davinci-001` to 57% for `text-davinci-003`. These findings strongly suggest that large language models have the potential to transform the quality and efficiency of future knowledge work.",
+        "paperId": "651dac86d8bf847ec6780a878cb1e04d3d41f356"
+    },
+    {
+        "title": "The FormAI Dataset: Generative AI in Software Security Through the Lens of Formal Verification",
+        "firstAuthor": "Norbert Tihanyi",
+        "url": "https://arxiv.org/pdf/2307.02192",
+        "dateSubmitted": "2023-07-05",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "This paper presents the FormAI dataset, a large collection of 112, 000 AI-generated compilable and independent C programs with vulnerability classification. We introduce a dynamic zero-shot prompting technique constructed to spawn diverse programs utilizing Large Language Models (LLMs). The dataset is generated by GPT-3.5-turbo and comprises programs with varying levels of complexity. Some programs handle complicated tasks like network management, table games, or encryption, while others deal with simpler tasks like string manipulation. Every program is labeled with the vulnerabilities found within the source code, indicating the type, line number, and vulnerable function name. This is accomplished by employing a formal verification method using the Efficient SMT-based Bounded Model Checker (ESBMC), which uses model checking, abstract interpretation, constraint programming, and satisfiability modulo theories to reason over safety/security properties in programs. This approach definitively detects vulnerabilities and offers a formal model known as a counterexample, thus eliminating the possibility of generating false positive reports. We have associated the identified vulnerabilities with Common Weakness Enumeration (CWE) numbers. We make the source code available for the 112, 000 programs, accompanied by a separate file containing the vulnerabilities detected in each program, making the dataset ideal for training LLMs and machine learning algorithms. Our study unveiled that according to ESBMC, 51.24% of the programs generated by GPT-3.5 contained vulnerabilities, thereby presenting considerable risks to software safety and security.",
+        "paperId": "67455478e77c8672d0dd08f89735a8813bbfec65"
+    },
+    {
+        "title": "Self-Explanation Prompting Improves Dialogue Understanding in Large Language Models",
+        "firstAuthor": "Haoyu Gao",
+        "url": "https://arxiv.org/pdf/2309.12940",
+        "dateSubmitted": "2023-09-22",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Task-oriented dialogue (TOD) systems facilitate users in executing various activities via multi-turn dialogues, but Large Language Models (LLMs) often struggle to comprehend these intricate contexts. In this study, we propose a novel\"Self-Explanation\"prompting strategy to enhance the comprehension abilities of LLMs in multi-turn dialogues. This task-agnostic approach requires the model to analyze each dialogue utterance before task execution, thereby improving performance across various dialogue-centric tasks. Experimental results from six benchmark datasets confirm that our method consistently outperforms other zero-shot prompts and matches or exceeds the efficacy of few-shot prompts, demonstrating its potential as a powerful tool in enhancing LLMs' comprehension in complex dialogue tasks.",
+        "paperId": "75ce9634d281cc12cbe434f86c737df8e10796fa"
+    },
+    {
+        "title": "LLMs4OL: Large Language Models for Ontology Learning",
+        "firstAuthor": "Hamed Babaei Giglou",
+        "url": "https://arxiv.org/pdf/2307.16648",
+        "dateSubmitted": "2023-07-31",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "We propose the LLMs4OL approach, which utilizes Large Language Models (LLMs) for Ontology Learning (OL). LLMs have shown significant advancements in natural language processing, demonstrating their ability to capture complex language patterns in different knowledge domains. Our LLMs4OL paradigm investigates the following hypothesis: \\textit{Can LLMs effectively apply their language pattern capturing capability to OL, which involves automatically extracting and structuring knowledge from natural language text?} To test this hypothesis, we conduct a comprehensive evaluation using the zero-shot prompting method. We evaluate nine different LLM model families for three main OL tasks: term typing, taxonomy discovery, and extraction of non-taxonomic relations. Additionally, the evaluations encompass diverse genres of ontological knowledge, including lexicosemantic knowledge in WordNet, geographical knowledge in GeoNames, and medical knowledge in UMLS.",
+        "paperId": "78b1601c013769294a1927d43e50dfa81d6af75f"
+    },
+    {
+        "title": "Machine Translation with Large Language Models: Prompting, Few-shot Learning, and Fine-tuning with QLoRA",
+        "firstAuthor": "Xuan Zhang",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "While large language models have made remarkable advancements in natural language generation, their potential in machine translation, especially when fine-tuned, remains under-explored. In our study, we conduct comprehensive experiments, evaluating 15 publicly available language models on machine translation tasks. We compare the performance across three methodologies: zero-shot prompting, few-shot learning, and fine-tuning. Central to our approach is the use of QLoRA, an efficient fine-tuning method. On French-English, QLoRA fine-tuning outperforms both few-shot learning and models trained from scratch. This superiority is highlighted in both sentence-level and document-level translations, with a significant BLEU score improvement of 28.93 over the prompting method. Impressively, with QLoRA, the enhanced performance is achieved by fine-tuning a mere 0.77% of the model\u2019s parameters.",
+        "paperId": "828aad53223d29e1bf760116e9651a1237ae8710"
+    },
+    {
+        "title": "Zero-Shot Information Extraction for Clinical Meta-Analysis using Large Language Models",
+        "firstAuthor": "David Kartchner",
+        "url": "https://aclanthology.org/2023.bionlp-1.37.pdf",
+        "dateSubmitted": null,
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Meta-analysis of randomized clinical trials (RCTs) plays a crucial role in evidence-based medicine but can be labor-intensive and error-prone. This study explores the use of large language models to enhance the efficiency of aggregating results from randomized clinical trials (RCTs) at scale. We perform a detailed comparison of the performance of these models in zero-shot prompt-based information extraction from a diverse set of RCTs to traditional manual annotation methods. We analyze the results for two different meta-analyses aimed at drug repurposing in cancer therapy pharmacovigilience in chronic myeloid leukemia. Our findings reveal that the best model for the two demonstrated tasks, ChatGPT can generally extract correct information and identify when the desired information is missing from an article. We additionally conduct a systematic error analysis, documenting the prevalence of diverse error types encountered during the process of prompt-based information extraction.",
+        "paperId": "828dbdab5791d8539a7f90063d168b9258083326"
+    },
+    {
+        "title": "Locally Differentially Private Document Generation Using Zero Shot Prompting",
+        "firstAuthor": "Saiteja Utpala",
+        "url": null,
+        "dateSubmitted": "2023-10-24",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Numerous studies have highlighted the privacy risks associated with pretrained large language models. In contrast, our research offers a unique perspective by demonstrating that pretrained large language models can effectively contribute to privacy preservation. We propose a locally differentially private mechanism called DP-Prompt, which leverages the power of pretrained large language models and zero-shot prompting to counter author de-anonymization attacks while minimizing the impact on downstream utility. When DP-Prompt is used with a powerful language model like ChatGPT (gpt-3.5), we observe a notable reduction in the success rate of de-anonymization attacks, showing that it surpasses existing approaches by a considerable margin despite its simpler design. For instance, in the case of the IMDB dataset, DP-Prompt (with ChatGPT) perfectly recovers the clean sentiment F1 score while achieving a 46\\% reduction in author identification F1 score against static attackers and a 26\\% reduction against adaptive attackers. We conduct extensive experiments across six open-source large language models, ranging up to 7 billion parameters, to analyze various effects of the privacy-utility tradeoff.",
+        "paperId": "836e3069a83f455f916114e7265e00187e511838"
+    },
+    {
+        "title": "ZeroPrompt: Scaling Prompt-Based Pretraining to 1, 000 Tasks Improves Zero-Shot Generalization",
+        "firstAuthor": "Hanwei Xu",
+        "url": "https://aclanthology.org/2022.findings-emnlp.312.pdf",
+        "dateSubmitted": "2022-01-18",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "We propose a multitask pretraining approach ZeroPrompt for zero-shot generalization, focusing on task scaling and zero-shot prompting. While previous models are trained on only a few dozen tasks, we scale to 1,000 tasks for the first time using real-world data. This leads to a crucial discovery that task scaling can be an efficient alternative to model scaling; i.e., the model size has little impact on performance with an extremely large number of tasks. Our results show that task scaling can substantially improve training efficiency by 30 times in FLOPs. Moreover, we present a prompting method that incorporates a genetic algorithm to automatically search for the best prompt for unseen tasks, along with a few other improvements. Empirically, ZeroPrompt substantially improves both the efficiency and the performance of zero-shot learning across a variety of academic and production datasets.",
+        "paperId": "842104ef0575823498f26cdd57b4b4dba655df9e"
+    },
+    {
+        "title": "Welfare Diplomacy: Benchmarking Language Model Cooperation",
+        "firstAuthor": "Gabriel Mukobi",
+        "url": "https://arxiv.org/pdf/2310.08901",
+        "dateSubmitted": "2023-10-13",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "The growing capabilities and increasingly widespread deployment of AI systems necessitate robust benchmarks for measuring their cooperative capabilities. Unfortunately, most multi-agent benchmarks are either zero-sum or purely cooperative, providing limited opportunities for such measurements. We introduce a general-sum variant of the zero-sum board game Diplomacy -- called Welfare Diplomacy -- in which players must balance investing in military conquest and domestic welfare. We argue that Welfare Diplomacy facilitates both a clearer assessment of and stronger training incentives for cooperative capabilities. Our contributions are: (1) proposing the Welfare Diplomacy rules and implementing them via an open-source Diplomacy engine; (2) constructing baseline agents using zero-shot prompted language models; and (3) conducting experiments where we find that baselines using state-of-the-art models attain high social welfare but are exploitable. Our work aims to promote societal safety by aiding researchers in developing and assessing multi-agent AI systems. Code to evaluate Welfare Diplomacy and reproduce our experiments is available at https://github.com/mukobi/welfare-diplomacy.",
+        "paperId": "8460e51e6231c4573302ebd10ca765322fc1e3c3"
+    },
+    {
+        "title": "A Simple Zero-shot Prompt Weighting Technique to Improve Prompt Ensembling in Text-Image Models",
+        "firstAuthor": "J. Allingham",
+        "url": "https://arxiv.org/pdf/2302.06235",
+        "dateSubmitted": "2023-02-13",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Contrastively trained text-image models have the remarkable ability to perform zero-shot classification, that is, classifying previously unseen images into categories that the model has never been explicitly trained to identify. However, these zero-shot classifiers need prompt engineering to achieve high accuracy. Prompt engineering typically requires hand-crafting a set of prompts for individual downstream tasks. In this work, we aim to automate this prompt engineering and improve zero-shot accuracy through prompt ensembling. In particular, we ask\"Given a large pool of prompts, can we automatically score the prompts and ensemble those that are most suitable for a particular downstream dataset, without needing access to labeled validation data?\". We demonstrate that this is possible. In doing so, we identify several pathologies in a naive prompt scoring method where the score can be easily overconfident due to biases in pre-training and test data, and we propose a novel prompt scoring method that corrects for the biases. Using our proposed scoring method to create a weighted average prompt ensemble, our method outperforms equal average ensemble, as well as hand-crafted prompts, on ImageNet, 4 of its variants, and 11 fine-grained classification benchmarks, all while being fully automatic, optimization-free, and not requiring access to labeled validation data.",
+        "paperId": "877e27a1d89095fcf686ab675f62a8432d3285ee"
+    },
+    {
+        "title": "Leveraging Contextual Information for Effective Entity Salience Detection",
+        "firstAuthor": "Rajarshi Bhowmik",
+        "url": "https://arxiv.org/pdf/2309.07990",
+        "dateSubmitted": "2023-09-14",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "In text documents such as news articles, the content and key events usually revolve around a subset of all the entities mentioned in a document. These entities, often deemed as salient entities, provide useful cues of the aboutness of a document to a reader. Identifying the salience of entities was found helpful in several downstream applications such as search, ranking, and entity-centric summarization, among others. Prior work on salient entity detection mainly focused on machine learning models that require heavy feature engineering. We show that fine-tuning medium-sized language models with a cross-encoder style architecture yields substantial performance gains over feature engineering approaches. To this end, we conduct a comprehensive benchmarking of four publicly available datasets using models representative of the medium-sized pre-trained language model family. Additionally, we show that zero-shot prompting of instruction-tuned language models yields inferior results, indicating the task's uniqueness and complexity.",
+        "paperId": "8a655a1b1deac0ba8792c4538b69f828983e363a"
+    },
+    {
+        "title": "Auditing Gender Analyzers on Text Data",
+        "firstAuthor": "Siddharth D. Jaiswal",
+        "url": "https://arxiv.org/pdf/2310.06061",
+        "dateSubmitted": "2023-10-09",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "AI models have become extremely popular and accessible to the general public. However, they are continuously under the scanner due to their demonstrable biases toward various sections of the society like people of color and non-binary people. In this study, we audit three existing gender analyzers -- uClassify, Readable and HackerFactor, for biases against non-binary individuals. These tools are designed to predict only the cisgender binary labels, which leads to discrimination against non-binary members of the society. We curate two datasets -- Reddit comments (660k) and, Tumblr posts (2.05M) and our experimental evaluation shows that the tools are highly inaccurate with the overall accuracy being ~50% on all platforms. Predictions for non-binary comments on all platforms are mostly female, thus propagating the societal bias that non-binary individuals are effeminate. To address this, we fine-tune a BERT multi-label classifier on the two datasets in multiple combinations, observe an overall performance of ~77% on the most realistically deployable setting and a surprisingly higher performance of 90% for the non-binary class. We also audit ChatGPT using zero-shot prompts on a small dataset (due to high pricing) and observe an average accuracy of 58% for Reddit and Tumblr combined (with overall better results for Reddit). Thus, we show that existing systems, including highly advanced ones like ChatGPT are biased, and need better audits and moderation and, that such societal biases can be addressed and alleviated through simple off-the-shelf models like BERT trained on more gender inclusive datasets.",
+        "paperId": "8e80592e469dd7f3391864a227271c8f95741f6b"
+    },
+    {
+        "title": "FairMonitor: A Four-Stage Automatic Framework for Detecting Stereotypes and Biases in Large Language Models",
+        "firstAuthor": "Yanhong Bai",
+        "url": null,
+        "dateSubmitted": "2023-08-21",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Detecting stereotypes and biases in Large Language Models (LLMs) can enhance fairness and reduce adverse impacts on individuals or groups when these LLMs are applied. However, the majority of existing methods focus on measuring the model's preference towards sentences containing biases and stereotypes within datasets, which lacks interpretability and cannot detect implicit biases and stereotypes in the real world. To address this gap, this paper introduces a four-stage framework to directly evaluate stereotypes and biases in the generated content of LLMs, including direct inquiry testing, serial or adapted story testing, implicit association testing, and unknown situation testing. Additionally, the paper proposes multi-dimensional evaluation metrics and explainable zero-shot prompts for automated evaluation. Using the education sector as a case study, we constructed the Edu-FairMonitor based on the four-stage framework, which encompasses 12,632 open-ended questions covering nine sensitive factors and 26 educational scenarios. Experimental results reveal varying degrees of stereotypes and biases in five LLMs evaluated on Edu-FairMonitor. Moreover, the results of our proposed automated evaluation method have shown a high correlation with human annotations.",
+        "paperId": "947ed791bc45519b240842989df1412d0a9c1606"
+    },
+    {
+        "title": "Is ChatGPT a Financial Expert? Evaluating Language Models on Financial Natural Language Processing",
+        "firstAuthor": "Yue Guo",
+        "url": null,
+        "dateSubmitted": "2023-10-19",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "The emergence of Large Language Models (LLMs), such as ChatGPT, has revolutionized general natural language preprocessing (NLP) tasks. However, their expertise in the financial domain lacks a comprehensive evaluation. To assess the ability of LLMs to solve financial NLP tasks, we present FinLMEval, a framework for Financial Language Model Evaluation, comprising nine datasets designed to evaluate the performance of language models. This study compares the performance of encoder-only language models and the decoder-only language models. Our findings reveal that while some decoder-only LLMs demonstrate notable performance across most financial tasks via zero-shot prompting, they generally lag behind the fine-tuned expert models, especially when dealing with proprietary datasets. We hope this study provides foundation evaluations for continuing efforts to build more advanced LLMs in the financial domain.",
+        "paperId": "99e470e72d74bebb31a08ca9d4cd6eca3db6ca7d"
+    },
+    {
+        "title": "Controlling Personality Style in Dialogue with Zero-Shot Prompt-Based Learning",
+        "firstAuthor": "Angela Ramirez",
+        "url": "http://arxiv.org/pdf/2302.03848",
+        "dateSubmitted": "2023-02-08",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Prompt-based or in-context learning has achieved high zero-shot performance on many natural language generation (NLG) tasks. Here we explore the performance of prompt-based learning for simultaneously controlling the personality and the semantic accuracy of an NLG for task-oriented dialogue. We experiment with prompt-based learning on the PERSONAGE restaurant recommendation corpus to generate semantically and stylistically-controlled text for 5 different Big-5 personality types: agreeable, disagreeable, conscientious, unconscientious, and extravert. We test two different classes of discrete prompts to generate utterances for a particular personality style: (1) prompts that demonstrate generating directly from a meaning representation that includes a personality specification; and (2) prompts that rely on first converting the meaning representation to a textual pseudo-reference, and then using the pseudo-reference in a textual style transfer (TST) prompt. In each case, we show that we can vastly improve performance by over-generating outputs and ranking them, testing several ranking functions based on automatic metrics for semantic accuracy, personality-match, and fluency. We also test whether NLG personality demonstrations from the restaurant domain can be used with meaning representations for the video game domain to generate personality stylized utterances about video games. Our findings show that the TST prompts produces the highest semantic accuracy (78.46% for restaurants and 87.6% for video games) and personality accuracy (100% for restaurants and 97% for video games). Our results on transferring personality style to video game utterances are surprisingly good. To our knowledge, there is no previous work testing the application of prompt-based learning to simultaneously controlling both style and semantic accuracy in NLG.",
+        "paperId": "9c39e942b87cbada41a4a52364f996915c7c2d98"
+    },
+    {
+        "title": "Federated Prompting and Chain-of-Thought Reasoning for Improving LLMs Answering",
+        "firstAuthor": "Xiangyang Liu",
+        "url": "http://arxiv.org/pdf/2304.13911",
+        "dateSubmitted": "2023-04-27",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "We investigate how to enhance answer precision in frequently asked questions posed by distributed users using cloud-based Large Language Models (LLMs). Our study focuses on a typical situations where users ask similar queries that involve identical mathematical reasoning steps and problem-solving procedures. Due to the unsatisfactory accuracy of LLMs' zero-shot prompting with standalone questions, we propose to improve the distributed synonymous questions using Self-Consistency (SC) and Chain-of-Thought (CoT) techniques. Specifically, we first retrieve synonymous questions from a crowd-sourced database and create a federated question pool. We call these federated synonymous questions with the same or different parameters SP-questions or DP-questions, respectively. We refer to our methods as Fed-SP-SC and Fed-DP-CoT, which can generate significantly more accurate answers for all user queries without requiring sophisticated model-tuning. Through extensive experiments, we demonstrate that our proposed methods can significantly enhance question accuracy by fully exploring the synonymous nature of the questions and the consistency of the answers.",
+        "paperId": "a7c0d9bf44045c9d4c41e329e2a87df0ae7e0af6"
+    },
+    {
+        "title": "STEPS: A Benchmark for Order Reasoning in Sequential Tasks",
+        "firstAuthor": "Weizhi Wang",
+        "url": "http://arxiv.org/pdf/2306.04441",
+        "dateSubmitted": "2023-06-07",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Various human activities can be abstracted into a sequence of actions in natural text, i.e. cooking, repairing, manufacturing, etc. Such action sequences heavily depend on the executing order, while disorder in action sequences leads to failure of further task execution by robots or AI agents. Therefore, to verify the order reasoning capability of current neural models in sequential tasks, we propose a challenging benchmark , named STEPS. STEPS involves two subtask settings, focusing on determining the rationality of given next step in recipes and selecting the reasonable step from the multi-choice question, respectively. We describe the data construction and task formulations, and benchmark most of significant Large Language Models (LLMs). The experimental results demonstrate 1) The commonsense reasoning of action orders in sequential tasks are challenging to resolve via zero-shot prompting or few-shot in-context learning for LLMs; 2) Prompting method still significantly lags behind tuning-based method on STEPS.",
+        "paperId": "a8a71f9b10b281e796fdc2ee7aaec40067739574"
+    },
+    {
+        "title": "Context-Aware Robust Fine-Tuning",
+        "firstAuthor": "Xiaofeng Mao",
+        "url": "https://arxiv.org/pdf/2211.16175",
+        "dateSubmitted": "2022-11-29",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Contrastive Language-Image Pre-trained (CLIP) models have zero-shot ability of classifying an image belonging to\"[CLASS]\"by using similarity between the image and the prompt sentence\"a [CONTEXT] of [CLASS]\". Based on exhaustive text cues in\"[CONTEXT]\", CLIP model is aware of different contexts, e.g. background, style, viewpoint, and exhibits unprecedented robustness against a wide range of distribution shifts. However, recent works find further fine-tuning of CLIP models improves accuracy but sacrifices the robustness on downstream tasks. We conduct an empirical investigation to show fine-tuning will corrupt the context-aware ability of pre-trained CLIP features. To solve this problem, we propose Context-Aware Robust Fine-tuning (CAR-FT). CAR-FT regularizes the model during fine-tuning to capture the context information. Specifically, we use zero-shot prompt weights to get the context distribution contained in the image. By minimizing the Kullback-Leibler Divergence (KLD) between context distributions induced by original/fine-tuned CLIP models, CAR-FT makes the context-aware ability of CLIP inherited into downstream tasks, and achieves both higher In-Distribution (ID) and Out-Of-Distribution (OOD) accuracy. The experimental results show CAR-FT achieves superior robustness on five OOD test datasets of ImageNet, and meanwhile brings accuracy gains on nine downstream tasks. Additionally, CAR-FT surpasses previous Domain Generalization (DG) methods and gets 78.5% averaged accuracy on DomainBed benchmark, building the new state-of-the-art.",
+        "paperId": "adb89ea270e47809d3341679a2d8fe2900a4bf97"
+    },
+    {
+        "title": "LPML: LLM-Prompting Markup Language for Mathematical Reasoning",
+        "firstAuthor": "Ryutaro Yamauchi",
+        "url": "https://arxiv.org/pdf/2309.13078",
+        "dateSubmitted": "2023-09-21",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "In utilizing large language models (LLMs) for mathematical reasoning, addressing the errors in the reasoning and calculation present in the generated text by LLMs is a crucial challenge. In this paper, we propose a novel framework that integrates the Chain-of-Thought (CoT) method with an external tool (Python REPL). We discovered that by prompting LLMs to generate structured text in XML-like markup language, we could seamlessly integrate CoT and the external tool and control the undesired behaviors of LLMs. With our approach, LLMs can utilize Python computation to rectify errors within CoT. We applied our method to ChatGPT (GPT-3.5) to solve challenging mathematical problems and demonstrated that combining CoT and Python REPL through the markup language enhances the reasoning capability of LLMs. Our approach enables LLMs to write the markup language and perform advanced mathematical reasoning using only zero-shot prompting.",
+        "paperId": "b099104d1a065cbc1432af22e6085b1a44dbc839"
+    },
+    {
+        "title": "Large Language Models can Share Images, Too!",
+        "firstAuthor": "Young-Jun Lee",
+        "url": null,
+        "dateSubmitted": "2023-10-23",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "This paper explores the image-sharing capability of Large Language Models (LLMs), such as InstructGPT, ChatGPT, and GPT-4, in a zero-shot setting, without the help of visual foundation models. Inspired by the two-stage process of image-sharing in human dialogues, we propose a two-stage framework that allows LLMs to predict potential image-sharing turns and generate related image descriptions using our effective restriction-based prompt template. With extensive experiments, we unlock the \\textit{image-sharing} capability of LLMs in zero-shot prompting, with GPT-4 achieving the best performance. Additionally, we uncover the emergent \\textit{image-sharing} ability in zero-shot prompting, demonstrating the effectiveness of restriction-based prompts in both stages of our framework. Based on this framework, we augment the PhotoChat dataset with images generated by Stable Diffusion at predicted turns, namely PhotoChat++. To our knowledge, this is the first study to assess the image-sharing ability of LLMs in a zero-shot setting without visual foundation models. The source code and the dataset will be released after publication.",
+        "paperId": "b1d2a29860e69c6ce9987ddefbe112feb1efa16a"
+    },
+    {
+        "title": "A Benchmark to Understand the Role of Knowledge Graphs on Large Language Model's Accuracy for Question Answering on Enterprise SQL Databases",
+        "firstAuthor": "Juan Sequeda",
+        "url": null,
+        "dateSubmitted": "2023-11-13",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Enterprise applications of Large Language Models (LLMs) hold promise for question answering on enterprise SQL databases. However, the extent to which LLMs can accurately respond to enterprise questions in such databases remains unclear, given the absence of suitable Text-to-SQL benchmarks tailored to enterprise settings. Additionally, the potential of Knowledge Graphs (KGs) to enhance LLM-based question answering by providing business context is not well understood. This study aims to evaluate the accuracy of LLM-powered question answering systems in the context of enterprise questions and SQL databases, while also exploring the role of knowledge graphs in improving accuracy. To achieve this, we introduce a benchmark comprising an enterprise SQL schema in the insurance domain, a range of enterprise queries encompassing reporting to metrics, and a contextual layer incorporating an ontology and mappings that define a knowledge graph. Our primary finding reveals that question answering using GPT-4, with zero-shot prompts directly on SQL databases, achieves an accuracy of 16%. Notably, this accuracy increases to 54% when questions are posed over a Knowledge Graph representation of the enterprise SQL database. Therefore, investing in Knowledge Graph provides higher accuracy for LLM powered question answering systems.",
+        "paperId": "b66c5d17424b37c46980d50bd2796c568e1e926f"
+    },
+    {
+        "title": "Instance Needs More Care: Rewriting Prompts for Instances Yields Better Zero-Shot Performance",
+        "firstAuthor": "Saurabh Srivastava",
+        "url": "https://arxiv.org/pdf/2310.02107",
+        "dateSubmitted": "2023-10-03",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Enabling large language models (LLMs) to perform tasks in zero-shot has been an appealing goal owing to its labor-saving (i.e., requiring no task-specific annotations); as such, zero-shot prompting approaches also enjoy better task generalizability. To improve LLMs' zero-shot performance, prior work has focused on devising more effective task instructions (e.g., ``let's think step by step'' ). However, we argue that, in order for an LLM to solve them correctly in zero-shot, individual test instances need more carefully designed and customized instructions. To this end, we propose PRoMPTd, an approach that rewrites the task prompt for each individual test input to be more specific, unambiguous, and complete, so as to provide better guidance to the task LLM. We evaluated PRoMPTd on eight datasets covering tasks including arithmetics, logical reasoning, and code generation, using GPT-4 as the task LLM. Notably, PRoMPTd achieves an absolute improvement of around 10% on the complex MATH dataset and 5% on the code generation task on HumanEval, outperforming conventional zero-shot methods. In addition, we also showed that the rewritten prompt can provide better interpretability of how the LLM resolves each test instance, which can potentially be leveraged as a defense mechanism against adversarial prompting. The source code and dataset can be obtained from https://github.com/salokr/PRoMPTd",
+        "paperId": "b97074e2f1407b349c0abbb8c689a23c02d1924d"
+    },
+    {
+        "title": "Towards Generalized Control: On-the-Fly In-Topic Generation",
+        "firstAuthor": "Michael Tang",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "In this work, we propose the novel on-the-fly in-topic generation task to extend in-topic generation to unseen, general-purpose topics. Towards this end, we motivate and build a benchmark involving news article generation with article titles as control, and develop various models to tackle this task by leveraging prompting, retrieval, and inference-time topic modeling. We find that that building on-the-fly Bag-of-Words (BoW) models and leveraging latent space modification techniques like PPLM [3] is a promising method for this new kind of fine-grained in-topic control, although zero-shot prompting of Large Language Models remains a strong baseline, whose limitations we explore. Finally, we propose various automated evaluation metrics for our task based on sparse and dense TF-IDF and SimCSE [4] encodings, and show that they behave similarly to human scores for in-topicness, opening up new promise for evaluations of control that go beyond human annotations.",
+        "paperId": "bd958c48e312eff196fc71165f29ad801e05268d"
+    },
+    {
+        "title": "Evaluating the Performance of Large Language Models on GAOKAO Benchmark",
+        "firstAuthor": "Xiaotian Zhang",
+        "url": "http://arxiv.org/pdf/2305.12474",
+        "dateSubmitted": "2023-05-21",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Large language models have demonstrated remarkable performance across various natural language processing tasks; however, their efficacy in more challenging and domain-specific tasks remains less explored. This paper introduces the GAOKAO-Benchmark (GAOKAO-Bench), an intuitive benchmark that employs questions from the Chinese Gaokao examination as test samples for evaluating large language models.In order to align the evaluation results with humans as much as possible, we designed a method based on zero-shot prompts to analyze the accuracy and scoring rate of the model by dividing the questions into subjective and objective types. We evaluated the ChatGPT model on GAOKAO-Benchmark performance.Our findings reveal that the ChatGPT model excels in tackling objective questions, while also shedding light on its shortcomings and areas for improvement. To further scrutinize the model's responses, we incorporate human evaluations.In conclusion, this research contributes a robust evaluation benchmark for future large-scale language models and offers valuable insights into the limitations of such models.",
+        "paperId": "c18f2239a4bd8cc68db9a013416167357f5e1353"
+    },
+    {
+        "title": "Prompting Large Language Model for Machine Translation: A Case Study",
+        "firstAuthor": "Biao Zhang",
+        "url": "http://arxiv.org/pdf/2301.07069",
+        "dateSubmitted": "2023-01-17",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Research on prompting has shown excellent performance with little or even no supervised training across many tasks. However, prompting for machine translation is still under-explored in the literature. We fill this gap by offering a systematic study on prompting strategies for translation, examining various factors for prompt template and demonstration example selection. We further explore the use of monolingual data and the feasibility of cross-lingual, cross-domain, and sentence-to-document transfer learning in prompting. Extensive experiments with GLM-130B (Zeng et al., 2022) as the testbed show that 1) the number and the quality of prompt examples matter, where using suboptimal examples degenerates translation; 2) several features of prompt examples, such as semantic similarity, show significant Spearman correlation with their prompting performance; yet, none of the correlations are strong enough; 3) using pseudo parallel prompt examples constructed from monolingual data via zero-shot prompting could improve translation; and 4) improved performance is achievable by transferring knowledge from prompt examples selected in other settings. We finally provide an analysis on the model outputs and discuss several problems that prompting still suffers from.",
+        "paperId": "c879413103f8950bdd414c7f60a39bd7748c9be8"
+    },
+    {
+        "title": "A Practical Survey on Zero-Shot Prompt Design for In-Context Learning",
+        "firstAuthor": "Yinheng Li",
+        "url": "https://arxiv.org/pdf/2309.13205",
+        "dateSubmitted": "2023-09-22",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "The remarkable advancements in large language models (LLMs) have brought about significant improvements in Natural Language Processing(NLP) tasks. This paper presents a comprehensive review of in-context learning techniques, focusing on different types of prompts, including discrete, continuous, few-shot, and zero-shot, and their impact on LLM performance. We explore various approaches to prompt design, such as manual design, optimization algorithms, and evaluation methods, to optimize LLM performance across diverse tasks. Our review covers key research studies in prompt engineering, discussing their methodologies and contributions to the field. We also delve into the challenges faced in evaluating prompt performance, given the absence of a single \u201cbest\u201d prompt and the importance of considering multiple metrics. In conclusion, the paper highlights the critical role of prompt design in harnessing the full potential of LLMs and provides insights into the combination of manual design, optimization techniques, and rigorous evaluation for more effective and efficient use of LLMs in various NLP tasks.",
+        "paperId": "cd7d770eabb4dab6894d9f91d2c3bc337e94a4e1"
+    },
+    {
+        "title": "Developing a Scalable Benchmark for Assessing Large Language Models in Knowledge Graph Engineering",
+        "firstAuthor": "Lars Meyer",
+        "url": "https://arxiv.org/pdf/2308.16622",
+        "dateSubmitted": "2023-08-31",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "As the field of Large Language Models (LLMs) evolves at an accelerated pace, the critical need to assess and monitor their performance emerges. We introduce a benchmarking framework focused on knowledge graph engineering (KGE) accompanied by three challenges addressing syntax and error correction, facts extraction and dataset generation. We show that while being a useful tool, LLMs are yet unfit to assist in knowledge graph generation with zero-shot prompting. Consequently, our LLM-KG-Bench framework provides automatic evaluation and storage of LLM responses as well as statistical data and visualization tools to support tracking of prompt engineering and model performance.",
+        "paperId": "d0e3af5f20a451c04770929979d7a8406a1a2466"
+    },
+    {
+        "title": "DDCoT: Duty-Distinct Chain-of-Thought Prompting for Multimodal Reasoning in Language Models",
+        "firstAuthor": "Ge Zheng",
+        "url": null,
+        "dateSubmitted": "2023-10-25",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "A long-standing goal of AI systems is to perform complex multimodal reasoning like humans. Recently, large language models (LLMs) have made remarkable strides in such multi-step reasoning on the language modality solely by leveraging the chain of thought (CoT) to mimic human thinking. However, the transfer of these advancements to multimodal contexts introduces heightened challenges, including but not limited to the impractical need for labor-intensive annotation and the limitations in terms of flexibility, generalizability, and explainability. To evoke CoT reasoning in multimodality, this work first conducts an in-depth analysis of these challenges posed by multimodality and presents two key insights:\"keeping critical thinking\"and\"letting everyone do their jobs\"in multimodal CoT reasoning. Furthermore, this study proposes a novel DDCoT prompting that maintains a critical attitude through negative-space prompting and incorporates multimodality into reasoning by first dividing the reasoning responsibility of LLMs into reasoning and recognition and then integrating the visual recognition capability of visual models into the joint reasoning process. The rationales generated by DDCoT not only improve the reasoning abilities of both large and small language models in zero-shot prompting and fine-tuning learning, significantly outperforming state-of-the-art methods but also exhibit impressive generalizability and explainability.",
+        "paperId": "d4ed52f6dd71573c86b65d9f9f171a52e88fb728"
+    },
+    {
+        "title": "An Empirical Evaluation of Prompting Strategies for Large Language Models in Zero-Shot Clinical Natural Language Processing",
+        "firstAuthor": "S. Sivarajkumar",
+        "url": "https://arxiv.org/pdf/2309.08008",
+        "dateSubmitted": "2023-09-14",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Large language models (LLMs) have shown remarkable capabilities in Natural Language Processing (NLP), especially in domains where labeled data is scarce or expensive, such as clinical domain. However, to unlock the clinical knowledge hidden in these LLMs, we need to design effective prompts that can guide them to perform specific clinical NLP tasks without any task-specific training data. This is known as in-context learning, which is an art and science that requires understanding the strengths and weaknesses of different LLMs and prompt engineering approaches. In this paper, we present a comprehensive and systematic experimental study on prompt engineering for five clinical NLP tasks: Clinical Sense Disambiguation, Biomedical Evidence Extraction, Coreference Resolution, Medication Status Extraction, and Medication Attribute Extraction. We assessed the prompts proposed in recent literature, including simple prefix, simple cloze, chain of thought, and anticipatory prompts, and introduced two new types of prompts, namely heuristic prompting and ensemble prompting. We evaluated the performance of these prompts on three state-of-the-art LLMs: GPT-3.5, BARD, and LLAMA2. We also contrasted zero-shot prompting with few-shot prompting, and provide novel insights and guidelines for prompt engineering for LLMs in clinical NLP. To the best of our knowledge, this is one of the first works on the empirical evaluation of different prompt engineering approaches for clinical NLP in this era of generative AI, and we hope that it will inspire and inform future research in this area.",
+        "paperId": "d5a6fc6aa139066e3b66ba63002e7d84c109aebc"
+    },
+    {
+        "title": "Text Style Transfer Evaluation Using Large Language Models",
+        "firstAuthor": "Phil Ostheimer",
+        "url": "https://arxiv.org/pdf/2308.13577",
+        "dateSubmitted": "2023-08-25",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Evaluating Text Style Transfer (TST) is a complex task due to its multifaceted nature. The quality of the generated text is measured based on challenging factors, such as style transfer accuracy, content preservation, and overall fluency. While human evaluation is considered to be the gold standard in TST assessment, it is costly and often hard to reproduce. Therefore, automated metrics are prevalent in these domains. Nevertheless, it remains unclear whether these automated metrics correlate with human evaluations. Recent strides in Large Language Models (LLMs) have showcased their capacity to match and even exceed average human performance across diverse, unseen tasks. This suggests that LLMs could be a feasible alternative to human evaluation and other automated metrics in TST evaluation. We compare the results of different LLMs in TST using multiple input prompts. Our findings highlight a strong correlation between (even zero-shot) prompting and human evaluation, showing that LLMs often outperform traditional automated metrics. Furthermore, we introduce the concept of prompt ensembling, demonstrating its ability to enhance the robustness of TST evaluation. This research contributes to the ongoing evaluation of LLMs in diverse tasks, offering insights into successful outcomes and areas of limitation.",
+        "paperId": "dfffba50d7630f1e68d9cc67d4a9a1c6519b93cd"
+    },
+    {
+        "title": "ERNIE-Code: Beyond English-Centric Cross-lingual Pretraining for Programming Languages",
+        "firstAuthor": "Yekun Chai",
+        "url": "http://arxiv.org/pdf/2212.06742",
+        "dateSubmitted": "2022-12-13",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Software engineers working with the same programming language (PL) may speak different natural languages (NLs) and vice versa, erecting huge barriers to communication and working efficiency. Recent studies have demonstrated the effectiveness of generative pre-training in computer programs, yet they are always English-centric. In this work, we step towards bridging the gap between multilingual NLs and multilingual PLs for large language models (LLMs). We release ERNIE-Code, a unified pre-trained language model for 116 NLs and 6 PLs. We employ two methods for universal cross-lingual pre-training: span-corruption language modeling that learns patterns from monolingual NL or PL; and pivot-based translation language modeling that relies on parallel data of many NLs and PLs. Extensive results show that ERNIE-Code outperforms previous multilingual LLMs for PL or NL across a wide range of end tasks of code intelligence, including multilingual code-to-text, text-to-code, code-to-code, and text-to-text generation. We further show its advantage of zero-shot prompting on multilingual code summarization and text-to-text translation. We release our code and pre-trained checkpoints.",
+        "paperId": "e1b732e02cd6f41e4e1eb793ec4b356cee2587f1"
+    },
+    {
+        "title": "HTLM: Hyper-Text Pre-Training and Prompting of Language Models",
+        "firstAuthor": "Armen Aghajanyan",
+        "url": null,
+        "dateSubmitted": "2021-07-14",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "We introduce HTLM, a hyper-text language model trained on a large-scale web crawl. Modeling hyper-text has a number of advantages: (1) it is easily gathered at scale, (2) it provides rich document-level and end-task-adjacent supervision (e.g. class and id attributes often encode document category information), and (3) it allows for new structured prompting that follows the established semantics of HTML (e.g. to do zero-shot summarization by infilling title tags for a webpage that contains the input text). We show that pretraining with a BART-style denoising loss directly on simplified HTML provides highly effective transfer for a wide range of end tasks and supervision levels. HTLM matches or exceeds the performance of comparably sized text-only LMs for zero-shot prompting and fine-tuning for classification benchmarks, while also setting new state-of-the-art performance levels for zero-shot summarization. We also find that hyper-text prompts provide more value to HTLM, in terms of data efficiency, than plain text prompts do for existing LMs, and that HTLM is highly effective at auto-prompting itself, by simply generating the most likely hyper-text formatting for any available training data. We will release all code and models to support future HTLM research.",
+        "paperId": "e596b8adbffa546dbc163e817fb3de72744ec4f6"
+    },
+    {
+        "title": "Intersectional Bias in Causal Language Models",
+        "firstAuthor": "L. Magee",
+        "url": null,
+        "dateSubmitted": "2021-07-16",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "To examine whether intersectional bias can be observed in language generation, we examine \\emph{GPT-2} and \\emph{GPT-NEO} models, ranging in size from 124 million to ~2.7 billion parameters. We conduct an experiment combining up to three social categories - gender, religion and disability - into unconditional or zero-shot prompts used to generate sentences that are then analysed for sentiment. Our results confirm earlier tests conducted with auto-regressive causal models, including the \\emph{GPT} family of models. We also illustrate why bias may be resistant to techniques that target single categories (e.g. gender, religion and race), as it can also manifest, in often subtle ways, in texts prompted by concatenated social categories. To address these difficulties, we suggest technical and community-based approaches need to combine to acknowledge and address complex and intersectional language model bias.",
+        "paperId": "e614bdb3d6a0675084616ff2ee40c14314d3d1a4"
+    },
+    {
+        "title": "Mitigating Word Bias in Zero-shot Prompt-based Classifiers",
+        "firstAuthor": "Adian Liusie",
+        "url": "https://arxiv.org/pdf/2309.04992",
+        "dateSubmitted": "2023-09-10",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Prompt-based classifiers are an attractive approach for zero-shot classification. However, the precise choice of the prompt template and label words can largely influence performance, with semantically equivalent settings often showing notable performance difference. This discrepancy can be partly attributed to word biases, where the classifier may be biased towards classes. To address this problem, it is possible to optimise classification thresholds on a labelled data set, however, this mitigates some of the advantages of prompt-based classifiers. This paper instead approaches this problem by examining the expected marginal probabilities of the classes. Here, probabilities are reweighted to have a uniform prior over classes, in an unsupervised fashion. Further, we draw a theoretical connection between the class priors and the language models' word prior, and offer the ability to set a threshold in a zero-resource fashion. We show that matching class priors correlates strongly with the oracle upper bound performance and demonstrate large consistent performance gains for prompt settings over a range of NLP tasks.",
+        "paperId": "e7d21ad4da122bf1db19e4fda57bf94c1dfa24a4"
+    },
+    {
+        "title": "Debiased Fine-Tuning for Vision-language Models by Prompt Regularization",
+        "firstAuthor": "Beier Zhu",
+        "url": "http://arxiv.org/pdf/2301.12429",
+        "dateSubmitted": "2023-01-29",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "We present a new paradigm for fine-tuning large-scale vision-language pre-trained models on downstream task, dubbed Prompt Regularization (ProReg). Different from traditional fine-tuning which easily overfits to the downstream task data, ProReg uses the prediction by prompting the pretrained model to regularize the fine-tuning. The motivation is: by prompting the large model \u201ca photo of a [CLASS]\u201d, the fill-in answer is only dependent on the pretraining encyclopedic knowledge while independent of the task data distribution, which is usually biased. Specifically, given a training sample prediction during fine-tuning, we first calculate its Kullback-Leibler loss of the prompt prediction and Cross-Entropy loss of the ground-truth label, and then combine them with a proposed sample-wise adaptive trade- off weight, which automatically adjusts the transfer between the pretrained and downstream domains. On various out-of-distribution benchmarks, we show the consistently strong performance of ProReg compared with conventional fine-tuning, zero-shot prompt, prompt tuning, and other state-of-the-art methods.",
+        "paperId": "e8b73abefd998229f35e810f465854bdea7512f8"
+    },
+    {
+        "title": "Leveraging Large Language Models for Mental Health Prediction via Online Text Data",
+        "firstAuthor": "Xuhai Xu",
+        "url": "https://arxiv.org/pdf/2307.14385",
+        "dateSubmitted": null,
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "The recent technology boost of large language models (LLMs) has empowered a variety of applications. However, there is very little research on understanding and improving LLMs\u2019 capability for the mental health domain. In this work, we present the first comprehensive evaluation of multiple LLMs, including Alpaca, Alpaca-LoRA, and GPT-3.5, on various mental health prediction tasks via online text data. We conduct a wide range of experiments, covering zero-shot prompting, few-shot prompting, and instruction finetuning. The results indicate the promising yet limited performance of LLMs with zero-shot and few-shot prompt designs for mental health tasks. More importantly, our experiments show that instruction finetuning can significantly boost the performance of LLMs for all tasks simultaneously. Our best-finetuned model, Mental-Alpaca, outperforms GPT-3.5 (25 times bigger) by 16.7% on balanced accuracy and performs on par with the state-of-the-art task-specific model. We summarize our findings into a set of action guidelines for future researchers, engineers, and practitioners on how to empower LLMs with better mental health domain knowledge and become an expert in mental health prediction tasks.",
+        "paperId": "ea284d2045672daf44deffa3f0b7ce154630424c"
+    },
+    {
+        "title": "How FaR Are Large Language Models From Agents with Theory-of-Mind?",
+        "firstAuthor": "Pei Zhou",
+        "url": "https://arxiv.org/pdf/2310.03051",
+        "dateSubmitted": "2023-10-04",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "\"Thinking is for Doing.\"Humans can infer other people's mental states from observations--an ability called Theory-of-Mind (ToM)--and subsequently act pragmatically on those inferences. Existing question answering benchmarks such as ToMi ask models questions to make inferences about beliefs of characters in a story, but do not test whether models can then use these inferences to guide their actions. We propose a new evaluation paradigm for large language models (LLMs): Thinking for Doing (T4D), which requires models to connect inferences about others' mental states to actions in social scenarios. Experiments on T4D demonstrate that LLMs such as GPT-4 and PaLM 2 seemingly excel at tracking characters' beliefs in stories, but they struggle to translate this capability into strategic action. Our analysis reveals the core challenge for LLMs lies in identifying the implicit inferences about mental states without being explicitly asked about as in ToMi, that lead to choosing the correct action in T4D. To bridge this gap, we introduce a zero-shot prompting framework, Foresee and Reflect (FaR), which provides a reasoning structure that encourages LLMs to anticipate future challenges and reason about potential actions. FaR boosts GPT-4's performance from 50% to 71% on T4D, outperforming other prompting methods such as Chain-of-Thought and Self-Ask. Moreover, FaR generalizes to diverse out-of-distribution story structures and scenarios that also require ToM inferences to choose an action, consistently outperforming other methods including few-shot in-context learning.",
+        "paperId": "ed40889e11e812ef33578506844be06d713f6092"
+    },
+    {
+        "title": "SentMix-3L: A Bangla-English-Hindi Code-Mixed Dataset for Sentiment Analysis",
+        "firstAuthor": "Md. Nishat Raihan",
+        "url": null,
+        "dateSubmitted": "2023-10-27",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Code-mixing is a well-studied linguistic phenomenon when two or more languages are mixed in text or speech. Several datasets have been build with the goal of training computational models for code-mixing. Although it is very common to observe code-mixing with multiple languages, most datasets available contain code-mixed between only two languages. In this paper, we introduce SentMix-3L, a novel dataset for sentiment analysis containing code-mixed data between three languages Bangla, English, and Hindi. We carry out a comprehensive evaluation using SentMix-3L. We show that zero-shot prompting with GPT-3.5 outperforms all transformer-based models on SentMix-3L.",
+        "paperId": "f4202c1447abcfe4684e7289d0c6422e85ca4db1"
+    },
+    {
+        "title": "Self-ICL: Zero-Shot In-Context Learning with Self-Generated Demonstrations",
+        "firstAuthor": "Wei-Lin Chen",
+        "url": "http://arxiv.org/pdf/2305.15035",
+        "dateSubmitted": "2023-05-24",
+        "keyWords": [
+            "zero-shot prompt"
+        ],
+        "abstract": "Large language models (LLMs) have exhibited striking in-context learning (ICL) ability to adapt to target tasks with a few input-output demonstrations. For better ICL, different methods are proposed to select representative demonstrations from existing training corpora. However, such settings are not aligned with real-world practices, as end-users usually query LMs without access to demonstration pools. In this work, we introduce Self-ICL -- a simple framework which bootstraps LMs' intrinsic capabilities to perform zero-shot ICL. Given a test input, Self-ICL first prompts the model to generate pseudo-inputs. Next, the model predicts pseudo-labels for the pseudo-inputs via zero-shot prompting. Finally, we perform ICL for the test input with the pseudo-input-label pairs as demonstrations. Evaluation on 23 BIG-Bench Hard tasks shows Self-ICL outperforms zero-shot baselines on both average accuracy and head-to-head comparison. Moreover, with zero-shot chain-of-thought, Self-ICL achieves results comparable to using real demonstrations. Additionally, we conduct a range of analyses to validate Self-ICL's effectiveness and provide insights for its behaviors under different settings.",
+        "paperId": "fe425e341cf646689e42adead17f14eeac5d03e6"
+    }
+]

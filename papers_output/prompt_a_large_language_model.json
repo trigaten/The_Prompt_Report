@@ -1,0 +1,893 @@
+[
+    {
+        "title": "Noise2Music: Text-conditioned Music Generation with Diffusion Models",
+        "firstAuthor": "Qingqing Huang",
+        "url": "http://arxiv.org/pdf/2302.03917",
+        "dateSubmitted": "2023-02-08",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "We introduce Noise2Music, where a series of diffusion models is trained to generate high-quality 30-second music clips from text prompts. Two types of diffusion models, a generator model, which generates an intermediate representation conditioned on text, and a cascader model, which generates high-fidelity audio conditioned on the intermediate representation and possibly the text, are trained and utilized in succession to generate high-fidelity music. We explore two options for the intermediate representation, one using a spectrogram and the other using audio with lower fidelity. We find that the generated audio is not only able to faithfully reflect key elements of the text prompt such as genre, tempo, instruments, mood, and era, but goes beyond to ground fine-grained semantics of the prompt. Pretrained large language models play a key role in this story -- they are used to generate paired text for the audio of the training set and to extract embeddings of the text prompts ingested by the diffusion models. Generated examples: https://google-research.github.io/noise2music",
+        "paperId": "02540ae926814f4b7972d3fa4dd33932fdc4b58b"
+    },
+    {
+        "title": "\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models",
+        "firstAuthor": "Xinyue Shen",
+        "url": "https://arxiv.org/pdf/2308.03825",
+        "dateSubmitted": "2023-08-07",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "The misuse of large language models (LLMs) has garnered significant attention from the general public and LLM vendors. In response, efforts have been made to align LLMs with human values and intent use. However, a particular type of adversarial prompts, known as jailbreak prompt, has emerged and continuously evolved to bypass the safeguards and elicit harmful content from LLMs. In this paper, we conduct the first measurement study on jailbreak prompts in the wild, with 6,387 prompts collected from four platforms over six months. Leveraging natural language processing technologies and graph-based community detection methods, we discover unique characteristics of jailbreak prompts and their major attack strategies, such as prompt injection and privilege escalation. We also observe that jailbreak prompts increasingly shift from public platforms to private ones, posing new challenges for LLM vendors in proactive detection. To assess the potential harm caused by jailbreak prompts, we create a question set comprising 46,800 samples across 13 forbidden scenarios. Our experiments show that current LLMs and safeguards cannot adequately defend jailbreak prompts in all scenarios. Particularly, we identify two highly effective jailbreak prompts which achieve 0.99 attack success rates on ChatGPT (GPT-3.5) and GPT-4, and they have persisted online for over 100 days. Our work sheds light on the severe and evolving threat landscape of jailbreak prompts. We hope our study can facilitate the research community and LLM vendors in promoting safer and regulated LLMs.",
+        "paperId": "1104d766527dead44a40532e8a89444d9cef5c65"
+    },
+    {
+        "title": "Context-faithful Prompting for Large Language Models",
+        "firstAuthor": "Wenxuan Zhou",
+        "url": "http://arxiv.org/pdf/2303.11315",
+        "dateSubmitted": "2023-03-20",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Large language models (LLMs) encode parametric knowledge about world facts and have shown remarkable performance in knowledge-driven NLP tasks. However, their reliance on parametric knowledge may cause them to overlook contextual cues, leading to incorrect predictions in context-sensitive NLP tasks (e.g., knowledge acquisition tasks). In this paper, we seek to assess and enhance LLMs' contextual faithfulness in two aspects: knowledge conflict and prediction with abstention. We demonstrate that LLMs' faithfulness can be significantly improved using carefully designed prompting strategies. In particular, we identify opinion-based prompts and counterfactual demonstrations as the most effective methods. Opinion-based prompts reframe the context as a narrator's statement and inquire about the narrator's opinions, while counterfactual demonstrations use instances containing false facts to improve faithfulness in knowledge conflict situations. Neither technique requires additional training. We conduct experiments on three datasets of two standard NLP tasks, machine reading comprehension and relation extraction, and the results demonstrate significant improvement in faithfulness to contexts. Code and data are released at https://github.com/wzhouad/context-faithful-llm.",
+        "paperId": "12c826f4195da172b212a529f8fcf10cc79e35da"
+    },
+    {
+        "title": "Legal Syllogism Prompting: Teaching Large Language Models for Legal Judgment Prediction",
+        "firstAuthor": "Cong Jiang",
+        "url": null,
+        "dateSubmitted": "2023-06-19",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Legal syllogism is a form of deductive reasoning commonly used by legal professionals to analyze cases. In this paper, we propose legal syllogism prompting (LoT), a simple prompting method to teach large language models (LLMs) for legal judgment prediction. LoT teaches only that in the legal syllogism the major premise is law, the minor premise is the fact, and the conclusion is judgment. Then the models can produce a syllogism reasoning of the case and give the judgment without any learning, fine-tuning, or examples. On CAIL2018, a Chinese criminal case dataset, we performed zero-shot judgment prediction experiments with GPT-3 models. Our results show that LLMs with LoT achieve better performance than the baseline and chain of thought prompting, the state-of-art prompting method on diverse reasoning tasks. LoT enables the model to concentrate on the key information relevant to the judgment and to correctly understand the legal meaning of acts, as compared to other methods. Our method enables LLMs to predict judgment along with law articles and justification, which significantly enhances the explainability of models.",
+        "paperId": "1640bda76a52f8b29e012b4e98b785882fb011c2"
+    },
+    {
+        "title": "LaMP: When Large Language Models Meet Personalization",
+        "firstAuthor": "Alireza Salemi",
+        "url": "http://arxiv.org/pdf/2304.11406",
+        "dateSubmitted": "2023-04-22",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "This paper highlights the importance of personalization in the current state of natural language understanding and generation and introduces the LaMP benchmark -- a novel benchmark for training and evaluating language models for producing personalized outputs. LaMP offers a comprehensive evaluation framework with diverse language tasks and multiple entries for each user profile. It consists of seven personalized tasks, spanning three classification and four text generation tasks. We also propose a retrieval augmentation approach that retrieves personalized items from user profiles to construct personalized prompts for large language models. Our baseline zero-shot and fine-tuned model results indicate that LMs utilizing profile augmentation outperform their counterparts that do not factor in profile information.",
+        "paperId": "17170575aa8b4fa4e3eef5d366ada706a94dd836"
+    },
+    {
+        "title": "CoNAL: Anticipating Outliers with Large Language Models",
+        "firstAuthor": "Albert Xu",
+        "url": "http://arxiv.org/pdf/2211.15718",
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "In many task settings, text classification models are likely to encounter examples from novel classes on which they cannot predict correctly. Selective prediction, in which models abstain on low-confidence examples, provides a possible solution, but existing models are often overly confident on OOD examples. To remedy this overconfidence, we introduce Contrastive Novelty-Augmented Learning (CoNAL), a two-step method that generates OOD examples representative of novel classes, then trains to decrease confidence on them. First, we generate OOD examples by prompting a large language model twice: we prompt it to enumerate relevant novel labels, then generate examples from each novel class matching the task format. Second, we train our classifier with a novel contrastive objective that encourages lower confidence on generated OOD examples than training examples. When trained with CoNAL, classifiers improve in their ability to detect and abstain on OOD examples over prior methods by an average of 2.3% AUAC and 5.5% AUROC across 4 NLP datasets, with no cost to in-distribution accuracy.1",
+        "paperId": "19da40fd01c711fb2b3b0b19b3956b86b75f575d"
+    },
+    {
+        "title": "Can GPT models Follow Human Summarization Guidelines? Evaluating ChatGPT and GPT-4 for Dialogue Summarization",
+        "firstAuthor": "Yongxin Zhou",
+        "url": null,
+        "dateSubmitted": "2023-10-25",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "This study explores the capabilities of prompt-driven Large Language Models (LLMs) like ChatGPT and GPT-4 in adhering to human guidelines for dialogue summarization. Experiments employed DialogSum (English social conversations) and DECODA (French call center interactions), testing various prompts: including prompts from existing literature and those from human summarization guidelines, as well as a two-step prompt approach. Our findings indicate that GPT models often produce lengthy summaries and deviate from human summarization guidelines. However, using human guidelines as an intermediate step shows promise, outperforming direct word-length constraint prompts in some cases. The results reveal that GPT models exhibit unique stylistic tendencies in their summaries. While BERTScores did not dramatically decrease for GPT outputs suggesting semantic similarity to human references and specialised pre-trained models, ROUGE scores reveal grammatical and lexical disparities between GPT-generated and human-written summaries. These findings shed light on the capabilities and limitations of GPT models in following human instructions for dialogue summarization.",
+        "paperId": "1d1c9c232b55622ec7dbf6b94b91b82ec73d2a86"
+    },
+    {
+        "title": "Scalable Approach to Medical Wearable Post-Market Surveillance",
+        "firstAuthor": "R. M. Yoo",
+        "url": "https://www.medrxiv.org/content/medrxiv/early/2023/11/15/2023.11.14.23298488.full.pdf",
+        "dateSubmitted": "2023-11-15",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Objective We sought to develop a weak supervision-based approach to demonstrate feasibility of post-market surveillance of wearable devices that render AF pre-diagnosis. Materials and Methods Two approaches were evaluated to reduce clinical note labeling overhead for creating a training set for a classifier: one using programmatic codes, and the other using prompts to large language models (LLMs). Probabilistically labeled notes were then used to fine-tune a classifier, which identified patients with AF pre-diagnosis mentions in a note. A retrospective cohort study was conducted, where the baseline characteristics and subsequent care patterns of patients identified by the classifier were compared against those who did not receive pre-diagnosis. Results Label model derived from prompt-based labeling heuristics using LLMs (precision = 0.67, recall = 0.83, F1 = 0.74) nearly achieved the performance of code-based heuristics (precision = 0.84, recall = 0.72, F1 = 0.77), while cutting down the cost to create a labeled training set. The classifier learned on the labeled notes accurately identified patients with AF pre-diagnosis (precision = 0.85, recall = 0.81, F1 = 0.83). Those patients who received pre-diagnosis exhibited different demographic and comorbidity characteristics, and were enriched for anticoagulation and eventual diagnosis of AF. At the index diagnosis, existence of pre-diagnosis did not stratify patients on clinical characteristics, but did correlate with anticoagulant prescription. Discussion and Conclusion Our work establishes the feasibility of an EHR-based surveillance system for wearable devices that render AF pre-diagnosis. Further work is necessary to generalize these findings for patient populations at other sites.",
+        "paperId": "216555443355ac615598a99d2949711726a1c36f"
+    },
+    {
+        "title": "The End of the Policy Analyst? Testing the Capability of Artificial Intelligence to Generate Plausible, Persuasive, and Useful Policy Analysis",
+        "firstAuthor": "Mehrdad Safaei",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3604570",
+        "dateSubmitted": "2023-08-18",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Policy advising in government centers on the analysis of public problems and the developing of recommendations for dealing with them. In carrying out this work, policy analysts consult a variety of sources and work to synthesize that body of evidence into useful decision support documents commonly called briefing notes. Advances in natural language processing (NLP) have led to the continuing development of tools that can undertake a similar task. Given a brief prompt, a large language model (LLM) can synthesize information in content databases. This article documents the findings from an experiment that tested whether contemporary NLP technology is capable of producing public policy relevant briefing notes that expert evaluators judge to be useful. The research involved two stages. First, briefing notes were created using three models: NLP generated; human generated; and NLP generated / human edited. Next, two panels of retired senior public servants (with only one panel informed of the use of NLP in the experiment) were asked to judge the briefing notes using a heuristic evaluation rubric. The findings indicate that contemporary NLP tools were not able to, on their own, generate useful policy briefings. However, the feedback from the expert evaluators indicates that automatically-generated briefing notes might serve as a useful supplement to the work of human policy analysts. And the speed with which the capabilities of NLP tools are developing, supplemented with access to a larger corpus of previously prepared policy briefings and other policy-relevant material, suggests that the quality of automatically-generated briefings may improve significantly in the coming years. The article concludes with reflections on what such improvements might mean for the future practice of policy analysis.",
+        "paperId": "22b39e38e2fd52591ca23904b474eb19dc17b610"
+    },
+    {
+        "title": "Automatic and Human-AI Interactive Text Generation",
+        "firstAuthor": "Yao Dou",
+        "url": null,
+        "dateSubmitted": "2023-10-06",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "In this tutorial, we focus on text-to-text generation, a class of natural language generation (NLG) tasks, that takes a piece of text as input and then generates a revision that is improved according to some specific criteria (e.g., readability or linguistic styles), while largely retaining the original meaning and the length of the text. This includes many useful applications, such as text simplification, paraphrase generation, style transfer, etc. In contrast to text summarization and open-ended text completion (e.g., story), the text-to-text generation tasks we discuss in this tutorial are more constrained in terms of semantic consistency and targeted language styles. This level of control makes these tasks ideal testbeds for studying the ability of models to generate text that is both semantically adequate and stylistically appropriate. Moreover, these tasks are interesting from a technical standpoint, as they require complex combinations of lexical and syntactical transformations, stylistic control, and adherence to factual knowledge, -- all at once. With a special focus on text simplification and revision, this tutorial aims to provide an overview of the state-of-the-art natural language generation research from four major aspects -- Data, Models, Human-AI Collaboration, and Evaluation -- and to discuss and showcase a few significant and recent advances: (1) the use of non-retrogressive approaches; (2) the shift from fine-tuning to prompting with large language models; (3) the development of new learnable metric and fine-grained human evaluation framework; (4) a growing body of studies and datasets on non-English languages; (5) the rise of HCI+NLP+Accessibility interdisciplinary research to create real-world writing assistant systems.",
+        "paperId": "2ce79c8e818fb909f4b787258e9782a23d2e2a3b"
+    },
+    {
+        "title": "X-PARADE: Cross-Lingual Textual Entailment and Information Divergence across Paragraphs",
+        "firstAuthor": "Juan Diego Rodriguez",
+        "url": "https://arxiv.org/pdf/2309.08873",
+        "dateSubmitted": "2023-09-16",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Understanding when two pieces of text convey the same information is a goal touching many subproblems in NLP, including textual entailment and fact-checking. This problem becomes more complex when those two pieces of text are in different languages. Here, we introduce X-PARADE (Cross-lingual Paragraph-level Analysis of Divergences and Entailments), the first cross-lingual dataset of paragraph-level information divergences. Annotators label a paragraph in a target language at the span level and evaluate it with respect to a corresponding paragraph in a source language, indicating whether a given piece of information is the same, new, or new but can be inferred. This last notion establishes a link with cross-language NLI. Aligned paragraphs are sourced from Wikipedia pages in different languages, reflecting real information divergences observed in the wild. Armed with our dataset, we investigate a diverse set of approaches for this problem, including classic token alignment from machine translation, textual entailment methods that localize their decisions, and prompting of large language models. Our results show that these methods vary in their capability to handle inferable information, but they all fall short of human performance.",
+        "paperId": "300b01dc726fe8acbededd805501811d427920bd"
+    },
+    {
+        "title": "Stress Testing Chain-of-Thought Prompting for Large Language Models",
+        "firstAuthor": "Aayush Mishra",
+        "url": "https://arxiv.org/pdf/2309.16621",
+        "dateSubmitted": "2023-09-28",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "This report examines the effectiveness of Chain-of-Thought (CoT) prompting in improving the multi-step reasoning abilities of large language models (LLMs). Inspired by previous studies \\cite{Min2022RethinkingWork}, we analyze the impact of three types of CoT prompt perturbations, namely CoT order, CoT values, and CoT operators on the performance of GPT-3 on various tasks. Our findings show that incorrect CoT prompting leads to poor performance on accuracy metrics. Correct values in the CoT is crucial for predicting correct answers. Moreover, incorrect demonstrations, where the CoT operators or the CoT order are wrong, do not affect the performance as drastically when compared to the value based perturbations. This research deepens our understanding of CoT prompting and opens some new questions regarding the capability of LLMs to learn reasoning in context.",
+        "paperId": "31ae42394959fb1a336886379a5527bec5c9c9c4"
+    },
+    {
+        "title": "Towards Agile Text Classifiers for Everyone",
+        "firstAuthor": "Maximilian Mozes",
+        "url": "http://arxiv.org/pdf/2302.06541",
+        "dateSubmitted": "2023-02-13",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Text-based safety classifiers are widely used for content moderation and increasingly to tune generative language model behavior - a topic of growing concern for the safety of digital assistants and chatbots. However, different policies require different classifiers, and safety policies themselves improve from iteration and adaptation. This paper introduces and evaluates methods for agile text classification, whereby classifiers are trained using small, targeted datasets that can be quickly developed for a particular policy. Experimenting with 7 datasets from three safety-related domains, comprising 15 annotation schemes, led to our key finding: prompt-tuning large language models, like PaLM 62B, with a labeled dataset of as few as 80 examples can achieve state-of-the-art performance. We argue that this enables a paradigm shift for text classification, especially for models supporting safer online discourse. Instead of collecting millions of examples to attempt to create universal safety classifiers over months or years, classifiers could be tuned using small datasets, created by individuals or small organizations, tailored for specific use cases, and iterated on and adapted in the time-span of a day.",
+        "paperId": "335303a513e376b120212337c154cb91fa3689db"
+    },
+    {
+        "title": "q2d: Turning Questions into Dialogs to Teach Models How to Search",
+        "firstAuthor": "Yonatan Bitton",
+        "url": "http://arxiv.org/pdf/2304.14318",
+        "dateSubmitted": "2023-04-27",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "One of the exciting capabilities of recent language models for dialog is their ability to independently search for relevant information to ground a given dialog response. However, obtaining training data to teach models how to issue search queries is time and resource consuming. In this work, we propose q2d: an automatic data generation pipeline that generates information-seeking dialogs from questions. We prompt a large language model (PaLM) to create conversational versions of question answering datasets, and use it to improve query generation models that communicate with external search APIs to ground dialog responses. Unlike previous approaches which relied on human written dialogs with search queries, our method allows to automatically generate query-based grounded dialogs with better control and scale. Our experiments demonstrate that: (1) For query generation on the QReCC dataset, models trained on our synthetically-generated data achieve 90%--97% of the performance of models trained on the human-generated data; (2) We can successfully generate data for training dialog models in new domains without any existing dialog data as demonstrated on the multi-hop MuSiQue and Bamboogle QA datasets. (3) We perform a thorough analysis of the generated dialogs showing that humans find them of high quality and struggle to distinguish them from human-written dialogs.",
+        "paperId": "33729913908d187dc0db6e41073c35643324fe4f"
+    },
+    {
+        "title": "Fairness-guided Few-shot Prompting for Large Language Models",
+        "firstAuthor": "Huan Ma",
+        "url": "http://arxiv.org/pdf/2303.13217",
+        "dateSubmitted": "2023-03-23",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Large language models have demonstrated surprising ability to perform in-context learning, i.e., these models can be directly applied to solve numerous downstream tasks by conditioning on a prompt constructed by a few input-output examples. However, prior research has shown that in-context learning can suffer from high instability due to variations in training examples, example order, and prompt formats. Therefore, the construction of an appropriate prompt is essential for improving the performance of in-context learning. In this paper, we revisit this problem from the view of predictive bias. Specifically, we introduce a metric to evaluate the predictive bias of a fixed prompt against labels or a given attributes. Then we empirically show that prompts with higher bias always lead to unsatisfactory predictive quality. Based on this observation, we propose a novel search strategy based on the greedy search to identify the near-optimal prompt for improving the performance of in-context learning. We perform comprehensive experiments with state-of-the-art mainstream models such as GPT-3 on various downstream tasks. Our results indicate that our method can enhance the model's in-context learning performance in an effective and interpretable manner.",
+        "paperId": "3436ff7a1dd4c6547ba78968d3eec2545a6dccb9"
+    },
+    {
+        "title": "Prompt Middleware: Mapping Prompts for Large Language Models to UI Affordances",
+        "firstAuthor": "S. Macneil",
+        "url": "http://arxiv.org/pdf/2307.01142",
+        "dateSubmitted": "2023-07-03",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "To help users do complex work, researchers have developed techniques to integrate AI and human intelligence into user interfaces (UIs). With the recent introduction of large language models (LLMs), which can generate text in response to a natural language prompt, there are new opportunities to consider how to integrate LLMs into UIs. We present Prompt Middleware, a framework for generating prompts for LLMs based on UI affordances. These include prompts that are predefined by experts (static prompts), generated from templates with fill-in options in the UI (template-based prompts), or created from scratch (free-form prompts). We demonstrate this framework with FeedbackBuffet, a writing assistant that automatically generates feedback based on a user's text input. Inspired by prior research showing how templates can help non-experts perform more like experts, FeedbackBuffet leverages template-based prompt middleware to enable feedback seekers to specify the types of feedback they want to receive as options in a UI. These options are composed using a template to form a feedback request prompt to GPT-3. We conclude with a discussion about how Prompt Middleware can help developers integrate LLMs into UIs.",
+        "paperId": "34b35c89e192b5aa3118f667ce0a3cc0d89d82c3"
+    },
+    {
+        "title": "Developing prompts from large language model for extracting clinical information from pathology and ultrasound reports in breast cancer",
+        "firstAuthor": "Hyeon Seok Choi",
+        "url": "https://www.e-roj.org/upload/pdf/roj-2023-00633.pdf",
+        "dateSubmitted": "2023-09-01",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Purpose We aimed to evaluate the time and cost of developing prompts using large language model (LLM), tailored to extract clinical factors in breast cancer patients and their accuracy. Materials and Methods We collected data from reports of surgical pathology and ultrasound from breast cancer patients who underwent radiotherapy from 2020 to 2022. We extracted the information using the Generative Pre-trained Transformer (GPT) for Sheets and Docs extension plugin and termed this the \u201cLLM\u201d method. The time and cost of developing the prompts with LLM methods were assessed and compared with those spent on collecting information with \u201cfull manual\u201d and \u201cLLM-assisted manual\u201d methods. To assess accuracy, 340 patients were randomly selected, and the extracted information by LLM method were compared with those collected by \u201cfull manual\u201d method. Results Data from 2,931 patients were collected. We developed 12 prompts for Extract function and 12 for Format function to extract and standardize the information. The overall accuracy was 87.7%. For lymphovascular invasion, it was 98.2%. Developing and processing the prompts took 3.5 hours and 15 minutes, respectively. Utilizing the ChatGPT application programming interface cost US $65.8 and when factoring in the estimated wage, the total cost was US $95.4. In an estimated comparison, \u201cLLM-assisted manual\u201d and \u201cLLM\u201d methods were time- and cost-efficient compared to the \u201cfull manual\u201d method. Conclusion Developing and facilitating prompts for LLM to derive clinical factors was efficient to extract crucial information from huge medical records. This study demonstrated the potential of the application of natural language processing using LLM model in breast cancer patients. Prompts from the current study can be re-used for other research to collect clinical information.",
+        "paperId": "35d855c49334ef1b8f945f13e9bc84868dab55c9"
+    },
+    {
+        "title": "Prompting Multilingual Large Language Models to Generate Code-Mixed Texts: The Case of South East Asian Languages",
+        "firstAuthor": "Zheng-Xin Yong",
+        "url": "https://arxiv.org/pdf/2303.13592",
+        "dateSubmitted": "2023-03-23",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "While code-mixing is a common linguistic practice in many parts of the world, collecting high-quality and low-cost code-mixed data remains a challenge for natural language processing (NLP) research. The recent proliferation of Large Language Models (LLMs) compels one to ask: how capable are these systems in generating code-mixed data? In this paper, we explore prompting multilingual LLMs in a zero-shot manner to generate code-mixed data for seven languages in South East Asia (SEA), namely Indonesian, Malay, Chinese, Tagalog, Vietnamese, Tamil, and Singlish. We find that publicly available multilingual instruction-tuned models such as BLOOMZ and Flan-T5-XXL are incapable of producing texts with phrases or clauses from different languages. ChatGPT exhibits inconsistent capabilities in generating code-mixed texts, wherein its performance varies depending on the prompt template and language pairing. For instance, ChatGPT generates fluent and natural Singlish texts (an English-based creole spoken in Singapore), but for English-Tamil language pair, the system mostly produces grammatically incorrect or semantically meaningless utterances. Furthermore, it may erroneously introduce languages not specified in the prompt. Based on our investigation, existing multilingual LLMs exhibit a wide range of proficiency in code-mixed data generation for SEA languages. As such, we advise against using LLMs in this context without extensive human checks.",
+        "paperId": "3b27092740a489a63589cdcf40fad6a0e093daa0"
+    },
+    {
+        "title": "Hierarchical Prompting Assists Large Language Model on Web Navigation",
+        "firstAuthor": "Abishek Sridhar",
+        "url": "http://arxiv.org/pdf/2305.14257",
+        "dateSubmitted": "2023-05-23",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Large language models (LLMs) struggle on processing complicated observations in interactive decision making tasks. To alleviate this issue, we propose a simple hierarchical prompting approach. Diverging from previous prompting approaches that always put the full observation (e.g. a web page) to the prompt, we propose to first construct an action-aware observation which is more condensed and relevant with a dedicated SUMMARIZER prompt. The ACTOR prompt then predicts the next action based on the summarized observation. While our method has broad applicability, we particularly demonstrate its efficacy in the complex domain of web navigation where a full observation often contains redundant and irrelevant information. Our approach outperforms the previous state-of-the-art prompting mechanics by 6.2% on task success rate, demonstrating its potential on interactive decision making tasks with long observation traces.",
+        "paperId": "3d8e6358968c8bd5e97f21fead73bf4ba0c2a8d7"
+    },
+    {
+        "title": "Towards Realistic Zero-Shot Classification via Self Structural Semantic Alignment",
+        "firstAuthor": "Shengxiang Zhang",
+        "url": "https://arxiv.org/pdf/2308.12960",
+        "dateSubmitted": "2023-08-24",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Large-scale pre-trained Vision Language Models (VLMs) have proven effective for zero-shot classification. Despite the success, most traditional VLMs-based methods are restricted by the assumption of partial source supervision or ideal vocabularies, which rarely satisfy the open-world scenario. In this paper, we aim at a more challenging setting, Realistic Zero-Shot Classification, which assumes no annotation but instead a broad vocabulary. To address this challenge, we propose the Self Structural Semantic Alignment (S^3A) framework, which extracts the structural semantic information from unlabeled data while simultaneously self-learning. Our S^3A framework adopts a unique Cluster-Vote-Prompt-Realign (CVPR) algorithm, which iteratively groups unlabeled data to derive structural semantics for pseudo-supervision. Our CVPR process includes iterative clustering on images, voting within each cluster to identify initial class candidates from the vocabulary, generating discriminative prompts with large language models to discern confusing candidates, and realigning images and the vocabulary as structural semantic alignment. Finally, we propose to self-learn the CLIP image encoder with both individual and structural semantic alignment through a teacher-student learning strategy. Our comprehensive experiments across various generic and fine-grained benchmarks demonstrate that the S^3A method offers substantial improvements over existing VLMs-based approaches, achieving a more than 15% accuracy improvement over CLIP on average. Our codes, models, and prompts are publicly released at https://github.com/sheng-eatamath/S3A.",
+        "paperId": "437cfee2a7f7beadf09ad712f71b3265740e44a0"
+    },
+    {
+        "title": "Prompt Engineering with ChatGPT: A Guide for Academic Writers",
+        "firstAuthor": "L. Giray",
+        "url": null,
+        "dateSubmitted": "2023-06-07",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": null,
+        "paperId": "44f0876dec21a04533587def2add230b878a5006"
+    },
+    {
+        "title": "Heuristics-Driven Link-of-Analogy Prompting: Enhancing Large Language Models for Document-Level Event Argument Extraction",
+        "firstAuthor": "Hanzhang Zhou",
+        "url": null,
+        "dateSubmitted": "2023-11-11",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "In this study, we investigate in-context learning (ICL) in document-level event argument extraction (EAE). The paper identifies key challenges in this problem, including example selection, context length limitation, abundance of event types, and the limitation of Chain-of-Thought (CoT) prompting in non-reasoning tasks. To address these challenges, we introduce the Heuristic-Driven Link-of-Analogy (HD-LoA) prompting method. Specifically, we hypothesize and validate that LLMs learn task-specific heuristics from demonstrations via ICL. Building upon this hypothesis, we introduce an explicit heuristic-driven demonstration construction approach, which transforms the haphazard example selection process into a methodical method that emphasizes task heuristics. Additionally, inspired by the analogical reasoning of human, we propose the link-of-analogy prompting, which enables LLMs to process new situations by drawing analogies to known situations, enhancing their adaptability. Extensive experiments show that our method outperforms the existing prompting methods and few-shot supervised learning methods, exhibiting F1 score improvements of 4.53% and 9.38% on the document-level EAE dataset. Furthermore, when applied to sentiment analysis and natural language inference tasks, the HD-LoA prompting achieves accuracy gains of 2.87% and 2.63%, indicating its effectiveness across different tasks.",
+        "paperId": "4515088160ea43df554cc8cd950afe3a9a50b908"
+    },
+    {
+        "title": "Social Simulacra: Creating Populated Prototypes for Social Computing Systems",
+        "firstAuthor": "J. Park",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3526113.3545616",
+        "dateSubmitted": "2022-08-08",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Social computing prototypes probe the social behaviors that may arise in an envisioned system design. This prototyping practice is currently limited to recruiting small groups of people. Unfortunately, many challenges do not arise until a system is populated at a larger scale. Can a designer understand how a social system might behave when populated, and make adjustments to the design before the system falls prey to such challenges? We introduce social simulacra, a prototyping technique that generates a breadth of realistic social interactions that may emerge when a social computing system is populated. Social simulacra take as input the designer\u2019s description of a community\u2019s design\u2014goal, rules, and member personas\u2014and produce as output an instance of that design with simulated behavior, including posts, replies, and anti-social behaviors. We demonstrate that social simulacra shift the behaviors that they generate appropriately in response to design changes, and that they enable exploration of \u201cwhat if?\u201d scenarios where community members or moderators intervene. To power social simulacra, we contribute techniques for prompting a large language model to generate thousands of distinct community members and their social interactions with each other; these techniques are enabled by the observation that large language models\u2019 training data already includes a wide variety of positive and negative behavior on social media platforms. In evaluations, we show that participants are often unable to distinguish social simulacra from actual community behavior and that social computing designers successfully refine their social computing designs when using social simulacra.",
+        "paperId": "49b499598a8864eee55ab264fc16a5bf8d2f87ef"
+    },
+    {
+        "title": "Interacting with Large Language Models: A Case Study on AI-Aided Brainstorming for Guesstimation Problems",
+        "firstAuthor": "Vildan Salikutluk",
+        "url": "https://ebooks.iospress.nl/pdf/doi/10.3233/FAIA230081",
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": ". Designing cooperative AI-systems that do not automate tasks but rather aid human cognition is challenging and requires human-centered design approaches. Here, we introduce AI-aided brainstorming for solving guesstimation problems, i.e. estimating quantities from incomplete information, as a testbed for human-AI interaction with large language models (LLMs). In a think-aloud study, we found that humans decompose guesstimation questions into sub-questions and often replace them with semantically related ones. If they fail to brainstorm related questions, they often get stuck and do not \ufb01nd a solution. Therefore, to support this brainstorming process, we prompted a large language model (GPT-3) with successful replacements from our think-aloud data. In follow-up studies, we tested whether the availability of this tool improves participants\u2019 answers. While the tool successfully produced human-like suggestions, participants were reluctant to use it. From our \ufb01ndings, we conclude that for human-AI interaction with LLMs to be successful AI-systems must complement rather than mimic a user\u2019s associations.",
+        "paperId": "4f9e7eb2f009e30f15eca18f4e540915b637b603"
+    },
+    {
+        "title": "FOLIO: Natural Language Reasoning with First-Order Logic",
+        "firstAuthor": "Simeng Han",
+        "url": "http://arxiv.org/pdf/2209.00840",
+        "dateSubmitted": "2022-09-02",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "We present FOLIO, a human-annotated, open-domain, and logically complex and diverse dataset for reasoning in natural language (NL), equipped with first order logic (FOL) annotations. FOLIO consists of 1,435 examples (unique conclusions), each paired with one of 487 sets of premises which serve as rules to be used to deductively reason for the validity of each conclusion. The logical correctness of premises and conclusions is ensured by their parallel FOL annotations, which are automatically verified by our FOL inference engine. In addition to the main NL reasoning task, NL-FOL pairs in FOLIO automatically constitute a new NL-FOL translation dataset using FOL as the logical form. Our experiments on FOLIO systematically evaluate the FOL reasoning ability of supervised fine-tuning on medium-sized language models (BERT, RoBERTa) and few-shot prompting on large language models (GPT-NeoX, OPT, GPT-3, Codex). For NL-FOL translation, we experiment with GPT-3 and Codex. Our results show that one of the most capable Large Language Model (LLM) publicly available, GPT-3 davinci, achieves only slightly better than random results with few-shot prompting on a subset of FOLIO, and the model is especially bad at predicting the correct truth values for False and Unknown conclusions. Our dataset and code are available at https://github.com/Yale-LILY/FOLIO.",
+        "paperId": "5581bf85386737bd3378eec68189759a05280bea"
+    },
+    {
+        "title": "MULTISCRIPT: Multimodal Script Learning for Supporting Open Domain Everyday Tasks",
+        "firstAuthor": "Jingyuan Qi",
+        "url": "https://arxiv.org/pdf/2310.04965",
+        "dateSubmitted": "2023-10-08",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Automatically generating scripts (i.e. sequences of key steps described in text) from video demonstrations and reasoning about the subsequent steps are crucial to the modern AI virtual assistants to guide humans to complete everyday tasks, especially unfamiliar ones. However, current methods for generative script learning rely heavily on well-structured preceding steps described in text and/or images or are limited to a certain domain, resulting in a disparity with real-world user scenarios. To address these limitations, we present a new benchmark challenge -- MultiScript, with two new tasks on task-oriented multimodal script learning: (1) multimodal script generation, and (2) subsequent step prediction. For both tasks, the input consists of a target task name and a video illustrating what has been done to complete the target task, and the expected output is (1) a sequence of structured step descriptions in text based on the demonstration video, and (2) a single text description for the subsequent step, respectively. Built from WikiHow, MultiScript covers multimodal scripts in videos and text descriptions for over 6,655 human everyday tasks across 19 diverse domains. To establish baseline performance on MultiScript, we propose two knowledge-guided multimodal generative frameworks that incorporate the task-related knowledge prompted from large language models such as Vicuna. Experimental results show that our proposed approaches significantly improve over the competitive baselines.",
+        "paperId": "5ece96203cd1dc9ff3f99867faa451939d86d545"
+    },
+    {
+        "title": "Development of meta-prompts for Large Language Models to screen titles and abstracts for diagnostic test accuracy reviews",
+        "firstAuthor": "Y. Kataoka",
+        "url": "https://www.medrxiv.org/content/medrxiv/early/2023/10/31/2023.10.31.23297818.full.pdf",
+        "dateSubmitted": "2023-11-01",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Systematic reviews (SRs) are a critical component of evidence-based medicine, but the process of screening titles and abstracts is time-consuming. This study aimed to develop and externally validate a method using large language models to classify abstracts for diagnostic test accuracy (DTA) systematic reviews, thereby reducing the human workload. We used a previously collected dataset for developing DTA abstract classifiers and applied prompt engineering. We developed an optimized meta-prompt for Generative Pre-trained Transformer (GPT)-3.5-turbo and GPT-4 to classify abstracts. In the external validation dataset 1, the prompt with GPT-3.5 turbo showed a sensitivity of 0.988, and a specificity of 0.298. GPT-4 showed a sensitivity of 0.982, and a specificity of 0.677. In the external validation dataset 2, GPT-3.5 turbo showed a sensitivity of 0.919, and a specificity of 0.434. GPT-4 showed a sensitivity of 0.806, and a specificity of 0.740. If we included eligible studies from among the references of the identified studies, GPT-3.5 turbo had no critical misses, while GPT-4 had some misses. Our study indicates that GPT-3.5 turbo can be effectively used to classify abstracts for DTA systematic reviews. Further studies using other dataset are warranted to confirm our results. Additionally, we encourage the use of our framework and publicly available dataset for further exploration of more effective classifiers using other LLMs and prompts (https://github.com/youkiti/ARE/).",
+        "paperId": "6384921f1bd1059c6b4c37ac3c4e4f19e45d40c1"
+    },
+    {
+        "title": "Dictionary-based Phrase-level Prompting of Large Language Models for Machine Translation",
+        "firstAuthor": "Marjan Ghazvininejad",
+        "url": "http://arxiv.org/pdf/2302.07856",
+        "dateSubmitted": "2023-02-15",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Large language models (LLMs) demonstrate remarkable machine translation (MT) abilities via prompting, even though they were not explicitly trained for this task. However, even given the incredible quantities of data they are trained on, LLMs can struggle to translate inputs with rare words, which are common in low resource or domain transfer scenarios. We show that LLM prompting can provide an effective solution for rare words as well, by using prior knowledge from bilingual dictionaries to provide control hints in the prompts. We propose a novel method, DiPMT, that provides a set of possible translations for a subset of the input words, thereby enabling fine-grained phrase-level prompted control of the LLM. Extensive experiments show that DiPMT outperforms the baseline both in low-resource MT, as well as for out-of-domain MT. We further provide a qualitative analysis of the benefits and limitations of this approach, including the overall level of controllability that is achieved.",
+        "paperId": "64ce6ef1f5cf227bf2bf917c87273386ae16256f"
+    },
+    {
+        "title": "The Art of SOCRATIC QUESTIONING: Recursive Thinking with Large Language Models",
+        "firstAuthor": "Jingyuan Qi",
+        "url": null,
+        "dateSubmitted": "2023-05-24",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Chain-of-Thought (CoT) prompting enables large language models to solve complex reasoning problems by generating intermediate steps. However, confined by its inherent single-pass and sequential generation process, CoT heavily relies on the initial decisions, causing errors in early steps to accumulate and impact the final answers. In contrast, humans adopt recursive thinking when tackling complex reasoning problems, i.e., iteratively breaking the original problem into approachable sub-problems and aggregating their answers to resolve the original one. Inspired by the human cognitive process, we propose SOCRATIC QUESTIONING, a divide-and-conquer style algorithm that mimics the recursive thinking process. Specifically, SOCRATIC QUESTIONING leverages large language models to raise and answer sub-questions until collecting enough information to tackle the original question. Unlike CoT, SOCRATIC QUESTIONING explicitly navigates the thinking space, stimulates effective recursive thinking, and is more robust towards errors in the thinking process. Extensive experiments on several complex reasoning tasks, including MMLU, MATH, LogiQA, and visual question-answering demonstrate significant performance improvements over the state-of-the-art prompting methods, such as CoT, and Tree-of-Thought. The qualitative analysis clearly shows that the intermediate reasoning steps elicited by SOCRATIC QUESTIONING are similar to humans' recursively thinking process of complex reasoning problems.",
+        "paperId": "69335077fcacbff7a7cf25697da1949e6bdfa968"
+    },
+    {
+        "title": "PoisonPrompt: Backdoor Attack on Prompt-based Large Language Models",
+        "firstAuthor": "Hongwei Yao",
+        "url": null,
+        "dateSubmitted": "2023-10-19",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Prompts have significantly improved the performance of pretrained Large Language Models (LLMs) on various downstream tasks recently, making them increasingly indispensable for a diverse range of LLM application scenarios. However, the backdoor vulnerability, a serious security threat that can maliciously alter the victim model's normal predictions, has not been sufficiently explored for prompt-based LLMs. In this paper, we present POISONPROMPT, a novel backdoor attack capable of successfully compromising both hard and soft prompt-based LLMs. We evaluate the effectiveness, fidelity, and robustness of POISONPROMPT through extensive experiments on three popular prompt methods, using six datasets and three widely used LLMs. Our findings highlight the potential security threats posed by backdoor attacks on prompt-based LLMs and emphasize the need for further research in this area.",
+        "paperId": "6ad93900b1c956020242653e33ac447824f75fc6"
+    },
+    {
+        "title": "InstructEval: Systematic Evaluation of Instruction Selection Methods",
+        "firstAuthor": "Anirudh Ajith",
+        "url": "https://arxiv.org/pdf/2307.00259",
+        "dateSubmitted": "2023-07-01",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "In-context learning (ICL) performs tasks by prompting a large language model (LLM) using an instruction and a small set of annotated examples called demonstrations. Recent work has shown that precise details of the inputs used in the ICL prompt significantly impact performance, which has incentivized instruction selection algorithms. The effect of instruction-choice however is severely underexplored, with existing analyses restricted to shallow subsets of models and tasks, limiting the generalizability of their insights. We develop InstructEval, an ICL evaluation suite to conduct a thorough assessment of these techniques. The suite includes 13 open-sourced LLMs of varying scales from four model families, and covers nine tasks across three categories. Using the suite, we evaluate the relative performance of seven popular instruction selection methods over five metrics relevant to ICL. Our experiments reveal that using curated manually-written instructions or simple instructions without any task-specific descriptions often elicits superior ICL performance overall than that of automatic instruction-induction methods, pointing to a lack of generalizability among the latter. We release our evaluation suite for benchmarking instruction selection approaches and enabling more generalizable methods in this space.",
+        "paperId": "6af986a2cab884fbd30ad6da2928dc19c12d83a7"
+    },
+    {
+        "title": "Chain-of-thought prompting for responding to in-depth dialogue questions with LLM",
+        "firstAuthor": "Hongru Wang",
+        "url": "http://arxiv.org/pdf/2305.11792",
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "The way and content in which users ask questions can provide insight into their current status, including their personality, emotions, and psychology. Instead of directly prompting the large language models (LLMs), we explore how chain-of-thought prompting helps in this scenario to perform reasoning and planning according to user status, aiming to provide a more personalized and engaging experience for the user query. To this end, we \ufb01rst construct a benchmark of 6 dialogue or question-answering datasets in both English and Chinese, covering 3 different aspects of user status ( including personality , emotion , and psychology ). Then we prompt the LLMs to generate the response regarding the user status as intermediate reasoning processing. We propose a novel demonstration selection strategy using the semantic similarity of intermediate reasoning instead of test queries. To evaluate the effectiveness and robustness of our approach, we conduct extensive experiments with 7 LLMs under zero-shot and one-shot settings. The experimental results show that our approach consistently outperforms standard prompting in terms of both helpfulness and acceptness across all datasets, regardless of the LLMs used. The code and dataset can be found at https://github.com/ruleGreen/ Dialogue_CoT.git .",
+        "paperId": "70916fbeb446ab7dc811ab74b193365d789bf1eb"
+    },
+    {
+        "title": "Unsupervised Contrast-Consistent Ranking with Language Models",
+        "firstAuthor": "Niklas Stoehr",
+        "url": "https://arxiv.org/pdf/2309.06991",
+        "dateSubmitted": "2023-09-13",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Language models contain ranking-based knowledge and are powerful solvers of in-context ranking tasks. For instance, they may have parametric knowledge about the ordering of countries by size or may be able to rank reviews by sentiment. Recent work focuses on pairwise, pointwise, and listwise prompting techniques to elicit a language model's ranking knowledge. However, we find that even with careful calibration and constrained decoding, prompting-based techniques may not always be self-consistent in the rankings they produce. This motivates us to explore an alternative approach that is inspired by an unsupervised probing method called Contrast-Consistent Search (CCS). The idea is to train a probing model guided by a logical constraint: a model's representation of a statement and its negation must be mapped to contrastive true-false poles consistently across multiple statements. We hypothesize that similar constraints apply to ranking tasks where all items are related via consistent pairwise or listwise comparisons. To this end, we extend the binary CCS method to Contrast-Consistent Ranking (CCR) by adapting existing ranking methods such as the Max-Margin Loss, Triplet Loss, and Ordinal Regression objective. Our results confirm that, for the same language model, CCR probing outperforms prompting and even performs on a par with prompting much larger language models.",
+        "paperId": "70b73e272621562c6261f86d2ebf814703b760ed"
+    },
+    {
+        "title": "Analyzing Chain-of-Thought Prompting in Large Language Models via Gradient-based Feature Attributions",
+        "firstAuthor": "Skyler Wu",
+        "url": "https://arxiv.org/pdf/2307.13339",
+        "dateSubmitted": "2023-07-25",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Chain-of-thought (CoT) prompting has been shown to empirically improve the accuracy of large language models (LLMs) on various question answering tasks. While understanding why CoT prompting is effective is crucial to ensuring that this phenomenon is a consequence of desired model behavior, little work has addressed this; nonetheless, such an understanding is a critical prerequisite for responsible model deployment. We address this question by leveraging gradient-based feature attribution methods which produce saliency scores that capture the influence of input tokens on model output. Specifically, we probe several open-source LLMs to investigate whether CoT prompting affects the relative importances they assign to particular input tokens. Our results indicate that while CoT prompting does not increase the magnitude of saliency scores attributed to semantically relevant tokens in the prompt compared to standard few-shot prompting, it increases the robustness of saliency scores to question perturbations and variations in model output.",
+        "paperId": "71d68782c3da41b77866c2fd0cb65726f60b3af1"
+    },
+    {
+        "title": "Multi-Modal Classifiers for Open-Vocabulary Object Detection",
+        "firstAuthor": "Prannay Kaul",
+        "url": "http://arxiv.org/pdf/2306.05493",
+        "dateSubmitted": "2023-06-08",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "The goal of this paper is open-vocabulary object detection (OVOD) $\\unicode{x2013}$ building a model that can detect objects beyond the set of categories seen at training, thus enabling the user to specify categories of interest at inference without the need for model retraining. We adopt a standard two-stage object detector architecture, and explore three ways for specifying novel categories: via language descriptions, via image exemplars, or via a combination of the two. We make three contributions: first, we prompt a large language model (LLM) to generate informative language descriptions for object classes, and construct powerful text-based classifiers; second, we employ a visual aggregator on image exemplars that can ingest any number of images as input, forming vision-based classifiers; and third, we provide a simple method to fuse information from language descriptions and image exemplars, yielding a multi-modal classifier. When evaluating on the challenging LVIS open-vocabulary benchmark we demonstrate that: (i) our text-based classifiers outperform all previous OVOD works; (ii) our vision-based classifiers perform as well as text-based classifiers in prior work; (iii) using multi-modal classifiers perform better than either modality alone; and finally, (iv) our text-based and multi-modal classifiers yield better performance than a fully-supervised detector.",
+        "paperId": "73397ec77081b46f5e49a4e7486129fe2ffe7adf"
+    },
+    {
+        "title": "Language models are weak learners",
+        "firstAuthor": "Hariharan Manikandan",
+        "url": "http://arxiv.org/pdf/2306.14101",
+        "dateSubmitted": "2023-06-25",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "A central notion in practical and theoretical machine learning is that of a $\\textit{weak learner}$, classifiers that achieve better-than-random performance (on any given distribution over data), even by a small margin. Such weak learners form the practical basis for canonical machine learning methods such as boosting. In this work, we illustrate that prompt-based large language models can operate effectively as said weak learners. Specifically, we illustrate the use of a large language model (LLM) as a weak learner in a boosting algorithm applied to tabular data. We show that by providing (properly sampled according to the distribution of interest) text descriptions of tabular data samples, LLMs can produce a summary of the samples that serves as a template for classification and achieves the aim of acting as a weak learner on this task. We incorporate these models into a boosting approach, which in some settings can leverage the knowledge within the LLM to outperform traditional tree-based boosting. The model outperforms both few-shot learning and occasionally even more involved fine-tuning procedures, particularly for tasks involving small numbers of data points. The results illustrate the potential for prompt-based LLMs to function not just as few-shot learners themselves, but as components of larger machine learning pipelines.",
+        "paperId": "7d87fbdfbf5038a4e0ff09801b6d3b8a2e0c613a"
+    },
+    {
+        "title": "SCPatcher: Mining Crowd Security Discussions to Enrich Secure Coding Practices",
+        "firstAuthor": "Ziyou Jiang",
+        "url": null,
+        "dateSubmitted": "2023-09-11",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Secure coding practices (SCPs) have been proposed to guide software developers to write code securely to prevent potential security vulnerabilities. Yet, they are typically one-sentence principles without detailed specifications, e.g., \u201cProperly free allocated memory upon the completion of functions and at all exit points.\u201d, which makes them difficult to follow in practice, especially for software developers who are not yet experienced in secure programming. To address this problem, this paper proposes SCPatcher, an automated approach to enrich secure coding practices by mining crowd security discussions on online knowledge-sharing platforms, such as Stack Overflow. In particular, for each security post, SCPatcher first extracts the area of coding examples and coding explanations with a fix-prompt tuned Large Language Model (LLM) via Prompt Learning. Then, it hierarchically slices the lengthy code into coding examples and summarizes the coding explanations with the areas. Finally, SCPatcher matches the CWE and Public SCP, integrating them with extracted coding examples and explanations to form the SCP specifications, which are the wild SCPs with details, proposed by the developers. To evaluate the performance of SCPatcher, we conduct experiments on 3,907 security posts from Stack Overflow. The experimental results show that SCPatcher outperforms all baselines in extracting the coding examples with 2.73 % MLine on average, as well as coding explanations with 3.97 % F1 on average. Moreover, we apply SCPatcher on 447 new security posts to further evaluate its practicality, and the extracted SCP specifications enrich the public SCPs with 3,074 lines of code and 1,967 sentences.",
+        "paperId": "7d8dd530278eb443409ba862bfc4e57c66c84640"
+    },
+    {
+        "title": "The Mystery and Fascination of LLMs: A Comprehensive Survey on the Interpretation and Analysis of Emergent Abilities",
+        "firstAuthor": "Yuxiang Zhou",
+        "url": null,
+        "dateSubmitted": "2023-11-01",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Understanding emergent abilities, such as in-context learning (ICL) and chain-of-thought (CoT) prompting in large language models (LLMs), is of utmost importance. This importance stems not only from the better utilization of these capabilities across various tasks, but also from the proactive identification and mitigation of potential risks, including concerns of truthfulness, bias, and toxicity, that may arise alongside these capabilities. In this paper, we present a thorough survey on the interpretation and analysis of emergent abilities of LLMs. First, we provide a concise introduction to the background and definition of emergent abilities. Then, we give an overview of advancements from two perspectives: 1) a macro perspective, emphasizing studies on the mechanistic interpretability and delving into the mathematical foundations behind emergent abilities; and 2) a micro-perspective, concerning studies that focus on empirical interpretability by examining factors associated with these abilities. We conclude by highlighting the challenges encountered and suggesting potential avenues for future research. We believe that our work establishes the basis for further exploration into the interpretation of emergent abilities.",
+        "paperId": "7f48fbb13c5a31529ab4bc2bf53adeb4bd213825"
+    },
+    {
+        "title": "Forward-Backward Reasoning in Large Language Models for Mathematical Verification",
+        "firstAuthor": "Weisen Jiang",
+        "url": null,
+        "dateSubmitted": "2023-08-15",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Chain-of-Thought (CoT) prompting in large language models (LLMs) has shown promising performance on mathematical reasoning tasks. Recently, Self-Consistency samples a diverse set of reasoning chains with different answers and chooses the answer by majority voting. Though effective, its performance cannot be further improved by sampling more reasoning chains. To address this problem, we propose to integrate backward reasoning into answer verification. We first mask a number in the question by ${\\bf x}$. The LLM is then asked to predict the masked number with a candidate answer $A$ embedded in the template: ``If we know the answer to the above question is $\\{A\\}$, what is the value of unknown variable ${\\bf x}$?'' The LLM is expected to predict the masked number successfully if the provided candidate answer is correct. To further improve performance, we propose FOBAR (FOrward-BAckward Reasoning) to combine forward and backward reasoning for verifying candidate answers. Experiments are performed on six standard mathematical data sets and three LLMs (text-davinci-003, GPT-3.5-Turbo, GPT-4). Results show that FOBAR achieves state-of-the-art performance. In particular, FOBAR outperforms Self-Consistency which uses forward reasoning alone, demonstrating that combining forward and forward reasoning is better. It also outperforms existing verification methods, verifying the effectiveness of using the simple template in backward reasoning and the proposed combination.",
+        "paperId": "801d7ba75fc833aa76ce4863dc1f79e30ee0c23f"
+    },
+    {
+        "title": "Insert-expansions for Tool-enabled Conversational Agents",
+        "firstAuthor": "Andreas G\u00f6ldi",
+        "url": "https://arxiv.org/pdf/2307.01644",
+        "dateSubmitted": "2023-07-04",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "This paper delves into an advanced implementation of Chain-of-Thought-Prompting in Large Language Models, focusing on the use of tools (or\"plug-ins\") within the explicit reasoning paths generated by this prompting method. We find that tool-enabled conversational agents often become sidetracked, as additional context from tools like search engines or calculators diverts from original user intents. To address this, we explore a concept wherein the user becomes the tool, providing necessary details and refining their requests. Through Conversation Analysis, we characterize this interaction as insert-expansion - an intermediary conversation designed to facilitate the preferred response. We explore possibilities arising from this 'user-as-a-tool' approach in two empirical studies using direct comparison, and find benefits in the recommendation domain.",
+        "paperId": "803a3dd98d72a9fe730f082f3364f9b1f9a0029a"
+    },
+    {
+        "title": "Large Language Models and Prompt Engineering for Biomedical Query Focused Multi-Document Summarisation",
+        "firstAuthor": "Diego Moll\u00e1 Aliod",
+        "url": null,
+        "dateSubmitted": "2023-11-09",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "This paper reports on the use of prompt engineering and GPT-3.5 for biomedical query-focused multi-document summarisation. Using GPT-3.5 and appropriate prompts, our system achieves top ROUGE-F1 results in the task of obtaining short-paragraph-sized answers to biomedical questions in the 2023 BioASQ Challenge (BioASQ 11b). This paper confirms what has been observed in other domains: 1) Prompts that incorporated few-shot samples generally improved on their counterpart zero-shot variants; 2) The largest improvement was achieved by retrieval augmented generation. The fact that these prompts allow our top runs to rank within the top two runs of BioASQ 11b demonstrate the power of using adequate prompts for Large Language Models in general, and GPT-3.5 in particular, for query-focused summarisation.",
+        "paperId": "82c39d297d4ca723e6faa4bfe0dd7cc9918d623f"
+    },
+    {
+        "title": "LAN-grasp: Using Large Language Models for Semantic Object Grasping",
+        "firstAuthor": "Reihaneh Mirjalili",
+        "url": "https://arxiv.org/pdf/2310.05239",
+        "dateSubmitted": "2023-10-08",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "In this paper, we propose LAN-grasp, a novel approach towards more appropriate semantic grasping. We use foundation models to provide the robot with a deeper understanding of the objects, the right place to grasp an object, or even the parts to avoid. This allows our robot to grasp and utilize objects in a more meaningful and safe manner. We leverage the combination of a Large Language Model, a Vision Language Model, and a traditional grasp planner to generate grasps demonstrating a deeper semantic understanding of the objects. We first prompt the Large Language Model about which object part is appropriate for grasping. Next, the Vision Language Model identifies the corresponding part in the object image. Finally, we generate grasp proposals in the region proposed by the Vision Language Model. Building on foundation models provides us with a zero-shot grasp method that can handle a wide range of objects without the need for further training or fine-tuning. We evaluated our method in real-world experiments on a custom object data set. We present the results of a survey that asks the participants to choose an object part appropriate for grasping. The results show that the grasps generated by our method are consistently ranked higher by the participants than those generated by a conventional grasping planner and a recent semantic grasping approach.",
+        "paperId": "894b2fe365642d350e0d688c33ba65124b1c2979"
+    },
+    {
+        "title": "Prompt Tuning Large Language Models on Personalized Aspect Extraction for Recommendations",
+        "firstAuthor": "Pan Li",
+        "url": "http://arxiv.org/pdf/2306.01475",
+        "dateSubmitted": "2023-06-02",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Existing aspect extraction methods mostly rely on explicit or ground truth aspect information, or using data mining or machine learning approaches to extract aspects from implicit user feedback such as user reviews. It however remains under-explored how the extracted aspects can help generate more meaningful recommendations to the users. Meanwhile, existing research on aspect-based recommendations often relies on separate aspect extraction models or assumes the aspects are given, without accounting for the fact the optimal set of aspects could be dependent on the recommendation task at hand. In this work, we propose to combine aspect extraction together with aspect-based recommendations in an end-to-end manner, achieving the two goals together in a single framework. For the aspect extraction component, we leverage the recent advances in large language models and design a new prompt learning mechanism to generate aspects for the end recommendation task. For the aspect-based recommendation component, the extracted aspects are concatenated with the usual user and item features used by the recommendation model. The recommendation task mediates the learning of the user embeddings and item embeddings, which are used as soft prompts to generate aspects. Therefore, the extracted aspects are personalized and contextualized by the recommendation task. We showcase the effectiveness of our proposed method through extensive experiments on three industrial datasets, where our proposed framework significantly outperforms state-of-the-art baselines in both the personalized aspect extraction and aspect-based recommendation tasks. In particular, we demonstrate that it is necessary and beneficial to combine the learning of aspect extraction and aspect-based recommendation together. We also conduct extensive ablation studies to understand the contribution of each design component in our framework.",
+        "paperId": "8a4320fd903677a3ea2bf606a6537b59885b1108"
+    },
+    {
+        "title": "Prompting a Large Language Model to Generate Diverse Motivational Messages: A Comparison with Human-Written Messages",
+        "firstAuthor": "Samuel Rhys Cox",
+        "url": "https://arxiv.org/pdf/2308.13479",
+        "dateSubmitted": "2023-08-25",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Large language models (LLMs) are increasingly capable and prevalent, and can be used to produce creative content. The quality of content is influenced by the prompt used, with more specific prompts that incorporate examples generally producing better results. On from this, it could be seen that using instructions written for crowdsourcing tasks (that are specific and include examples to guide workers) could prove effective LLM prompts. To explore this, we used a previous crowdsourcing pipeline that gave examples to people to help them generate a collectively diverse corpus of motivational messages. We then used this same pipeline to generate messages using GPT-4, and compared the collective diversity of messages from: (1) crowd-writers, (2) GPT-4 using the pipeline, and (3&4) two baseline GPT-4 prompts. We found that the LLM prompts using the crowdsourcing pipeline caused GPT-4 to produce more diverse messages than the two baseline prompts. We also discuss implications from messages generated by both human writers and LLMs.",
+        "paperId": "8da6e4537122af618c36563caef5863f8728d789"
+    },
+    {
+        "title": "Automatic Chain of Thought Prompting in Large Language Models",
+        "firstAuthor": "Zhuosheng Zhang",
+        "url": "http://arxiv.org/pdf/2210.03493",
+        "dateSubmitted": "2022-10-07",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Large language models (LLMs) can perform complex reasoning by generating intermediate reasoning steps. Providing these steps for prompting demonstrations is called chain-of-thought (CoT) prompting. CoT prompting has two major paradigms. One leverages a simple prompt like\"Let's think step by step\"to facilitate step-by-step thinking before answering a question. The other uses a few manual demonstrations one by one, each composed of a question and a reasoning chain that leads to an answer. The superior performance of the second paradigm hinges on the hand-crafting of task-specific demonstrations one by one. We show that such manual efforts may be eliminated by leveraging LLMs with the\"Let's think step by step\"prompt to generate reasoning chains for demonstrations one by one, i.e., let's think not just step by step, but also one by one. However, these generated chains often come with mistakes. To mitigate the effect of such mistakes, we find that diversity matters for automatically constructing demonstrations. We propose an automatic CoT prompting method: Auto-CoT. It samples questions with diversity and generates reasoning chains to construct demonstrations. On ten public benchmark reasoning tasks with GPT-3, Auto-CoT consistently matches or exceeds the performance of the CoT paradigm that requires manual designs of demonstrations. Code is available at https://github.com/amazon-research/auto-cot",
+        "paperId": "90350aa626bed47b02d0c162462e5b0ca82be6b2"
+    },
+    {
+        "title": "Harnessing the Power of Adversarial Prompting and Large Language Models for Robust Hypothesis Generation in Astronomy",
+        "firstAuthor": "I. Ciuc\u0103",
+        "url": "http://arxiv.org/pdf/2306.11648",
+        "dateSubmitted": "2023-06-20",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "This study investigates the application of Large Language Models (LLMs), specifically GPT-4, within Astronomy. We employ in-context prompting, supplying the model with up to 1000 papers from the NASA Astrophysics Data System, to explore the extent to which performance can be improved by immersing the model in domain-specific literature. Our findings point towards a substantial boost in hypothesis generation when using in-context prompting, a benefit that is further accentuated by adversarial prompting. We illustrate how adversarial prompting empowers GPT-4 to extract essential details from a vast knowledge base to produce meaningful hypotheses, signaling an innovative step towards employing LLMs for scientific research in Astronomy.",
+        "paperId": "91099bbb96133c70db091041900ecff502a5e3a8"
+    },
+    {
+        "title": "Prompt-Based Monte-Carlo Tree Search for Goal-Oriented Dialogue Policy Planning",
+        "firstAuthor": "Xiao Yu",
+        "url": "http://arxiv.org/pdf/2305.13660",
+        "dateSubmitted": "2023-05-23",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Planning for goal-oriented dialogue often requires simulating future dialogue interactions and estimating task progress. Many approaches thus consider training neural networks to perform look-ahead search algorithms such as A* search and Monte Carlo Tree Search (MCTS). However, this training often requires abundant annotated data, which creates challenges when faced with noisy annotations or low-resource settings. We introduce GDP-Zero, an approach using Open-Loop MCTS to perform goal-oriented dialogue policy planning without any model training. GDP-Zero prompts a large language model to act as a policy prior, value function, user simulator, and system model during the tree search. We evaluate GDP-Zero on the goal-oriented task PersuasionForGood, and find that its responses are preferred over ChatGPT up to 59.32% of the time, and are rated more persuasive than ChatGPT during interactive evaluations.",
+        "paperId": "9573e2025440219a1d3393664b3c80bda51ac8f4"
+    },
+    {
+        "title": "Dynamic Strategy Chain: Dynamic Zero-Shot CoT for Long Mental Health Support Generation",
+        "firstAuthor": "Qi Chen",
+        "url": "https://arxiv.org/pdf/2308.10444",
+        "dateSubmitted": "2023-08-21",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Long counseling Text Generation for Mental health support (LTGM), an innovative and challenging task, aims to provide help-seekers with mental health support through a comprehensive and more acceptable response. The combination of chain-of-thought (CoT) prompting and Large Language Models (LLMs) is employed and get the SOTA performance on various NLP tasks, especially on text generation tasks. Zero-shot CoT prompting is one of the most common methods in CoT prompting. However, in the LTGM task, Zero-shot CoT prompting can not simulate a counselor or provide personalized strategies without effective mental health counseling strategy prompts. To tackle this challenge, we propose a zero-shot Dynamic Strategy Chain (DSC) prompting method. Firstly, we utilize GPT2 to learn the responses written by mental health counselors and dynamically generate mental health counseling strategies tailored to the help-seekers' needs. Secondly, the Zero-shot DSC prompting is constructed according to mental health counseling strategies and the help-seekers' post. Finally, the Zero-shot DSC prompting is employed to guide LLMs in generating more human-like responses for the help-seekers. Both automatic and manual evaluations demonstrate that Zero-shot DSC prompting can deliver more human-like responses than CoT prompting methods on LTGM tasks.",
+        "paperId": "96599abdbac3106b89f3d8dd3b26fe9c38a7624f"
+    },
+    {
+        "title": "Graph Neural Prompting with Large Language Models",
+        "firstAuthor": "Yijun Tian",
+        "url": "https://arxiv.org/pdf/2309.15427",
+        "dateSubmitted": "2023-09-27",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Large Language Models (LLMs) have shown remarkable generalization capability with exceptional performance in various language modeling tasks. However, they still exhibit inherent limitations in precisely capturing and returning grounded knowledge. While existing work has explored utilizing knowledge graphs to enhance language modeling via joint training and customized model architectures, applying this to LLMs is problematic owing to their large number of parameters and high computational cost. In addition, how to leverage the pre-trained LLMs and avoid training a customized model from scratch remains an open question. In this work, we propose Graph Neural Prompting (GNP), a novel plug-and-play method to assist pre-trained LLMs in learning beneficial knowledge from KGs. GNP encompasses various designs, including a standard graph neural network encoder, a cross-modality pooling module, a domain projector, and a self-supervised link prediction objective. Extensive experiments on multiple datasets demonstrate the superiority of GNP on both commonsense and biomedical reasoning tasks across different LLM sizes and settings.",
+        "paperId": "9a4e4ab77c3d836bab35e0578de68e8ce79af1e8"
+    },
+    {
+        "title": "OLaLa: Ontology Matching with Large Language Models",
+        "firstAuthor": "S. Hertling",
+        "url": null,
+        "dateSubmitted": "2023-11-07",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Ontology (and more generally: Knowledge Graph) Matching is a challenging task where information in natural language is one of the most important signals to process. With the rise of Large Language Models, it is possible to incorporate this knowledge in a better way into the matching pipeline. A number of decisions still need to be taken, e.g., how to generate a prompt that is useful to the model, how information in the KG can be formulated in prompts, which Large Language Model to choose, how to provide existing correspondences to the model, how to generate candidates, etc. In this paper, we present a prototype that explores these questions by applying zero-shot and few-shot prompting with multiple open Large Language Models to different tasks of the Ontology Alignment Evaluation Initiative (OAEI). We show that with only a handful of examples and a well-designed prompt, it is possible to achieve results that are en par with supervised matching systems which use a much larger portion of the ground truth.",
+        "paperId": "9c392d4532e588f04f94de2ede26d7d6bafe6271"
+    },
+    {
+        "title": "TabLLM: Few-shot Classification of Tabular Data with Large Language Models",
+        "firstAuthor": "S. Hegselmann",
+        "url": "http://arxiv.org/pdf/2210.10723",
+        "dateSubmitted": "2022-10-19",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "We study the application of large language models to zero-shot and few-shot classification of tabular data. We prompt the large language model with a serialization of the tabular data to a natural-language string, together with a short description of the classification problem. In the few-shot setting, we fine-tune the large language model using some labeled examples. We evaluate several serialization methods including templates, table-to-text models, and large language models. Despite its simplicity, we find that this technique outperforms prior deep-learning-based tabular classification methods on several benchmark datasets. In most cases, even zero-shot classification obtains non-trivial performance, illustrating the method's ability to exploit prior knowledge encoded in large language models. Unlike many deep learning methods for tabular datasets, this approach is also competitive with strong traditional baselines like gradient-boosted trees, especially in the very-few-shot setting.",
+        "paperId": "9dcee248452d84b6bf26911ba6726ae5ce1a46f3"
+    },
+    {
+        "title": "Extensible Prompts for Language Models",
+        "firstAuthor": "Tao Ge",
+        "url": "https://arxiv.org/pdf/2212.00616",
+        "dateSubmitted": "2022-12-01",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "We propose eXtensible Prompt (X-Prompt) for prompting a large language model (LLM) beyond natural language (NL). X-Prompt instructs an LLM with not only NL but also an extensible vocabulary of imaginary words that are introduced to help represent what NL words hardly describe, allowing a prompt to be more descriptive. Like NL prompts, X-Prompt is out-of-distribution (OOD) robust, for which we propose context-guided learning with prompt augmentation to learn its imaginary words for general usability, enabling them to use in different prompt contexts for fine-grain specifications. The promising results of X-Prompt demonstrate its potential of approaching advanced interaction between humans and LLMs to bridge their communication gap.",
+        "paperId": "9ea3d90a172a0b5799c13287484f7406946f7311"
+    },
+    {
+        "title": "The Unreliability of Explanations in Few-shot Prompting for Textual Reasoning",
+        "firstAuthor": "Xi Ye",
+        "url": null,
+        "dateSubmitted": "2022-05-06",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Does prompting a large language model (LLM) like GPT-3 with explanations improve in-context learning? We study this question on two NLP tasks that involve reasoning over text, namely question answering and natural language inference. We test the performance of four LLMs on three textual reasoning datasets using prompts that include explanations in multiple different styles. For these tasks, we find that including explanations in the prompts for OPT, GPT-3 (davinci), and InstructGPT (text-davinci-001) only yields small to moderate accuracy improvements over standard few-show learning. However, text-davinci-002 is able to benefit more substantially. We further show that explanations generated by the LLMs may not entail the models' predictions nor be factually grounded in the input, even on simple tasks with extractive explanations. However, these flawed explanations can still be useful as a way to verify LLMs' predictions post-hoc. Through analysis in our three settings, we show that explanations judged by humans to be good--logically consistent with the input and the prediction--more likely cooccur with accurate predictions. Following these observations, we train calibrators using automatically extracted scores that assess the reliability of explanations, allowing us to improve performance post-hoc across all of our datasets.",
+        "paperId": "9ffefdf1fcd780cb71450b0a7a29247c66aa87be"
+    },
+    {
+        "title": "Prompts of Large Language Model for Commanding Power Grid Operation",
+        "firstAuthor": "Hanjiang Dong",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Large Language Models (LLMs) like ChatGPT can assist people\u2019s general workflows, where the prompt is necessary to inspire the potential of LLMs to solve problems from specified or professional domains like robotics. In the electrical engineering subject or the electric power utility industry, experienced operators and professional experts monitor power grid operation statuses and interact with the grid via human commands on the screen, and components in the grid execute the commands to keep the complex grid safe and economical operation. In this process, human experts edit commands to operate the corresponding software. Human commands are the natural language that the LLM can process. The power grid is composed of generation, transmission, distribution, and other components. Therefore, we redesign the human-computer interaction frame between practitioners and the grid via recurrent prompts to apply the LLM to generate computer programming instructions from the multi-step natural language commands. The programming instruction is executed on system components after being confirmed or revised by human experts, and the quality of generated programs will be gradually improved through human feedback. The idea of this study is originally inspired by studies on controlling individual robotic components by ChatGPT. In the future, we will apply the designed prompt templates to drive the general LLM to generate desired samples which could be used to train an LLM professional in the domain knowledge of electrical engineering to operate multiple types of software for power grid operators.",
+        "paperId": "a0117209af5d7168d9e57318c916a9eb02289bb5"
+    },
+    {
+        "title": "StudentEval: A Benchmark of Student-Written Prompts for Large Language Models of Code",
+        "firstAuthor": "Hannah McLean Babe",
+        "url": "http://arxiv.org/pdf/2306.04556",
+        "dateSubmitted": "2023-06-07",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Code LLMs are being rapidly deployed and there is evidence that they can make professional programmers more productive. Current benchmarks for code generation measure whether models generate correct programs given an expert prompt. In this paper, we present a new benchmark containing multiple prompts per problem, written by a specific population of non-expert prompters: beginning programmers. StudentEval contains 1,749 prompts for 48 problems, written by 80 students who have only completed one semester of Python programming. Our students wrote these prompts while working interactively with a Code LLM, and we observed very mixed success rates. We use StudentEval to evaluate 5 Code LLMs and find that StudentEval is a better discriminator of model performance than existing benchmarks. We analyze the prompts and find significant variation in students' prompting techniques. We also find that nondeterministic LLM sampling could mislead students into thinking that their prompts are more (or less) effective than they actually are, which has implications for how to teach with Code LLMs.",
+        "paperId": "a4929de687f3c6937dabbf733258af635781d3c4"
+    },
+    {
+        "title": "SIB-200: A Simple, Inclusive, and Big Evaluation Dataset for Topic Classification in 200+ Languages and Dialects",
+        "firstAuthor": "David Ifeoluwa Adelani",
+        "url": "https://arxiv.org/pdf/2309.07445",
+        "dateSubmitted": "2023-09-14",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Despite the progress we have recorded in the last few years in multilingual natural language processing, evaluation is typically limited to a small set of languages with available datasets which excludes a large number of low-resource languages. In this paper, we created SIB-200 -- a large-scale open-sourced benchmark dataset for topic classification in 200 languages and dialects to address the lack of evaluation dataset for Natural Language Understanding (NLU). For many of the languages covered in SIB-200, this is the first publicly available evaluation dataset for NLU. The dataset is based on Flores-200 machine translation corpus. We annotated the English portion of the dataset and extended the sentence-level annotation to the remaining 203 languages covered in the corpus. Despite the simplicity of this task, our evaluation in full-supervised setting, cross-lingual transfer setting and prompting of large language model setting show that there is still a large gap between the performance of high-resource and low-resource languages when multilingual evaluation is scaled to numerous world languages. We found that languages unseen during the pre-training of multilingual language models, under-represented language families (like Nilotic and Altantic-Congo), and languages from the regions of Africa, Americas, Oceania and South East Asia, often have the lowest performance on our topic classification dataset. We hope our dataset will encourage a more inclusive evaluation of multilingual language models on a more diverse set of languages. https://github.com/dadelani/sib-200",
+        "paperId": "a517575328ca3b8289fa95bd9f71669e1cf7127a"
+    },
+    {
+        "title": "Generate rather than Retrieve: Large Language Models are Strong Context Generators",
+        "firstAuthor": "W. Yu",
+        "url": "http://arxiv.org/pdf/2209.10063",
+        "dateSubmitted": "2022-09-21",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Knowledge-intensive tasks, such as open-domain question answering (QA), require access to a large amount of world or domain knowledge. A common approach for knowledge-intensive tasks is to employ a retrieve-then-read pipeline that first retrieves a handful of relevant contextual documents from an external corpus such as Wikipedia and then predicts an answer conditioned on the retrieved documents. In this paper, we present a novel perspective for solving knowledge-intensive tasks by replacing document retrievers with large language model generators. We call our method generate-then-read (GenRead), which first prompts a large language model to generate contextutal documents based on a given question, and then reads the generated documents to produce the final answer. Furthermore, we propose a novel clustering-based prompting method that selects distinct prompts, resulting in the generated documents that cover different perspectives, leading to better recall over acceptable answers. We conduct extensive experiments on three different knowledge-intensive tasks, including open-domain QA, fact checking, and dialogue system. Notably, GenRead achieves 71.6 and 54.4 exact match scores on TriviaQA and WebQ, significantly outperforming the state-of-the-art retrieve-then-read pipeline DPR-FiD by +4.0 and +3.9, without retrieving any documents from any external knowledge source. Lastly, we demonstrate the model performance can be further improved by combining retrieval and generation. Our code and generated documents can be found at https://github.com/wyu97/GenRead.",
+        "paperId": "b2542a738b75ee9b7ce1a13d8b78f9095d212412"
+    },
+    {
+        "title": "SPeC: A Soft Prompt-Based Calibration on Mitigating Performance Variability in Clinical Notes Summarization",
+        "firstAuthor": "Yu-Neng Chuang",
+        "url": "https://arxiv.org/pdf/2303.13035",
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Electronic health records (EHRs) store an extensive array of patient information, encompassing medical histories, diagnoses, treatments, and test outcomes. These records are crucial for enabling healthcare providers to make well-informed decisions regarding patient care. Summarizing clinical notes further assists healthcare professionals in pinpointing potential health risks and making better-informed decisions. This process contributes to reducing errors and enhancing patient outcomes by ensuring providers have access to the most pertinent and current patient data. Recent research has shown that incorporating prompts with large language models (LLMs) substantially boosts the ef\ufb01cacy of summarization tasks. However, we show that this approach also leads to increased output variance, resulting in notably divergent outputs even when prompts share similar meanings. To tackle this challenge, we introduce a model-agnostic Soft Prompt-Based Calibration (SPeC) pipeline that employs soft prompts to diminish variance while preserving the advantages of prompt-based summarization. Experimental \ufb01ndings on multiple clinical note tasks and LLMs indicate that our method not only bolsters performance but also effectively curbs variance for various LLMs, providing a more uniform and dependable solution for summarizing vital medical information.",
+        "paperId": "b378e54c88d241aa917131beb65c96be3730f40c"
+    },
+    {
+        "title": "Self-Critique Prompting with Large Language Models for Inductive Instructions",
+        "firstAuthor": "Rui Wang",
+        "url": "http://arxiv.org/pdf/2305.13733",
+        "dateSubmitted": "2023-05-23",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Numerous works are proposed to improve or evaluate the capabilities of Large language models (LLMs) to fulfill user instructions. However, they neglect the possibility that user inputs may inherently contain incorrect information due to users' false beliefs or malicious intents. In this way, blindly adhering to users' false content will cause deception and harm. To address this problem, we propose a challenging benchmark consisting of Inductive Instructions (INDust) to evaluate whether LLMs could resist these instructions. The INDust includes 15K instructions across three categories: Fact-Checking Instructions, Questions based on False Premises, and Creative Instructions based on False Premises. Our experiments on several strong LLMs reveal that current LLMs can be easily deceived by INDust into generating misleading and malicious statements. Hence we employ Self-Critique prompting to encourage LLMs to not only critique themselves like in previous works but also the users, which show remarkable improvement in handling inductive instructions under both zero-shot and few-shot settings.",
+        "paperId": "b5e9406a65de7384af041c357ca5481489345b73"
+    },
+    {
+        "title": "IDAS: Intent Discovery with Abstractive Summarization",
+        "firstAuthor": "Maarten De Raedt",
+        "url": "http://arxiv.org/pdf/2305.19783",
+        "dateSubmitted": "2023-05-31",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Intent discovery is the task of inferring latent intents from a set of unlabeled utterances, and is a useful step towards the efficient creation of new conversational agents. We show that recent competitive methods in intent discovery can be outperformed by clustering utterances based on abstractive summaries, i.e., \u201clabels\u201d, that retain the core elements while removing non-essential information. We contribute the IDAS approach, which collects a set of descriptive utterance labels by prompting a Large Language Model, starting from a well-chosen seed set of prototypical utterances, to bootstrap an In-Context Learning procedure to generate labels for non-prototypical utterances. The utterances and their resulting noisy labels are then encoded by a frozen pre-trained encoder, and subsequently clustered to recover the latent intents. For the unsupervised task (without any intent labels) IDAS outperforms the state-of-the-art by up to +7.42% in standard cluster metrics for the Banking, StackOverflow, and Transport datasets. For the semi-supervised task (with labels for a subset of intents) IDAS surpasses 2 recent methods on the CLINC benchmark without even using labeled data.",
+        "paperId": "b9c263500281e05fddfe1f84839491f605815230"
+    },
+    {
+        "title": "CoTEVer: Chain of Thought Prompting Annotation Toolkit for Explanation Verification",
+        "firstAuthor": "Seungone Kim",
+        "url": "http://arxiv.org/pdf/2303.03628",
+        "dateSubmitted": "2023-03-07",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Chain-of-thought (CoT) prompting enables large language models (LLMs) to solve complex reasoning tasks by generating an explanation before the final prediction. Despite it\u2019s promising ability, a critical downside of CoT prompting is that the performance is greatly affected by the factuality of the generated explanation. To improve the correctness of the explanations, fine-tuning language models with explanation data is needed. However, there exists only a few datasets that can be used for such approaches, and no data collection tool for building them. Thus, we introduce CoTEVer, a tool-kit for annotating the factual correctness of generated explanations and collecting revision data of wrong explanations. Furthermore, we suggest several use cases where the data collected with CoTEVer can be utilized for enhancing the faithfulness of explanations. Our toolkit is publicly available at https://github.com/SeungoneKim/CoTEVer.",
+        "paperId": "b9d75f361b5310c6ddcddfe7858bb0416eb78de4"
+    },
+    {
+        "title": "SPeC: A Soft Prompt-Based Calibration on Performance Variability of Large Language Model in Clinical Notes Summarization",
+        "firstAuthor": "Yu-Neng Chuang",
+        "url": null,
+        "dateSubmitted": "2023-03-23",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Electronic health records (EHRs) store an extensive array of patient information, encompassing medical histories, diagnoses, treatments, and test outcomes. These records are crucial for enabling healthcare providers to make well-informed decisions regarding patient care. Summarizing clinical notes further assists healthcare professionals in pinpointing potential health risks and making better-informed decisions. This process contributes to reducing errors and enhancing patient outcomes by ensuring providers have access to the most pertinent and current patient data. Recent research has shown that incorporating prompts with large language models (LLMs) substantially boosts the efficacy of summarization tasks. However, we show that this approach also leads to increased output variance, resulting in notably divergent outputs even when prompts share similar meanings. To tackle this challenge, we introduce a model-agnostic Soft Prompt-Based Calibration (SPeC) pipeline that employs soft prompts to diminish variance while preserving the advantages of prompt-based summarization. Experimental findings on multiple clinical note tasks and LLMs indicate that our method not only bolsters performance but also effectively curbs variance for various LLMs, providing a more uniform and dependable solution for summarizing vital medical information.",
+        "paperId": "ba143eab7447a5dd1472ad1ffe5676bf486994a2"
+    },
+    {
+        "title": "Towards Generalized Control: On-the-Fly In-Topic Generation",
+        "firstAuthor": "Michael Tang",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "In this work, we propose the novel on-the-fly in-topic generation task to extend in-topic generation to unseen, general-purpose topics. Towards this end, we motivate and build a benchmark involving news article generation with article titles as control, and develop various models to tackle this task by leveraging prompting, retrieval, and inference-time topic modeling. We find that that building on-the-fly Bag-of-Words (BoW) models and leveraging latent space modification techniques like PPLM [3] is a promising method for this new kind of fine-grained in-topic control, although zero-shot prompting of Large Language Models remains a strong baseline, whose limitations we explore. Finally, we propose various automated evaluation metrics for our task based on sparse and dense TF-IDF and SimCSE [4] encodings, and show that they behave similarly to human scores for in-topicness, opening up new promise for evaluations of control that go beyond human annotations.",
+        "paperId": "bd958c48e312eff196fc71165f29ad801e05268d"
+    },
+    {
+        "title": "Embedding Democratic Values into Social Media AIs via Societal Objective Functions",
+        "firstAuthor": "Chenyan Jia",
+        "url": "https://arxiv.org/pdf/2307.13912",
+        "dateSubmitted": "2023-07-26",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Can we design artificial intelligence (AI) systems that rank our social media feeds to consider democratic values such as mitigating partisan animosity as part of their objective functions? We introduce a method for translating established, vetted social scientific constructs into AI objective functions, which we term societal objective functions, and demonstrate the method with application to the political science construct of anti-democratic attitudes. Traditionally, we have lacked observable outcomes to use to train such models, however, the social sciences have developed survey instruments and qualitative codebooks for these constructs, and their precision facilitates translation into detailed prompts for large language models. We apply this method to create a democratic attitude model that estimates the extent to which a social media post promotes anti-democratic attitudes, and test this democratic attitude model across three studies. In Study 1, we first test the attitudinal and behavioral effectiveness of the intervention among US partisans (N=1,380) by manually annotating (alpha=.895) social media posts with anti-democratic attitude scores and testing several feed ranking conditions based on these scores. Removal (d=.20) and downranking feeds (d=.25) reduced participants' partisan animosity without compromising their experience and engagement. In Study 2, we scale up the manual labels by creating the democratic attitude model, finding strong agreement with manual labels (rho=.75). Finally, in Study 3, we replicate Study 1 using the democratic attitude model instead of manual labels to test its attitudinal and behavioral impact (N=558), and again find that the feed downranking using the societal objective function reduced partisan animosity (d=.25). This method presents a novel strategy to draw on social science theory and methods to mitigate societal harms in social media AIs.",
+        "paperId": "c4561fd08636b5f5f6b9f3f6d89f3cee39e678b0"
+    },
+    {
+        "title": "Large Language Models as Sous Chefs: Revising Recipes with GPT-3",
+        "firstAuthor": "Alyssa Hwang",
+        "url": "http://arxiv.org/pdf/2306.13986",
+        "dateSubmitted": "2023-06-24",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "With their remarkably improved text generation and prompting capabilities, large language models can adapt existing written information into forms that are easier to use and understand. In our work, we focus on recipes as an example of complex, diverse, and widely used instructions. We develop a prompt grounded in the original recipe and ingredients list that breaks recipes down into simpler steps. We apply this prompt to recipes from various world cuisines, and experiment with several large language models (LLMs), finding best results with GPT-3.5. We also contribute an Amazon Mechanical Turk task that is carefully designed to reduce fatigue while collecting human judgment of the quality of recipe revisions. We find that annotators usually prefer the revision over the original, demonstrating a promising application of LLMs in serving as digital sous chefs for recipes and beyond. We release our prompt, code, and MTurk template for public use.",
+        "paperId": "ca60126b2b534a3f1cd8007ba84fdbd163968770"
+    },
+    {
+        "title": "Reward Design with Language Models",
+        "firstAuthor": "Minae Kwon",
+        "url": "http://arxiv.org/pdf/2303.00001",
+        "dateSubmitted": "2023-02-27",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Reward design in reinforcement learning (RL) is challenging since specifying human notions of desired behavior may be difficult via reward functions or require many expert demonstrations. Can we instead cheaply design rewards using a natural language interface? This paper explores how to simplify reward design by prompting a large language model (LLM) such as GPT-3 as a proxy reward function, where the user provides a textual prompt containing a few examples (few-shot) or a description (zero-shot) of the desired behavior. Our approach leverages this proxy reward function in an RL framework. Specifically, users specify a prompt once at the beginning of training. During training, the LLM evaluates an RL agent's behavior against the desired behavior described by the prompt and outputs a corresponding reward signal. The RL agent then uses this reward to update its behavior. We evaluate whether our approach can train agents aligned with user objectives in the Ultimatum Game, matrix games, and the DealOrNoDeal negotiation task. In all three tasks, we show that RL agents trained with our framework are well-aligned with the user's objectives and outperform RL agents trained with reward functions learned via supervised learning",
+        "paperId": "d318e0169f649656c71f02a1f84194a734fe1962"
+    },
+    {
+        "title": "FashionLOGO: Prompting Multimodal Large Language Models for Fashion Logo Embeddings",
+        "firstAuthor": "Yulin Su",
+        "url": "https://arxiv.org/pdf/2308.09012",
+        "dateSubmitted": "2023-08-17",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Logo embedding plays a crucial role in various e-commerce applications by facilitating image retrieval or recognition, such as intellectual property protection and product search. However, current methods treat logo embedding as a purely visual problem, which may limit their performance in real-world scenarios. A notable issue is that the textual knowledge embedded in logo images has not been adequately explored. Therefore, we propose a novel approach that leverages textual knowledge as an auxiliary to improve the robustness of logo embedding. The emerging Multimodal Large Language Models (MLLMs) have demonstrated remarkable capabilities in both visual and textual understanding and could become valuable visual assistants in understanding logo images. Inspired by this observation, our proposed method, FashionLOGO, aims to utilize MLLMs to enhance fashion logo embedding. We explore how MLLMs can improve logo embedding by prompting them to generate explicit textual knowledge through three types of prompts, including image OCR, brief captions, and detailed descriptions prompts, in a zero-shot setting. We adopt a cross-attention transformer to enable image embedding queries to learn supplementary knowledge from textual embeddings automatically. To reduce computational costs, we only use the image embedding model in the inference stage, similar to traditional inference pipelines. Our extensive experiments on three real-world datasets demonstrate that FashionLOGO learns generalized and robust logo embeddings, achieving state-of-the-art performance in all benchmark datasets. Furthermore, we conduct comprehensive ablation studies to demonstrate the performance improvements resulting from the introduction of MLLMs.",
+        "paperId": "d53945d4afb4528590d79e20de52883d29037e86"
+    },
+    {
+        "title": "Leveraging Training Data in Few-Shot Prompting for Numerical Reasoning",
+        "firstAuthor": "Zhanming Jie",
+        "url": "http://arxiv.org/pdf/2305.18170",
+        "dateSubmitted": "2023-05-29",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Chain-of-thought (CoT) prompting with large language models has proven effective in numerous natural language processing tasks, but designing prompts that generalize well to diverse problem types can be challenging, especially in the context of math word problem (MWP) solving. Additionally, it is common to have a large amount of training data that have a better diversity coverage but CoT annotations are not available, which limits the use of supervised learning techniques. To address these issues, we investigate two approaches to leverage the training data in a few-shot prompting scenario: dynamic program prompting and program distillation. Our approach is largely inspired by Gao et al., (2022), where they proposed to replace the CoT with the programs as the intermediate reasoning step. Such a prompting strategy allows us to accurately verify the answer correctness through program execution in MWP solving. Our dynamic program prompting involves annotating the training data by sampling correct programs from a large language model, while program distillation involves adapting a smaller model to the program-annotated training data. Our experiments on three standard MWP datasets demonstrate the effectiveness of these approaches, yielding significant improvements over previous baselines for prompting and fine-tuning. Our results suggest that leveraging a large amount of training data can improve the generalization ability of prompts and boost the performance of fine-tuned small models in MWP solving.",
+        "paperId": "d75d11d2c89c01cd284383546ae057cb827dc272"
+    },
+    {
+        "title": "Ten Simple Rules for Crafting Effective Prompts for Large Language Models",
+        "firstAuthor": "Zhicheng Lin",
+        "url": null,
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": null,
+        "paperId": "d99628d20eb0122028339b5d4e798a90605e46c2"
+    },
+    {
+        "title": "Systematic Rectification of Language Models via Dead-end Analysis",
+        "firstAuthor": "Mengyao Cao",
+        "url": "http://arxiv.org/pdf/2302.14003",
+        "dateSubmitted": "2023-02-27",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "With adversarial or otherwise normal prompts, existing large language models (LLM) can be pushed to generate toxic discourses. One way to reduce the risk of LLMs generating undesired discourses is to alter the training of the LLM. This can be very restrictive due to demanding computation requirements. Other methods rely on rule-based or prompt-based token elimination, which are limited as they dismiss future tokens and the overall meaning of the complete discourse. Here, we center detoxification on the probability that the finished discourse is ultimately considered toxic. That is, at each point, we advise against token selections proportional to how likely a finished text from this point will be toxic. To this end, we formally extend the dead-end theory from the recent reinforcement learning (RL) literature to also cover uncertain outcomes. Our approach, called rectification, utilizes a separate but significantly smaller model for detoxification, which can be applied to diverse LLMs as long as they share the same vocabulary. Importantly, our method does not require access to the internal representations of the LLM, but only the token probability distribution at each decoding step. This is crucial as many LLMs today are hosted in servers and only accessible through APIs. When applied to various LLMs, including GPT-3, our approach significantly improves the generated discourse compared to the base LLMs and other techniques in terms of both the overall language and detoxification performance.",
+        "paperId": "da5fcb26c830663b79c9aa1c550ae62e7725fcad"
+    },
+    {
+        "title": "The Unreliability of Explanations in Few-Shot In-Context Learning",
+        "firstAuthor": "Xi Ye",
+        "url": "http://arxiv.org/pdf/2205.03401",
+        "dateSubmitted": null,
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "How can prompting a large language model like GPT-3 with explanations improve in-context learning? We focus speci\ufb01cally on two NLP tasks that involve reasoning over text, namely question answering and natural language inference. Including explanations in the prompt and having the model generate them does not consistently improve performance in the settings we study, contrary to recent results on symbolic reasoning tasks (Nye et al., 2021; Wei et al., 2022). Despite careful prompting, explanations generated by GPT-3 may not even be factually grounded in the input, even on simple tasks with straightforward extractive explanations. However, these \ufb02awed explanations can still be useful as a way to verify GPT-3\u2019s predictions post-hoc. Through analysis in three settings, we show that explanations judged as good by humans\u2014those that are logically consistent with the input and the prediction\u2014usually indicate more accurate predictions. Following these observations, we present a framework for calibrating model predictions based on the reliability of the explanations. Our framework trains calibrators using automatically extracted scores that approximately assess the reliability of explanations, which helps improve performance across three different datasets",
+        "paperId": "de04aa282f8055cebe86966c592bf37af6aecc99"
+    },
+    {
+        "title": "SPELL: Semantic Prompt Evolution based on a LLM",
+        "firstAuthor": "Yujian Betterest Li",
+        "url": "https://arxiv.org/pdf/2310.01260",
+        "dateSubmitted": "2023-10-02",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Prompt engineering is a new paradigm for enhancing the performance of trained neural network models. For optimizing text-style prompts, existing methods usually individually operate small portions of a text step by step, which either breaks the fluency or could not globally adjust a prompt. Since large language models (LLMs) have powerful ability of generating coherent texts token by token, can we utilize LLMs for improving prompts? Based on this motivation, in this paper, considering a trained LLM as a text generator, we attempt to design a black-box evolution algorithm for automatically optimizing texts, namely SPELL (Semantic Prompt Evolution based on a LLM). The proposed method is evaluated with different LLMs and evolution parameters in different text tasks. Experimental results show that SPELL could rapidly improve the prompts indeed. We further explore the evolution process and discuss on the limitations, potential possibilities and future work.",
+        "paperId": "e1dafedfbb55cd2200411841c2ec40e7ea827773"
+    },
+    {
+        "title": "SurrogatePrompt: Bypassing the Safety Filter of Text-To-Image Models via Substitution",
+        "firstAuthor": "Zhongjie Ba",
+        "url": "https://arxiv.org/pdf/2309.14122",
+        "dateSubmitted": "2023-09-25",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Advanced text-to-image models such as DALL-E 2 and Midjourney possess the capacity to generate highly realistic images, raising significant concerns regarding the potential proliferation of unsafe content. This includes adult, violent, or deceptive imagery of political figures. Despite claims of rigorous safety mechanisms implemented in these models to restrict the generation of not-safe-for-work (NSFW) content, we successfully devise and exhibit the first prompt attacks on Midjourney, resulting in the production of abundant photorealistic NSFW images. We reveal the fundamental principles of such prompt attacks and suggest strategically substituting high-risk sections within a suspect prompt to evade closed-source safety measures. Our novel framework, SurrogatePrompt, systematically generates attack prompts, utilizing large language models, image-to-text, and image-to-image modules to automate attack prompt creation at scale. Evaluation results disclose an 88% success rate in bypassing Midjourney's proprietary safety filter with our attack prompts, leading to the generation of counterfeit images depicting political figures in violent scenarios. Both subjective and objective assessments validate that the images generated from our attack prompts present considerable safety hazards.",
+        "paperId": "e1decb86f2a6aba8682d2fc4e427424b0b49e0d0"
+    },
+    {
+        "title": "Augmented Embeddings for Custom Retrievals",
+        "firstAuthor": "Anirudh Khatry",
+        "url": "https://arxiv.org/pdf/2310.05380",
+        "dateSubmitted": "2023-10-09",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Information retrieval involves selecting artifacts from a corpus that are most relevant to a given search query. The flavor of retrieval typically used in classical applications can be termed as homogeneous and relaxed, where queries and corpus elements are both natural language (NL) utterances (homogeneous) and the goal is to pick most relevant elements from the corpus in the Top-K, where K is large, such as 10, 25, 50 or even 100 (relaxed). Recently, retrieval is being used extensively in preparing prompts for large language models (LLMs) to enable LLMs to perform targeted tasks. These new applications of retrieval are often heterogeneous and strict -- the queries and the corpus contain different kinds of entities, such as NL and code, and there is a need for improving retrieval at Top-K for small values of K, such as K=1 or 3 or 5. Current dense retrieval techniques based on pretrained embeddings provide a general-purpose and powerful approach for retrieval, but they are oblivious to task-specific notions of similarity of heterogeneous artifacts. We introduce Adapted Dense Retrieval, a mechanism to transform embeddings to enable improved task-specific, heterogeneous and strict retrieval. Adapted Dense Retrieval works by learning a low-rank residual adaptation of the pretrained black-box embedding. We empirically validate our approach by showing improvements over the state-of-the-art general-purpose embeddings-based baseline.",
+        "paperId": "e4c466cf3df4887e0121561be90e0bac78d3e1cb"
+    },
+    {
+        "title": "Tryage: Real-time, intelligent Routing of User Prompts to Large Language Models",
+        "firstAuthor": "S. Hari",
+        "url": "https://arxiv.org/pdf/2308.11601",
+        "dateSubmitted": "2023-08-22",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "The introduction of the transformer architecture and the self-attention mechanism has led to an explosive production of language models trained on specific downstream tasks and data domains. With over 200, 000 models in the Hugging Face ecosystem, users grapple with selecting and optimizing models to suit multifaceted workflows and data domains while addressing computational, security, and recency concerns. There is an urgent need for machine learning frameworks that can eliminate the burden of model selection and customization and unleash the incredible power of the vast emerging model library for end users. Here, we propose a context-aware routing system, Tryage, that leverages a language model router for optimal selection of expert models from a model library based on analysis of individual input prompts. Inspired by the thalamic router in the brain, Tryage employs a perceptive router to predict down-stream model performance on prompts and, then, makes a routing decision using an objective function that integrates performance predictions with user goals and constraints that are incorporated through flags (e.g., model size, model recency). Tryage allows users to explore a Pareto front and automatically trade-off between task accuracy and secondary goals including minimization of model size, recency, security, verbosity, and readability. Across heterogeneous data sets that include code, text, clinical data, and patents, the Tryage framework surpasses Gorilla and GPT3.5 turbo in dynamic model selection identifying the optimal model with an accuracy of 50.9% , compared to 23.6% by GPT 3.5 Turbo and 10.8% by Gorilla. Conceptually, Tryage demonstrates how routing models can be applied to program and control the behavior of multi-model LLM systems to maximize efficient use of the expanding and evolving language model ecosystem.",
+        "paperId": "ee025d7030d4767062af2bcd32a4d586737d30bf"
+    },
+    {
+        "title": "Distractor generation for multiple-choice questions with predictive prompting and large language models",
+        "firstAuthor": "Semere Kiros Bitew",
+        "url": "https://arxiv.org/pdf/2307.16338",
+        "dateSubmitted": "2023-07-30",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Large Language Models (LLMs) such as ChatGPT have demonstrated remarkable performance across various tasks and have garnered significant attention from both researchers and practitioners. However, in an educational context, we still observe a performance gap in generating distractors -- i.e., plausible yet incorrect answers -- with LLMs for multiple-choice questions (MCQs). In this study, we propose a strategy for guiding LLMs such as ChatGPT, in generating relevant distractors by prompting them with question items automatically retrieved from a question bank as well-chosen in-context examples. We evaluate our LLM-based solutions using a quantitative assessment on an existing test set, as well as through quality annotations by human experts, i.e., teachers. We found that on average 53% of the generated distractors presented to the teachers were rated as high-quality, i.e., suitable for immediate use as is, outperforming the state-of-the-art model. We also show the gains of our approach 1 in generating high-quality distractors by comparing it with a zero-shot ChatGPT and a few-shot ChatGPT prompted with static examples.",
+        "paperId": "f1bb5051965a3a4c9288f0123dd03c26a08e1378"
+    },
+    {
+        "title": "Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions",
+        "firstAuthor": "H. Trivedi",
+        "url": "http://arxiv.org/pdf/2212.10509",
+        "dateSubmitted": "2022-12-20",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Prompting-based large language models (LLMs) are surprisingly powerful at generating natural language reasoning steps or Chains-of-Thoughts (CoT) for multi-step question answering (QA). They struggle, however, when the necessary knowledge is either unavailable to the LLM or not up-to-date within its parameters. While using the question to retrieve relevant text from an external knowledge source helps LLMs, we observe that this one-step retrieve-and-read approach is insufficient for multi-step QA. Here, what to retrieve depends on what has already been derived, which in turn may depend on what was previously retrieved. To address this, we propose IRCoT, a new approach for multi-step QA that interleaves retrieval with steps (sentences) in a CoT, guiding the retrieval with CoT and in turn using retrieved results to improve CoT. Using IRCoT with GPT3 substantially improves retrieval (up to 21 points) as well as downstream QA (up to 15 points) on four datasets: HotpotQA, 2WikiMultihopQA, MuSiQue, and IIRC. We observe similar substantial gains in out-of-distribution (OOD) settings as well as with much smaller models such as Flan-T5-large without additional training. IRCoT reduces model hallucination, resulting in factually more accurate CoT reasoning.",
+        "paperId": "f208ea909fa7f54fea82def9a92fd81dfc758c39"
+    },
+    {
+        "title": "Satisfiability-Aided Language Models Using Declarative Prompting",
+        "firstAuthor": "Xi Ye",
+        "url": "https://arxiv.org/pdf/2305.09656",
+        "dateSubmitted": "2023-05-16",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Prior work has combined chain-of-thought prompting in large language models (LLMs) with programmatic representations to perform effective and transparent reasoning. While such an approach works well for tasks that only require forward reasoning (e.g., straightforward arithmetic), it is less effective for constraint solving problems that require more sophisticated planning and search. In this paper, we propose a new satisfiability-aided language modeling (SatLM) approach for improving the reasoning capabilities of LLMs. We use an LLM to generate a declarative task specification rather than an imperative program and leverage an off-the-shelf automated theorem prover to derive the final answer. This approach has two key advantages. The declarative specification is closer to the problem description than the reasoning steps are, so the LLM can parse it out of the description more accurately. Furthermore, by offloading the actual reasoning task to an automated theorem prover, our approach can guarantee the correctness of the answer with respect to the parsed specification and avoid planning errors in the solving process. We evaluate SATLM on 8 different datasets and show that it consistently outperforms program-aided LMs in the imperative paradigm. In particular, SATLM outperforms program-aided LMs by 23% on a challenging subset of the GSM arithmetic reasoning dataset; SATLM also achieves a new SoTA on LSAT and BoardgameQA, surpassing previous models that are trained on the respective training sets.",
+        "paperId": "f27f6d1d521d189e78f5623098ced0deea613d33"
+    },
+    {
+        "title": "Interpreting User Requests in the Context of Natural Language Standing Instructions",
+        "firstAuthor": "Nikita Moghe",
+        "url": null,
+        "dateSubmitted": "2023-11-16",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "Users of natural language interfaces, generally powered by Large Language Models (LLMs),often must repeat their preferences each time they make a similar request. To alleviate this, we propose including some of a user's preferences and instructions in natural language -- collectively termed standing instructions -- as additional context for such interfaces. For example, when a user states I'm hungry, their previously expressed preference for Persian food will be automatically added to the LLM prompt, so as to influence the search for relevant restaurants. We develop NLSI, a language-to-program dataset consisting of over 2.4K dialogues spanning 17 domains, where each dialogue is paired with a user profile (a set of users specific standing instructions) and corresponding structured representations (API calls). A key challenge in NLSI is to identify which subset of the standing instructions is applicable to a given dialogue. NLSI contains diverse phenomena, from simple preferences to interdependent instructions such as triggering a hotel search whenever the user is booking tickets to an event. We conduct experiments on NLSI using prompting with large language models and various retrieval approaches, achieving a maximum of 44.7% exact match on API prediction. Our results demonstrate the challenges in identifying the relevant standing instructions and their interpretation into API calls.",
+        "paperId": "f2abeec1256f80970827d60f0151c7a19f2dbe7a"
+    },
+    {
+        "title": "Choice Over Control: How Users Write with Large Language Models using Diegetic and Non-Diegetic Prompting",
+        "firstAuthor": "Hai Dang",
+        "url": "https://arxiv.org/pdf/2303.03199",
+        "dateSubmitted": "2023-03-06",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "We propose a conceptual perspective on prompts for Large Language Models (LLMs) that distinguishes between (1) diegetic prompts (part of the narrative, e.g. \u201cOnce upon a time, I saw a fox...\u201d), and (2) non-diegetic prompts (external, e.g. \u201cWrite about the adventures of the fox.\u201d). With this lens, we study how 129 crowd workers on Prolific write short texts with different user interfaces (1 vs 3 suggestions, with/out non-diegetic prompts; implemented with GPT-3): When the interface offered multiple suggestions and provided an option for non-diegetic prompting, participants preferred choosing from multiple suggestions over controlling them via non-diegetic prompts. When participants provided non-diegetic prompts it was to ask for inspiration, topics or facts. Single suggestions in particular were guided both with diegetic and non-diegetic information. This work informs human-AI interaction with generative models by revealing that (1) writing non-diegetic prompts requires effort, (2) people combine diegetic and non-diegetic prompting, and (3) they use their draft (i.e. diegetic information) and suggestion timing to strategically guide LLMs.",
+        "paperId": "fccf8776d7525627c518a56a1f4db367a4d7120b"
+    },
+    {
+        "title": "Contrastive Novelty-Augmented Learning: Anticipating Outliers with Large Language Models",
+        "firstAuthor": "Albert Xu",
+        "url": "https://aclanthology.org/2023.acl-long.658.pdf",
+        "dateSubmitted": "2022-11-28",
+        "keyWords": [
+            "prompt a large language model"
+        ],
+        "abstract": "In many task settings, text classification models are likely to encounter examples from novel classes on which they cannot predict correctly. Selective prediction, in which models abstain on low-confidence examples, provides a possible solution, but existing models are often overly confident on unseen classes. To remedy this overconfidence, we introduce Contrastive Novelty-Augmented Learning (CoNAL), a two-step method that generates OOD examples representative of novel classes, then trains to decrease confidence on them. First, we generate OOD examples by prompting a large language model twice: we prompt it to enumerate relevant novel classes, then generate examples from each novel class matching the task format. Second, we train a classifier with a novel contrastive objective that encourages lower confidence on generated OOD examples than training examples. When trained with CoNAL, classifiers improve in their ability to detect and abstain on novel class examples over prior methods by an average of 2.3% in terms of accuracy under the accuracy-coverage curve (AUAC) and 5.5% AUROC across 4 NLP datasets, with no cost to in-distribution accuracy.",
+        "paperId": "fed7e4a0e8c798777f3f1613be62a2dfb776b462"
+    }
+]
