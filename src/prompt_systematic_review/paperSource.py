@@ -24,10 +24,11 @@ class Paper:
         self.abstract = abstract
         self.paperId = paperId
 
-        try:
-            assert set(keyWords) == set([k.lower() for k in keyWords])
-        except:
-            raise ValueError("Keywords must be lowercase")
+        if keyWords:
+            try:
+                assert set(keyWords) == set([k.lower() for k in keyWords])
+            except:
+                raise ValueError("Keywords must be lowercase")
 
     def __str__(self):
         return f"{self.title}, by {self.author}".strip()
