@@ -1,8 +1,16 @@
-from src.prompt_systematic_review.role_prompting import evaluate_prompts
-
 """
 Test a set of prompts against a dataset and return the results. Currently working for GSM-8k. You must add your openAI API key to the key variable below.
 """
+
+from prompt_systematic_review.role_prompting import evaluate_prompts
+import openai
+from prompt_systematic_review.utils import process_paper_title
+from dotenv import load_dotenv
+import os
+
+load_dotenv(dotenv_path='../.env')  # load all entries from .env file
+
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 key = ""
 
@@ -18,7 +26,6 @@ model = "gpt-4"
 examples = 10
 
 eval = evaluate_prompts(
-    key,
     prompts,
     dataset,
     config_name,

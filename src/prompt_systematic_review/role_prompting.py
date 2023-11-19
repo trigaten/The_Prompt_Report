@@ -1,11 +1,11 @@
-from load_hf_data import load_hf_dataset
-from openai import OpenAI
+from prompt_systematic_review.load_hf_data import load_hf_dataset
+import openai
 from typing import List
 import re
 
 
 def query_model(
-    key: str, prompt: str, question: str, model_name: str, output_tokens: int = 150
+   prompt: str, question: str, model_name: str, output_tokens: int = 150
 ) -> str:
     """
     Query the OpenAI API with a prompt and a question and return the response.
@@ -17,11 +17,8 @@ def query_model(
     :return: The response from the API.
     """
 
-    client = OpenAI(
-        api_key=key,
-    )
 
-    response = client.chat.completions.create(
+    response = openai.chat.completions.create(
         model=model_name,
         messages=[
             {"role": "system", "content": prompt},
@@ -47,7 +44,6 @@ def evaluate_response(response: str, correct_answer: str) -> bool:
 
 
 def evaluate_prompts(
-    API_key: str,
     prompts: List[str],
     dataset: str,
     config_name: str,
@@ -57,7 +53,6 @@ def evaluate_prompts(
 ) -> dict:
     """
     Evaluate a list of prompts on a dataset and return the results.
-    :param API_key: The OpenAI API key to use.
     :param prompts: The prompts to use.
     :param dataset: The dataset to use. This will be "gsm8k" for the GSM-8k dataset.
     :param config_name: The configuration name to use. This will be "main" for the GSM-8k dataset.
@@ -75,7 +70,7 @@ def evaluate_prompts(
         question = item["question"]
         correct_answer = item["answer"]
         for prompt in prompts:
-            response = query_model(API_key, prompt, question, model_name=model_name)
+            response = query_model(prompt, question, model_name=model_name)
             is_correct = evaluate_response(response, correct_answer)
             results[prompt]["total"] += 1
             if is_correct:
