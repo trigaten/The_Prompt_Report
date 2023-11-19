@@ -3,7 +3,7 @@ from prompt_systematic_review import arxiv_source
 from multiprocessing import Pool
 import pandas as pd
 import time
-from prompt_systematic_review.download_arxiv_query import queryArchive
+from prompt_systematic_review.download_arxiv_query import query_archive
 import os
 from tqdm import tqdm
 from tika import parser
@@ -70,7 +70,7 @@ if __name__ == "__main__":
         os.mkdir("./arxivPDFs/")
 
     # download paper info to csv
-    queryArchive(filename)
+    query_archive(filename)
     df = pd.read_csv(filename)
 
     papList = []
