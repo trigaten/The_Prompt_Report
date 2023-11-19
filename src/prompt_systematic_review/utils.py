@@ -23,8 +23,8 @@ def process_paper_title(title: str) -> str:
     return re.sub(r"\s+", " ", title.lower().replace("\n", "").replace("-", "")).strip()
 
 
-def auto_pipeline(csvFile, folderPath, token=None):
-    pipe = p.Pipeline(token=token)
+def auto_pipeline(csvFile, folderPath):
+    pipe = p.Pipeline()
     pipe.delete_file(csvFile)
     pipe.delete_folder(folderPath)
     pipe.upload_file(csvFile)
