@@ -1,9 +1,12 @@
 import os
 import json
 from prompt_systematic_review.semantic_scholar_source import SemanticScholarSource
-from keywords import (
+from keywords import(
     keywords_list,
-)  # Assuming the list of keywords is defined in keywords.py
+)  
+import pandas as pd
+from tqdm import tqdm
+
 
 
 def create_directory(directory_name):
@@ -19,18 +22,27 @@ def save_papers_to_json(papers, file_path):
         json.dump(papers_dict, file, indent=4)
 
 
-def main():
+def main(verbose=False):
     sss = SemanticScholarSource()
     flattened_keywords = [keyword for sublist in keywords_list for keyword in sublist]
 
-    directory_name = "papers_output"
-    create_directory(directory_name)
+    all_papers_df = pd.DataFrame()
 
-    for keyword in flattened_keywords:
+    if verbose:
+        iterator = tqdm(flattened_keywords, desc="Processing keywords")
+    else:
+        iterator = flattened_keywords
+
+    for keyword in iterator:
         papers = sss.getPapers(300, [keyword])
-        file_path = os.path.join(directory_name, f"{keyword.replace(' ', '_')}.json")
-        save_papers_to_json(papers, file_path)
-        print(f"Saved papers for keyword '{keyword}' to '{file_path}'.")
+        papers_data = [paper.to_dict() for paper in papers]
+        papers_df = pd.DataFrame(papers_data)
+        all_papers_df = pd.concat([all_papers_df, papers_df], ignore_index=True)
+
+    csv_file_path = "all_papers.csv"
+    all_papers_df.to_csv(csv_file_path, index=False)
+    if verbose:
+        print(f"Saved all papers to '{csv_file_path}'.")
 
 
 if __name__ == "__main__":
