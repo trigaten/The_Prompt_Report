@@ -50,7 +50,7 @@ class SemanticScholarSource:
                         )
                         paper = Paper(
                             title=paper_data["title"],
-                            firstAuthor=paper_data["authors"]["name"]
+                            authors=paper_data["authors"]["name"]
                             if paper_data["authors"]
                             else "",
                             url=open_access_pdf_url,

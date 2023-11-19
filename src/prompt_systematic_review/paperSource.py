@@ -9,7 +9,7 @@ class Paper:
     def __init__(
         self,
         title: str,
-        firstAuthor: str,
+        authors: List[str],
         url: str,
         dateSubmitted: date,
         keyWords: List[str],
@@ -17,7 +17,7 @@ class Paper:
         paperId: str = None,
     ):
         self.title = title
-        self.firstAuthor = firstAuthor
+        self.authors = authors
         self.url = url
         self.dateSubmitted = dateSubmitted
         self.keywords = keyWords
@@ -50,7 +50,7 @@ class Paper:
         """Serialize the paper object to a dictionary."""
         return {
             "title": self.title,
-            "firstAuthor": self.firstAuthor,
+            "authors": self.authors,
             "url": self.url,
             "dateSubmitted": self.dateSubmitted.isoformat()
             if self.dateSubmitted

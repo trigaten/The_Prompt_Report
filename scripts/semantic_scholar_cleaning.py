@@ -10,7 +10,7 @@ def clean_duplicates(input, output):
     bulk (bool): A flag to determine if the function should process bulk data (default is False).
     """
     df = pd.read_csv(input)
-    df_cleaned = df.drop_duplicates(subset=["Title", "First Author"])
+    df_cleaned = df.drop_duplicates(subset=["Title", "Authors"])
     df_cleaned.to_csv(output, index=False)
 
 
