@@ -91,7 +91,7 @@ class ArXivSource(PaperSource):
                 papers.append(paper)
         return papers
 
-    def getPaperSrc(self, paper: Paper, destinationFolder: str, recurse=0):
+    def getPaperSrc(self, paper: Paper, destinationFolder: str = None, recurse=0):
         """
         download a paper.
 
@@ -118,7 +118,8 @@ class ArXivSource(PaperSource):
             # if failed to download after 5 attempts, give up
             pass
         else:
-            with open(destinationFolder + url.split("/")[-1], "wb") as f:
-                f.write(response.content)
+            if destinationFolder:
+                with open(destinationFolder + url.split("/")[-1], "wb") as f:
+                    f.write(response.content)
 
         return
