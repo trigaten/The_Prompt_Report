@@ -8,8 +8,11 @@ import os
 import tqdm
 import openai
 
+
 def review_abstract_title_categorical(
-    title: str, abstract: str, model,
+    title: str,
+    abstract: str,
+    model,
 ) -> dict:
     """
     Rate the relevance of a paper to the topic of prompt engineering based on its title and abstract.
