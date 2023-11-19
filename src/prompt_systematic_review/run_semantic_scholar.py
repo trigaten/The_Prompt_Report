@@ -40,7 +40,7 @@ def query_semantic_scholar(downloadName: str = None, verbose=False):
 
     if downloadName:
         all_papers_df.to_csv(downloadName, index=False)
-    if verbose:
-        print(f"Saved all papers to '{csv_file_path}'.")
+        if verbose:
+            print(f"Saved all papers to '{downloadName}'.")
 
     return all_papers_df
