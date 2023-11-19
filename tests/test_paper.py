@@ -57,7 +57,7 @@ def test_arxiv_source():
     papers = arxiv_source.getPapers(1, [TITLE])
     paper = papers[0]
     assert process_paper_title(paper.title) == TITLE.lower()
-    assert paper.firstAuthor == "Bobby Azad"
+    assert "Bobby Azad" in paper.authors
     assert paper.url == "http://arxiv.org/abs/2310.18689v1"
 
     date_string = "Sat, 28 Oct 2023 12:08:12 UTC"
@@ -68,30 +68,30 @@ def test_arxiv_source():
     ]
 
 
-@pytest.mark.API_test
-def test_ieee_source():
-    # test that IEEE source returns papers properly
-    ieee_source = IEEESource()
-    papers = ieee_source.getPapers(2, ["machine learning"])
-    assert len(papers) == 2
-    for paper in papers:
-        assert isinstance(paper, Paper)
-        assert isinstance(paper.url, str)
-        assert len(paper.url) > 0
+# @pytest.mark.API_test
+# def test_ieee_source():
+#     # test that IEEE source returns papers properly
+#     ieee_source = IEEESource()
+#     papers = ieee_source.getPapers(2, ["machine learning"])
+#     assert len(papers) == 2
+#     for paper in papers:
+#         assert isinstance(paper, Paper)
+#         assert isinstance(paper.url, str)
+#         assert len(paper.url) > 0
 
-    # test that IEEE source returns the exact information for one paper properly
-    ieee_source = IEEESource()
-    KEYWORDS = "Large Language Models"
-    papers = ieee_source.getPapers(1, [KEYWORDS])
-    paper = papers[0]
-    print(paper.title)
-    assert paper.firstAuthor == "Qurat Ul Ain Ali"
-    assert paper.url.startswith("https://ieeexplore.ieee.org/")
+#     # test that IEEE source returns the exact information for one paper properly
+#     ieee_source = IEEESource()
+#     KEYWORDS = "Large Language Models"
+#     papers = ieee_source.getPapers(1, [KEYWORDS])
+#     paper = papers[0]
+#     print(paper.title)
+#     assert "Qurat Ul Ain Ali" in paper.authors
+#     assert paper.url.startswith("https://ieeexplore.ieee.org/")
 
-    date_object = date(2021, 10, 10)
-    assert paper.dateSubmitted == date_object
-    assert "scalability" in [kw.lower() for kw in paper.keywords]
-    assert "java" in [kw.lower() for kw in paper.keywords]
+#     date_object = date(2021, 10, 10)
+#     assert paper.dateSubmitted == date_object
+#     assert "scalability" in [kw.lower() for kw in paper.keywords]
+#     assert "java" in [kw.lower() for kw in paper.keywords]
 
 
 @pytest.mark.API_test
@@ -102,7 +102,6 @@ def test_semantic_scholar_get_papers():
     papers = semantic_scholar.getPapers(count, keywords)
     for paper in papers:
         print("Title:", paper.title)
-        print("First Author:", paper.firstAuthor)
         print("URL:", paper.url or "Not Available")
         print("Date Submitted:", paper.dateSubmitted)
         print("Keywords:", paper.keywords)

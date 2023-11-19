@@ -50,9 +50,10 @@ class ArXivSource(PaperSource):
             for entry in entries:
                 # Extract paper details from entry
                 title = entry.find("{http://www.w3.org/2005/Atom}title").text
-                firstAuthor = entry.find(
-                    "{http://www.w3.org/2005/Atom}author/{http://www.w3.org/2005/Atom}name"
-                ).text
+                authors = [
+                    author.find("{http://www.w3.org/2005/Atom}name").text
+                    for author in entry.findall("{http://www.w3.org/2005/Atom}author")
+                ]
                 url = (
                     entry.find("{http://www.w3.org/2005/Atom}id").text.replace(
                         "/abs/", "/pdf/"
@@ -81,7 +82,7 @@ class ArXivSource(PaperSource):
 
                 paper = Paper(
                     title.replace("\n", "").replace("\r", ""),
-                    firstAuthor,
+                    authors,
                     url,
                     dateSubmitted,
                     [keyWord.lower() for keyWord in keyWords],

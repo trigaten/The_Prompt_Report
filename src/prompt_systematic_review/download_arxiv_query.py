@@ -23,10 +23,9 @@ def queryArchive(downloadName: str = None, verbose=False):
         for keyWord in keywords.keywords_list:
             # go through keywords list and download
             papers += aSource.getPapers(10000, keyWord)
-
     # make dataframe
     titles = [paper.title for paper in papers]
-    firstAuthors = [paper.firstAuthor for paper in papers]
+    authors = [paper.authors for paper in papers]
     urls = [paper.url for paper in papers]
     dateSubmitteds = [paper.dateSubmitted for paper in papers]
     keywordss = [paper.keywords for paper in papers]
@@ -35,7 +34,7 @@ def queryArchive(downloadName: str = None, verbose=False):
     df = pd.DataFrame(
         {
             "title": titles,
-            "firstAuthor": firstAuthors,
+            "authors": authors,
             "url": urls,
             "dateSubmitted": dateSubmitteds,
             "keywords": keywordss,
