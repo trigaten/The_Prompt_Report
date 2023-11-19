@@ -31,7 +31,10 @@ class SemanticScholarSource:
                 try:
                     papers_data = self.bulkSearchPapers(query)[:count]
                     for paper_data in papers_data:
-                        if not (paper_data.get("abstract") and paper_data.get("openAccessPdf")):
+                        if not (
+                            paper_data.get("abstract")
+                            and paper_data.get("openAccessPdf")
+                        ):
                             continue
                         open_access_pdf_url = (
                             paper_data["openAccessPdf"].get("url")
@@ -101,4 +104,3 @@ class SemanticScholarSource:
         arxiv_source = ArXivSource()
         if paper.url:
             arxiv_source.getPaperSrc(paper, destination_folder)
-

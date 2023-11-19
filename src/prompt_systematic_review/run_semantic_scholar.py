@@ -1,12 +1,11 @@
 import os
 import json
 from prompt_systematic_review.semantic_scholar_source import SemanticScholarSource
-from keywords import(
+from keywords import (
     keywords_list,
-)  
+)
 import pandas as pd
 from tqdm import tqdm
-
 
 
 def create_directory(directory_name):
