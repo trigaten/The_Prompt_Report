@@ -52,11 +52,14 @@ class Paper:
             "title": self.title,
             "firstAuthor": self.firstAuthor,
             "url": self.url,
-            "dateSubmitted": self.dateSubmitted.isoformat() if self.dateSubmitted else None,
+            "dateSubmitted": self.dateSubmitted.isoformat()
+            if self.dateSubmitted
+            else None,
             "keyWords": self.keywords,
             "abstract": self.abstract,
             "paperId": self.paperId,
         }
+
 
 class PaperSource(ABC):
     baseURL: str
