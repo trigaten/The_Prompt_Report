@@ -1,6 +1,7 @@
 import requests
 from xml.etree import ElementTree as ET
 import re
+import prompt_systematic_review.pipeline as p
 
 # custom header so requests don't get blocked
 headers = {
@@ -20,3 +21,11 @@ def process_paper_title(title: str) -> str:
     """
     # Replace '-' with '', collapse multiple spaces to a single space, and strip leading/trailing spaces
     return re.sub(r"\s+", " ", title.lower().replace("\n", "").replace("-", "")).strip()
+
+
+def auto_pipeline(csvFile, folderPath, token=None):
+    pipe = p.Pipeline(token=token)
+    pipe.delete_file(csvFile)
+    pipe.delete_folder(folderPath)
+    pipe.upload_file(csvFile)
+    pipe.upload_folder(folderPath)
