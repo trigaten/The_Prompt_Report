@@ -8,7 +8,9 @@ import os
 import tqdm
 
 
-def review_abstract_title_categorical(title:str, abstract:str, model, client:OpenAI.Client, url:str)->dict:
+def review_abstract_title_categorical(
+    title: str, abstract: str, model, client: OpenAI.Client, url: str
+) -> dict:
     """
     Rate the relevance of a paper to the topic of prompt engineering based on its title and abstract.
 
@@ -36,8 +38,8 @@ Prefix prompts are prompts used for most modern transformers, where the model pr
         response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": system_message},
-            {"role": "user", "content": user_message}
-        ]
+            {"role": "user", "content": user_message},
+        ],
     )
     try:
         content = json.loads(response.choices[0].message.content)
@@ -48,15 +50,12 @@ Prefix prompts are prompts used for most modern transformers, where the model pr
             "Model": model,
             "Probability": probability,
             "Reasoning": reasoning,
-            "Url": url
+            "Url": url,
         }
     except json.JSONDecodeError:
         return {
             "Title": title,
             "Model": model,
             "Error": "Invalid JSON response",
-            "Response": response.choices[0].message.content
+            "Response": response.choices[0].message.content,
         }
-
-
-
