@@ -46,6 +46,20 @@ class Paper:
             keyword for keyword in keywords.keywords_list if keyword in self.keywords
         ]
 
+    def to_dict(self):
+        """Serialize the paper object to a dictionary."""
+        return {
+            "title": self.title,
+            "authors": self.authors,
+            "url": self.url,
+            "dateSubmitted": self.dateSubmitted.isoformat()
+            if self.dateSubmitted
+            else None,
+            "keyWords": self.keywords,
+            "abstract": self.abstract,
+            "paperId": self.paperId,
+        }
+
 
 class PaperSource(ABC):
     baseURL: str

@@ -11,3 +11,4 @@ filtered_arxiv_papers.csv
 .env
 scripts/arxiv_papers_with_abstract.csv
 scripts/arxiv_papers_with_ai_labels.csv
+papers_output/*

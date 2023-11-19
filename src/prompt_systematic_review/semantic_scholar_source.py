@@ -31,6 +31,11 @@ class SemanticScholarSource:
                 try:
                     papers_data = self.bulkSearchPapers(query)[:count]
                     for paper_data in papers_data:
+                        if not (
+                            paper_data.get("abstract")
+                            and paper_data.get("openAccessPdf")
+                        ):
+                            continue
                         open_access_pdf_url = (
                             paper_data["openAccessPdf"].get("url")
                             if paper_data.get("openAccessPdf")
@@ -45,19 +50,19 @@ class SemanticScholarSource:
                         )
                         paper = Paper(
                             title=paper_data["title"],
-                            firstAuthor=paper_data["authors"][0]["name"]
+                            authors=paper_data["authors"]["name"]
                             if paper_data["authors"]
                             else "",
                             url=open_access_pdf_url,
                             dateSubmitted=publication_date,
-                            keyWords=[keyword.lower()],
+                            keyWords=None,
                             abstract=paper_data.get("abstract", ""),
                             paperId=paper_data["paperId"],
                         )
                         all_papers.append(paper)
                     break
                 except requests.exceptions.HTTPError as e:
-                    if e.response.status_code == 429:
+                    if e.response.status_code in [429, 504]:
                         print(f"Rate limit hit for keyword '{keyword}'. Retrying...")
                         retry_count += 1
                         time.sleep(1.1 * retry_count)
