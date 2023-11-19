@@ -3,9 +3,10 @@ from prompt_systematic_review.paperSource import Paper
 import pandas as pd
 from datetime import date
 from prompt_systematic_review import keywords
+import tqdm
 
 
-def queryArchive(downloadName: str):
+def queryArchive(downloadName: str = None, verbose=False):
     """
     Download papers from arxiv and save them to a csv file.
     :param downloadName: The name of the csv file to save the data to.
@@ -14,10 +15,14 @@ def queryArchive(downloadName: str):
     aSource = arxiv_source.ArXivSource()
 
     papers = []
-
-    for keyWord in keywords.keywords_list:
-        # go through keywords list and download
-        papers += aSource.getPapers(10000, keyWord)
+    if verbose:
+        for keyWord in tqdm.tqdm(keywords.keywords_list):
+            # go through keywords list and download
+            papers += aSource.getPapers(10000, keyWord)
+    else:
+        for keyWord in keywords.keywords_list:
+            # go through keywords list and download
+            papers += aSource.getPapers(10000, keyWord)
 
     # make dataframe
     titles = [paper.title for paper in papers]
@@ -39,4 +44,9 @@ def queryArchive(downloadName: str):
     )
     # drop duplicates
     df = df.drop_duplicates(subset=["url"])
-    df.to_csv(downloadName, index=False)
+
+    # optional save to file
+    if downloadName:
+        df.to_csv(downloadName, index=False)
+
+    return df
