@@ -14,6 +14,7 @@ class Paper:
         dateSubmitted: date,
         keyWords: List[str],
         abstract: str,
+        paperId: str = None,
     ):
         self.title = title
         self.firstAuthor = firstAuthor
@@ -21,6 +22,8 @@ class Paper:
         self.dateSubmitted = dateSubmitted
         self.keywords = keyWords
         self.abstract = abstract
+        self.paperId = paperId
+
         try:
             assert set(keyWords) == set([k.lower() for k in keyWords])
         except:

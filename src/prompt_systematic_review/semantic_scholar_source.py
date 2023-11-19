@@ -1,110 +1,101 @@
 import requests
 from datetime import datetime
 from typing import List
+from prompt_systematic_review.arxiv_source import ArXivSource
 from prompt_systematic_review.paperSource import Paper
+import time
 
 
 class SemanticScholarSource:
     """A class to represent a source of papers from Semantic Scholar."""
 
-    searchBaseURL = "https://api.semanticscholar.org/graph/v1/paper/search"
-    paperBaseURL = "https://api.semanticscholar.org/graph/v1/paper/"
-    bulkSearchURL = "https://api.semanticscholar.org/graph/v1/paper/search/bulk"
+    SEARCH_BASE_URL = "https://api.semanticscholar.org/graph/v1/paper/search"
+    PAPER_BASE_URL = "https://api.semanticscholar.org/graph/v1/paper/"
 
-    # def __init__(self):
-    #     self.session = requests.Session()
-    #     self.session.headers.update({"x-api-key": self.api_key})
+    def getPapers(self, count: int, key_words: List[str]) -> List[Paper]:
+        """Retrieve a list of papers based on specified keywords.
 
-    def getPapers(
-        self, keyWords: List[str], count: int = 10, offset: int = 0
-    ) -> List[dict]:
-        papers_data = []
-        for keyword in keyWords:
-            params = {
-                "query": keyword,
-                "offset": offset,
-                "limit": count,
-                "fields": "title,authors,abstract,openAccessPdf,tldr",
-            }
-            # response = self.session.get(self.searchBaseURL, params=params)
-            response = requests.get(self.searchBaseURL, params=params)
-            response.raise_for_status()
-            data = response.json()
+        Args:
+            count (int): Number of papers to retrieve for each keyword.
+            key_words (List[str]): List of keywords to search for.
 
-            for paper_data in data.get("data", []):
-                first_author = (
-                    paper_data.get("authors", [{}])[0].get("name", "")
-                    if paper_data.get("authors")
-                    else ""
-                )
-                abstract = (paper_data.get("abstract") or "").replace("\n", " ")
-
-                paper_info = {
-                    "Title": paper_data.get("title"),
-                    "First Author": first_author,
-                    "Abstract": abstract,
-                    "TLDR": paper_data.get("tldr"),
-                    "Open Access PDF URL": paper_data.get("openAccessPdf", {}).get(
-                        "url"
-                    )
-                    if paper_data.get("openAccessPdf")
-                    else None,
-                }
-                papers_data.append(paper_info)
-        return papers_data
-
-    def getPaperDetails(self, paperId: str) -> dict:
-        """Get the detailed information of a paper from Semantic Scholar."""
-        url = f"{self.paperBaseURL}{paperId}?fields=url,openAccessPdf"
-        response = requests.get(url)
-        response.raise_for_status()
-        data = response.json()
-        return data
-
-    def getPaperPDF(self, paperId: str) -> str:
-        """Get the URL of a paper from Semantic Scholar."""
-        paper_details = self.getPaperDetails(paperId)
-        open_access_pdf_data = paper_details.get("openAccessPdf")
-        if open_access_pdf_data:
-            return open_access_pdf_data.get("url")
-        return None
-
-    def getOpenAccessPapers(self, keyWords: List[str], n: int) -> List[Paper]:
+        Returns:
+            List[Paper]: A list of Paper objects.
         """
-        Get a list of n papers with an open access PDF from Semantic Scholar that match the given keywords.
-        :param keyWords: A list of keywords to match.
-        :param n: The number of papers with an open access PDF to retrieve.
-        :return: A list of papers with an open access PDF.
-        """
-        open_access_papers = []
-        offset = 0
-        while len(open_access_papers) < n:
-            batch = self.getPapers(keyWords, count=100, offset=offset)
-            for paper in batch:
-                if len(open_access_papers) >= n:
+        all_papers = []
+        max_retries = 5
+        for keyword in key_words:
+            query = f'"{keyword}"'
+            retry_count = 0
+            while retry_count < max_retries:
+                try:
+                    papers_data = self.bulkSearchPapers(query)[:count]
+                    for paper_data in papers_data:
+                        open_access_pdf_url = (
+                            paper_data["openAccessPdf"].get("url")
+                            if paper_data.get("openAccessPdf")
+                            else None
+                        )
+                        publication_date = (
+                            datetime.strptime(
+                                paper_data["publicationDate"], "%Y-%m-%d"
+                            ).date()
+                            if paper_data.get("publicationDate")
+                            else None
+                        )
+                        paper = Paper(
+                            title=paper_data["title"],
+                            firstAuthor=paper_data["authors"][0]["name"]
+                            if paper_data["authors"]
+                            else "",
+                            url=open_access_pdf_url,
+                            dateSubmitted=publication_date,
+                            keyWords=[keyword.lower()],
+                            abstract=paper_data.get("abstract", ""),
+                            paperId=paper_data["paperId"],
+                        )
+                        all_papers.append(paper)
                     break
-                if self.getPaperPDF(paper.url.split("/")[-1]):
-                    open_access_papers.append(paper)
-            offset += len(batch)
-        return open_access_papers
+                except requests.exceptions.HTTPError as e:
+                    if e.response.status_code == 429:
+                        print(f"Rate limit hit for keyword '{keyword}'. Retrying...")
+                        retry_count += 1
+                        time.sleep(1.1 * retry_count)
+                    else:
+                        print(f"Error during API request for keyword '{keyword}': {e}")
+                        break
+        return all_papers
 
-    def bulkSearchPapers(
-        self,
-        query: str,
-        fields: str = "title,authors,abstract,openAccessPdf,tldr",
-        token: str = None,
-    ) -> dict:
+    def bulkSearchPapers(self, query: str, token: str = None) -> List[dict]:
+        """Perform a bulk search of papers on Semantic Scholar.
+
+        Args:
+            query (str): The search query.
+            token (str, optional): Token for continuation of a search. Defaults to None.
+
+        Returns:
+            List[dict]: A list of paper data in dictionary format.
+        """
+        bulk_search_url = "https://api.semanticscholar.org/graph/v1/paper/search/bulk"
         params = {
             "query": query,
-            "fields": fields,
-            "limit": 1000,  # Max limit per API call
-            "sort": "citationCount:desc",  # Example sorting parameter
+            "fields": "title,authors,abstract,publicationDate,openAccessPdf,paperId",
+            "limit": 1000,
         }
         if token:
             params["token"] = token
 
-        response = requests.get(
-            self.bulkSearchURL, params=params
-        )  # Ensure correct request is made
+        response = requests.get(bulk_search_url, params=params)
         response.raise_for_status()
-        return response.json()
+        return response.json().get("data", [])
+
+    def getPaperSrc(self, paper: Paper, destination_folder: str):
+        """Download a paper if its open access PDF URL is available, using ArXivSource.
+
+        Args:
+            paper (Paper): The paper to download.
+            destination_folder (str): The folder to save the paper to.
+        """
+        arxiv_source = ArXivSource()
+        if paper.url:
+            arxiv_source.getPaperSrc(paper, destination_folder)
