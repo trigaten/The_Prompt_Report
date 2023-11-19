@@ -6,10 +6,10 @@ import xml.etree.ElementTree as ET
 from urllib.parse import urlparse, parse_qs
 import os
 import tqdm
-
+import openai
 
 def review_abstract_title_categorical(
-    title: str, abstract: str, model, client: OpenAI.Client, url: str
+    title: str, abstract: str, model,
 ) -> dict:
     """
     Rate the relevance of a paper to the topic of prompt engineering based on its title and abstract.
@@ -20,8 +20,6 @@ def review_abstract_title_categorical(
     :type abstract: str
     :param model: The name of the model to use for rating.
     :type model: str
-    :param client: The OpenAI client object.
-    :type client: OpenAI.Client
     :param url: The URL of the paper.
     :type url: str
     :return: A dictionary containing the title, model, probability, reasoning, and URL.
@@ -34,7 +32,7 @@ Please also note, that a paper that focuses on training a model as opposed to po
 
     user_message = f"Title: '{title}', Abstract: '{abstract}'. Rate its relevance to the topic of prompt engineering as one of the following categories: 'highly relevant', 'somewhat relevant', 'neutrally relevant', 'somewhat irrelevant', 'highly irrelevant',  and provide text from the abstract that justifies your reasoning"
 
-    response = client.chat.completions.create(
+    response = openai.chat.completions.create(
         model=model,
         response_format={"type": "json_object"},
         messages=[
@@ -51,7 +49,6 @@ Please also note, that a paper that focuses on training a model as opposed to po
             "Model": model,
             "Probability": probability,
             "Reasoning": reasoning,
-            "Url": url,
         }
     except json.JSONDecodeError:
         return {
