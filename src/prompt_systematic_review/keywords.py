@@ -42,5 +42,5 @@ keywords_list = [
     "multimodal prompting",
     "instruction prompting",
     "prompt templating",
-    "prompt template"
+    "prompt template",
 ]
