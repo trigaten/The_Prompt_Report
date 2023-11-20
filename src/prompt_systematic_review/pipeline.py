@@ -25,7 +25,7 @@ class Pipeline:
         self.root = (
             f"PromptSystematicReview/Prompt_Systematic_Review_Dataset@{revision}/"
         )
-        self.repo_name = f"datasets/PromptSystematicReview/Prompt_Systematic_Review_Dataset"
+        self.repo_name = f"PromptSystematicReview/Prompt_Systematic_Review_Dataset"
         self.revision = revision
 
     def is_logged_in(self):
@@ -75,6 +75,7 @@ class Pipeline:
             path_in_repo=fileName,
             path_or_fileobj=fileName,
             commit_message=f"Add {fileName}",
+            repo_type="dataset",
         )
 
     def upload_folder(self, folderName):
@@ -85,6 +86,7 @@ class Pipeline:
             repo_id=self.repo_name,
             folder_path=folderName,
             commit_message=f"Add {folderName}",
+            repo_type="dataset",
         )
 
     def delete_file(self, fileName):
@@ -96,6 +98,7 @@ class Pipeline:
             self.repo_name,
             token=self.token,
             commit_message=f"Delete {fileName}",
+            repo_type="dataset",
         )
 
     def delete_folder(self, folderName):
@@ -106,4 +109,5 @@ class Pipeline:
             self.repo_name,
             token=self.token,
             commit_message=f"Delete {folderName}",
+            repo_type="dataset",
         )
