@@ -20,8 +20,23 @@ def process_paper_title(title: str) -> str:
     :rtype: str
     """
     # Replace '-' with '', collapse multiple spaces to a single space, and strip leading/trailing spaces
-    return re.sub(r"\s+", " ", title.lower().replace("\n", "").replace("-", "")).strip()
-
+    s = (
+        re.sub(r"\s+", " ", title.lower().replace("\n", "").replace("-", ""))
+        .strip()
+        .replace(".", "")
+        .replace("/", "")
+        .replace("\\", "")
+        .replace(":", "")
+        .replace("*", "")
+        .replace("?", "")
+        .replace('"', "")
+        .replace("<", "")
+        .replace(">", "")
+        .replace("|", "")
+    )
+    # .replace(" ", "")
+    # s = re.sub(r'\W+', '', s)
+    return s
 
 def auto_pipeline(csvFile, folderPath):
     pipe = p.Pipeline()
