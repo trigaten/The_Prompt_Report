@@ -1,4 +1,4 @@
-from huggingface_hub import HfFileSystem, login
+from huggingface_hub import HfFileSystem, login, HfApi
 import pandas as pd
 from io import StringIO
 import os
@@ -14,13 +14,18 @@ https://huggingface.co/docs/huggingface_hub/v0.18.0.rc0/guides/hf_file_system
 
 class Pipeline:
     def __init__(self, token=None, revision="main"):
-        self.token = token
+        try:
+            self.token = os.get_env("HF_TOKEN")
+        except:
+            self.token = None
         self.root = f"hf://datasets/PromptSystematicReview/Prompt_Systematic_Review_Dataset@{revision}/"
         if token is not None:
             self.fs = HfFileSystem(token=token)
-            login(token=token)
+            self.api = HfApi(token=token)
+            # login(token=token)
         else:
             self.fs = HfFileSystem()
+            self.api = None
         self.revision = revision
 
     def is_logged_in(self):
@@ -59,3 +64,32 @@ class Pipeline:
             raise ValueError("Not Logged In")
         path = os.path.join(self.root, fileName)
         dataFrame.to_csv(path, index=False)
+
+    def upload_file(self, fileName):
+        if not self.is_logged_in():
+            raise ValueError("Not Logged In")
+        path = os.path.join(self.root, fileName)
+        self.api.upload_file(
+            fileName, fileName, self.root, commit_message=f"Add {fileName}"
+        )
+
+    def upload_folder(self, folderName):
+        if not self.is_logged_in():
+            raise ValueError("Not Logged In")
+        path = os.path.join(self.root, folderName)
+        self.api.upload_folder(
+            self.root, folderName, commit_message=f"Add {folderName}"
+        )
+
+    def delete_file(self, fileName):
+        if not self.is_logged_in():
+            raise ValueError("Not Logged In")
+        path = os.path.join(self.root, fileName)
+        self.api.delete(fileName, self.root, commit_message=f"Delete {fileName}")
+
+    def delete_folder(self, folderName):
+        if not self.is_logged_in():
+            raise ValueError("Not Logged In")
+        self.api.delete_folder(
+            folderName, self.root, commit_message=f"Delete {folderName}"
+        )

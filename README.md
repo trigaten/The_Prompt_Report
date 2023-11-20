@@ -11,7 +11,7 @@ Make a file at root called `.env`.
 Put your key in like:
 
 `OPENAI_API_KEY=sk-...`
-
+`HF_TOKEN=...`
 
 ## blacklist.csv
 
