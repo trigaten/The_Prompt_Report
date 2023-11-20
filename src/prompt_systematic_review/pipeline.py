@@ -15,7 +15,7 @@ https://huggingface.co/docs/huggingface_hub/v0.18.0.rc0/guides/hf_file_system
 class Pipeline:
     def __init__(self, token=None, revision="main"):
         try:
-            self.token = os.get_env("HF_TOKEN")
+            self.token = os.environ["HF_TOKEN"]
             self.fs = HfFileSystem(token=token)
             self.api = HfApi(token=token)
             print("AMONGUS BABONGUS TOKEN IS AMONGUS")
