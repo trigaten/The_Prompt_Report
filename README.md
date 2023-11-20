@@ -8,7 +8,7 @@ after cloning, run `pip install -r requirements.txt` from root
 
 Make a file at root called `.env`.
 
-For HF: https://huggingface.co/docs/hub/security-tokens
+For HF: https://huggingface.co/docs/hub/security-tokens, also run `huggingface-cli login`
 
 Put your key in like:
 
