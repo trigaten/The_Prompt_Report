@@ -25,7 +25,7 @@ class Pipeline:
         self.root = (
             f"PromptSystematicReview/Prompt_Systematic_Review_Dataset@{revision}/"
         )
-        self.repo_name = f"PromptSystematicReview/Prompt_Systematic_Review_Dataset"
+        self.repo_name = f"datasets/PromptSystematicReview/Prompt_Systematic_Review_Dataset"
         self.revision = revision
 
     def is_logged_in(self):
