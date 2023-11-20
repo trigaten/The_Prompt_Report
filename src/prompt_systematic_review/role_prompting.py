@@ -9,7 +9,6 @@ def query_model(
 ) -> str:
     """
     Query the OpenAI API with a prompt and a question and return the response.
-    :param key: The OpenAI API key to use.
     :param prompt: The prompt to use.
     :param question: The question to use from the dataset.
     :param model_name: The OpenAI model to use.
@@ -29,7 +28,7 @@ def query_model(
     return response.choices[0]
 
 
-def evaluate_response(response: str, correct_answer: str) -> bool:
+def evaluate_response(response: dict, correct_answer: str) -> bool:
     """
     Evaluate the response from the API and return whether it is correct.
     :param response: The response from the API.
@@ -94,12 +93,11 @@ def extract_numbers(string: str) -> List[int]:
     string_without_commas = string.replace(",", "")
 
     # Regular expression to find the pattern of three hashtags followed by an optional space or dollar sign, and then a number
-    pattern = r"###([ \$]?)(\d+)[^\d]*"
+    pattern = r"###\s?[\$]?\s?(\d+(?:\.\d+)?)"
 
-    # Find all matches of the pattern in the string_without_commas
+    # Find all matches of the pattern in the string without commas
     matches = re.findall(pattern, string_without_commas)
 
-    # Convert the extracted numbers from strings to integers
-    numbers = [int(match[1]) for match in matches]
+    numbers = [float(match) for match in matches]
 
     return numbers
