@@ -1,5 +1,18 @@
 # Prompt Engineering Survey
 
+## Install requirements
+
+after cloning, run `pip install -r requirements.txt` from root
+
+## Set up API keys
+
+Make a file at root called `.env`.
+
+Put your key in like:
+
+`OPENAI_API_KEY=sk-...`
+`HF_TOKEN=...`
+
 ## blacklist.csv
 
 Papers we should not include due to being poorly written or AI generated

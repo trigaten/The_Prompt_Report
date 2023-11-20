@@ -50,9 +50,10 @@ class ArXivSource(PaperSource):
             for entry in entries:
                 # Extract paper details from entry
                 title = entry.find("{http://www.w3.org/2005/Atom}title").text
-                firstAuthor = entry.find(
-                    "{http://www.w3.org/2005/Atom}author/{http://www.w3.org/2005/Atom}name"
-                ).text
+                authors = [
+                    author.find("{http://www.w3.org/2005/Atom}name").text
+                    for author in entry.findall("{http://www.w3.org/2005/Atom}author")
+                ]
                 url = (
                     entry.find("{http://www.w3.org/2005/Atom}id").text.replace(
                         "/abs/", "/pdf/"
@@ -73,18 +74,24 @@ class ArXivSource(PaperSource):
                         "{http://www.w3.org/2005/Atom}category"
                     )
                 ]
+                abstract = (
+                    entry.find("{http://www.w3.org/2005/Atom}summary")
+                    .text.replace("\n", "")
+                    .replace("\r", "")
+                )
 
                 paper = Paper(
                     title.replace("\n", "").replace("\r", ""),
-                    firstAuthor,
+                    authors,
                     url,
                     dateSubmitted,
                     [keyWord.lower() for keyWord in keyWords],
+                    abstract,
                 )
                 papers.append(paper)
         return papers
 
-    def getPaperSrc(self, paper: Paper, destinationFolder: str, recurse=0):
+    def getPaperSrc(self, paper: Paper, destinationFolder: str = None, recurse=0):
         """
         download a paper.
 
@@ -111,7 +118,8 @@ class ArXivSource(PaperSource):
             # if failed to download after 5 attempts, give up
             pass
         else:
-            with open(destinationFolder + url.split("/")[-1], "wb") as f:
-                f.write(response.content)
+            if destinationFolder:
+                with open(destinationFolder + url.split("/")[-1], "wb") as f:
+                    f.write(response.content)
 
         return
