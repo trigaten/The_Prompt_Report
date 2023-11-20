@@ -29,6 +29,7 @@ class Pipeline:
         self.revision = revision
 
     def is_logged_in(self):
+        print(self.token)
         return self.token is not None
 
     def get_revision(self):
@@ -70,7 +71,10 @@ class Pipeline:
             raise ValueError("Not Logged In")
         path = os.path.join(self.repo_name, fileName)
         self.api.upload_file(
-            fileName, fileName, self.repo_name, commit_message=f"Add {fileName}"
+            repo_id=self.repo_name,
+            path_in_repo=fileName,
+            path_or_fileobj=fileName,
+            commit_message=f"Add {fileName}",
         )
 
     def upload_folder(self, folderName):
@@ -78,7 +82,9 @@ class Pipeline:
             raise ValueError("Not Logged In")
         path = os.path.join(self.repo_name, folderName)
         self.api.upload_folder(
-            self.repo_name, folderName, commit_message=f"Add {folderName}"
+            repo_id=self.repo_name,
+            folder_path=folderName,
+            commit_message=f"Add {folderName}",
         )
 
     def delete_file(self, fileName):
@@ -86,12 +92,18 @@ class Pipeline:
             raise ValueError("Not Logged In")
         path = os.path.join(self.repo_name, fileName)
         self.api.delete_file(
-            fileName, self.repo_name, commit_message=f"Delete {fileName}"
+            fileName,
+            self.repo_name,
+            token=self.token,
+            commit_message=f"Delete {fileName}",
         )
 
     def delete_folder(self, folderName):
         if not self.is_logged_in():
             raise ValueError("Not Logged In")
         self.api.delete_folder(
-            folderName, self.repo_name, commit_message=f"Delete {folderName}"
+            folderName,
+            self.repo_name,
+            token=self.token,
+            commit_message=f"Delete {folderName}",
         )
