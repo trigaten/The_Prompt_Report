@@ -38,7 +38,18 @@ def process_paper_title(title: str) -> str:
     # s = re.sub(r'\W+', '', s)
     return s
 
+
 def auto_pipeline(csvFile, folderPath):
+    """
+    Uploads both a CSV and a folder to HuggingFace Hub.
+    We do both because it doesnt make sense to upload pdfs
+    without also uploding the master CSV
+
+    :param csvFile: The path to the CSV file.
+    :type csvFile: str
+    :param folderPath: The path to the folder.
+    :type folderPath: str
+    """
     pipe = p.Pipeline()
     pipe.delete_file(csvFile)
     pipe.delete_folder(folderPath)
