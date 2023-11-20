@@ -51,7 +51,13 @@ def auto_pipeline(csvFile, folderPath):
     :type folderPath: str
     """
     pipe = p.Pipeline()
-    pipe.delete_file(csvFile)
-    pipe.delete_folder(folderPath)
+    try:
+        pipe.delete_file(csvFile)
+    except:
+        pass
+    try:
+        pipe.delete_folder(folderPath)
+    except:
+        pass
     pipe.upload_file(csvFile)
     pipe.upload_folder(folderPath)
