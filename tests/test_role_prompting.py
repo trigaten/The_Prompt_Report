@@ -16,6 +16,7 @@ def api_key():
     return os.getenv("OPENAI_API_KEY")
 
 
+@pytest.mark.API_test
 def test_query_model(api_key):
     openai.api_key = api_key
     prompt = "You are a brilliant math professor. Solve the following problem and put your answer after four hashtags like the following example: \nQuestion: What is 4 + 4?\nAnswer: 4 + 4 is ####8\n\n Make your response as short as possible."
@@ -28,6 +29,7 @@ def test_query_model(api_key):
     assert "8" in response
 
 
+@pytest.mark.API_test
 def test_query_model(api_key):
     openai.api_key = api_key
     prompts = [
