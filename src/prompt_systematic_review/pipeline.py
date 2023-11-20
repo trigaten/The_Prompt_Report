@@ -15,17 +15,16 @@ https://huggingface.co/docs/huggingface_hub/v0.18.0.rc0/guides/hf_file_system
 class Pipeline:
     def __init__(self, token=None, revision="main"):
         try:
-            self.token = os.get_env("HF_TOKEN")
-        except:
-            self.token = None
-        self.root = f"hf://datasets/PromptSystematicReview/Prompt_Systematic_Review_Dataset@{revision}/"
-        if token is not None:
+            self.token = os.getenv("HF_TOKEN")
             self.fs = HfFileSystem(token=token)
             self.api = HfApi(token=token)
-            # login(token=token)
-        else:
-            self.fs = HfFileSystem()
-            self.api = None
+        except e:
+            self.token = None
+            print(e)
+
+            
+        self.root = f"hf://datasets/PromptSystematicReview/Prompt_Systematic_Review_Dataset@{revision}/"
+
         self.revision = revision
 
     def is_logged_in(self):

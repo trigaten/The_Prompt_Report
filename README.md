@@ -8,6 +8,8 @@ after cloning, run `pip install -r requirements.txt` from root
 
 Make a file at root called `.env`.
 
+For HF: https://huggingface.co/docs/hub/security-tokens
+
 Put your key in like:
 
 `OPENAI_API_KEY=sk-...`
