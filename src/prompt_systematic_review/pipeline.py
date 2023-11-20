@@ -23,8 +23,8 @@ class Pipeline:
             print(e)
 
             
-        self.root = f"hf://datasets/PromptSystematicReview/Prompt_Systematic_Review_Dataset@{revision}/"
-
+        self.root = f"PromptSystematicReview/Prompt_Systematic_Review_Dataset@{revision}/"
+        self.repo_name = f"PromptSystematicReview/Prompt_Systematic_Review_Dataset"
         self.revision = revision
 
     def is_logged_in(self):
@@ -67,28 +67,28 @@ class Pipeline:
     def upload_file(self, fileName):
         if not self.is_logged_in():
             raise ValueError("Not Logged In")
-        path = os.path.join(self.root, fileName)
+        path = os.path.join(self.repo_name, fileName)
         self.api.upload_file(
-            fileName, fileName, self.root, commit_message=f"Add {fileName}"
+            fileName, fileName, self.repo_name, commit_message=f"Add {fileName}"
         )
 
     def upload_folder(self, folderName):
         if not self.is_logged_in():
             raise ValueError("Not Logged In")
-        path = os.path.join(self.root, folderName)
+        path = os.path.join(self.repo_name, folderName)
         self.api.upload_folder(
-            self.root, folderName, commit_message=f"Add {folderName}"
+            self.repo_name, folderName, commit_message=f"Add {folderName}"
         )
 
     def delete_file(self, fileName):
         if not self.is_logged_in():
             raise ValueError("Not Logged In")
-        path = os.path.join(self.root, fileName)
-        self.api.delete(fileName, self.root, commit_message=f"Delete {fileName}")
+        path = os.path.join(self.repo_name, fileName)
+        self.api.delete_file(fileName, self.repo_name, commit_message=f"Delete {fileName}")
 
     def delete_folder(self, folderName):
         if not self.is_logged_in():
             raise ValueError("Not Logged In")
         self.api.delete_folder(
-            folderName, self.root, commit_message=f"Delete {folderName}"
+            folderName, self.repo_name, commit_message=f"Delete {folderName}"
         )
