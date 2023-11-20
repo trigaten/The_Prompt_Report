@@ -81,6 +81,8 @@ def evaluate_prompts(
         accuracy = result["correct"] / result["total"]
         print(f"Prompt: {prompt}\nAccuracy: {accuracy:.2f}\n")
 
+    return results
+
 
 def extract_numbers(string: str) -> List[int]:
     """

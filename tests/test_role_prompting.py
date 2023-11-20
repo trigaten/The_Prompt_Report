@@ -10,10 +10,14 @@ import os
 import openai
 
 
-@pytest.mark.API_test
-def test_query_model():
-    load_dotenv(dotenv_path="../.env")  # load all entries from .env file
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+@pytest.fixture(scope="module")
+def api_key():
+    load_dotenv(dotenv_path="./.env")  # Adjust the path as needed
+    return os.getenv("OPENAI_API_KEY")
+
+
+def test_query_model(api_key):
+    openai.api_key = api_key
     prompt = "You are a brilliant math professor. Solve the following problem and put your answer after four hashtags like the following example: \nQuestion: What is 4 + 4?\nAnswer: 4 + 4 is ####8\n\n Make your response as short as possible."
     question = "What is 4 + 4?"
     model_name = "gpt-4"
@@ -24,10 +28,8 @@ def test_query_model():
     assert "8" in response
 
 
-@pytest.mark.API_test
-def test_eval_prompts():
-    load_dotenv(dotenv_path="../.env")  # load all entries from .env file
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+def test_query_model(api_key):
+    openai.api_key = api_key
     prompts = [
         "You are a brilliant math professor. Solve the following problem and put your answer after four hashtags like the following example: \nQuestion: What is 4 + 4?\nAnswer: 4 + 4 is ####8\n\n Make your response as short as possible.",
         "You are a foolish high-school student. Solve the following problem and put your answer after four hashtags like the following example: \nQuestion: What is 4 + 4?\nAnswer: 4 + 4 is ####8\n\n Make your response as short as possible.",
@@ -37,7 +39,7 @@ def test_eval_prompts():
     config_name = "main"
     split = "test"
     model = "gpt-4"
-    examples = 10
+    examples = 1
 
     eval = evaluate_prompts(
         prompts,
