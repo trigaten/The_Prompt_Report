@@ -18,12 +18,13 @@ class Pipeline:
             self.token = os.getenv("HF_TOKEN")
             self.fs = HfFileSystem(token=token)
             self.api = HfApi(token=token)
-        except e:
-            self.token = None
-            print(e)
 
-            
-        self.root = f"PromptSystematicReview/Prompt_Systematic_Review_Dataset@{revision}/"
+        except:
+            self.token = None
+
+        self.root = (
+            f"PromptSystematicReview/Prompt_Systematic_Review_Dataset@{revision}/"
+        )
         self.repo_name = f"PromptSystematicReview/Prompt_Systematic_Review_Dataset"
         self.revision = revision
 
@@ -84,7 +85,9 @@ class Pipeline:
         if not self.is_logged_in():
             raise ValueError("Not Logged In")
         path = os.path.join(self.repo_name, fileName)
-        self.api.delete_file(fileName, self.repo_name, commit_message=f"Delete {fileName}")
+        self.api.delete_file(
+            fileName, self.repo_name, commit_message=f"Delete {fileName}"
+        )
 
     def delete_folder(self, folderName):
         if not self.is_logged_in():
