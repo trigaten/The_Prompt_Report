@@ -35,8 +35,11 @@ def evaluate_response(response: dict, correct_answer: str) -> bool:
     :param correct_answer: The correct answer to the question taken from the dataset.
     :return: Whether the response is correct.
     """
-
-    final_answer = extract_numbers(response.message.content)[0]
+    marked_nums_in_response = extract_numbers(response.message.content)
+    if len(marked_nums_in_response) == 0:
+        return False
+    else:
+        final_answer = extract_numbers(response.message.content)[0]
     correct = extract_numbers(correct_answer)[0]
     return final_answer == correct
 
@@ -74,12 +77,12 @@ def evaluate_prompts(
             if is_correct:
                 results[prompt]["correct"] += 1
 
-        if examples and i >= examples:
+        if examples and i + 1 == examples:
             break
 
     for prompt, result in results.items():
         accuracy = result["correct"] / result["total"]
-        print(f"Prompt: {prompt}\nAccuracy: {accuracy:.2f}\n")
+        print(f'Prompt: \n"""\n{prompt}\n"""\nAccuracy: {accuracy:.2f}\n')
 
     return results
 
