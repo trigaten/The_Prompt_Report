@@ -15,4 +15,3 @@ papers_output/*
 data/arxiv_papers_for_human_review.csv
 papers
 scripts/master_papers.csv
-master_papers.csv
