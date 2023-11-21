@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from scipy.stats import norm
 
-file_path = '../data/master_papers.csv'
+file_path = './master_papers.csv'
 
 # Read the CSV file into a DataFrame
 arxiv_papers_df = pd.read_csv(file_path)
