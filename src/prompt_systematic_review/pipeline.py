@@ -1,4 +1,4 @@
-from huggingface_hub import HfFileSystem, login
+from huggingface_hub import HfFileSystem, login, HfApi
 import pandas as pd
 from io import StringIO
 import os
@@ -14,16 +14,22 @@ https://huggingface.co/docs/huggingface_hub/v0.18.0.rc0/guides/hf_file_system
 
 class Pipeline:
     def __init__(self, token=None, revision="main"):
-        self.token = token
-        self.root = f"hf://datasets/PromptSystematicReview/Prompt_Systematic_Review_Dataset@{revision}/"
-        if token is not None:
+        try:
+            self.token = os.getenv("HF_TOKEN")
             self.fs = HfFileSystem(token=token)
-            login(token=token)
-        else:
-            self.fs = HfFileSystem()
+            self.api = HfApi(token=token)
+
+        except:
+            self.token = None
+
+        self.root = (
+            f"PromptSystematicReview/Prompt_Systematic_Review_Dataset@{revision}/"
+        )
+        self.repo_name = f"PromptSystematicReview/Prompt_Systematic_Review_Dataset"
         self.revision = revision
 
     def is_logged_in(self):
+        print(self.token)
         return self.token is not None
 
     def get_revision(self):
@@ -59,3 +65,49 @@ class Pipeline:
             raise ValueError("Not Logged In")
         path = os.path.join(self.root, fileName)
         dataFrame.to_csv(path, index=False)
+
+    def upload_file(self, fileName):
+        if not self.is_logged_in():
+            raise ValueError("Not Logged In")
+        path = os.path.join(self.repo_name, fileName)
+        self.api.upload_file(
+            repo_id=self.repo_name,
+            path_in_repo=fileName,
+            path_or_fileobj=fileName,
+            commit_message=f"Add {fileName}",
+            repo_type="dataset",
+        )
+
+    def upload_folder(self, folderName):
+        if not self.is_logged_in():
+            raise ValueError("Not Logged In")
+        path = os.path.join(self.repo_name, folderName)
+        self.api.upload_folder(
+            repo_id=self.repo_name,
+            folder_path=folderName,
+            commit_message=f"Add {folderName}",
+            repo_type="dataset",
+        )
+
+    def delete_file(self, fileName):
+        if not self.is_logged_in():
+            raise ValueError("Not Logged In")
+        path = os.path.join(self.repo_name, fileName)
+        self.api.delete_file(
+            fileName,
+            self.repo_name,
+            token=self.token,
+            commit_message=f"Delete {fileName}",
+            repo_type="dataset",
+        )
+
+    def delete_folder(self, folderName):
+        if not self.is_logged_in():
+            raise ValueError("Not Logged In")
+        self.api.delete_folder(
+            folderName,
+            self.repo_name,
+            token=self.token,
+            commit_message=f"Delete {folderName}",
+            repo_type="dataset",
+        )

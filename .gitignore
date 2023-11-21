@@ -6,5 +6,13 @@ build
 .log
 arxivPDFs
 arxiv_papers.csv
+filtered_arxiv_papers.csv
 *.zip
+.env
+scripts/arxiv_papers_with_abstract.csv
+scripts/arxiv_papers_with_ai_labels.csv
+papers_output/*
+data/arxiv_papers_for_human_review.csv
+papers
+scripts/master_papers.csv
 master_papers.csv
