@@ -21,16 +21,17 @@ def test_query_model(api_key):
     openai.api_key = api_key
     prompt = "You are a brilliant math professor. Solve the following problem and put your answer after four hashtags like the following example: \nQuestion: What is 4 + 4?\nAnswer: 4 + 4 is ####8\n\n Make your response as short as possible."
     question = "What is 4 + 4?"
-    model_name = "gpt-4"
+    model_name = "gpt-3.5-turbo-1106"
     output_tokens = 150
     response = query_model(prompt, question, model_name, output_tokens)
-    assert isinstance(response, str)
-    assert len(response) > 0
-    assert "8" in response
+    print("Response: ", response.message.content)
+    assert isinstance(response.message.content, str)
+    assert len(response.message.content) > 0
+    assert "8" in response.message.content
 
 
 @pytest.mark.API_test
-def test_query_model(api_key):
+def test_evaluate_prompts(api_key):
     openai.api_key = api_key
     prompts = [
         "You are a brilliant math professor. Solve the following problem and put your answer after four hashtags like the following example: \nQuestion: What is 4 + 4?\nAnswer: 4 + 4 is ####8\n\n Make your response as short as possible.",
@@ -40,7 +41,7 @@ def test_query_model(api_key):
     dataset = "gsm8k"
     config_name = "main"
     split = "test"
-    model = "gpt-4"
+    model = "gpt-3.5-turbo-1106"
     examples = 1
 
     eval = evaluate_prompts(
@@ -63,6 +64,18 @@ def test_evaluate_response():
     class Message:
         def __init__(self, content):
             self.content = content
+
+    response = Response(
+        "Hey! Here's how I got to the answer, \n First I did step 1, then step 2 and finally step 9999: \n####8"
+    )
+    correct_answer = "####8"
+    assert evaluate_response(response, correct_answer) == True
+
+    response = Response(
+        "Hey! Here's how I got to the answer, \n First I did step 1, then step 2 and finally step 9999: \r\n####8\t\n"
+    )
+    correct_answer = "####8"
+    assert evaluate_response(response, correct_answer) == True
 
     response = Response("####8")
     correct_answer = "####8"
