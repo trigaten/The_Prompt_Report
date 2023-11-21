@@ -24,7 +24,6 @@ def test_query_model(api_key):
     model_name = "gpt-3.5-turbo-1106"
     output_tokens = 150
     response = query_model(prompt, question, model_name, output_tokens)
-    print("Response: ", response.message.content)
     assert isinstance(response.message.content, str)
     assert len(response.message.content) > 0
     assert "8" in response.message.content
