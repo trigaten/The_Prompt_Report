@@ -7,3 +7,4 @@ build
 arxivPDFs
 arxiv_papers.csv
 *.zip
+master_papers.csv
