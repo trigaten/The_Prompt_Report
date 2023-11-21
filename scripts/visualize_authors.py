@@ -30,39 +30,21 @@ plt.show()
 
 # Display the frequency table
 publication_counts = author_counts.values
-
 frequency_table = pd.Series(publication_counts).value_counts().reset_index()
-
-# Rename the columns for clarity
 frequency_table.columns = ['Publication Count', 'Frequency']
-
-# Sort the DataFrame by the number
 frequency_table = frequency_table.sort_values(by='Publication Count')
-
-# Display the frequency table
 print(frequency_table)
 
-# # make a histogram of the number of publications per author
-# plt.figure(figsize=(12, 8))
-# plt.hist(author_counts, bins=10, alpha=0.7, color='blue', edgecolor='black')
+# make a histogram of the number of publications per author
+plt.figure(figsize=(10, 6))
+plt.bar(frequency_table["Publication Count"], frequency_table["Frequency"], color='blue', edgecolor='black')
+plt.yscale('log')  # Logarithmic scale
 
-# # Fit a normal distribution to the data
-# mu, std = norm.fit(author_counts)
+plt.xticks(frequency_table["Publication Count"])
 
-# # Plot the PDF of the fitted distribution
-# xmin, xmax = plt.xlim()
-# x = np.linspace(xmin, xmax, 100)
-# p = norm.pdf(x, mu, std)
-# plt.plot(x, p, 'k', linewidth=2)
+plt.xlabel('Publication Count')
+plt.ylabel('Frequency (log scale)')
+plt.title('Publication Count vs Frequency (Log Scale)')
+plt.grid(True, which="both", ls="--", linewidth=0.5)
 
-# plt.yscale('log')
-
-# plt.title('Histogram of Number of Publications per Author')
-# plt.xlabel('Number of Publications')
-# plt.ylabel('Frequency')
-
-# # Add a legend
-# plt.legend(['Fit results (mu = %.2f,  std = %.2f)' % (mu, std)])
-
-# # Show the plot
-# plt.show()
+plt.show()
