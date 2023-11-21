@@ -6,7 +6,7 @@ datasets
 huggingface_hub
 pytest
 jellyfish
-black
+black[jupyter]
 sphinx
 renku-sphinx-theme
 sphinx-autobuild
