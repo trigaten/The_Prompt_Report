@@ -1,3 +1,8 @@
+"""
+This script generates visualizations of the publication counts
+for authors in the master_papers.csv dataset.
+"""
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
