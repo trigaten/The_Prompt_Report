@@ -17,6 +17,32 @@ def api_key():
 
 
 @pytest.mark.API_test
+def test_record(api_key):
+    openai.api_key = api_key
+    prompts = [
+        "You are a brilliant math professor. Solve the following problem and put your answer after four hashtags like the following example: \nQuestion: What is 4 + 4?\nAnswer: 4 + 4 is ####8\n\n Make your response as short as possible.",
+        "You are a foolish high-school student. Solve the following problem and put your answer after four hashtags like the following example: \nQuestion: What is 4 + 4?\nAnswer: 4 + 4 is ####8\n\n Make your response as short as possible.",
+    ]
+
+    dataset = "gsm8k"
+    config_name = "main"
+    split = "test"
+    model = "gpt-3.5-turbo-1106"
+    examples = 1
+
+    eval = evaluate_prompts(
+        prompts,
+        dataset,
+        config_name,
+        split,
+        model,
+        examples,
+    )
+    assert isinstance(eval, dict)
+    assert len(eval) == 2
+
+
+@pytest.mark.API_test
 def test_query_model(api_key):
     openai.api_key = api_key
     prompt = "You are a brilliant math professor. Solve the following problem and put your answer after four hashtags like the following example: \nQuestion: What is 4 + 4?\nAnswer: 4 + 4 is ####8\n\n Make your response as short as possible."
@@ -24,9 +50,9 @@ def test_query_model(api_key):
     model_name = "gpt-3.5-turbo-1106"
     output_tokens = 150
     response = query_model(prompt, question, model_name, output_tokens)
-    assert isinstance(response.message.content, str)
-    assert len(response.message.content) > 0
-    assert "8" in response.message.content
+    assert isinstance(response.choices[0].message.content, str)
+    assert len(response.choices[0].message.content) > 0
+    assert "8" in response.choices[0].message.content
 
 
 @pytest.mark.API_test

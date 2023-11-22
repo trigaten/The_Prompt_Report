@@ -24,8 +24,7 @@ def query_model(
         ],
         max_tokens=output_tokens,
     )
-
-    return response.choices[0]
+    return response
 
 
 def evaluate_response(response: dict, correct_answer: str) -> bool:
@@ -72,7 +71,7 @@ def evaluate_prompts(
         correct_answer = item["answer"]
         for prompt in prompts:
             response = query_model(prompt, question, model_name=model_name)
-            is_correct = evaluate_response(response, correct_answer)
+            is_correct = evaluate_response(response.choices[0], correct_answer)
             results[prompt]["total"] += 1
             if is_correct:
                 results[prompt]["correct"] += 1
