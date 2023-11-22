@@ -6,7 +6,7 @@ import re
 
 def query_model(
     prompt: str, question: str, model_name: str, output_tokens: int = 150
-) -> str:
+) -> dict:
     """
     Query the OpenAI API with a prompt and a question and return the response.
     :param prompt: The prompt to use.
@@ -24,6 +24,7 @@ def query_model(
         ],
         max_tokens=output_tokens,
     )
+
     return response
 
 
@@ -62,15 +63,32 @@ def evaluate_prompts(
     :return: The results of the evaluation.
     """
 
-    dataset = load_hf_dataset(dataset_name=dataset, name=config_name, split=split)
+    data = load_hf_dataset(dataset_name=dataset, name=config_name, split=split)
 
     results = {prompt: {"correct": 0, "total": 0} for prompt in prompts}
+    information = {
+        "dataset": dataset,
+        "config_name": config_name,
+        "split": split,
+        "model_name": model_name,
+        "examples": examples,
+        "calls": [],
+    }
 
-    for i, item in enumerate(dataset):
+    for i, item in enumerate(data):
         question = item["question"]
         correct_answer = item["answer"]
         for prompt in prompts:
             response = query_model(prompt, question, model_name=model_name)
+            response_dict = response_to_dict(response)
+            information["calls"].append(
+                {
+                    "prompt": prompt,
+                    "question": question,
+                    "correct_answer": correct_answer,
+                    "response": response_dict,
+                }
+            )
             is_correct = evaluate_response(response.choices[0], correct_answer)
             results[prompt]["total"] += 1
             if is_correct:
@@ -79,11 +97,7 @@ def evaluate_prompts(
         if examples and i + 1 == examples:
             break
 
-    for prompt, result in results.items():
-        accuracy = result["correct"] / result["total"]
-        print(f'Prompt: \n"""\n{prompt}\n"""\nAccuracy: {accuracy:.2f}\n')
-
-    return results
+    return results, information
 
 
 def extract_numbers(string: str) -> List[int]:
@@ -105,3 +119,33 @@ def extract_numbers(string: str) -> List[int]:
     numbers = [float(match) for match in matches]
 
     return numbers
+
+
+def response_to_dict(response):
+
+    # Extract relevant data from the response
+    response_data = {
+        "id": response.id,
+        "model": response.model,
+        "object": response.object,
+        "created": response.created,
+        "system_fingerprint": response.system_fingerprint,
+        "choices": [
+            {
+                "finish_reason": choice.finish_reason,
+                "index": choice.index,
+                "message": {
+                    "content": choice.message.content,
+                    "role": choice.message.role,
+                },
+            }
+            for choice in response.choices
+        ],
+        "usage": {
+            "completion_tokens": response.usage.completion_tokens,
+            "prompt_tokens": response.usage.prompt_tokens,
+            "total_tokens": response.usage.total_tokens,
+        },
+    }
+
+    return response_data
