@@ -2,6 +2,7 @@ from prompt_systematic_review.load_hf_data import load_hf_dataset
 import openai
 from typing import List
 import re
+import time
 
 
 def query_model(
@@ -79,17 +80,22 @@ def evaluate_prompts(
         question = item["question"]
         correct_answer = item["answer"]
         for prompt in prompts:
+            start_time = time.time()
             response = query_model(prompt, question, model_name=model_name)
+            end_time = time.time()
+            wall_time = end_time - start_time
             response_dict = response_to_dict(response)
+            is_correct = evaluate_response(response.choices[0], correct_answer)
             information["calls"].append(
                 {
                     "prompt": prompt,
                     "question": question,
                     "correct_answer": correct_answer,
                     "response": response_dict,
+                    "marked_correct": is_correct,
+                    "wall_time": wall_time,
                 }
             )
-            is_correct = evaluate_response(response.choices[0], correct_answer)
             results[prompt]["total"] += 1
             if is_correct:
                 results[prompt]["correct"] += 1
@@ -122,7 +128,6 @@ def extract_numbers(string: str) -> List[int]:
 
 
 def response_to_dict(response):
-
     # Extract relevant data from the response
     response_data = {
         "id": response.id,

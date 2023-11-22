@@ -74,6 +74,8 @@ def test_json_evaluation(api_key):
         assert "question" in call and isinstance(call["question"], str)
         assert "correct_answer" in call and isinstance(call["correct_answer"], str)
         assert "response" in call and isinstance(call["response"], dict)
+        assert "marked_correct" in call and isinstance(call["marked_correct"], bool)
+        assert "wall_time" in call and isinstance(call["wall_time"], float)
 
         # Test the structure of the 'response' object
         response = call["response"]
