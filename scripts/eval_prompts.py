@@ -8,7 +8,7 @@ from prompt_systematic_review.utils import process_paper_title
 from dotenv import load_dotenv
 import os
 
-load_dotenv(dotenv_path="../.env")  # load all entries from .env file
+load_dotenv(dotenv_path="./.env")  # load all entries from .env file
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -22,8 +22,8 @@ prompts = [
 dataset = "gsm8k"
 config_name = "main"
 split = "test"
-model = "gpt-4"
-examples = 10
+model = "gpt-3.5-turbo-1106"
+examples = 30
 
 eval = evaluate_prompts(
     prompts,
