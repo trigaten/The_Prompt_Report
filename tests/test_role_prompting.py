@@ -65,6 +65,14 @@ def test_json_evaluation(api_key):
     assert "examples" in detailed_responses and isinstance(
         detailed_responses["examples"], int
     )
+    assert "total_input_tokens" in detailed_responses and isinstance(
+        detailed_responses["total_input_tokens"], int
+    )
+
+    assert "total_output_tokens" in detailed_responses and isinstance(
+        detailed_responses["total_output_tokens"], int
+    )
+
     assert "calls" in detailed_responses and isinstance(
         detailed_responses["calls"], list
     )

@@ -73,6 +73,8 @@ def evaluate_prompts(
         "split": split,
         "model_name": model_name,
         "examples": examples,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
         "calls": [],
     }
 
@@ -84,6 +86,8 @@ def evaluate_prompts(
             response = query_model(prompt, question, model_name=model_name)
             end_time = time.time()
             wall_time = end_time - start_time
+            information["total_input_tokens"] += response.usage.prompt_tokens
+            information["total_output_tokens"] += response.usage.completion_tokens
             response_dict = response_to_dict(response)
             is_correct = evaluate_response(response.choices[0], correct_answer)
             information["calls"].append(
