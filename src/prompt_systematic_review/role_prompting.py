@@ -3,30 +3,61 @@ import openai
 from typing import List
 import re
 import time
+import json
+from datetime import datetime
+import concurrent.futures
 
-
-def query_model(
-    prompt: str, question: str, model_name: str, output_tokens: int = 300
+def query_model_with_timeout(
+    prompt: str, question: str, model_name: str, output_tokens: int
 ) -> dict:
     """
-    Query the OpenAI API with a prompt and a question and return the response.
+    Query the OpenAI API with a prompt and a question.
     :param prompt: The prompt to use.
     :param question: The question to use from the dataset.
     :param model_name: The OpenAI model to use.
-    :param output_tokens: The maximum number of ouput tokens to generate.
+    :param output_tokens: The maximum number of output tokens to generate.
     :return: The response from the API.
     """
+    try:
+        response = openai.chat.completions.create(
+            model=model_name,
+            messages=[
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": question},
+            ],
+            max_tokens=output_tokens,
+        )
+        return response
+    except Exception as e:
+        print(f"An error occurred during API call: {e}")
+        return None
 
-    response = openai.chat.completions.create(
-        model=model_name,
-        messages=[
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": question},
-        ],
-        max_tokens=output_tokens,
-    )
 
-    return response
+def query_model(
+    prompt: str,
+    question: str,
+    model_name: str,
+    output_tokens: int = 300,
+    timeout: float = 15.0,
+) -> dict:
+    """
+    Query the OpenAI API with a timeout.
+    :param prompt: The prompt to use.
+    :param question: The question to use from the dataset.
+    :param model_name: The OpenAI model to use.
+    :param output_tokens: The maximum number of output tokens to generate.
+    :param timeout: Timeout for the request in seconds.
+    :return: The response from the API or None if timeout occurs.
+    """
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future = executor.submit(
+            query_model_with_timeout, prompt, question, model_name, output_tokens
+        )
+        try:
+            return future.result(timeout=timeout)
+        except concurrent.futures.TimeoutError:
+            print("API call timed out.")
+            return None
 
 
 def evaluate_response(response: dict, correct_answer: str) -> bool:
@@ -79,12 +110,16 @@ def evaluate_prompts(
         "total_wall_time": 0,
     }
 
+    query_count = 0
+
     for i, item in enumerate(data):
         question = item["question"]
         correct_answer = item["answer"]
-        for prompt in prompts:
+        for j, prompt in enumerate(prompts):
             start_time = time.time()
+
             response = query_model(prompt, question, model_name=model_name)
+            query_count += 1
             end_time = time.time()
             wall_time = end_time - start_time
             information["total_wall_time"] += wall_time
@@ -105,6 +140,11 @@ def evaluate_prompts(
             results[prompt]["total"] += 1
             if is_correct:
                 results[prompt]["correct"] += 1
+            if query_count % 50 == 0 or (examples and j + 1 == len(prompts)):
+                try:
+                    write_to_file([results, information], query_count)
+                except Exception as e:
+                    print(f"Error writing to file: {e}")
 
         if examples and i + 1 == examples:
             break
@@ -160,3 +200,11 @@ def response_to_dict(response):
     }
 
     return response_data
+
+
+def write_to_file(data, count):
+    current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    file_path = f"RP_eval_results_{current_datetime}_part_{((count//50) + 1)}.json"
+    with open(file_path, "w") as json_file:
+        json.dump(data, json_file)
+    print(f"Written results to {file_path}")
