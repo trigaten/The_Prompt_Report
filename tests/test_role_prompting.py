@@ -73,6 +73,10 @@ def test_json_evaluation(api_key):
         detailed_responses["total_output_tokens"], int
     )
 
+    assert "total_wall_time" in detailed_responses and isinstance(
+        detailed_responses["total_wall_time"], float
+    )
+
     assert "calls" in detailed_responses and isinstance(
         detailed_responses["calls"], list
     )

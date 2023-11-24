@@ -6,7 +6,7 @@ import time
 
 
 def query_model(
-    prompt: str, question: str, model_name: str, output_tokens: int = 150
+    prompt: str, question: str, model_name: str, output_tokens: int = 300
 ) -> dict:
     """
     Query the OpenAI API with a prompt and a question and return the response.
@@ -40,8 +40,8 @@ def evaluate_response(response: dict, correct_answer: str) -> bool:
     if len(marked_nums_in_response) == 0:
         return False
     else:
-        final_answer = extract_numbers(response.message.content)[0]
-    correct = extract_numbers(correct_answer)[0]
+        final_answer = extract_numbers(response.message.content)[-1]
+    correct = extract_numbers(correct_answer)[-1]
     return final_answer == correct
 
 
@@ -76,6 +76,7 @@ def evaluate_prompts(
         "total_input_tokens": 0,
         "total_output_tokens": 0,
         "calls": [],
+        "total_wall_time": 0,
     }
 
     for i, item in enumerate(data):
@@ -86,6 +87,7 @@ def evaluate_prompts(
             response = query_model(prompt, question, model_name=model_name)
             end_time = time.time()
             wall_time = end_time - start_time
+            information["total_wall_time"] += wall_time
             information["total_input_tokens"] += response.usage.prompt_tokens
             information["total_output_tokens"] += response.usage.completion_tokens
             response_dict = response_to_dict(response)
