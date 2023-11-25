@@ -7,6 +7,7 @@ import json
 from datetime import datetime
 import concurrent.futures
 
+
 def query_model_with_timeout(
     prompt: str, question: str, model_name: str, output_tokens: int
 ) -> dict:
