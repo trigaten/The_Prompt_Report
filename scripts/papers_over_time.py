@@ -18,7 +18,7 @@ submission_dates_counts = arxiv_papers_df["dateSubmitted"].value_counts().sort_i
 
 # Plot 1: number of papers submitted over time, by year
 fig, ax = plt.subplots(figsize=(15, 8))
-ax.plot(submission_dates_counts.index, submission_dates_counts.values, marker='o', linestyle='-', color='green')
+ax.plot(submission_dates_counts.index, submission_dates_counts.values, marker='o', linestyle='-', color='blue')
 ax.set_title("Number of Papers Submitted Over Time")
 ax.set_xlabel("Submission Date")
 ax.set_ylabel("Number of Papers Submitted")
@@ -45,7 +45,7 @@ latest_date = filtered_df["dateSubmitted"].max()
 submission_dates_counts = filtered_df["dateSubmitted"].value_counts().sort_index()
 
 fig, ax = plt.subplots(figsize=(15, 8))
-ax.plot(submission_dates_counts.index, submission_dates_counts.values, marker='o', linestyle='-', color='green')
+ax.plot(submission_dates_counts.index, submission_dates_counts.values, marker='o', linestyle='-', color='blue')
 ax.set_title("Number of Papers Submitted Between 2021 and 2023")
 ax.set_xlabel("Submission Date")
 ax.set_ylabel("Number of Papers Submitted")
@@ -56,4 +56,39 @@ ax.xaxis.set_major_formatter(mdates.DateFormatter("%m-%d-%Y"))
 
 ax.set_xlim(earliest_date, latest_date)
 plt.xticks(rotation=45, ha="right")
+plt.show()
+
+
+# Plot 3: number of papers submitted over time, between 2021 and 2023,
+# with vertical lines indicating release dates of different LLMs
+
+chatgpt_release_date = pd.to_datetime("2022-11-30")
+copilot_release_date = pd.to_datetime("2023-02-07")
+llama_release_date = pd.to_datetime("2023-02-24")
+bard_release_date = pd.to_datetime("2023-03-21")
+dolly_release_date = pd.to_datetime("2023-04-12")
+
+fig, ax = plt.subplots(figsize=(15, 8))
+ax.plot(submission_dates_counts.index, submission_dates_counts.values, marker='o', linestyle='-', color='blue')
+ax.set_title("Number of Papers Submitted Between 2021 and 2023")
+ax.set_xlabel("Submission Date")
+ax.set_ylabel("Number of Papers Submitted")
+ax.grid(True)
+
+ax.xaxis.set_major_locator(mdates.MonthLocator(bymonthday=1))
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%m-%d-%Y"))
+
+ax.set_xlim(earliest_date, latest_date)
+
+plt.xticks(rotation=45, ha="right")
+
+# Add vertical lines to indicate release dates of different LLMs
+ax.axvline(x=chatgpt_release_date, color='red', linestyle='--', label='ChatGPT Release')
+ax.axvline(x=dolly_release_date, color='green', linestyle='--', label='Dolly Release')
+ax.axvline(x=llama_release_date, color='darkorange', linestyle='--', label='LLaMA Release')
+ax.axvline(x=copilot_release_date, color='purple', linestyle='--', label='Microsoft Copilot Release')
+ax.axvline(x=bard_release_date, color='brown', linestyle='--', label='Google Bard Release')
+
+plt.legend()
+
 plt.show()
