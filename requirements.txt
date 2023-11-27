@@ -10,6 +10,7 @@ black[jupyter]
 sphinx
 renku-sphinx-theme
 sphinx-autobuild
+openai
 tika
 tqdm
 openai
