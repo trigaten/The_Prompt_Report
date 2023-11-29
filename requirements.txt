@@ -16,4 +16,5 @@ tqdm
 openai
 load_dotenv
 wordcloud
+tenacity
 -e .
