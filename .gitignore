@@ -16,3 +16,5 @@ data/arxiv_papers_for_human_review.csv
 papers
 scripts/master_papers.csv
 scripts/t.py
+/RP_eval_results_*.json
+scripts/master_papers.csv

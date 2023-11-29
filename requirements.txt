@@ -10,9 +10,11 @@ black[jupyter]
 sphinx
 renku-sphinx-theme
 sphinx-autobuild
+openai
 tika
 tqdm
 openai
 load_dotenv
 tomotopy
+wordcloud
 -e .
