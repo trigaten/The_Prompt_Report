@@ -14,4 +14,5 @@ tika
 tqdm
 openai
 load_dotenv
+tomotopy
 -e .

@@ -1,4 +1,4 @@
-#%% imports
+# %% imports
 import argparse
 import html
 
@@ -8,21 +8,22 @@ import numpy as np
 
 from tqdm import tqdm
 
+
 # %%
 def is_notebook() -> bool:
     try:
         shell = get_ipython().__class__.__name__
-        if shell == 'ZMQInteractiveShell':
-            return True   # Jupyter notebook or qtconsole
-        elif shell == 'TerminalInteractiveShell':
+        if shell == "ZMQInteractiveShell":
+            return True  # Jupyter notebook or qtconsole
+        elif shell == "TerminalInteractiveShell":
             return False  # Terminal running IPython
         else:
             return False  # Other type (?)
     except NameError:
-        return False      # Probably standard Python interpreter
+        return False  # Probably standard Python interpreter
 
 
-#%% arguments
+# %% arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("--input_fname", type=str, default="processed/train.metadata.jsonl")
 parser.add_argument("--num_topics", type=int, default=35)
@@ -54,11 +55,11 @@ with tqdm(range(0, args.iterations, 10)) as pbar:
         pbar.update(1)
         pbar.set_postfix({"log-likelihood": lda.ll_per_word})
 
-#%% print out a summary
+# %% print out a summary
 print(lda.summary())
 
 # %% create the html template we will populate
-html_template = '''  
+html_template = """  
 <!DOCTYPE html>  
 <html lang="en">  
 <head>  
@@ -106,9 +107,10 @@ html_template = '''
     </div>  
 </body>  
 </html>  
-'''
+"""
 
-#%% create the html content
+
+# %% create the html content
 def retrieve_top_docs_for_topic(theta, topic_idx, min_p=0.1):
     """
     Show the top docs per topic
@@ -122,7 +124,7 @@ def retrieve_top_docs_for_topic(theta, topic_idx, min_p=0.1):
         return doc_idx_sorted[above_min], theta_sorted[above_min]
 
 
-#%% create the document-topic distribution matrix
+# %% create the document-topic distribution matrix
 theta = np.array([doc.get_topic_dist() for doc in lda.docs])
 docs = data.to_dict(orient="records")
 
@@ -131,38 +133,51 @@ content = []
 # for each topic, get the top words and top documents
 for topic_idx in range(args.num_topics):
     # get the top words
-    topic = " ".join([word for word, _ in lda.get_topic_words(topic_idx, top_n=args.top_words_to_display)])
+    topic = " ".join(
+        [
+            word
+            for word, _ in lda.get_topic_words(
+                topic_idx, top_n=args.top_words_to_display
+            )
+        ]
+    )
     expected_alpha = lda.alpha[topic_idx] / lda.alpha.sum()
 
-    topic_html = f'<div class="topic-container">'  
-    topic_html += f'<div class="topic"><b>{topic_idx}</b> | {expected_alpha:0.1%}: {topic}</div>'  
-    topic_html += f'<details><summary>Documents</summary><ul>'  
-    
+    topic_html = f'<div class="topic-container">'
+    topic_html += (
+        f'<div class="topic"><b>{topic_idx}</b> | {expected_alpha:0.1%}: {topic}</div>'
+    )
+    topic_html += f"<details><summary>Documents</summary><ul>"
+
     # get the top documents
-    doc_idxs, probs = retrieve_top_docs_for_topic(theta, topic_idx, min_p=args.min_doc_prob_to_display)
+    doc_idxs, probs = retrieve_top_docs_for_topic(
+        theta, topic_idx, min_p=args.min_doc_prob_to_display
+    )
     d_n = max(1, int(round(len(doc_idxs) / args.top_docs_to_display)))
-    
-    for idx, p in zip(doc_idxs[::d_n], probs[::d_n]): 
+
+    for idx, p in zip(doc_idxs[::d_n], probs[::d_n]):
         # get the title, abstract, and url; format as html
         doc = docs[idx]
         title, abstract, url = doc["title"], doc["abstract"], doc["url"]
-        topic_html += f'<li><a href={url}>{html.escape(title)}</a> ({p:0.1%})</li>'
+        topic_html += f"<li><a href={url}>{html.escape(title)}</a> ({p:0.1%})</li>"
         # also optionally expand to include the abstract
-        topic_html += f'<details><summary>Abstract</summary><p>{html.escape(abstract)}</p></details>'
-      
-    topic_html += f'</ul></details></div>'  
-    content.append(topic_html)  
+        topic_html += f"<details><summary>Abstract</summary><p>{html.escape(abstract)}</p></details>"
 
-review_html = html_template.format(content=''.join(content))   
+    topic_html += f"</ul></details></div>"
+    content.append(topic_html)
 
-#%% write the html to a file  
-with open(f'topic_outputs-{args.num_topics}.html', 'w') as f:  
+review_html = html_template.format(content="".join(content))
+
+# %% write the html to a file
+with open(f"topic_outputs-{args.num_topics}.html", "w") as f:
     f.write(review_html)
 
 # %%
 data_by_topic = []
 for topic_idx in range(args.num_topics):
-    doc_idxs, probs = retrieve_top_docs_for_topic(theta, topic_idx, min_p=1/args.num_topics)
+    doc_idxs, probs = retrieve_top_docs_for_topic(
+        theta, topic_idx, min_p=1 / args.num_topics
+    )
     data_by_topic.append(data.iloc[doc_idxs].assign(topic=topic_idx, prob=probs))
 
 pd.concat(data_by_topic).to_csv(f"topic_outputs-{args.num_topics}.csv", index=False)

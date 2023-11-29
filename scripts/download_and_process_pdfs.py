@@ -81,7 +81,7 @@ if __name__ == "__main__":
             papList.append(
                 Paper(
                     row["title"],
-                    row["firstAuthor"],
+                    row["authors"],
                     row["url"],
                     row["dateSubmitted"],
                     row["keywords"],
