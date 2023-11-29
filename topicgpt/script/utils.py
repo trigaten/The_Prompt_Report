@@ -19,7 +19,7 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"),
 
 def api_call(prompt, deployment_name, temperature, max_tokens, top_p):
     '''
-    Call API (OpenAI, Azure, Perplexity) and return response
+    Call API (OpenAI, Azure) and return response
     - prompt: prompt template
     - deployment_name: name of the deployment to use (e.g. gpt-4, gpt-3.5-turbo, etc.)
     - temperature: temperature parameter
@@ -38,31 +38,6 @@ def api_call(prompt, deployment_name, temperature, max_tokens, top_p):
             {"role": "user", "content": prompt},
             ])
         return response.choices[0].message.content
-    elif deployment_name in ["llama-2-70b-chat", "codellama-34b-instruct", "mistral-7b-instruct"]:
-        payload = {
-            "model": deployment_name,
-            "temperature": float(temperature), 
-            "max_tokens": int(max_tokens),
-            "top_p": float(top_p),
-            "request_timeout": 1000, 
-            "messages": [
-                {"role": "system","content": ""},
-                {"role": "user","content": prompt}
-            ]
-        }
-        headers = {
-            "accept": "application/json",
-            "content-type": "application/json",
-            "authorization": PERPLEXITY_API_KEY
-        }
-        response = requests.post("https://api.perplexity.ai/chat/completions", json=payload, headers=headers)
-        if response.status_code != 200:
-            print(response.status_code)
-            print(response.text)
-            raise Exception("Error in perplexity API call")
-        return response.json()['choices'][0]['message']['content']
-    else: 
-        print("Invalid deployment name. Please try again.")
         
 
 def get_ada_embedding(text, model="text-embedding-ada-002"): 
