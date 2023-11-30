@@ -16,3 +16,5 @@ data/arxiv_papers_for_human_review.csv
 papers
 /RP_eval_results_*.json
 scripts/master_papers.csv
+data/s_data
+data/s_data/*
