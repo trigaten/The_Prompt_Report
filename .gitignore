@@ -18,3 +18,6 @@ papers
 scripts/master_papers.csv
 data/s_data
 data/s_data/*
+forbidden_imports.py
+data/
+*.json
