@@ -14,5 +14,7 @@ scripts/arxiv_papers_with_ai_labels.csv
 papers_output/*
 data/arxiv_papers_for_human_review.csv
 papers
+scripts/master_papers.csv
+scripts/t.py
 /RP_eval_results_*.json
 scripts/master_papers.csv

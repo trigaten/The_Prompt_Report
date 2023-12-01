@@ -85,6 +85,7 @@ class Pipeline:
         self.api.upload_folder(
             repo_id=self.repo_name,
             folder_path=folderName,
+            path_in_repo=folderName,
             commit_message=f"Add {folderName}",
             repo_type="dataset",
         )
