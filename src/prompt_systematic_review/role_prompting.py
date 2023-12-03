@@ -10,53 +10,16 @@ from tenacity import (
     retry,
     stop_after_attempt,
     wait_random_exponential,
-)  
-
-
-# def query_model_with_timeout(
-#     prompt: str, question: str, model_name: str, output_tokens: int
-# ) -> dict:
-#     """
-#     Query the OpenAI API with a prompt and a question.
-#     :param prompt: The prompt to use.
-#     :param question: The question to use from the dataset.
-#     :param model_name: The OpenAI model to use.
-#     :param output_tokens: The maximum number of output tokens to generate.
-#     :return: The response from the API.
-#     """
-#     try:
-#         response = query_model_with_backoff(
-#             model=model_name,
-#             messages=[
-#                 {"role": "system", "content": prompt},
-#                 {"role": "user", "content": question},
-#             ],
-#             max_tokens=output_tokens,
-#         )
-#         return response
-#         # response = openai.chat.completions.create(
-#         #     model=model_name,
-#         #     messages=[
-#         #         {"role": "system", "content": prompt},
-#         #         {"role": "user", "content": question},
-#         #     ],
-#         #     max_tokens=output_tokens,
-#         # )
-#         # return response
-#     except Exception as e:
-#         print(f"An error occurred during API call: {e}")
-#         return None
+)
 
 
 @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(10))
 def query_model_with_backoff(**kwargs):
     return openai.chat.completions.create(**kwargs)
 
+
 def query_model(
-    prompt: str,
-    question: str,
-    model_name: str,
-    output_tokens: int = 500
+    prompt: str, question: str, model_name: str, output_tokens: int = 500
 ) -> dict:
     """
     Query the OpenAI API with a timeout.
@@ -76,15 +39,6 @@ def query_model(
         max_tokens=output_tokens,
     )
     return response
-    # with concurrent.futures.ThreadPoolExecutor() as executor:
-    #     future = executor.submit(
-    #         query_model_with_backoff, prompt, question, model_name, output_tokens
-    #     )
-    #     try:
-    #         return future.result(timeout=timeout)
-    #     except concurrent.futures.TimeoutError:
-    #         print("API call timed out.")
-    #         return None
 
 
 def evaluate_response(response: dict, correct_answer: str) -> bool:
@@ -149,7 +103,9 @@ def evaluate_prompts(
             for j, prompt in enumerate(prompts):
                 start_time = time.time()
 
-                response = query_model(prompt, question, model_name=model_name)
+                response = query_model(
+                    prompt, question, model_name=model_name, output_tokens=max_tokens
+                )
                 query_count += 1
                 end_time = time.time()
                 wall_time = end_time - start_time
@@ -235,7 +191,9 @@ def response_to_dict(response):
 
 def write_to_file(data, count, log_interval=25):
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    file_path = f"RP_eval_results_{current_datetime}_part_{((count//log_interval))}.json"
+    file_path = (
+        f"RP_eval_results_{current_datetime}_part_{((count//log_interval))}.json"
+    )
     with open(file_path, "w") as json_file:
         json.dump(data, json_file)
     print(f"Written results to {file_path}")
