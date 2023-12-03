@@ -6,8 +6,10 @@ import os
 """
 Script to extract datasets, benchmarks, frameworks, and models from papers
 """
+
+
 def label_techniques(title, abstract, model="gpt-4"):
-  system_message = """
+    system_message = """
   You are a knowledgeable Natural Language Processing researcher who will
   help me extract datasets, benchmarks, frameworks, and models from papers.
   The user will give you a generative AI research paper title and abstract, and using this information you should
@@ -23,39 +25,37 @@ def label_techniques(title, abstract, model="gpt-4"):
   {datasets: "HotpotQA, Fever", benchmarks: "ALFWorld, WebShop", frameworks: "ReAct", models: ""}
   """
 
-  user_message = f"Title: '{title}', Abstract: '{abstract}'."
-  
-  client = OpenAI(
-    organization=os.environ.get("OPENAI_API_KEY_ORG"),
-  )
-  
-  response = client.chat.completions.create(
-    model="gpt-4",
-    messages=[
-      {"role": "system", "content": system_message},
-      {"role": "user", "content": user_message},
-    ]
-  )
+    user_message = f"Title: '{title}', Abstract: '{abstract}'."
 
-  try:
-      content = json.loads(response.choices[0].message.content)
-      datasets = content.get("datasets", "N/A")
-      benchmarks = content.get("benchmarks", "N/A")
-      frameworks = content.get("frameworks", "N/A")
-      models = content.get("models", "N/A")
-      return {
-          "Title": title,
-          "Datasets": datasets,
-          "Benchmarks": benchmarks,
-          "Frameworks": frameworks,
-          "Models": models,
-      }
-  except json.JSONDecodeError as e:
-      print(e)
-      return {
-          "Title": title,
-          "Error": "Invalid JSON response",
-          "Response": response.choices[0].message.content,
-      }
+    client = OpenAI(
+        organization=os.environ.get("OPENAI_API_KEY_ORG"),
+    )
 
+    response = client.chat.completions.create(
+        model="gpt-4",
+        messages=[
+            {"role": "system", "content": system_message},
+            {"role": "user", "content": user_message},
+        ],
+    )
 
+    try:
+        content = json.loads(response.choices[0].message.content)
+        datasets = content.get("datasets", "N/A")
+        benchmarks = content.get("benchmarks", "N/A")
+        frameworks = content.get("frameworks", "N/A")
+        models = content.get("models", "N/A")
+        return {
+            "Title": title,
+            "Datasets": datasets,
+            "Benchmarks": benchmarks,
+            "Frameworks": frameworks,
+            "Models": models,
+        }
+    except json.JSONDecodeError as e:
+        print(e)
+        return {
+            "Title": title,
+            "Error": "Invalid JSON response",
+            "Response": response.choices[0].message.content,
+        }
