@@ -98,7 +98,7 @@ def query_model(
             {"role": "user", "content": question},
         ],
         max_tokens=output_tokens,
-        response_format={ "type": "json_object" },
+        response_format={"type": "json_object"},
     )
     return response
 
@@ -230,7 +230,7 @@ def evaluate_prompts(
             # Convert to pandas DataFrame
             df = pd.DataFrame(dataset)
 
-            df['config'] = config
+            df["config"] = config
 
             if combined_dataset is None:
                 combined_dataset = df
