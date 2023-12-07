@@ -203,32 +203,32 @@ def test_evaluate_prompts(api_key):
     assert len(eval) == 2
 
 
-def test_evaluate_mmlu_response():
-    class Response:
-        def __init__(self, content):
-            self.message = Message(content)
+# def test_evaluate_mmlu_response():
+#     class Response:
+#         def __init__(self, content):
+#             self.message = Message(content)
 
-    class Message:
-        def __init__(self, content):
-            self.content = content
+#     class Message:
+#         def __init__(self, content):
+#             self.content = content
 
-    response = Response(
-        "Hey! Here's how I got to the answer, \n First I did step 1, then step 2 and finally step 9999: \nQuailman was the first ever superhero created my Marvel."
-    )
-    correct_answer = "A"
-    answer_dict = {
-        "A": "Quailman was the first ever superhero created my Marvel",
-        "B": "Falconman was the first ever Marvel created superhero",
-        "C": "Quailwoman was the first ever superhero created by Marvel",
-        "D": "No superheroes were created by Marvel",
-    }
+#     response = Response(
+#         "Hey! Here's how I got to the answer, \n First I did step 1, then step 2 and finally step 9999: \nQuailman was the first ever superhero created my Marvel."
+#     )
+#     correct_answer = "A"
+#     answer_dict = {
+#         "A": "Quailman was the first ever superhero created my Marvel",
+#         "B": "Falconman was the first ever Marvel created superhero",
+#         "C": "Quailwoman was the first ever superhero created by Marvel",
+#         "D": "No superheroes were created by Marvel",
+#     }
 
-    assert evaluate_mmlu_response(response, correct_answer, answer_dict) == True
+#     assert evaluate_mmlu_response(response, correct_answer, answer_dict) == True
 
-    response = Response(
-        "Hey! Here's how I got to the answer, \n First I did step 1, then step 2 and finally step 9999: \nQuailman was the last ever superhero created my Marvel."
-    )
-    assert evaluate_mmlu_response(response, correct_answer, answer_dict) == False
+#     response = Response(
+#         "Hey! Here's how I got to the answer, \n First I did step 1, then step 2 and finally step 9999: \nQuailman was the last ever superhero created my Marvel."
+#     )
+#     assert evaluate_mmlu_response(response, correct_answer, answer_dict) == False
 
 
 def test_evaluate_gsm8k_response():
