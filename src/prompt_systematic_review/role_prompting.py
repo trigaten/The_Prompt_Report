@@ -223,9 +223,7 @@ def evaluate_prompts(
     elif dataset == "mmlu":
         combined_dataset = None
         for config in mmlu_configs:
-            dataset = load_hf_dataset(
-                "lukaemon/mmlu", config, split=split
-            ) 
+            dataset = load_hf_dataset("lukaemon/mmlu", config, split=split)
 
             # Convert to pandas DataFrame
             df = pd.DataFrame(dataset)
