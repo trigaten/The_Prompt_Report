@@ -17,4 +17,5 @@ openai
 load_dotenv
 wordcloud
 tenacity
+random
 -e .

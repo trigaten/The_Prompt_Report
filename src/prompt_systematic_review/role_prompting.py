@@ -11,6 +11,7 @@ from tenacity import (
     wait_random_exponential,
 )
 import pandas as pd
+import random
 
 mmlu_configs = [
     "high_school_european_history",
@@ -97,6 +98,7 @@ def query_model(
             {"role": "user", "content": question},
         ],
         max_tokens=output_tokens,
+        response_format={ "type": "json_object" },
     )
     return response
 
@@ -126,7 +128,8 @@ def evaluate_mmlu_response(response: dict, correct_answer: str, choices: dict) -
     """
     # correct_string = choices[correct_answer]
     # return correct_string in response.message.content
-    return response.message.content == correct_answer
+    json_response = json.loads(response.message.content)
+    return json_response["answer"] == correct_answer
 
 
 def evaluate_prompts(
@@ -227,12 +230,14 @@ def evaluate_prompts(
             # Convert to pandas DataFrame
             df = pd.DataFrame(dataset)
 
+            df['config'] = config
+
             if combined_dataset is None:
                 combined_dataset = df
             else:
                 combined_dataset = pd.concat([combined_dataset, df], ignore_index=True)
 
-        df = combined_dataset.sample(frac=1).reset_index(drop=True)
+        df = combined_dataset.sample(frac=1, random_state=42).reset_index(drop=True)
 
         for i, example in df.iterrows():
             if i >= start_index:
@@ -291,6 +296,7 @@ def evaluate_prompts(
                             "response": response_dict,
                             "marked_correct": is_correct,
                             "wall_time": wall_time,
+                            "config": example["config"],
                         }
                     )
                     results[prompt]["total"] += 1
