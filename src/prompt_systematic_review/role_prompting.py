@@ -225,7 +225,7 @@ def evaluate_prompts(
         for config in mmlu_configs:
             dataset = load_hf_dataset(
                 "lukaemon/mmlu", config, split=split
-            )  # Assuming you're interested in the training split
+            ) 
 
             # Convert to pandas DataFrame
             df = pd.DataFrame(dataset)
