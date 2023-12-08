@@ -7,80 +7,33 @@ import json
 from datetime import datetime
 from tenacity import (
     retry,
+    before_log,
     stop_after_attempt,
     wait_random_exponential,
 )
 import pandas as pd
-import random
+import logging
 
-mmlu_configs = [
-    "high_school_european_history",
-    "business_ethics",
-    "clinical_knowledge",
-    "medical_genetics",
-    "high_school_us_history",
-    "high_school_physics",
-    "high_school_world_history",
-    "virology",
-    "high_school_microeconomics",
-    "econometrics",
-    "college_computer_science",
-    "high_school_biology",
-    "abstract_algebra",
-    "professional_accounting",
-    "philosophy",
-    "professional_medicine",
-    "nutrition",
-    "global_facts",
-    "machine_learning",
-    "security_studies",
-    "public_relations",
-    "professional_psychology",
-    "prehistory",
-    "anatomy",
-    # "human_sexuality", # Removed because GPT refuses to answer
-    "college_medicine",
-    "high_school_government_and_politics",
-    "college_chemistry",
-    "logical_fallacies",
-    "high_school_geography",
-    "elementary_mathematics",
-    "human_aging",
-    "college_mathematics",
-    "high_school_psychology",
-    "formal_logic",
-    "high_school_statistics",
-    "international_law",
-    "high_school_mathematics",
-    "high_school_computer_science",
-    "conceptual_physics",
-    "miscellaneous",
-    "high_school_chemistry",
-    "marketing",
-    "professional_law",
-    "management",
-    "college_physics",
-    "jurisprudence",
-    "world_religions",
-    "sociology",
-    "us_foreign_policy",
-    "high_school_macroeconomics",
-    "computer_security",
-    "moral_scenarios",
-    "moral_disputes",
-    "electrical_engineering",
-    "astronomy",
-    "college_biology",
-]
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
+with open("data/mmlu_configs.json", "r") as file:
+    mmlu_configs = json.load(file)["configs"]
 
-@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(10))
+@retry(
+    wait=wait_random_exponential(min=1, max=60),
+    stop=stop_after_attempt(20),
+    before=before_log(logger, logging.INFO),
+)
 def query_model_with_backoff(**kwargs):
-    return openai.chat.completions.create(**kwargs)
-
+    try:
+        return openai.chat.completions.create(**kwargs)
+    except Exception as e:
+        logger.error(f"Query failed with error: {e}")
+        raise
 
 def query_model(
-    prompt: str, question: str, model_name: str, output_tokens: int = 500
+    prompt: str, question: str, model_name: str, output_tokens: int = 500, return_json=False
 ) -> dict:
     """
     Query the OpenAI API with a timeout.
@@ -91,16 +44,27 @@ def query_model(
     :param timeout: Timeout for the request in seconds.
     :return: The response from the API or None if timeout occurs.
     """
-    response = query_model_with_backoff(
-        model=model_name,
-        messages=[
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": question},
-        ],
-        max_tokens=output_tokens,
-        response_format={"type": "json_object"},
-    )
-    return response
+    if return_json:    
+        response = query_model_with_backoff(
+            model=model_name,
+            messages=[
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": question},
+            ],
+            max_tokens=output_tokens,
+            response_format={"type": "json_object"},
+        )
+        return response
+    else:
+        response = query_model_with_backoff(
+            model=model_name,
+            messages=[
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": question},
+            ],
+            max_tokens=output_tokens,
+        )
+        return response
 
 
 def evaluate_gsm8k_response(response: dict, correct_answer: str) -> bool:
@@ -119,15 +83,13 @@ def evaluate_gsm8k_response(response: dict, correct_answer: str) -> bool:
     return final_answer == correct
 
 
-def evaluate_mmlu_response(response: dict, correct_answer: str, choices: dict) -> bool:
+def evaluate_mmlu_response(response: dict, correct_answer: str) -> bool:
     """
     Evaluate the response from the API for a MMLU question and return whether it is correct.
     :param response: The response from the API.
     :param correct_answer: The correct answer to the question taken from the dataset.
     :return: Whether the response is correct.
     """
-    # correct_string = choices[correct_answer]
-    # return correct_string in response.message.content
     json_response = json.loads(response.message.content)
     return json_response["answer"] == correct_answer
 
@@ -142,6 +104,7 @@ def evaluate_prompts(
     start_index: int = 0,
     log_interval: int = 25,
     max_tokens: int = 500,
+    json_mode: bool = False,
 ) -> dict:
     """
     Evaluate a list of prompts on a dataset and return the results.
@@ -182,6 +145,7 @@ def evaluate_prompts(
                         question,
                         model_name=model_name,
                         output_tokens=max_tokens,
+                        return_json=json_mode,
                     )
                     query_count += 1
                     end_time = time.time()
@@ -221,21 +185,9 @@ def evaluate_prompts(
         return results, information
 
     elif dataset == "mmlu":
-        combined_dataset = None
-        for config in mmlu_configs:
-            dataset = load_hf_dataset("lukaemon/mmlu", config, split=split)
-
-            # Convert to pandas DataFrame
-            df = pd.DataFrame(dataset)
-
-            df["config"] = config
-
-            if combined_dataset is None:
-                combined_dataset = df
-            else:
-                combined_dataset = pd.concat([combined_dataset, df], ignore_index=True)
-
-        df = combined_dataset.sample(frac=1, random_state=42).reset_index(drop=True)
+        df = load_mmlu(
+            configs=mmlu_configs, split=split
+        )
 
         for i, example in df.iterrows():
             if i >= start_index:
@@ -374,3 +326,21 @@ def write_to_file(data, count, log_interval=25):
     with open(file_path, "w") as json_file:
         json.dump(data, json_file)
     print(f"Written results to {file_path}")
+
+def load_mmlu(configs: List[str], split: str) -> pd.DataFrame:
+    combined_dataset = None
+    for config in configs:
+        dataset = load_hf_dataset("lukaemon/mmlu", config, split=split)
+
+        # Convert to pandas DataFrame
+        df = pd.DataFrame(dataset)
+
+        df["config"] = config
+
+        if combined_dataset is None:
+            combined_dataset = df
+        else:
+            combined_dataset = pd.concat([combined_dataset, df], ignore_index=True)
+
+    df = combined_dataset.sample(frac=1, random_state=42).reset_index(drop=True)
+    return df

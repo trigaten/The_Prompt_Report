@@ -5,12 +5,15 @@ from src.prompt_systematic_review.role_prompting import (
     evaluate_gsm8k_response,
     evaluate_mmlu_response,
     response_to_dict,
+    load_mmlu,
 )
 
 import pytest
 from dotenv import load_dotenv
 import os
 import openai
+import pandas as pd
+import json
 
 
 @pytest.fixture(scope="module")
@@ -32,6 +35,7 @@ def test_json_evaluation(api_key):
     config_name = "main"
     split = "test"
     examples = 1
+    return_json = False
 
     evaluation_output = evaluate_prompts(
         prompts,
@@ -40,6 +44,7 @@ def test_json_evaluation(api_key):
         split,
         model,
         examples,
+        json_mode=return_json,
     )
 
     # First JSON Object Test (Evaluation Summary)
@@ -176,6 +181,18 @@ def test_query_model(api_key):
     assert len(response.choices[0].message.content) > 0
     assert "8" in response.choices[0].message.content
 
+    prompt = 'You are a brilliant math professor. Solve the following problem and return a JSON with the first entry being the reasoning behind the choice labeled as "reasoning", and the second entry being the answer to the question containing only the letter "A", "B", "C" or "D", labeled as "answer". Try to keep your reasoning concise.'
+    question = "What is 4 + 4? A. 8 B. 9 C. 10 D. 11"
+    model_name = "gpt-3.5-turbo-1106"
+    output_tokens = 150
+    json_mode = True
+    response = query_model(
+        prompt, question, model_name, output_tokens, return_json=json_mode
+    )
+    json_response = json.loads(response.choices[0].message.content)
+    assert isinstance(json_response, dict)
+    assert json_response["answer"] == "A"
+
 
 @pytest.mark.API_test
 def test_evaluate_prompts(api_key):
@@ -190,6 +207,7 @@ def test_evaluate_prompts(api_key):
     split = "test"
     model = "gpt-3.5-turbo-1106"
     examples = 1
+    return_json = False
 
     eval, _ = evaluate_prompts(
         prompts,
@@ -198,37 +216,46 @@ def test_evaluate_prompts(api_key):
         split,
         model,
         examples,
+        json_mode=return_json,
     )
     assert isinstance(eval, dict)
     assert len(eval) == 2
 
 
-# def test_evaluate_mmlu_response():
-#     class Response:
-#         def __init__(self, content):
-#             self.message = Message(content)
+def test_evaluate_mmlu_response():
+    class Response:
+        def __init__(self, content):
+            self.message = Message(content)
 
-#     class Message:
-#         def __init__(self, content):
-#             self.content = content
+    class Message:
+        def __init__(self, content):
+            self.content = content
 
-#     response = Response(
-#         "Hey! Here's how I got to the answer, \n First I did step 1, then step 2 and finally step 9999: \nQuailman was the first ever superhero created my Marvel."
-#     )
-#     correct_answer = "A"
-#     answer_dict = {
-#         "A": "Quailman was the first ever superhero created my Marvel",
-#         "B": "Falconman was the first ever Marvel created superhero",
-#         "C": "Quailwoman was the first ever superhero created by Marvel",
-#         "D": "No superheroes were created by Marvel",
-#     }
+    response = Response(
+        """
+        {
+            "answer": "A",
+            "explanation": "Hey! Here's how I got to the answer, First I did step 1, then step 2 and finally step 9999: Quailman was the first ever superhero created by Marvel."
+        }
+        """
+    )
 
-#     assert evaluate_mmlu_response(response, correct_answer, answer_dict) == True
+    correct_answer = "A"
 
-#     response = Response(
-#         "Hey! Here's how I got to the answer, \n First I did step 1, then step 2 and finally step 9999: \nQuailman was the last ever superhero created my Marvel."
-#     )
-#     assert evaluate_mmlu_response(response, correct_answer, answer_dict) == False
+    assert evaluate_mmlu_response(response, correct_answer) == True
+
+    response = Response(
+        """
+        {
+            "answer": "B",
+            "explanation": "Hey! Here's how I got to the answer, First I did step 1, then step 2 and finally step 9999: Quailman was the last ever superhero created by Marvel."
+        }
+        """
+    )
+
+    correct_answer = "A"
+
+    assert evaluate_mmlu_response(response, correct_answer) == False
 
 
 def test_evaluate_gsm8k_response():
@@ -359,3 +386,32 @@ def test_string_without_numbers():
 def test_multiple_numbers():
     assert extract_numbers("####$1,000 ####$2,000") == [1000, 2000]
     assert extract_numbers("####1000 ####2000") == [1000, 2000]
+
+
+def test_load_mmlu():
+    with open("data/mmlu_configs.json", "r") as file:
+        mmlu_configs = json.load(file)["configs"]
+    df = load_mmlu(mmlu_configs, "test")
+    assert (
+        df.iloc[0]["input"]
+        == "A state has adopted a system of bifurcated trials in cases in which a defendant's insanity is in issue. According to the bifurcated trial system, whenever a defendant pleads not guilty to an offense by reason of insanity, two trials will be held. The first one will simply determine whether the defendant has committed the offense for which she is charged. This trial will not address the issue of insanity. In the event that it is found that the defendant has, in fact, committed the offense, then a second trial will be conducted to determine whether she should be exculpated for the criminal action by reason of insanity. A woman was arrested and charged with murder. She pleaded not guilty by reason of insanity. At her first trial, the state introduced evidence showing that the woman was having an affair with the victim. When the victim tried to break off their relationship, the woman shot and killed him during a lover's quarrel. The woman was then called to testify in her own behalf. She testified that she had been living with the victim for two years prior to the time of his death. During that period she had undergone psychiatric treatment and was diagnosed as being schizophrenic. She further testified that at the time the victim was killed, she was under the influence of narcotics. While she was hallucinating, she remembered perceiving the victim as a demon and shot at this satanic figure in order to free herself from his evil spell. She then testified that she didn't believe shooting the demon was morally wrong. The prosecuting attorney objected to the woman's testimony. Over such objections, the trial judge admitted the woman's testimony. Was the trial judge correct in admitting the woman's testimony?"
+    )
+    assert (
+        df.iloc[0].A
+        == "No, because proof of mental disease requires the use of expert testimony."
+    )
+    assert (
+        df.iloc[0].B
+        == "No, because testimony relating to her belief that she didn't know what she was doing was wrong, is not relevant until the second trial."
+    )
+    assert (
+        df.iloc[0].C
+        == "Yes, because her testimony is relevant to the mental state necessary for the commission of the crime."
+    )
+    assert (
+        df.iloc[0].D
+        == "Yes, because her testimony is relevant to the issue of self-defense."
+    )
+    assert df.iloc[0].target == "C"
+    assert df.iloc[0].config == "professional_law"
+    assert len(df) == 13855
