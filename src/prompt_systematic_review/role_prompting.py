@@ -33,7 +33,7 @@ def query_model_with_backoff(**kwargs):
         raise
 
 def query_model(
-    prompt: str, question: str, model_name: str, output_tokens: int = 500, return_json=False
+    prompt: str, question: str, model_name: str, output_tokens: int = 500, return_json=False, rereading : bool =False
 ) -> dict:
     """
     Query the OpenAI API with a timeout.
@@ -44,13 +44,20 @@ def query_model(
     :param timeout: Timeout for the request in seconds.
     :return: The response from the API or None if timeout occurs.
     """
+    if rereading:
+        messages = [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": question + '\n\n' + question},
+        ]
+    else:
+        messages = [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": question},
+        ]
     if return_json:    
         response = query_model_with_backoff(
             model=model_name,
-            messages=[
-                {"role": "system", "content": prompt},
-                {"role": "user", "content": question},
-            ],
+            messages=messages,
             max_tokens=output_tokens,
             response_format={"type": "json_object"},
         )
@@ -58,10 +65,7 @@ def query_model(
     else:
         response = query_model_with_backoff(
             model=model_name,
-            messages=[
-                {"role": "system", "content": prompt},
-                {"role": "user", "content": question},
-            ],
+            messages=messages,
             max_tokens=output_tokens,
         )
         return response
@@ -105,6 +109,7 @@ def evaluate_prompts(
     log_interval: int = 25,
     max_tokens: int = 500,
     json_mode: bool = False,
+    reread: bool = False,
 ) -> dict:
     """
     Evaluate a list of prompts on a dataset and return the results.
@@ -146,6 +151,7 @@ def evaluate_prompts(
                         model_name=model_name,
                         output_tokens=max_tokens,
                         return_json=json_mode,
+                        rereading=reread,
                     )
                     query_count += 1
                     end_time = time.time()
@@ -225,6 +231,8 @@ def evaluate_prompts(
                         multiple_choice_question,
                         model_name=model_name,
                         output_tokens=max_tokens,
+                        return_json=json_mode,
+                        rereading=reread,
                     )
                     end_time = time.time()
                     wall_time = end_time - start_time
@@ -236,12 +244,13 @@ def evaluate_prompts(
                     ] += response.usage.completion_tokens
                     response_dict = response_to_dict(response)
                     is_correct = evaluate_mmlu_response(
-                        response.choices[0], correct_answer, choices
+                        response.choices[0], correct_answer
                     )
+
                     information["calls"].append(
                         {
                             "prompt": prompt,
-                            "question": multiple_choice_question,
+                            "question": multiple_choice_question + "\n\n Let's reread the question again:\n\n" + multiple_choice_question if reread else multiple_choice_question,
                             "correct_answer": correct_answer,
                             "response": response_dict,
                             "marked_correct": is_correct,
