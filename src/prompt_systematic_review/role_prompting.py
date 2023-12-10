@@ -4,6 +4,7 @@ from typing import List
 import re
 import time
 import json
+from json.decoder import JSONDecodeError
 from datetime import datetime
 from tenacity import (
     retry,
@@ -20,6 +21,7 @@ logger = logging.getLogger(__name__)
 with open("data/mmlu_configs.json", "r") as file:
     mmlu_configs = json.load(file)["configs"]
 
+
 @retry(
     wait=wait_random_exponential(min=1, max=60),
     stop=stop_after_attempt(20),
@@ -32,8 +34,14 @@ def query_model_with_backoff(**kwargs):
         logger.error(f"Query failed with error: {e}")
         raise
 
+
 def query_model(
-    prompt: str, question: str, model_name: str, output_tokens: int = 500, return_json=False, rereading : bool =False
+    prompt: str,
+    question: str,
+    model_name: str,
+    output_tokens: int = 500,
+    return_json=False,
+    rereading: bool = False,
 ) -> dict:
     """
     Query the OpenAI API with a timeout.
@@ -47,14 +55,14 @@ def query_model(
     if rereading:
         messages = [
             {"role": "system", "content": prompt},
-            {"role": "user", "content": question + '\n\n' + question},
+            {"role": "user", "content": question + "\n\n" + question},
         ]
     else:
         messages = [
             {"role": "system", "content": prompt},
             {"role": "user", "content": question},
         ]
-    if return_json:    
+    if return_json:
         response = query_model_with_backoff(
             model=model_name,
             messages=messages,
@@ -94,8 +102,19 @@ def evaluate_mmlu_response(response: dict, correct_answer: str) -> bool:
     :param correct_answer: The correct answer to the question taken from the dataset.
     :return: Whether the response is correct.
     """
-    json_response = json.loads(response.message.content)
-    return json_response["answer"] == correct_answer
+    try:
+        json_response = json.loads(response.message.content)
+        return json_response["answer"] == correct_answer
+    except JSONDecodeError as e:
+        print(f"JSONDecodeError: {e}")
+        print("Error occurred at: Line {}, Column {}".format(e.lineno, e.colno))
+        print(
+            "Problematic text snippet: ",
+            response.message.content[max(0, e.pos - 50) : e.pos + 50],
+        )
+        return False
+    # json_response = json.loads(response.message.content)
+    # return json_response["answer"] == correct_answer
 
 
 def evaluate_prompts(
@@ -107,7 +126,7 @@ def evaluate_prompts(
     examples: None or int = 1,
     start_index: int = 0,
     log_interval: int = 25,
-    max_tokens: int = 500,
+    max_tokens: int = 5000,
     json_mode: bool = False,
     reread: bool = False,
 ) -> dict:
@@ -191,9 +210,7 @@ def evaluate_prompts(
         return results, information
 
     elif dataset == "mmlu":
-        df = load_mmlu(
-            configs=mmlu_configs, split=split
-        )
+        df = load_mmlu(configs=mmlu_configs, split=split)
 
         for i, example in df.iterrows():
             if i >= start_index:
@@ -250,7 +267,12 @@ def evaluate_prompts(
                     information["calls"].append(
                         {
                             "prompt": prompt,
-                            "question": multiple_choice_question + "\n\n Let's reread the question again:\n\n" + multiple_choice_question if reread else multiple_choice_question,
+                            "question": "Question: "
+                            + multiple_choice_question
+                            + "\n Read the question again: "
+                            + multiple_choice_question
+                            if reread
+                            else multiple_choice_question,
                             "correct_answer": correct_answer,
                             "response": response_dict,
                             "marked_correct": is_correct,
@@ -329,12 +351,11 @@ def response_to_dict(response):
 
 def write_to_file(data, count, log_interval=25):
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    file_path = (
-        f"RP_eval_results_{current_datetime}_part_{((count//log_interval))}.json"
-    )
+    file_path = f"data/benchmarking/RP_eval_results_{current_datetime}_part_{((count//log_interval))}.json"
     with open(file_path, "w") as json_file:
         json.dump(data, json_file)
     print(f"Written results to {file_path}")
+
 
 def load_mmlu(configs: List[str], split: str) -> pd.DataFrame:
     combined_dataset = None
