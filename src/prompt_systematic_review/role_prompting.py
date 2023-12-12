@@ -42,6 +42,8 @@ def query_model(
     output_tokens: int = 500,
     return_json=False,
     rereading: bool = False,
+    seed: int = 42,
+    temperature: float = 0.0,
 ) -> dict:
     """
     Query the OpenAI API with a timeout.
@@ -68,6 +70,8 @@ def query_model(
             messages=messages,
             max_tokens=output_tokens,
             response_format={"type": "json_object"},
+            seed=seed,
+            temperature=temperature,
         )
         return response
     else:
@@ -75,6 +79,8 @@ def query_model(
             model=model_name,
             messages=messages,
             max_tokens=output_tokens,
+            seed=seed,
+            temperature=temperature,
         )
         return response
 
@@ -129,6 +135,8 @@ def evaluate_prompts(
     max_tokens: int = 5000,
     json_mode: bool = False,
     reread: bool = False,
+    seed: int = 42,
+    temperature: float = 0.0,
 ) -> dict:
     """
     Evaluate a list of prompts on a dataset and return the results.
@@ -171,6 +179,8 @@ def evaluate_prompts(
                         output_tokens=max_tokens,
                         return_json=json_mode,
                         rereading=reread,
+                        seed=seed,
+                        temperature=temperature,
                     )
                     query_count += 1
                     end_time = time.time()
