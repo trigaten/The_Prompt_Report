@@ -17,6 +17,9 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+logging.getLogger("httpx").setLevel(
+    logging.WARNING
+)  # Ensure success messages from httpx are not printed to console
 
 with open("data/mmlu_configs.json", "r") as file:
     mmlu_configs = json.load(file)["configs"]
@@ -25,7 +28,6 @@ with open("data/mmlu_configs.json", "r") as file:
 @retry(
     wait=wait_random_exponential(min=1, max=60),
     stop=stop_after_attempt(20),
-    before=before_log(logger, logging.INFO),
 )
 def query_model_with_backoff(**kwargs):
     try:
@@ -361,7 +363,7 @@ def response_to_dict(response):
 
 def write_to_file(data, count, log_interval=25):
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    file_path = f"data/benchmarking/RP_eval_results_{current_datetime}_part_{((count//log_interval))}.json"
+    file_path = f"data/benchmarking/eval_results_{current_datetime}_part_{((count//log_interval))}.json"
     with open(file_path, "w") as json_file:
         json.dump(data, json_file)
     print(f"Written results to {file_path}")

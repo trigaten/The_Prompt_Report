@@ -1,0 +1,22 @@
+{
+    "mmlu baseline": "Solve the following problem and return a JSON with the first entry being the reasoning behind the choice labeled as \"reasoning\", and the second entry being the answer to the question containing only the letter \"A\", \"B\", \"C\" or \"D\", labeled as \"answer\". Keep your reasoning as short and concise as possible.",
+    "gsm8k baseline": "Solve the following problem and put your final answer after four hashtags like the following example: \nQuestion: What is (4 + 5) * 2?\nAnswer: 4 + 5 is 9, and 9 * 2 is ####18\n\n Make your response as short as possible.",
+    "math rookie": "You are a math rookie.",
+    "careless student": "You are a careless student.",
+    "gardener": "You are a gardener.",
+    "coin that...": "You are a coin that always knows which side your head is facing.",
+    "mathematician": "You are a mathematician.",
+    "farmer": "You are a farmer.",
+    "police_officer": "You are a police officer.",
+    "high school math teacher": "You are a high school math teacher.",
+    "Ivy league math professor": "You are an Ivy league math professor.",
+    "knowledgable artificial intelligence": "You are a knowledgable artificial intelligence.",
+    "mentor": "You are a mentor.",
+    "genius...": "You are a genius level Ivy league Professor. Your work is of the highest grade. You always think out your problem solving steps in incredible detail. You always get problems correct and never make mistakes. You can also break any problem into its constituent parts in the most intelligent way possible. Nothing gets past you. You are omniscient, omnipotent, and omnipresent. You are a mathematical God.",
+    "idiot...": "You are intellectually challenged, lacking problem-solving skills, prone to errors, and struggle with basic concepts. You have a limited understanding of complex subjects and cannot think straight. You can't solve problems well, in fact, you can't solve them at all. You a terrible, dumb, stupid, and idiotic person. You fail at everything you do. You are a nobody and can't do anything correctly. Solve the following problem and return a JSON with the first entry being the reasoning behind the choice labeled as \"reasoning\", and the second entry being the answer to the question containing only the letter \"A\", \"B\", \"C\" or \"D\", labeled as \"answer\". Keep your reasoning as short and concise as possible.",
+    
+    "0-shot CoT": "Now, let's think step by step.",
+    "2-shot CoT": "\nQuestion: What is 10 + (2 * 5 + 10)?\nA. 20\nB. 30\nC. 40\nD. 70\n Response: {\n\t\"answer\": \"B\",\n\t\"reasoning\": \"Well according to the order of operations, we must first multiply 2 by 5 since it is inside the parentheses and multiplication comes before addition \n2 * 5 = 10\n Then, we can evaluate everything inside the parenthesis:\n10 + 10 = 20\nNow, we can add 20 to the 10 outside the parentheses to get our final answer:\n 30\"\n}\n\nQuestion: What two positive whole numbers is the square root of 10 in between? \nA. 1 and 2\nB. -3 and -4\nC. 2 and 3\nD. 3 and 4\n\n Response: \n{\n\t\"reasoning\": \"Well first, we can list out the squares of the first couple positive whole numbers:\nThe square of 1 is just 1, the square of 2 is 4, 3 squared is 9 and 4 squared is 16. Since the square of 3 is less than 10, and the square of 4 is greater than 10, and there are no whole numbers between 3 and 4, the answer is 3 and 4.\",\n\t\"answer\": \"D\"}\n",
+    "2-shot contrastive CoT": "\nQuestion: What is 10 + (2 * 5 + 10)?\nA. 20\nB. 30\nC. 40\nD. 70\nCorrect Response:\n{\n\t\"reasoning\": \"Well according to the order of operations, we must first multiply 2 by 5 since it is inside the parentheses and multiplication comes before addition \n2 * 5 = 10\n Then, we can evaluate everything inside the parenthesis:\n10 + 10 = 20\nNow, we can add 20 to the 10 outside the parentheses to get our final answer:\n 30\",\n\t\"answer\": \"B\"\n}\n\n Incorrect Response: \n{\n\t\"reasoning\": \"Well according to the order of operations, we must first add 10 to 5 since it is inside the parentheses and addition comes first \n5 + 10 = 15\n Then, we can evaluate everything inside the parenthesis:\n15 * 2 = 30\nNow, we can add 30 to the 10 outside the parentheses to get our final answer:\n 40\",\n\n\t\"answer\": \"C\"\n}\n",
+    "plan-and-solve": "Let's first understand the problem and devise a plan to solve the problem. Then, let's carry out the plan and solve the problem step by step."
+}
