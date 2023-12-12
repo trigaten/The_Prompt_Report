@@ -1,4 +1,4 @@
-from src.prompt_systematic_review.role_prompting import (
+from prompt_systematic_review.role_prompting import (
     query_model,
     extract_numbers,
     evaluate_prompts,
@@ -415,3 +415,14 @@ def test_load_mmlu():
     assert df.iloc[0].target == "C"
     assert df.iloc[0].config == "professional_law"
     assert len(df) == 13855
+
+
+def test_modular_prompts():
+    with open("data/prompts.json", "r") as file: # load prompts from prompts.json to make prompts more modular.
+        prompts = json.load(file)
+
+    farmer = prompts['farmer']
+    baseline = prompts['mmlu baseline']
+
+    farmer_prompt = 'You are a farmer. Solve the following problem and return a JSON with the first entry being the reasoning behind the choice labeled as "reasoning", and the second entry being the answer to the question containing only the letter "A", "B", "C" or "D", labeled as "answer". Keep your reasoning as short and concise as possible.'
+    assert farmer_prompt == farmer + " " + baseline
