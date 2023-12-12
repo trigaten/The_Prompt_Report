@@ -421,10 +421,10 @@ def test_modular_prompts():
     with open("data/prompts.json", "r") as file:
         prompts = json.load(file)
 
-    farmer = prompts['farmer']
-    math_rookie = prompts['math rookie']
-    genius = prompts['genius...']
-    baseline = prompts['mmlu baseline']
+    farmer = prompts["farmer"]
+    math_rookie = prompts["math rookie"]
+    genius = prompts["genius..."]
+    baseline = prompts["mmlu baseline"]
 
     farmer_prompt = 'You are a farmer. Solve the following problem and return a JSON with the first entry being the reasoning behind the choice labeled as "reasoning", and the second entry being the answer to the question containing only the letter "A", "B", "C" or "D", labeled as "answer". Keep your reasoning as short and concise as possible.'
     assert farmer_prompt == farmer + " " + baseline
@@ -434,5 +434,3 @@ def test_modular_prompts():
 
     genius_prompt = 'You are a genius level Ivy league Professor. Your work is of the highest grade. You always think out your problem solving steps in incredible detail. You always get problems correct and never make mistakes. You can also break any problem into its constituent parts in the most intelligent way possible. Nothing gets past you. You are omniscient, omnipotent, and omnipresent. You are a mathematical God. Solve the following problem and return a JSON with the first entry being the reasoning behind the choice labeled as "reasoning", and the second entry being the answer to the question containing only the letter "A", "B", "C" or "D", labeled as "answer". Keep your reasoning as short and concise as possible.'
     assert genius_prompt == genius + " " + baseline
-
-
