@@ -78,14 +78,22 @@ citations = [
 
 plt.figure(figsize=(10, 6))
 plt.bar(models, citations, color="blue")
-plt.xlabel("Dataset Name")
-plt.ylabel("Number of Citations")
-plt.title("Dataset Citations")
+plt.xlabel("Model Name")
+plt.ylabel("Number of Citations (Log Scale)")
+plt.title("Model Citations on a Logarithmic Scale")
 plt.xticks(rotation=45, ha="right")
+plt.yscale("log")
 
-# Display counts on top of each bar
+# Display citation counts on top of each bar with a border
 for i, v in enumerate(citations):
-    plt.text(i, v + 10, str(v), ha="center", va="bottom")
+    plt.text(
+        i,
+        v,
+        str(v),
+        ha="center",
+        va="bottom",
+        bbox=dict(facecolor="white", edgecolor="black", boxstyle="round,pad=0.2"),
+    )
 
 plt.tight_layout()
 plt.show()
