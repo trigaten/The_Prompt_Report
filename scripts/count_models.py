@@ -1,4 +1,5 @@
 import os
+import csv
 import json
 import argparse
 import requests
@@ -86,8 +87,19 @@ papers_dataset_path = args.file_path
 count_model_mentions(papers_dataset_path)
 print(model_counts)
 
-output_file_path = "../data/model_citation_counts.txt"
+output_file_path = "../data/model_citation_counts.csv"
 
 with open(output_file_path, "w") as f:
+    fieldnames = ["model_name", "count", "list_of_papers"]
+
+    # Create a CSV writer object
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+
+    # Write headers to the CSV file
+    writer.writeheader()
+
+    # Write data rows to the CSV file
     for model, titles in model_counts.items():
-        f.write(f"{model} ({len(titles)}): {titles}\n")
+        writer.writerow(
+            {"model_name": model, "count": len(titles), "list_of_papers": titles}
+        )
