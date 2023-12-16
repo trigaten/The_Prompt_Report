@@ -16,16 +16,17 @@ datasets = [
 ]
 citations = [702, 390, 608, 335, 629, 385, 816, 215, 387, 227, 594]
 
+# Sort the datasets and citations together, in descending order
+combined_data = list(zip(datasets, citations))
+sorted_data = sorted(combined_data, key=lambda x: x[1], reverse=True)
+sorted_datasets, sorted_citations = zip(*sorted_data)
+
 plt.figure(figsize=(10, 6))
-plt.bar(datasets, citations, color="blue")
+plt.bar(sorted_datasets, sorted_citations, color="blue")
 plt.xlabel("Dataset Name")
 plt.ylabel("Number of Citations")
 plt.title("Dataset Citations")
 plt.xticks(rotation=45, ha="right")
-
-# Display counts on top of each bar
-for i, v in enumerate(citations):
-    plt.text(i, v + 10, str(v), ha="center", va="bottom")
 
 plt.tight_layout()
 plt.show()
