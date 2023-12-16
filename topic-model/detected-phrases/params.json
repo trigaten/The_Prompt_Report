@@ -1,0 +1,22 @@
+{
+  "output_dir": "detected-phrases",
+  "input_format": "csv",
+  "passes": 1,
+  "lowercase": true,
+  "detect_entities": false,
+  "detect_noun_chunks": false,
+  "token_regex": "re.compile('^[\\\\w-]*[a-zA-Z][\\\\w-]*$')",
+  "min_count": 15,
+  "threshold": 10.0,
+  "max_vocab_size": 40000000.0,
+  "connector_words": "frozenset({'hereby', 'any', '\u2018re', 'when', 'only', 'nobody', 'this', 'whatever', 'whereby', 'ourselves', '\u2019ve', 'his', 'himself', 'afterwards', 'along', \"'ll\", 'mine', 'whenever', 'again', \"'s\", 'latter', \"'d\", 'across', 'five', 'n\u2018t', 'somewhere', 'may', 'themselves', 'did', 'nothing', 'whither', 'her', 'is', 'get', 'can', 'ours', 'could', 'keep', 'for', 'just', 'in', 'quite', 'no', 'such', 'hereafter', 'due', 'really', 'therefore', 'you', 'per', 'give', 'anything', 'using', 'whose', 'anyone', 'as', 'i', 'besides', 'therein', 'anywhere', '\u2018m', 'be', 'sixty', 'wherein', 'amount', 'name', 'whereafter', 'then', 'whereupon', 'still', 'your', \"'re\", 'less', 'make', 'one', 'hereupon', 'please', '\u2018d', 'of', 'yet', 'someone', 'while', 'without', 'how', 'here', 'does', 'whereas', '\u2019m', 'n\u2019t', 'fifty', 'once', 'but', 'empty', '\u2019s', 'thereupon', 'sometimes', 'regarding', 'itself', 'seems', 'front', 'with', '\u2019d', 'there', 'all', 'might', 'our', 'ever', 'were', 'why', 'done', 'many', 'nowhere', 'around', 'otherwise', 'upon', 'made', 'latterly', 'perhaps', 'forty', 'hers', 'these', 'him', 'something', 'namely', 'are', 'other', 'unless', 'until', 'doing', 'nevertheless', 'full', 'become', 'else', 'more', 'meanwhile', 'see', 'beyond', 'further', 'whence', 'among', 'behind', 'former', 'move', 'rather', 'that', 'seem', 'both', 'sometime', 'where', 'on', 'since', 'out', 'however', 'throughout', 'or', 'whole', \"'m\", 'also', 'than', 'few', 'well', 'me', 'often', 'own', '\u2019ll', 'my', 'except', 'wherever', 'least', 'twelve', \"'ve\", 'three', 'another', 'mostly', 'became', 'indeed', 'he', 're', 'always', 'beside', 'by', 'first', 'enough', 'whoever', 'serious', 'everything', 'thence', 'from', 'neither', 'if', 'under', 'anyhow', 'back', 'anyway', 'already', 'whom', 'above', 'us', 'put', 'it', 'onto', 'being', 'everywhere', 'twenty', 'thereby', 'even', 'thus', 'hundred', 'go', 'because', 'over', 'very', 'so', 'four', 'have', 'bottom', 'up', 'used', 'hence', 'seeming', 'everyone', 'each', 'show', 'yourselves', 'nine', 'elsewhere', 'ten', 'its', 'she', 'noone', 'about', 'off', 'never', 'not', 'too', 'next', 'into', 'becoming', 'thereafter', 'we', 'none', 'down', 'every', 'which', '\u2018ll', 'do', 'almost', 'top', 'via', 'several', 'nor', 'much', 'am', 'what', '\u2018ve', 'a', 'them', 'whether', 'their', 'and', 'they', 'side', 'thru', 'before', 'amongst', 'will', 'most', 'either', \"n't\", 'an', 'to', 'between', 'part', 'has', 'alone', 'below', 'together', 'some', 'becomes', 'formerly', 'beforehand', 'though', 'various', 'say', 'after', 'should', 'towards', 'now', 'through', 'must', 'somehow', 'although', 'herein', 'fifteen', 'eight', 'take', 'same', 'eleven', 'last', 'cannot', 'been', 'yours', 'at', 'third', 'had', 'was', 'call', 'others', 'would', 'moreover', 'who', 'those', 'ca', 'against', '\u2018s', '\u2019re', 'yourself', 'the', 'toward', 'two', 'six', 'herself', 'within', 'during', 'seemed', 'myself'})",
+  "phrases": null,
+  "max_phrase_len": null,
+  "n_process": -1,
+  "encoding": "utf-8",
+  "id_key": "paperId",
+  "input_path": "master_papers.csv",
+  "lines_are_documents": true,
+  "max_doc_size": null,
+  "text_key": "abstract"
+}

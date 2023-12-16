@@ -15,6 +15,19 @@ Put your key in like:
 `OPENAI_API_KEY=sk-...`
 `HF_TOKEN=...`
 
+Then to load the .env file, type:
+pip install pytest-dotenv
+
+You can also choose to update the env file by doing:
+py.test --envfile path/to/.env
+
+In the case that you have several .env files, create a new env_files in the pytest config folder and type:
+
+env_files =
+    .env
+    .test.env
+    .deploy.env
+    
 ## blacklist.csv
 
 Papers we should not include due to being poorly written or AI generated
@@ -31,3 +44,5 @@ Papers we should not include due to being poorly written or AI generated
     - "April 1988"
     - "2-4 April 2002"
     - "29 Nov.-2 Dec. 2022"
+ 
+
