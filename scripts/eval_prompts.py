@@ -25,9 +25,9 @@ two_shot_CoT = prompts["2-shot CoT"]
 two_shot_contrastive = prompts["2-shot contrastive CoT"]
 ten_shot_CoT = prompts["10-shot CoT"]
 ten_shot_contrastive = prompts["10-shot contrastive CoT"]
-knowledgable_AI = prompts["knowledgable artificial intelligence"]
-math_rookie = prompts["math rookie"]
-genius = prompts['genius...']
+# knowledgable_AI = prompts["knowledgable artificial intelligence"]
+# math_rookie = prompts["math rookie"]
+# genius = prompts['genius...']
 idiot = prompts['idiot...']
 careless_student = prompts['careless student']
 gardener = prompts['gardener']
@@ -40,20 +40,16 @@ mentor = prompts["mentor"]
 plan_and_solve  = prompts["plan-and-solve"]
 
 
+
 prompts = [
-    baseline_with_reasoning + " " + zero_shot_CoT,
-    baseline_with_reasoning + " " + two_shot_CoT,
-    baseline_with_reasoning + " " + two_shot_contrastive,
-    baseline_with_reasoning + " " + plan_and_solve,
-    baseline_with_reasoning + " " + ten_shot_CoT,
-    baseline_with_reasoning + " " + ten_shot_contrastive,
-    
+    idiot + " " + baseline,
+    careless_student + " " + baseline,
 ]
 
 dataset = "mmlu"  # mmlu or gsm8k
 config_name = None  # main if gs8k, None if mmlu
 split = "test"
-model = "gpt-3.5-turbo-1106"
+model = "gpt-4-1106-preview"
 examples = 2000  # number of examples to test
 start = 0  # start index for dataset
 log_interval = 25  # log interval for creatings jsons of results by query

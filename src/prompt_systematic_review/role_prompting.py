@@ -277,7 +277,7 @@ def evaluate_prompts(
                     )
 
                     if json_mode:
-                        multiple_choice_question = multiple_choice_question + "\nRemember to return a JSON with the first entry being the reasoning behind the choice labeled as \"reasoning\", and the second entry being the answer to the question containing only the letter \"A\", \"B\", \"C\" or \"D\", labeled as \"answer\"."
+                        multiple_choice_question = multiple_choice_question + "\nRemember to return a JSON with the answer to the question containing only the letter \"A\", \"B\", \"C\" or \"D\", labeled as \"answer\"."
 
                     information["calls"].append(
                         {
