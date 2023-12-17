@@ -1,3 +1,7 @@
+Keeping this file here (perhaps temporarily) for now
+
+**previously pyproject.toml before integration of topic-model into main pipeline 
+
 [tool.poetry]
 name = "prompt-survey-topic-model"
 version = "0.1.0"
