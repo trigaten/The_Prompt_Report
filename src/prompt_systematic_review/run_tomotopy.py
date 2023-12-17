@@ -8,6 +8,8 @@ import numpy as np
 
 from tqdm import tqdm
 
+# Do not run this code to access the topic model. Run topic-model.py or read the README in data/topic-model-data
+
 
 # %%
 def is_notebook() -> bool:
@@ -25,7 +27,11 @@ def is_notebook() -> bool:
 
 # %% arguments
 parser = argparse.ArgumentParser()
-parser.add_argument("--input_fname", type=str, default="processed/train.metadata.jsonl")
+parser.add_argument(
+    "--input_fname",
+    type=str,
+    default="./topic-model-data/processed/train.metadata.jsonl",
+)
 parser.add_argument("--num_topics", type=int, default=35)
 parser.add_argument("--iterations", type=int, default=1000)
 parser.add_argument("--top_words_to_display", type=int, default=15)
@@ -169,7 +175,11 @@ for topic_idx in range(args.num_topics):
 review_html = html_template.format(content="".join(content))
 
 # %% write the html to a file
-with open(f"topic_outputs-{args.num_topics}.html", "w") as f:
+with open(
+    f"./topic-model-data/topic-model-outputs/topic_outputs-{args.num_topics}.html",
+    "w",
+    encoding="utf-8",
+) as f:
     f.write(review_html)
 
 # %%
@@ -180,4 +190,7 @@ for topic_idx in range(args.num_topics):
     )
     data_by_topic.append(data.iloc[doc_idxs].assign(topic=topic_idx, prob=probs))
 
-pd.concat(data_by_topic).to_csv(f"topic_outputs-{args.num_topics}.csv", index=False)
+pd.concat(data_by_topic).to_csv(
+    f"./topic-model-data/topic-model-outputs/topic_outputs-{args.num_topics}.csv",
+    index=False,
+)
