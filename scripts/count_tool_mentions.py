@@ -10,11 +10,12 @@ from prompt_systematic_review.semantic_scholar_source import SemanticScholarSour
 """This script counts the number of papers in our dataset that mention each {model/dataset/framework}.
 The script takes one arg, for the path location of the full paper dataset."""
 
+
 # TODO improvement: use word embeddings to find similar tool names.
 # for now, assume the common tool name will appear in the paper
 def count_tool_mentions(input_folder_path: str, output_file_path: str, tool_lst: list):
     tool_counts = defaultdict(list)
-    
+
     # Iterate through all files in the input folder, count tool mentions
     for filename in tqdm(os.listdir(input_folder_path)):
         try:
@@ -30,23 +31,24 @@ def count_tool_mentions(input_folder_path: str, output_file_path: str, tool_lst:
 
         except Exception as e:
             print(f"Error processing {filename}: {e}")
-    
-    print("tool_counts: ", tool_counts)   
-        
+
+    print("tool_counts: ", tool_counts)
+
     with open(output_file_path, "w") as f:
-      fieldnames = ["tool_name", "count", "list_of_papers"]
+        fieldnames = ["tool_name", "count", "list_of_papers"]
 
-      # Create a CSV writer object
-      writer = csv.DictWriter(f, fieldnames=fieldnames)
+        # Create a CSV writer object
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
 
-      # Write headers to the CSV file
-      writer.writeheader()
+        # Write headers to the CSV file
+        writer.writeheader()
 
-      # Write data rows to the CSV file
-      for tool, titles in tool_counts.items():
-          writer.writerow(
-              {"tool_name": tool, "count": len(titles), "list_of_papers": titles}
-          )
+        # Write data rows to the CSV file
+        for tool, titles in tool_counts.items():
+            writer.writerow(
+                {"tool_name": tool, "count": len(titles), "list_of_papers": titles}
+            )
+
 
 # script portion
 masterpaperscsv_file_path = "./master_papers.csv"
@@ -98,7 +100,9 @@ model_names = [
     "XMem",
     "SAM",
 ]
-count_tool_mentions(papers_dataset_path, "../data/model_citation_counts.csv", model_names)
+count_tool_mentions(
+    papers_dataset_path, "../data/model_citation_counts.csv", model_names
+)
 
 # 2. call function to count dataset mentions
 dataset_names = [
@@ -114,7 +118,9 @@ dataset_names = [
     "BBH",
     "HellaSwag",
 ]
-count_tool_mentions(papers_dataset_path, "../data/dataset_citation_counts.csv", dataset_names)
+count_tool_mentions(
+    papers_dataset_path, "../data/dataset_citation_counts.csv", dataset_names
+)
 
 
 # 3. call function to count framework mentions
@@ -147,4 +153,6 @@ framework_names = [
     "Automatic Prompt Engineer (APE)",
     "Prompt Adaptation",
 ]
-count_tool_mentions(papers_dataset_path, "../data/framework_citation_counts.csv", framework_names)
+count_tool_mentions(
+    papers_dataset_path, "../data/framework_citation_counts.csv", framework_names
+)
