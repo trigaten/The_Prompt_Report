@@ -31,7 +31,10 @@ class Paper:
                 raise ValueError("Keywords must be lowercase")
 
     def __str__(self):
-        return f"{self.title}, by {self.author}".strip()
+        authorString = ""
+        for x in self.authors:
+            authorString += x + ", "
+        return f"{self.title}, by {authorString}".strip(', ')
 
     def __eq__(self, other):
         # this is to handle papers from different sources being the same

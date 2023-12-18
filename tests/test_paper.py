@@ -5,6 +5,7 @@ from prompt_systematic_review.semantic_scholar_source import SemanticScholarSour
 from datetime import date, datetime
 from prompt_systematic_review.utils import process_paper_title
 import pytest
+from prompt_systematic_review.download_arxiv_query import query_archive
 
 
 def test_paper():
@@ -109,3 +110,13 @@ def test_semantic_scholar_get_papers():
         ), "Paper must have a submission date of type date"
         assert paper.authors, "Paper must have at least one author"
         assert paper.abstract, "Paper must have an abstract"
+
+def test_query_archive():
+    response_file = query_archive("querycsv")
+    """Makes sure that all the proper headings for all the data are in the csv file"""
+    assert "title" in response_file
+    assert "authors" in response_file
+    assert "url" in response_file
+    assert "dateSubmitted" in response_file
+    assert "keywords" in response_file
+    assert "abstract" in response_file

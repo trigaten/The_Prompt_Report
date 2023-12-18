@@ -14,14 +14,14 @@ def hashString(bytes):
 
 @pytest.fixture
 def client():
-    return Pipeline(token=os.environ["HF_AUTH_TOKEN"], revision="test")
+    return Pipeline(token=os.environ["HF_TOKEN"], revision="test")
 
 
 @pytest.mark.API_test
 def test_login():
     testClient = Pipeline(revision="test")
     assert testClient.is_logged_in() == False
-    testClient.login(os.environ["HF_AUTH_TOKEN"])
+    testClient.login(os.environ["HF_TOKEN"])
     assert testClient.is_logged_in() == True
 
 
