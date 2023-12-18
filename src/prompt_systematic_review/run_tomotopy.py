@@ -1,6 +1,7 @@
 # %% imports
 import argparse
 import html
+import os
 
 import tomotopy as tp
 import pandas as pd
@@ -24,6 +25,14 @@ def is_notebook() -> bool:
     except NameError:
         return False  # Probably standard Python interpreter
 
+# change working directory to /data
+DIRNAME = os.path.split(__file__)[0]
+BACK = os.sep + os.pardir
+os.chdir(os.path.normpath(DIRNAME + BACK + BACK))
+os.chdir(os.path.join(os.getcwd(), "data"))
+
+# create directory for outputs
+os.mkdir(os.path.join(os.getcwd(), "topic-model-data" + os.sep + "topic-model-outputs"))
 
 # %% arguments
 parser = argparse.ArgumentParser()
@@ -194,3 +203,6 @@ pd.concat(data_by_topic).to_csv(
     f"./topic-model-data/topic-model-outputs/topic_outputs-{args.num_topics}.csv",
     index=False,
 )
+
+# return working directory to src
+os.chdir(DIRNAME)
