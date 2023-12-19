@@ -7,6 +7,7 @@ from prompt_systematic_review.utils import process_paper_title
 import pytest
 from prompt_systematic_review.download_arxiv_query import query_archive
 
+
 def test_paper():
     paper1 = Paper(
         "How to write a paper",
