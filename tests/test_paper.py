@@ -113,7 +113,7 @@ def test_semantic_scholar_get_papers():
 
 
 def test_query_archive():
-    """Makes sure that all the proper headings for all the data are in the csv file"""
+    #Makes sure that all the proper headings for all the data are in the csv file
 
     response_file = query_archive("querycsv")
     assert "title" in response_file
