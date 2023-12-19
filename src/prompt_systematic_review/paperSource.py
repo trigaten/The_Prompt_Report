@@ -34,7 +34,7 @@ class Paper:
         authorString = ""
         for x in self.authors:
             authorString += x + ", "
-        return f"{self.title}, by {authorString}".strip(', ')
+        return f"{self.title}, by {authorString}".strip(", ")
 
     def __eq__(self, other):
         # this is to handle papers from different sources being the same
