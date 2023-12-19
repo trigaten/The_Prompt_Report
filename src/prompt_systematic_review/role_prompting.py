@@ -227,7 +227,7 @@ def evaluate_prompts(
         for i, example in df.iterrows():
             if i >= start_index:
                 question = example["input"]
-                correct_answer = example["target"]
+                correct_answer = example["answer"]
                 choice_A, choice_B, choice_C, choice_D = (
                     example["A"],
                     example["B"],
@@ -277,7 +277,10 @@ def evaluate_prompts(
                     )
 
                     if json_mode:
-                        multiple_choice_question = multiple_choice_question + "\nRemember to return a JSON with the answer to the question containing only the letter \"A\", \"B\", \"C\" or \"D\", labeled as \"answer\"."
+                        multiple_choice_question = (
+                            multiple_choice_question
+                            + '\nRemember to return a JSON with the answer to the question containing only the letter "A", "B", "C" or "D", labeled as "answer".'
+                        )
 
                     information["calls"].append(
                         {
@@ -373,19 +376,41 @@ def write_to_file(data, count, log_interval=25):
 
 
 def load_mmlu(configs: List[str], split: str) -> pd.DataFrame:
-    combined_dataset = None
-    for config in configs:
-        dataset = load_hf_dataset("lukaemon/mmlu", config, split=split)
+    column_names = ["input", "A", "B", "C", "D", "answer"]
 
-        # Convert to pandas DataFrame
-        df = pd.DataFrame(dataset)
+    # List to store each DataFrame
+    dataframes = []
 
-        df["config"] = config
+    # Loop through the list of file names
+    for file_name in configs:
+        # Read the CSV file with specified column names and append to the list
+        df = pd.read_csv(
+            "data/mmlu/" + split + "/" + file_name + "_test.csv", names=column_names
+        )
+        df["config"] = file_name
+        dataframes.append(df)
 
-        if combined_dataset is None:
-            combined_dataset = df
-        else:
-            combined_dataset = pd.concat([combined_dataset, df], ignore_index=True)
-
-    df = combined_dataset.sample(frac=1, random_state=42).reset_index(drop=True)
+    # Concatenate all DataFrames into a single DataFrame
+    combined_df = pd.concat(dataframes, ignore_index=True)
+    df = combined_df.sample(frac=1, random_state=42).reset_index(drop=True)
     return df
+
+    # combined_dataset = None
+    # for config in configs:
+
+    #     dataset = load_hf_dataset("lukaemon/mmlu", config, split=split)
+
+    #     # Convert to pandas DataFrame
+    #     df = pd.DataFrame(dataset)
+
+    #     df["config"] = config
+
+    #     if combined_dataset is None:
+    #         combined_dataset = df
+    #     else:
+
+
+  #         combined_dataset = pd.concat([combined_dataset, df], ignore_index=True)
+
+# df = combined_dataset.sample(frac=1, random_state=42).reset_index(drop=True)
+# return df

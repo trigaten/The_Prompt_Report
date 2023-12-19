@@ -10,9 +10,7 @@ from datetime import datetime
 import json
 
 load_dotenv(dotenv_path="./.env")  # load all entries from .env file
-
 openai.api_key = os.getenv("OPENAI_API_KEY")  # load openai key
-
 with open(
     "data/prompts.json", "r"
 ) as file:  # load prompts from prompts.json to make prompts more modular.
@@ -28,12 +26,12 @@ ten_shot_contrastive = prompts["10-shot contrastive CoT"]
 # knowledgable_AI = prompts["knowledgable artificial intelligence"]
 # math_rookie = prompts["math rookie"]
 # genius = prompts['genius...']
-idiot = prompts['idiot...']
-careless_student = prompts['careless student']
-gardener = prompts['gardener']
-coin = prompts["coin that..."]
-mathematician = prompts["mathematician"]
-farmer = prompts["farmer"]
+# idiot = prompts['idiot...']
+# careless_student = prompts['careless student']
+# gardener = prompts['gardener']
+# coin = prompts["coin that..."]
+# mathematician = prompts["mathematician"]
+# farmer = prompts["farmer"]
 police_officer = prompts["police officer"]
 ivy_league_prof = prompts["Ivy league math professor"]
 mentor = prompts["mentor"]
@@ -42,18 +40,19 @@ plan_and_solve  = prompts["plan-and-solve"]
 
 
 prompts = [
-    idiot + " " + baseline,
-    careless_student + " " + baseline,
+    police_officer + " " + baseline,
+    # ivy_league_prof + " " + baseline,
+    # mentor + " " + baseline,
 ]
 
 dataset = "mmlu"  # mmlu or gsm8k
 config_name = None  # main if gs8k, None if mmlu
 split = "test"
 model = "gpt-4-1106-preview"
-examples = 2000  # number of examples to test
+examples = 2 # number of examples to test
 start = 0  # start index for dataset
 log_interval = 25  # log interval for creatings jsons of results by query
-max_toks = 1500
+max_toks = 50
 rereading = False  # if true, will "reread" the question to the LM at query time
 return_json = True
 SEED = 42
