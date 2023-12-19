@@ -111,9 +111,11 @@ def test_semantic_scholar_get_papers():
         assert paper.authors, "Paper must have at least one author"
         assert paper.abstract, "Paper must have an abstract"
 
+
 def test_query_archive():
-    response_file = query_archive("querycsv")
     """Makes sure that all the proper headings for all the data are in the csv file"""
+
+    response_file = query_archive("querycsv")
     assert "title" in response_file
     assert "authors" in response_file
     assert "url" in response_file
