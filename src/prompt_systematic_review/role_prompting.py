@@ -103,26 +103,27 @@ def evaluate_gsm8k_response(response: dict, correct_answer: str) -> bool:
     return final_answer == correct
 
 
-def evaluate_mmlu_response(response: dict, correct_answer: str) -> bool:
+def evaluate_mmlu_response(response: dict, correct_answer: str, json_mode: bool) -> bool:
     """
     Evaluate the response from the API for a MMLU question and return whether it is correct.
     :param response: The response from the API.
     :param correct_answer: The correct answer to the question taken from the dataset.
     :return: Whether the response is correct.
     """
-    try:
-        json_response = json.loads(response.message.content)
-        return json_response["answer"] == correct_answer
-    except JSONDecodeError as e:
-        print(f"JSONDecodeError: {e}")
-        print("Error occurred at: Line {}, Column {}".format(e.lineno, e.colno))
-        print(
-            "Problematic text snippet: ",
-            response.message.content[max(0, e.pos - 50) : e.pos + 50],
-        )
-        return False
-    # json_response = json.loads(response.message.content)
-    # return json_response["answer"] == correct_answer
+    if json_mode:
+        try:
+            json_response = json.loads(response.message.content)
+            return json_response["answer"] == correct_answer
+        except JSONDecodeError as e:
+            print(f"JSONDecodeError: {e}")
+            print("Error occurred at: Line {}, Column {}".format(e.lineno, e.colno))
+            print(
+                "Problematic text snippet: ",
+                response.message.content[max(0, e.pos - 50) : e.pos + 50],
+            )
+            return False
+    else:
+        return "\"" + correct_answer + "\"" in response.message.content
 
 
 def evaluate_prompts(
@@ -234,12 +235,12 @@ def evaluate_prompts(
                     example["C"],
                     example["D"],
                 )
-                choices = {
-                    "A": choice_A,
-                    "B": choice_B,
-                    "C": choice_C,
-                    "D": choice_D,
-                }
+                # choices = {
+                #     "A": choice_A,
+                #     "B": choice_B,
+                #     "C": choice_C,
+                #     "D": choice_D,
+                # }
                 multiple_choice_question = """
                 {question}
                 A. {choice_A}
@@ -273,7 +274,7 @@ def evaluate_prompts(
                     ] += response.usage.completion_tokens
                     response_dict = response_to_dict(response)
                     is_correct = evaluate_mmlu_response(
-                        response.choices[0], correct_answer
+                        response.choices[0], correct_answer, json_mode
                     )
 
                     if json_mode:
@@ -385,7 +386,7 @@ def load_mmlu(configs: List[str], split: str) -> pd.DataFrame:
     for file_name in configs:
         # Read the CSV file with specified column names and append to the list
         df = pd.read_csv(
-            "data/mmlu/" + split + "/" + file_name + "_test.csv", names=column_names
+            "data/mmlu/data/" + split + "/" + file_name + "_test.csv", names=column_names
         )
         df["config"] = file_name
         dataframes.append(df)
@@ -394,23 +395,3 @@ def load_mmlu(configs: List[str], split: str) -> pd.DataFrame:
     combined_df = pd.concat(dataframes, ignore_index=True)
     df = combined_df.sample(frac=1, random_state=42).reset_index(drop=True)
     return df
-
-    # combined_dataset = None
-    # for config in configs:
-
-    #     dataset = load_hf_dataset("lukaemon/mmlu", config, split=split)
-
-    #     # Convert to pandas DataFrame
-    #     df = pd.DataFrame(dataset)
-
-    #     df["config"] = config
-
-    #     if combined_dataset is None:
-    #         combined_dataset = df
-    #     else:
-
-
-  #         combined_dataset = pd.concat([combined_dataset, df], ignore_index=True)
-
-# df = combined_dataset.sample(frac=1, random_state=42).reset_index(drop=True)
-# return df

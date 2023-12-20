@@ -16,7 +16,8 @@ with open(
 ) as file:  # load prompts from prompts.json to make prompts more modular.
     prompts = json.load(file)
 
-baseline = prompts["mmlu baseline without reasoning"]
+baseline = prompts["mmlu baseline without json"]
+baseline_without_reasoning = prompts["mmlu baseline without reasoning"]
 baseline_with_reasoning = prompts["mmlu baseline with reasoning"]
 zero_shot_CoT = prompts["0-shot CoT"]
 two_shot_CoT = prompts["2-shot CoT"]
@@ -40,9 +41,7 @@ plan_and_solve  = prompts["plan-and-solve"]
 
 
 prompts = [
-    police_officer + " " + baseline,
-    # ivy_league_prof + " " + baseline,
-    # mentor + " " + baseline,
+    baseline,
 ]
 
 dataset = "mmlu"  # mmlu or gsm8k
@@ -54,7 +53,7 @@ start = 0  # start index for dataset
 log_interval = 25  # log interval for creatings jsons of results by query
 max_toks = 50
 rereading = False  # if true, will "reread" the question to the LM at query time
-return_json = True
+return_json = False
 SEED = 42
 temp = 0.0
 
