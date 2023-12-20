@@ -17,4 +17,5 @@ openai
 load_dotenv
 tomotopy
 wordcloud
+pytest-dotenv
 -e .

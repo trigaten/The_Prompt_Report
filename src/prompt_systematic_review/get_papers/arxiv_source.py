@@ -1,12 +1,12 @@
-from prompt_systematic_review.paperSource import PaperSource
+from prompt_systematic_review.get_papers.paperSource import PaperSource
 import requests
 from xml.etree import ElementTree as ET
 from datetime import date
 from typing import List
 import os
-from prompt_systematic_review.paperSource import Paper
-from prompt_systematic_review.paperSource import PaperSource
-from prompt_systematic_review.utils import headers
+from prompt_systematic_review.get_papers.paperSource import Paper
+from prompt_systematic_review.get_papers.paperSource import PaperSource
+from prompt_systematic_review.utils.utils import headers
 import time
 
 

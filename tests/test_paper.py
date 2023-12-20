@@ -1,9 +1,10 @@
-from prompt_systematic_review.paperSource import Paper
-from prompt_systematic_review.arxiv_source import ArXivSource
-from prompt_systematic_review.ieee_source import IEEESource
-from prompt_systematic_review.semantic_scholar_source import SemanticScholarSource
+from prompt_systematic_review.get_papers.paperSource import Paper
+from prompt_systematic_review.get_papers.arxiv_source import ArXivSource
+from prompt_systematic_review.get_papers.semantic_scholar_source import (
+    SemanticScholarSource,
+)
 from datetime import date, datetime
-from prompt_systematic_review.utils import process_paper_title
+from prompt_systematic_review.utils.utils import process_paper_title
 import pytest
 
 
@@ -56,7 +57,7 @@ def test_arxiv_source():
     TITLE = "Foundational Models in Medical Imaging: A Comprehensive Survey and Future Vision"
     papers = arxiv_source.getPapers(1, [TITLE])
     paper = papers[0]
-    assert process_paper_title(paper.title) == TITLE.lower()
+    assert process_paper_title(paper.title) == process_paper_title(TITLE.lower())
     assert "Bobby Azad" in paper.authors
     assert paper.url == "http://arxiv.org/pdf/2310.18689v1.pdf"
 
@@ -66,32 +67,6 @@ def test_arxiv_source():
     # assert paper.keywords == [
     #     "foundational models in medical imaging: a comprehensive survey and future vision"
     # ]
-
-
-# @pytest.mark.API_test
-# def test_ieee_source():
-#     # test that IEEE source returns papers properly
-#     ieee_source = IEEESource()
-#     papers = ieee_source.getPapers(2, ["machine learning"])
-#     assert len(papers) == 2
-#     for paper in papers:
-#         assert isinstance(paper, Paper)
-#         assert isinstance(paper.url, str)
-#         assert len(paper.url) > 0
-
-#     # test that IEEE source returns the exact information for one paper properly
-#     ieee_source = IEEESource()
-#     KEYWORDS = "Large Language Models"
-#     papers = ieee_source.getPapers(1, [KEYWORDS])
-#     paper = papers[0]
-#     print(paper.title)
-#     assert "Qurat Ul Ain Ali" in paper.authors
-#     assert paper.url.startswith("https://ieeexplore.ieee.org/")
-
-#     date_object = date(2021, 10, 10)
-#     assert paper.dateSubmitted == date_object
-#     assert "scalability" in [kw.lower() for kw in paper.keywords]
-#     assert "java" in [kw.lower() for kw in paper.keywords]
 
 
 @pytest.mark.API_test

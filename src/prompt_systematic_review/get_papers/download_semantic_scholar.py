@@ -1,7 +1,9 @@
 import os
 import json
-from prompt_systematic_review.semantic_scholar_source import SemanticScholarSource
-from prompt_systematic_review.keywords import keywords_list
+from prompt_systematic_review.get_papers.semantic_scholar_source import (
+    SemanticScholarSource,
+)
+from prompt_systematic_review.utils.keywords import keywords_list
 import pandas as pd
 from tqdm import tqdm
 

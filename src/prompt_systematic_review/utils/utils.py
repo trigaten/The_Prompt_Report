@@ -1,7 +1,7 @@
 import requests
 from xml.etree import ElementTree as ET
 import re
-import prompt_systematic_review.pipeline as p
+import prompt_systematic_review.utils.pipeline as p
 
 # custom header so requests don't get blocked
 headers = {

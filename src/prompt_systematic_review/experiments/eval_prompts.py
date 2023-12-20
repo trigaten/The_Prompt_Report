@@ -9,8 +9,9 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 import json
+from prompt_systematic_review.config_data import DataFolderPath, DotenvPath
 
-load_dotenv(dotenv_path="./.env")  # load all entries from .env file
+load_dotenv(dotenv_path=DotenvPath)  # load all entries from .env file
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -33,21 +34,28 @@ split = "test"
 model = "gpt-4-1106-preview"
 examples = 1
 
-eval = evaluate_prompts(
-    prompts,
-    dataset,
-    config_name,
-    split,
-    model,
-    examples,
-)
 
-# Getting current date and time in YYYY-MM-DD_HH-MM-SS format
-current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+def eval_prompts():
+    eval = evaluate_prompts(
+        prompts,
+        dataset,
+        config_name,
+        split,
+        model,
+        examples,
+    )
 
-# File path for the JSON file
-file_path = f"RP_eval_results_{current_datetime}.json"
+    # Getting current date and time in YYYY-MM-DD_HH-MM-SS format
+    current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-# Writing the dictionary to a JSON file
-with open(file_path, "w") as json_file:
-    json.dump(eval, json_file)
+    # File path for the JSON file
+    file_path = os.path.join(DataFolderPath, "RP_eval_results_{current_datetime}.json")
+
+    # Writing the dictionary to a JSON file
+    with open(file_path, "w") as json_file:
+        json.dump(eval, json_file)
+
+
+class Experiment:
+    def run():
+        eval_prompts()

@@ -1,8 +1,8 @@
 import requests
 from datetime import datetime
 from typing import List
-from prompt_systematic_review.arxiv_source import ArXivSource
-from prompt_systematic_review.paperSource import Paper
+from prompt_systematic_review.get_papers.arxiv_source import ArXivSource
+from prompt_systematic_review.get_papers.paperSource import Paper
 import time
 
 
