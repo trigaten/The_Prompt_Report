@@ -1,7 +1,9 @@
 import collections
 from prompt_systematic_review.automated_review import review_abstract_title_categorical
+import pytest
 
 
+@pytest.mark.API_test
 def test_review_abstract_title_categorical():
     # 1st test
     review = review_abstract_title_categorical(
