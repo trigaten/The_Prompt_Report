@@ -6,6 +6,7 @@ from prompt_systematic_review.role_prompting import (
     evaluate_mmlu_response,
     response_to_dict,
     load_mmlu,
+    find_quotes_with_letters,
 )
 
 import pytest
@@ -242,7 +243,7 @@ def test_evaluate_mmlu_response():
 
     correct_answer = "A"
 
-    assert evaluate_mmlu_response(response, correct_answer) == True
+    assert evaluate_mmlu_response(response, correct_answer, True) == True
 
     response = Response(
         """
@@ -255,7 +256,31 @@ def test_evaluate_mmlu_response():
 
     correct_answer = "A"
 
-    assert evaluate_mmlu_response(response, correct_answer) == False
+    assert evaluate_mmlu_response(response, correct_answer, True) == False
+
+    response = Response(
+        "Hey! Here's how I got to the answer, First I did step 1, then step 2 and finally step 9999: 'A'"
+    )
+    correct_answer = "A"
+    assert evaluate_mmlu_response(response, correct_answer, False) == "correct"
+
+    response = Response(
+        "Hey! Here's how I got to the answer, First I did step 1, then step 2 and finally step 9999: 'B' 'A'"
+    )
+    correct_answer = "A"
+    assert evaluate_mmlu_response(response, correct_answer, False) == "under review"
+
+    response = Response(
+        "Hey! Here's how I got to the answer, First I did step 1, then step 2 and finally step 9999: 'B'"
+    )
+    correct_answer = "A"
+    assert evaluate_mmlu_response(response, correct_answer, False) == "incorrect"
+
+    response = Response(
+        "Hey! Here's how I got to the answer, First I did step 1, then step 2 and finally step 9999: 'B' 'A'"
+    )
+    correct_answer = "C"
+    assert evaluate_mmlu_response(response, correct_answer, False) == "incorrect"
 
 
 def test_evaluate_gsm8k_response():
@@ -436,6 +461,25 @@ def test_modular_prompts():
     genius_prompt = 'You are a genius level Ivy league Professor. Your work is of the highest grade. You always think out your problem solving steps in incredible detail. You always get problems correct and never make mistakes. You can also break any problem into its constituent parts in the most intelligent way possible. Nothing gets past you. You are omniscient, omnipotent, and omnipresent. You are a mathematical God. Solve the following problem and return a JSON with the first entry being the reasoning behind the choice labeled as "reasoning", and the second entry being the answer to the question containing only the letter "A", "B", "C" or "D", labeled as "answer". Keep your reasoning as short and concise as possible.'
     assert genius_prompt == genius + " " + baseline
 
-    ten_shot_contrastive_prompt = "Solve the following problem and return a JSON with the first entry being the reasoning behind the choice labeled as \"reasoning\", and the second entry being the answer to the question containing only the letter \"A\", \"B\", \"C\" or \"D\", labeled as \"answer\". Keep your reasoning as short and concise as possible.\nQuestion: What is 10 + (2 * 5 + 10)?\nA. 20\nB. 30\nC. 40\nD. 70\n\nCorrect Response:\n{\n\"reasoning\": \"Well according to the order of operations, we must first multiply 2 by 5 since it is inside the parentheses and multiplication comes before addition \n2 * 5 = 10\nThen, we can evaluate everything inside the parentheses:\n10 + 10 = 20\nNow, we can add 20 to the 10 outside the parentheses to get our final answer:\n30\",\n\"answer\": \"B\"\n}\n\nIncorrect Response: \n{\n\"reasoning\": \"Well according to the order of operations, we must first add 10 to 5 since it is inside the parentheses and addition comes first \n5 + 10 = 15\nThen, we can evaluate everything inside the parentheses:\n15 * 2 = 30\nNow, we can add 30 to the 10 outside the parentheses to get our final answer: 40\",\n\"answer\": \"C\"\n}\n\nQuestion: What was the primary cause of the Great Depression in the 1930s?\nA. The outbreak of World War II\nB. The stock market crash of 1929\nC. The signing of the Treaty of Versailles\nD. The discovery of penicillin\n\nCorrect Response:\n{\n\"reasoning\": \"The primary cause of the Great Depression was not related to World War II, the Treaty of Versailles, or the discovery of penicillin, making A, C, and D incorrect. The Great Depression, a severe worldwide economic downturn, started in the United States after a major fall in stock prices that began around September 1929 and became worldwide news with the stock market crash of October 1929. This event led to a drastic decline in consumer spending and investment, causing severe economic hardship worldwide. Therefore, B is the correct answer.\",\n\"answer\": \"B\"\n}\n\nIncorrect Response:\n{\n\"reasoning\": \"There was no stock market crash in 1929. The stock market crash occured in 2008. Global conflicts often disrupt economies, therefore, the outbreak of World War II was the primary cause of the Great Depression.\",\n\"answer\": \"A\"\n}\n\nQuestion: What is the chemical formula for water?\nA. H2O\nB. CO2\nC. NaCl\nD. O2\n\nCorrect Response:\n{\n\"reasoning\": \"CO2 represents carbon dioxide, NaCl is the formula for sodium chloride (table salt), and O2 is the molecular formula for oxygen gas. None of these are water. The chemical formula for water is H2O, which means it consists of two hydrogen atoms and one oxygen atom. Therefore, A is the correct answer.\",\n\"answer\": \"A\"\n}\n\nIncorrect Response:\n{\n\"reasoning\": \"Both cardbon dioxide and water are important for life. CO2 is what plants take in, therefore, it is the chemical equation for water, the molecule that makes life possible on Earth.\",\n\"answer\": \"B\"\n}\n\nQuestion: What is the value of x in the equation 2x + 3 = 11?\nA. 4\nB. 3\nC. 5\nD. 1.5\n\nCorrect Response:\n{\n\"reasoning\": \"To find the value of x, we first subtract 3 from both sides of the equation to isolate the term with x:\n2x + 3 - 3 = 11 - 3\n2x = 8\nThen, we divide both sides by 2 to solve for x:\n2x / 2 = 8 / 2\nx = 4\nTherefore, the correct answer is A.\",\n\"answer\": \"A\"\n}\n\nIncorrect Response:\n{\n\"reasoning\": \"First divide both sides of the equation by 2, before isolating x:\n2x + 3 = 11\n(2x + 3) / 2 = 11 / 2\nx + 3 = 5.5\nThen, subtracting 3 from 5.5 gives:\nx = 1.5\nTherefore the answer is D.\",\n\"answer\": \"D\"\n}\n\nQuestion: Which planet in our solar system is known for having the most moons?\nA. Earth\nB. Mars\nC. Jupiter\nD. Venus\n\nCorrect Response:\n{\n\"reasoning\": \"Earth has only one moon, and Venus has no moons. Mars has two moons, Phobos and Deimos. However, Jupiter is known for having the most moons in our solar system, with a significant number of natural satellites. Therefore, C is the correct answer.\",\n\"answer\": \"C\"\n}\n\nIncorrect Response:\n{\n\"reasoning\": \"Well the moon orbits earth. Though other planets have objects orbiting them, they are not moons, therefore A is the correct answer.\",\n\"answer\": \"A\"\n}\n\n"
+    ten_shot_contrastive_prompt = 'Solve the following problem and return a JSON with the first entry being the reasoning behind the choice labeled as "reasoning", and the second entry being the answer to the question containing only the letter "A", "B", "C" or "D", labeled as "answer". Keep your reasoning as short and concise as possible.\nQuestion: What is 10 + (2 * 5 + 10)?\nA. 20\nB. 30\nC. 40\nD. 70\n\nCorrect Response:\n{\n"reasoning": "Well according to the order of operations, we must first multiply 2 by 5 since it is inside the parentheses and multiplication comes before addition \n2 * 5 = 10\nThen, we can evaluate everything inside the parentheses:\n10 + 10 = 20\nNow, we can add 20 to the 10 outside the parentheses to get our final answer:\n30",\n"answer": "B"\n}\n\nIncorrect Response: \n{\n"reasoning": "Well according to the order of operations, we must first add 10 to 5 since it is inside the parentheses and addition comes first \n5 + 10 = 15\nThen, we can evaluate everything inside the parentheses:\n15 * 2 = 30\nNow, we can add 30 to the 10 outside the parentheses to get our final answer: 40",\n"answer": "C"\n}\n\nQuestion: What was the primary cause of the Great Depression in the 1930s?\nA. The outbreak of World War II\nB. The stock market crash of 1929\nC. The signing of the Treaty of Versailles\nD. The discovery of penicillin\n\nCorrect Response:\n{\n"reasoning": "The primary cause of the Great Depression was not related to World War II, the Treaty of Versailles, or the discovery of penicillin, making A, C, and D incorrect. The Great Depression, a severe worldwide economic downturn, started in the United States after a major fall in stock prices that began around September 1929 and became worldwide news with the stock market crash of October 1929. This event led to a drastic decline in consumer spending and investment, causing severe economic hardship worldwide. Therefore, B is the correct answer.",\n"answer": "B"\n}\n\nIncorrect Response:\n{\n"reasoning": "There was no stock market crash in 1929. The stock market crash occured in 2008. Global conflicts often disrupt economies, therefore, the outbreak of World War II was the primary cause of the Great Depression.",\n"answer": "A"\n}\n\nQuestion: What is the chemical formula for water?\nA. H2O\nB. CO2\nC. NaCl\nD. O2\n\nCorrect Response:\n{\n"reasoning": "CO2 represents carbon dioxide, NaCl is the formula for sodium chloride (table salt), and O2 is the molecular formula for oxygen gas. None of these are water. The chemical formula for water is H2O, which means it consists of two hydrogen atoms and one oxygen atom. Therefore, A is the correct answer.",\n"answer": "A"\n}\n\nIncorrect Response:\n{\n"reasoning": "Both cardbon dioxide and water are important for life. CO2 is what plants take in, therefore, it is the chemical equation for water, the molecule that makes life possible on Earth.",\n"answer": "B"\n}\n\nQuestion: What is the value of x in the equation 2x + 3 = 11?\nA. 4\nB. 3\nC. 5\nD. 1.5\n\nCorrect Response:\n{\n"reasoning": "To find the value of x, we first subtract 3 from both sides of the equation to isolate the term with x:\n2x + 3 - 3 = 11 - 3\n2x = 8\nThen, we divide both sides by 2 to solve for x:\n2x / 2 = 8 / 2\nx = 4\nTherefore, the correct answer is A.",\n"answer": "A"\n}\n\nIncorrect Response:\n{\n"reasoning": "First divide both sides of the equation by 2, before isolating x:\n2x + 3 = 11\n(2x + 3) / 2 = 11 / 2\nx + 3 = 5.5\nThen, subtracting 3 from 5.5 gives:\nx = 1.5\nTherefore the answer is D.",\n"answer": "D"\n}\n\nQuestion: Which planet in our solar system is known for having the most moons?\nA. Earth\nB. Mars\nC. Jupiter\nD. Venus\n\nCorrect Response:\n{\n"reasoning": "Earth has only one moon, and Venus has no moons. Mars has two moons, Phobos and Deimos. However, Jupiter is known for having the most moons in our solar system, with a significant number of natural satellites. Therefore, C is the correct answer.",\n"answer": "C"\n}\n\nIncorrect Response:\n{\n"reasoning": "Well the moon orbits earth. Though other planets have objects orbiting them, they are not moons, therefore A is the correct answer.",\n"answer": "A"\n}\n\n'
     assert ten_shot_contrastive_prompt == baseline + ten_shot_contrastive
 
+
+def test_find_quotes_with_letters():
+    answer = "A"
+    assert find_quotes_with_letters(answer) == []
+
+    answer = "A. 8"
+    assert find_quotes_with_letters(answer) == []
+
+    answer = "'a'"
+    assert find_quotes_with_letters(answer) == []
+
+    answer = '"A"'
+    assert find_quotes_with_letters(answer) == ["A"]
+
+    answer = "'A''B''C''D'"
+    assert find_quotes_with_letters(answer) == ["A", "B", "C", "D"]
+
+    answer = '"A""B""A"'
+    assert find_quotes_with_letters(answer) == ["A", "B", "A"]

@@ -103,7 +103,9 @@ def evaluate_gsm8k_response(response: dict, correct_answer: str) -> bool:
     return final_answer == correct
 
 
-def evaluate_mmlu_response(response: dict, correct_answer: str, json_mode: bool) -> bool:
+def evaluate_mmlu_response(
+    response: dict, correct_answer: str, json_mode: bool
+) -> bool:
     """
     Evaluate the response from the API for a MMLU question and return whether it is correct.
     :param response: The response from the API.
@@ -129,8 +131,13 @@ def evaluate_mmlu_response(response: dict, correct_answer: str, json_mode: bool)
         elif len(all_letters_in_response) == 1:
             if all_letters_in_response[0] == correct_answer:
                 return "correct"
+            else:
+                return "incorrect"
         else:
-            return "under review"
+            if correct_answer in all_letters_in_response:
+                return "under review"
+            else:
+                return "incorrect"
 
 
 def evaluate_prompts(
@@ -389,7 +396,8 @@ def load_mmlu(configs: List[str], split: str) -> pd.DataFrame:
     for file_name in configs:
         # Read the CSV file with specified column names and append to the list
         df = pd.read_csv(
-            "data/mmlu/data/" + split + "/" + file_name + "_test.csv", names=column_names
+            "data/mmlu/data/" + split + "/" + file_name + "_test.csv",
+            names=column_names,
         )
         df["config"] = file_name
         dataframes.append(df)
@@ -399,7 +407,8 @@ def load_mmlu(configs: List[str], split: str) -> pd.DataFrame:
     df = combined_df.sample(frac=1, random_state=42).reset_index(drop=True)
     return df
 
+
 def find_quotes_with_letters(text):
-    pattern = r'["\']([A-Da-d])["\']'
+    pattern = r'["\']([A-D])["\']'
     matches = re.findall(pattern, text)
     return matches
