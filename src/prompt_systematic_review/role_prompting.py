@@ -123,7 +123,14 @@ def evaluate_mmlu_response(response: dict, correct_answer: str, json_mode: bool)
             )
             return False
     else:
-        return "\"" + correct_answer + "\"" in response.message.content
+        all_letters_in_response = find_quotes_with_letters(response.message.content)
+        if len(all_letters_in_response) == 0:
+            return "incorrect"
+        elif len(all_letters_in_response) == 1:
+            if all_letters_in_response[0] == correct_answer:
+                return "correct"
+        else:
+            return "under review"
 
 
 def evaluate_prompts(
@@ -235,12 +242,6 @@ def evaluate_prompts(
                     example["C"],
                     example["D"],
                 )
-                # choices = {
-                #     "A": choice_A,
-                #     "B": choice_B,
-                #     "C": choice_C,
-                #     "D": choice_D,
-                # }
                 multiple_choice_question = """
                 {question}
                 A. {choice_A}
@@ -273,7 +274,7 @@ def evaluate_prompts(
                         "total_output_tokens"
                     ] += response.usage.completion_tokens
                     response_dict = response_to_dict(response)
-                    is_correct = evaluate_mmlu_response(
+                    eval_result = evaluate_mmlu_response(
                         response.choices[0], correct_answer, json_mode
                     )
 
@@ -294,14 +295,16 @@ def evaluate_prompts(
                             else multiple_choice_question,
                             "correct_answer": correct_answer,
                             "response": response_dict,
-                            "marked_correct": is_correct,
+                            "mark": eval_result,
                             "wall_time": wall_time,
                             "config": example["config"],
                         }
                     )
                     results[prompt]["total"] += 1
-                    if is_correct:
+                    if eval_result == "correct":
                         results[prompt]["correct"] += 1
+                    elif eval_result == "under review":
+                        results[prompt]["under review"] += 1
                     if query_count % log_interval == 0:
                         try:
                             write_to_file(
@@ -395,3 +398,8 @@ def load_mmlu(configs: List[str], split: str) -> pd.DataFrame:
     combined_df = pd.concat(dataframes, ignore_index=True)
     df = combined_df.sample(frac=1, random_state=42).reset_index(drop=True)
     return df
+
+def find_quotes_with_letters(text):
+    pattern = r'["\']([A-Da-d])["\']'
+    matches = re.findall(pattern, text)
+    return matches
