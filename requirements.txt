@@ -18,4 +18,5 @@ load_dotenv
 tomotopy
 wordcloud
 pytest-dotenv
+scipy
 -e .
