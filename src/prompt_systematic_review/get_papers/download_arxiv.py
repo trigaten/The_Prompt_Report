@@ -1,4 +1,4 @@
-from prompt_systematic_review import arxiv_source
+from prompt_systematic_review.get_papers import arxiv_source
 from prompt_systematic_review.get_papers.paperSource import Paper
 import pandas as pd
 from datetime import date

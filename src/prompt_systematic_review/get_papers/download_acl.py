@@ -1,8 +1,8 @@
-from prompt_systematic_review import acl_source
+from prompt_systematic_review.get_papers import acl_source
 from prompt_systematic_review.get_papers.paperSource import Paper
 import pandas as pd
 from datetime import date
-from prompt_systematic_review.utils import keywords
+from prompt_systematic_review.utils  import keywords
 import tqdm
 
 

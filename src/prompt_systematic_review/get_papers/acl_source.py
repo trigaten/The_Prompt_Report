@@ -4,7 +4,7 @@ from typing import List
 import os
 from prompt_systematic_review.get_papers.paperSource import Paper
 from prompt_systematic_review.get_papers.paperSource import PaperSource
-from prompt_systematic_review.utils import headers
+from prompt_systematic_review.utils.utils import headers
 from anthology import Anthology
 import time
 
@@ -13,7 +13,7 @@ class AclSource(PaperSource):
     """A class to represent a source of papers from ArXiv."""
 
     baseURL = "http://export.arxiv.org/api/query?search_query=all:"
-    anthology = Anthology(importdir="acl-anthology/data")
+    anthology = Anthology(importdir=os.path.join(os.environ["ACLANTHOLOGY"], "data"))
     papersList = [paper for id_, paper in anthology.papers.items()]
 
     def getPapers(self, count: int, keyWords: List[str]) -> List[Paper]:
