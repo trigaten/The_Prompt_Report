@@ -4,6 +4,22 @@
 
 after cloning, run `pip install -r requirements.txt` from root
 
+also you need to have ACL anthology library installed on your system
+
+```
+git clone https://github.com/acl-org/acl-anthology
+export ACLANTHOLOGY=$(pwd)/acl-anthology
+export PYTHONPATH=$ACLANTHOLOGY/bin:$PYTHONPATH
+```
+afterwards follow the complete install instructions on the acl anthology repo
+
+or alternatively, after you git clone you can add it to the python path using the `sys` module
+```
+import sys
+sys.path.append('/path/to/acl-anthology/bin')
+```
+
+
 ## Set up API keys
 
 Make a file at root called `.env`.

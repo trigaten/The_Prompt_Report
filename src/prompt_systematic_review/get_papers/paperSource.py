@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import List, Tuple, Dict, Any
 from datetime import date
-from prompt_systematic_review import keywords
-from prompt_systematic_review import utils
+from prompt_systematic_review.utils import keywords
+from prompt_systematic_review.utils import utils
 
 
 class Paper:

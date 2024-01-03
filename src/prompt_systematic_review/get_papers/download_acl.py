@@ -1,18 +1,18 @@
-from prompt_systematic_review import arxiv_source
-from prompt_systematic_review.paperSource import Paper
+from prompt_systematic_review.get_papers import acl_source
+from prompt_systematic_review.get_papers.paperSource import Paper
 import pandas as pd
 from datetime import date
-from prompt_systematic_review import keywords
+from prompt_systematic_review.utils import keywords
 import tqdm
 
 
-def query_archive(downloadName: str = None, verbose=False):
+def query_acl(downloadName: str = None, verbose=False):
     """
     Download papers from arxiv and save them to a csv file.
     :param downloadName: The name of the csv file to save the data to.
     """
 
-    aSource = arxiv_source.ArXivSource()
+    aSource = acl_source.AclSource()
 
     papers = []
     if verbose:
