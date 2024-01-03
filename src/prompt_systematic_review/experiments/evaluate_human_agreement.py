@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 import openai
 import tqdm
-from prompt_systematic_review.utils import process_paper_title
+from prompt_systematic_review.utils.utils import process_paper_title
 
 from prompt_systematic_review.config_data import DataFolderPath, DotenvPath
 

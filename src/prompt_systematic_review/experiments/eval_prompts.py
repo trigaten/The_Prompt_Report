@@ -2,9 +2,9 @@
 Test a set of prompts against a dataset and return the results. Currently working for GSM-8k. You must add your openAI API key to the key variable below.
 """
 
-from prompt_systematic_review.role_prompting import evaluate_prompts
+from prompt_systematic_review.experiments.role_prompting import evaluate_prompts
 import openai
-from prompt_systematic_review.utils import process_paper_title
+from prompt_systematic_review.utils.utils import process_paper_title
 from dotenv import load_dotenv
 import os
 from datetime import datetime
