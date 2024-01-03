@@ -49,17 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../using_latex/">Using LaTeX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../using_github/">Using Git/Github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how_to_code/">How to Code</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">prompt_systematic_review</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#prompt_systematic_review.arxiv_source.ArXivSource"><code class="docutils literal notranslate"><span class="pre">ArXivSource</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#prompt_systematic_review.arxiv_source.ArXivSource.getPaperSrc"><code class="docutils literal notranslate"><span class="pre">ArXivSource.getPaperSrc()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prompt_systematic_review.arxiv_source.ArXivSource.getPapers"><code class="docutils literal notranslate"><span class="pre">ArXivSource.getPapers()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#prompt_systematic_review.paperSource.PaperSource"><code class="docutils literal notranslate"><span class="pre">PaperSource</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#prompt_systematic_review.utils.auto_pipeline"><code class="docutils literal notranslate"><span class="pre">auto_pipeline()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#prompt_systematic_review.utils.process_paper_title"><code class="docutils literal notranslate"><span class="pre">process_paper_title()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">prompt_systematic_review</a></li>
 </ul>
 
         </div>
@@ -86,94 +76,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-prompt_systematic_review.arxiv_source">
-<span id="prompt-systematic-review"></span><h1>prompt_systematic_review<a class="headerlink" href="#module-prompt_systematic_review.arxiv_source" title="Link to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="prompt_systematic_review.arxiv_source.ArXivSource">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">prompt_systematic_review.arxiv_source.</span></span><span class="sig-name descname"><span class="pre">ArXivSource</span></span><a class="headerlink" href="#prompt_systematic_review.arxiv_source.ArXivSource" title="Link to this definition"></a></dt>
-<dd><p>A class to represent a source of papers from ArXiv.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="prompt_systematic_review.arxiv_source.ArXivSource.getPaperSrc">
-<span class="sig-name descname"><span class="pre">getPaperSrc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Paper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destinationFolder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recurse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prompt_systematic_review.arxiv_source.ArXivSource.getPaperSrc" title="Link to this definition"></a></dt>
-<dd><p>download a paper.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>paper</strong> (<em>Paper</em>) – The paper to get the download of.</p></li>
-<li><p><strong>destinationFolder</strong> (<em>str</em>) – The folder to save the paper to.</p></li>
-<li><p><strong>recurse</strong> (<em>int</em>) – hidden recursion parameter (repeat download attempt if fail), max recursion depth is 5</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>nothing</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="prompt_systematic_review.arxiv_source.ArXivSource.getPapers">
-<span class="sig-name descname"><span class="pre">getPapers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyWords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Paper</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#prompt_systematic_review.arxiv_source.ArXivSource.getPapers" title="Link to this definition"></a></dt>
-<dd><p>Get a list of papers from ArXiv that match the given keywords.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>count</strong> (<em>int</em>) – The number of papers to retrieve.</p></li>
-<li><p><strong>keyWords</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – A list of keywords to match.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list of matching papers.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[Paper]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class" id="module-prompt_systematic_review.paperSource">
-<dt class="sig sig-object py" id="prompt_systematic_review.paperSource.PaperSource">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">prompt_systematic_review.paperSource.</span></span><span class="sig-name descname"><span class="pre">PaperSource</span></span><a class="headerlink" href="#prompt_systematic_review.paperSource.PaperSource" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function" id="module-prompt_systematic_review.utils">
-<dt class="sig sig-object py" id="prompt_systematic_review.utils.auto_pipeline">
-<span class="sig-prename descclassname"><span class="pre">prompt_systematic_review.utils.</span></span><span class="sig-name descname"><span class="pre">auto_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csvFile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folderPath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prompt_systematic_review.utils.auto_pipeline" title="Link to this definition"></a></dt>
-<dd><p>Uploads both a CSV and a folder to HuggingFace Hub.
-We do both because it doesnt make sense to upload pdfs
-without also uploding the master CSV</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>csvFile</strong> (<em>str</em>) – The path to the CSV file.</p></li>
-<li><p><strong>folderPath</strong> (<em>str</em>) – The path to the folder.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="prompt_systematic_review.utils.process_paper_title">
-<span class="sig-prename descclassname"><span class="pre">prompt_systematic_review.utils.</span></span><span class="sig-name descname"><span class="pre">process_paper_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#prompt_systematic_review.utils.process_paper_title" title="Link to this definition"></a></dt>
-<dd><p>Process a paper title by converting it to lowercase, removing newline characters,
-replacing ‘-’ with ‘’, collapsing any amount of spaces in a row to a single space.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>title</strong> (<em>str</em>) – The original title of the paper.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The processed title.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
+  <section id="module-prompt_systematic_review.utils">
+<span id="prompt-systematic-review"></span><h1>prompt_systematic_review<a class="headerlink" href="#module-prompt_systematic_review.utils" title="Link to this heading"></a></h1>
 </section>
 
 
