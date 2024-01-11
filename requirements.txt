@@ -19,4 +19,5 @@ tomotopy
 wordcloud
 pytest-dotenv
 scipy
+networkx
 -e .
