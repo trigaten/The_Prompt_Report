@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 
 from tqdm import tqdm
+from prompt_systematic_review.config_data import DataFolderPath
 
 
 """
@@ -47,32 +48,7 @@ def retrieve_top_docs_for_topic(theta, topic_idx, min_p=0.1):
         return doc_idx_sorted[above_min], theta_sorted[above_min]
 
 
-"""Summary: Changes directory to given directory
-"""
-
-
-def change_dir_data(given_dir):
-    DIRNAME = os.path.split(__file__)[0]
-    BACK = os.sep + os.pardir
-    os.chdir(os.path.normpath(DIRNAME + BACK + BACK))
-
-    try:
-        os.chdir(os.path.join(os.getcwd(), given_dir))
-    except Exception:
-        print("Directory not found. Deafulting to ./Prompt_Systematic_Review/data")
-        os.chdir(os.path.join(os.getcwd(), "data"))
-
-
-"""Summary: Returns directory to __file__
-"""
-
-
-def change_dir_src():
-    DIRNAME = os.path.split(__file__)[0]
-    os.chdir(DIRNAME)
-
-
-"""Summary: Downloads master_papers.csv to current working directory/topic-model-data
+"""Summary: Downloads master_papers.csv to data folder
 """
 
 
@@ -81,7 +57,7 @@ def get_csv():
         "https://huggingface.co/datasets/PromptSystematicReview/Prompt_Systematic_Review_Dataset/raw/main/master_papers.csv"
     )
     df.to_csv(
-        "./topic-model-data/master_papers.csv",
+        os.path.join(DataFolderPath, "topic-model-data/master_papers.csv"),
         sep=",",
         index=False,
         encoding="utf-8",
@@ -93,14 +69,16 @@ def get_csv():
 
 
 def run_detect_phrases():
-    os.makedirs("./topic-model-data/detected-phrases", exist_ok=True)
+    os.makedirs(
+        os.path.join(DataFolderPath, "topic-model-data/detected-phrases"), exist_ok=True
+    )
 
     subprocess.run(
         [
             "soup-nuts",
             "detect-phrases",
-            "./topic-model-data/master_papers.csv",
-            "./topic-model-data/detected-phrases",
+            os.path.join(DataFolderPath, "topic-model-data/master_papers.csv"),
+            os.path.join(DataFolderPath, "topic-model-data/detected-phrases"),
             "--input-format",
             "csv",
             "--text-key",
@@ -126,8 +104,8 @@ def run_preprocess():
         [
             "soup-nuts",
             "preprocess",
-            "./topic-model-data/master_papers.csv",
-            "./topic-model-data/processed",
+            os.path.join(DataFolderPath, "topic-model-data/master_papers.csv"),
+            os.path.join(DataFolderPath, "topic-model-data/processed"),
             "--text-key",
             "abstract",
             "--id-key",
@@ -137,7 +115,9 @@ def run_preprocess():
             "csv",
             "--detect-entities",
             "--phrases",
-            "./topic-model-data/detected-phrases/phrases.txt",
+            os.path.join(
+                DataFolderPath, "topic-model-data/detected-phrases/phrases.txt"
+            ),
             "--max-doc-freq",
             "0.9",
             "--min-doc-freq",
@@ -146,7 +126,7 @@ def run_preprocess():
             "--metadata-keys",
             "abstract,title,url",
             "--stopwords",
-            "./topic-model-data/stopwords.txt",
+            os.path.join(DataFolderPath, "topic-model-data/stopwords.txt"),
         ]
     )
 
@@ -171,12 +151,11 @@ def topic_model(
     top_docs_to_display="5",
     parser=None,
 ):
-    # move to data storage directory
-    change_dir_data(output_path)
-
     # create directory for outputs
     os.makedirs(
-        os.path.join(os.getcwd(), "topic-model-data" + os.sep + "topic-model-outputs"),
+        os.path.join(
+            DataFolderPath, "topic-model-data" + os.sep + "topic-model-outputs"
+        ),
         exist_ok=True,
     )
 
@@ -187,7 +166,9 @@ def topic_model(
         parser.add_argument(
             "--input_fname",
             type=str,
-            default="./topic-model-data/processed/train.metadata.jsonl",
+            default=os.path.join(
+                DataFolderPath, "topic-model-data/processed/train.metadata.jsonl"
+            ),
         )
         parser.add_argument("--num_topics", type=int, default=35)
         parser.add_argument("--iterations", type=int, default=1000)
@@ -330,7 +311,10 @@ def topic_model(
 
     # %% write the html to a file
     with open(
-        f"./topic-model-data/topic-model-outputs/topic_outputs-{args.num_topics}.html",
+        os.path.join(
+            DataFolderPath,
+            f"topic-model-data/topic-model-outputs/topic_outputs-{args.num_topics}.html",
+        ),
         "w",
         encoding="utf-8",
     ) as f:
@@ -345,7 +329,10 @@ def topic_model(
         data_by_topic.append(data.iloc[doc_idxs].assign(topic=topic_idx, prob=probs))
 
     pd.concat(data_by_topic).to_csv(
-        f"./topic-model-data/topic-model-outputs/topic_outputs-{args.num_topics}.csv",
+        os.path.join(
+            DataFolderPath,
+            f"topic-model-data/topic-model-outputs/topic_outputs-{args.num_topics}.csv",
+        ),
         index=False,
     )
 
@@ -368,11 +355,9 @@ def run_topic_model(
     top_words_to_display="15",
     top_docs_to_display="5",
 ):
-    change_dir_data(output_path)
     get_csv()
     run_detect_phrases()
     run_preprocess()
-    change_dir_src()
 
     topic_model(
         output_path,
@@ -381,7 +366,11 @@ def run_topic_model(
         top_words_to_display,
         top_docs_to_display,
     )
-    change_dir_src()
+
+
+class Experiment:
+    def run():
+        run_topic_model()
 
 
 # If running manually, check README in data/topic-model-data
@@ -391,7 +380,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--input_fname",
         type=str,
-        default="./topic-model-data/processed/train.metadata.jsonl",
+        default=os.path.join(
+            DataFolderPath, "topic-model-data/processed/train.metadata.jsonl"
+        ),
     )
     parser.add_argument("--num_topics", type=int, default=35)
     parser.add_argument("--iterations", type=int, default=1000)
