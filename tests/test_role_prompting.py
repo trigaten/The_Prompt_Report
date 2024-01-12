@@ -1,4 +1,4 @@
-from src.prompt_systematic_review.role_prompting import (
+from prompt_systematic_review.experiments.role_prompting import (
     query_model,
     extract_numbers,
     evaluate_prompts,
