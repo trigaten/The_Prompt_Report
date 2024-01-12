@@ -2,11 +2,11 @@ numpy
 pandas
 requests
 matplotlib
+black
 datasets
 huggingface_hub
 pytest
 jellyfish
-black[jupyter]
 sphinx
 renku-sphinx-theme
 sphinx-autobuild
@@ -20,4 +20,6 @@ wordcloud
 pytest-dotenv
 scipy
 networkx
+tomotopy
+soup-nuts @ git+https://git@github.com/ahoho/topics.git@dev
 -e .

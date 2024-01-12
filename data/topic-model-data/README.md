@@ -1,7 +1,7 @@
-# Running a topic model on the data
+# Running a topic model on the data (MANUAL)
 
 ## Installation
-First, [install poetry](https://python-poetry.org/docs), then install this package with `poetry install`. NB, it may be possible to just install directly with `pip install -e .`, I haven't tested this.
+First, [install poetry](https://python-poetry.org/docs), then install this package with `poetry install`. It is also possible to just install directly with `pip install -e .`.
 
 Type `soup-nuts --help` to make sure the preprocessing package was installed correctly. If it wasn't, clone [this repo](https://github.com/ahoho/topics) and try running `poetry install` there, then `poetry add tomotopy`.
 

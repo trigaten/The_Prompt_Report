@@ -10,6 +10,7 @@ from . import papers_over_time
 from . import visualize_authors
 from . import graph_gpt_4_benchmarks200
 from . import graph_gpt_3_5_benchmarks
+from . import run_tomotopy
 
 
 experiments = [
@@ -25,4 +26,5 @@ experiments = [
     visualize_authors.Experiment,
     graph_gpt_4_benchmarks200.Experiment,
     graph_gpt_3_5_benchmarks.Experiment,
+    run_tomotopy.Experiment,
 ]
