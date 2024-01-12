@@ -4,7 +4,7 @@ from collections import Counter
 from prompt_systematic_review.config_data import DataFolderPath
 import os
 
-file_path = os.path.join(DataFolderPath,"master_papers.csv")
+file_path = os.path.join(DataFolderPath, "master_papers.csv")
 
 arxiv_papers_df = pd.read_csv(file_path)
 
