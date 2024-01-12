@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 api_key = os.getenv("SEMANTIC_SCHOLAR_API_KEY")
 
+
 # %%
 def rate_limited_request(url, headers, max_retries=3, delay=0.1):
     retries = 0
@@ -113,6 +114,7 @@ csv_file_path = "master_papers.csv"
 # Dictionary to hold the references
 paper_references = {}
 unmatched_papers = {}
+
 
 # Function to extract Arxiv ID from the URL
 def extract_arxiv_id(url):
@@ -429,7 +431,7 @@ def adjust_overlap(pos, nodes_to_adjust, min_dist=0.1, repulsion_factor=1.05):
                 x1, y1 = pos[node1]
                 x2, y2 = pos[node2]
                 dx, dy = x1 - x2, y1 - y2
-                dist = (dx ** 2 + dy ** 2) ** 0.5
+                dist = (dx**2 + dy**2) ** 0.5
                 if dist < min_dist:  # If nodes are too close, push them apart
                     # Apply a repulsion factor to move nodes further apart
                     if dist == 0:  # To avoid division by zero
@@ -463,6 +465,7 @@ G.remove_nodes_from(nodes_to_remove)
 
 # Find the top 20 nodes with the most incoming edges
 top_nodes = sorted(G.nodes(), key=lambda n: G.in_degree(n), reverse=True)[:25]
+
 
 # Define a function to wrap text into at most two lines
 def wrap_text(text, width, max_lines=2):
