@@ -18,3 +18,14 @@ scripts/master_papers.csv
 scripts/t.py
 /RP_eval_results_*.json
 scripts/master_papers.csv
+scratch
+scratch/*
+scratch/acl-anthology
+scratch/acl-anthology/*
+scratch/posterity/*
+acl-anthology/
+acl-anthology/*
+data/topic-model-data/detected-phrases
+data/topic-model-data/processed
+data/topic-model-data/topic-model-outputs
+data/topic-model-data/master_papers.csv
