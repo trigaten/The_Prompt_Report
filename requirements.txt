@@ -2,7 +2,6 @@ numpy
 pandas
 requests
 matplotlib
-black
 datasets
 huggingface_hub
 pytest
@@ -22,4 +21,5 @@ scipy
 networkx
 tomotopy
 soup-nuts @ git+https://git@github.com/ahoho/topics.git@dev
+black
 -e .
