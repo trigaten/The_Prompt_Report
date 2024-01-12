@@ -2,7 +2,7 @@ numpy
 pandas
 requests
 matplotlib
-black[jupyter]
+black
 datasets
 huggingface_hub
 pytest
@@ -20,5 +20,6 @@ wordcloud
 pytest-dotenv
 scipy
 networkx
+tomotopy
 soup-nuts @ git+https://git@github.com/ahoho/topics.git@dev
 -e .
