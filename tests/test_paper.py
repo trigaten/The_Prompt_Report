@@ -84,5 +84,3 @@ def test_semantic_scholar_get_papers():
         ), "Paper must have a submission date of type date"
         assert paper.authors, "Paper must have at least one author"
         assert paper.abstract, "Paper must have an abstract"
-
-
