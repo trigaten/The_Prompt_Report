@@ -16,39 +16,15 @@ with open(
 ) as file:  # load prompts from prompts.json to make prompts more modular.
     prompts = json.load(file)
 
-baseline = prompts["mmlu baseline without json"]
-baseline_without_reasoning = prompts["mmlu baseline without reasoning"]
-baseline_with_reasoning = prompts["mmlu baseline with reasoning"]
-zero_shot_CoT = prompts["0-shot CoT"]
-two_shot_CoT = prompts["2-shot CoT"]
-two_shot_contrastive = prompts["2-shot contrastive CoT"]
-ten_shot_CoT = prompts["10-shot CoT"]
-ten_shot_contrastive = prompts["10-shot contrastive CoT"]
-# knowledgable_AI = prompts["knowledgable artificial intelligence"]
-# math_rookie = prompts["math rookie"]
-# genius = prompts['genius...']
-# idiot = prompts['idiot...']
-# careless_student = prompts['careless student']
-# gardener = prompts['gardener']
-# coin = prompts["coin that..."]
-# mathematician = prompts["mathematician"]
-# farmer = prompts["farmer"]
-police_officer = prompts["police officer"]
-ivy_league_prof = prompts["Ivy league math professor"]
-mentor = prompts["mentor"]
-plan_and_solve  = prompts["plan-and-solve"]
-
-
-
 prompts = [
-    baseline,
+
 ]
 
 dataset = "mmlu"  # mmlu or gsm8k
 config_name = None  # main if gs8k, None if mmlu
 split = "test"
 model = "gpt-4-1106-preview"
-examples = 2 # number of examples to test
+examples = 1  # number of examples to test
 start = 0  # start index for dataset
 log_interval = 25  # log interval for creatings jsons of results by query
 max_toks = 50

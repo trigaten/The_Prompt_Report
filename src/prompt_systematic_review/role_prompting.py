@@ -14,6 +14,7 @@ from tenacity import (
 )
 import pandas as pd
 import logging
+import random
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -188,9 +189,13 @@ def evaluate_prompts(
                 question = item["question"]
                 correct_answer = item["answer"]
                 for prompt in prompts:
+                    if isinstance(prompt, list):
+                        chosen_prompt = sample_string(prompt)
+                    else:
+                        chosen_prompt = prompt
                     start_time = time.time()
                     response = query_model(
-                        prompt,
+                        chosen_prompt,
                         question,
                         model_name=model_name,
                         output_tokens=max_tokens,
@@ -213,7 +218,7 @@ def evaluate_prompts(
                     )
                     information["calls"].append(
                         {
-                            "prompt": prompt,
+                            "prompt": chosen_prompt,
                             "question": question,
                             "correct_answer": correct_answer,
                             "response": response_dict,
@@ -221,9 +226,9 @@ def evaluate_prompts(
                             "wall_time": wall_time,
                         }
                     )
-                    results[prompt]["total"] += 1
+                    results[chosen_prompt]["total"] += 1
                     if is_correct:
-                        results[prompt]["correct"] += 1
+                        results[chosen_prompt]["correct"] += 1
                     if query_count % log_interval == 0:
                         try:
                             write_to_file(
@@ -412,3 +417,6 @@ def find_quotes_with_letters(text):
     pattern = r'["\']([A-D])["\']'
     matches = re.findall(pattern, text)
     return matches
+
+def sample_string(list: List[str]):
+    return list[random.randint(0, len(list) - 1)]
