@@ -1,0 +1,1 @@
+Solve the following problem and return your answer as "A", "B", "C" or "D" with quotes surrounding the correct letter.
