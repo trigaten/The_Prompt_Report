@@ -89,7 +89,7 @@ def count_models():
 
     output_file_path = os.path.join(DataFolderPath, "model_citation_counts.csv")
 
-    with open(output_file_path, "w") as f:
+    with open(output_file_path, "w", encoding="utf-8") as f:
         fieldnames = ["model_name", "count", "list_of_papers"]
 
         # Create a CSV writer object

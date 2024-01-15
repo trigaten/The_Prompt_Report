@@ -38,9 +38,23 @@ class AclSource(PaperSource):
                     or not paper.pdf
                 ):
                     if keyword in paper.title.lower() + paper.get_abstract().lower():
-                        print("Do stuff with paper")
-                        s = paper.get("month") + " " + paper.get("year")
-                        dateSubmitted = datetime.strptime(s, "%B %Y").date()
+                        if paper.get("month") is not None:
+                            if "-" in paper.get("month"):
+                                month = paper.get("month").split("-")[0]
+                                s = month + " " + paper.get("year")
+                            else:
+                                s = paper.get("month") + " " + paper.get("year")
+                            try:
+                                dateSubmitted = datetime.strptime(s, "%B %Y").date()
+                            except ValueError:
+                                dateSubmitted = datetime.strptime(s, "%m %Y").date()
+                            except Exception as e:
+                                print(f"Error processing {paper.title}: {e}")
+                        elif paper.get("year") is not None:
+                            s = paper.get("year")
+                            dateSubmitted = datetime.strptime(s, "%Y").date()
+                        else:
+                            continue
                         paper = Paper(
                             paper.title.replace("\n", "").replace("\r", ""),
                             paper.get("author_string"),

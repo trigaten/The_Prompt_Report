@@ -37,7 +37,7 @@ def count_tool_mentions(input_folder_path: str, output_file_path: str, tool_lst:
 
     print("tool_counts: ", tool_counts)
 
-    with open(output_file_path, "w") as f:
+    with open(output_file_path, "w", encoding="utf-8") as f:
         fieldnames = ["tool_name", "count", "list_of_papers"]
 
         # Create a CSV writer object
@@ -55,7 +55,7 @@ def count_tool_mentions(input_folder_path: str, output_file_path: str, tool_lst:
 
 def run_count_tool_mentions():
     # script portion
-    masterpaperscsv_file_path = DataFolderPath
+    masterpaperscsv_file_path = os.path.join(DataFolderPath, "master_papers.csv")
 
     # get all paper ids from our dataset
     arxiv_papers_df = pd.read_csv(masterpaperscsv_file_path)
@@ -103,7 +103,9 @@ def run_count_tool_mentions():
     ]
     count_tool_mentions(
         papers_dataset_path,
-        os.path.join(DataFolderPath, "model_citation_counts.csv"),
+        os.path.join(
+            DataFolderPath, "experiments_output" + os.sep + "model_citation_counts.csv"
+        ),
         model_names,
     )
 
@@ -123,7 +125,10 @@ def run_count_tool_mentions():
     ]
     count_tool_mentions(
         papers_dataset_path,
-        os.path.join(DataFolderPath, "dataset_citation_counts.csv"),
+        os.path.join(
+            DataFolderPath,
+            "experiments_output" + os.sep + "dataset_citation_counts.csv",
+        ),
         dataset_names,
     )
 
@@ -159,7 +164,10 @@ def run_count_tool_mentions():
     ]
     count_tool_mentions(
         papers_dataset_path,
-        os.path.join(DataFolderPath, "framework_citation_counts.csv"),
+        os.path.join(
+            DataFolderPath,
+            "experiments_output" + os.sep + "framework_citation_counts.csv",
+        ),
         framework_names,
     )
 

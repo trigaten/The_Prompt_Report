@@ -1,6 +1,6 @@
 import pandas as pd
 from prompt_systematic_review.utils.topic_gpt_utils import *
-from os.path import join
+import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 import textwrap
@@ -12,13 +12,13 @@ def run_topic_gpt():
     sns.set_style("whitegrid")
     plt.rcParams.update({"font.size": 17})
 
-    data_folder = join(DataFolderPath, "topic-gpt-data")
-    prompt_folder = join(data_folder, "prompt")
-    data_file = join(data_folder, "master_papers.jsonl")
-    generation_prompt = join(prompt_folder, "generation_1.txt")
-    seed_1 = join(prompt_folder, "seed_1.md")
-    generation_out = join(data_folder, "generation_1_paper.jsonl")
-    generation_topic = join(data_folder, "master_paper.md")
+    data_folder = os.path.join(DataFolderPath, "topic-gpt-data")
+    prompt_folder = os.path.join(data_folder, "prompt")
+    data_file = os.path.join(data_folder, "master_papers.jsonl")
+    generation_prompt = os.path.join(prompt_folder, "generation_1.txt")
+    seed_1 = os.path.join(prompt_folder, "seed_1.md")
+    generation_out = os.path.join(data_folder, "generation_1_paper.jsonl")
+    generation_topic = os.path.join(data_folder, "master_paper.md")
 
     subprocess.run(
         [
@@ -47,7 +47,7 @@ def run_topic_gpt():
         ]
     )
 
-    tree, nodes = generate_tree(read_seed(join(data_folder, "master_paper.md")))
+    tree, nodes = generate_tree(read_seed(os.path.join(data_folder, "master_paper.md")))
     print(tree_view(tree))
 
     topic_count = sum([node.count for node in tree.descendants])
@@ -66,11 +66,15 @@ def run_topic_gpt():
         )
     )
     plt.figure(figsize=(10, 20))
-    sns.barplot(x=sorted_counts, y=sorted_topics, color="purple")
+    plt.barh(sorted_topics[::-1], sorted_counts[::-1], color="purple")
     plt.xlabel("Number of papers")
     plt.title("Topic distribution")
     plt.tight_layout()
-    plt.savefig(join(data_folder, "topic_distribution.png"))
+    plt.savefig(
+        os.path.join(
+            DataFolderPath, "experiments_output" + os.sep + "topic_distribution.png"
+        )
+    )
     plt.show()
 
 

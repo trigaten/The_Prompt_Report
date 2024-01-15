@@ -7,6 +7,8 @@ from sentence_transformers import SentenceTransformer, util
 import argparse
 import os
 
+# This file is used in tandem with topicgpt. topicgpt.py is the file that runs the functions in this file.
+
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 

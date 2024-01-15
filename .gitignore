@@ -29,3 +29,4 @@ data/topic-model-data/detected-phrases
 data/topic-model-data/processed
 data/topic-model-data/topic-model-outputs
 data/topic-model-data/master_papers.csv
+data/experiments_output

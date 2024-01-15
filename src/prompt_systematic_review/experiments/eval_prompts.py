@@ -49,7 +49,10 @@ def eval_prompts():
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
     # File path for the JSON file
-    file_path = os.path.join(DataFolderPath, "RP_eval_results_{current_datetime}.json")
+    file_path = os.path.join(
+        DataFolderPath,
+        "experiments_output" + os.sep + f"RP_eval_results_{current_datetime}.json",
+    )
 
     # Writing the dictionary to a JSON file
     with open(file_path, "w") as json_file:

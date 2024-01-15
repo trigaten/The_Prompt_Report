@@ -33,14 +33,19 @@ def evaluate_human_agreement(inputFile="arxiv_papers_with_abstract.csv"):
         df.loc[i, "Probability"] = result["Probability"]
         df.loc[i, "Reasoning"] = result["Reasoning"]
 
-    df.to_csv(os.path.join(DataFolderPath, "arxiv_papers_with_ai_labels.csv"))
+    df.to_csv(
+        os.path.join(
+            DataFolderPath,
+            "experiments_output" + os.sep + "arxiv_papers_with_ai_labels.csv",
+        )
+    )
     blacklist = pd.read_csv(os.path.join(DataFolderPath, "blacklist.csv"))
-    blacklist["Title"] = blacklist["Title"].apply(lambda x: process_paper_title(x))
+    blacklist["title"] = blacklist["title"].apply(lambda x: process_paper_title(x))
     df["title"] = df["title"].apply(lambda x: process_paper_title(x))
 
     # df = df.iloc[400:800]
     df_limited = df.copy()  # .iloc[400:800]
-    df_limited["human_review"] = ~df_limited["title"].isin(blacklist["Title"])
+    df_limited["human_review"] = ~df_limited["title"].isin(blacklist["title"])
     keepables = ["highly relevant", "somewhat relevant", "neutral"]
 
     df_limited["AI_keep"] = df_limited["Probability"].map(
