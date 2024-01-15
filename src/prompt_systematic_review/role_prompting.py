@@ -420,3 +420,48 @@ def find_quotes_with_letters(text):
 
 def sample_string(list: List[str]):
     return list[random.randint(0, len(list) - 1)]
+
+class Prompt:
+    
+    def __init__(self, baseline_marker: str or List[str] or None, few_shots: str or List[str] or None, seperators: List[str]):
+        self.baseline_marker = baseline_marker
+        self.few_shots = few_shots
+        self.seperators = seperators
+        
+    def __str__(self):
+        return self.prompt
+
+    def __repr__(self):
+        return self.prompt
+
+    def __hash__(self):
+        print(hash(str(self)))
+        return hash(str(self))
+    
+    def gen(self):
+        start = self.sample_if_needed(self.baseline_marker)
+        end = self.randomize(self.few_shots)
+        return start + end
+    
+    def sample_if_needed(prompt_piece: str or List[str] or None):
+        if prompt_piece:
+            if isinstance(prompt_piece, list):
+                return sample_string(prompt_piece)
+            else:
+                return prompt_piece
+        else:
+            return ""
+        
+    def randomize(self, shots: List[str]):
+        random.shuffle(shots)
+        return '''
+        {sep}
+        {shot1}
+        {shot2}
+        {shot3}
+        {shot4}
+        {shot5}
+        '''.format(sep=self.sep(), shot1=shots[0], shot2=shots[1], shot3=shots[2], shot4=shots[3], shot5=shots[4])
+        
+    def sep(self):
+        return sample_string(self.separators)
