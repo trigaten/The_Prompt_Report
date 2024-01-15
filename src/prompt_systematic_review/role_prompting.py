@@ -189,8 +189,8 @@ def evaluate_prompts(
                 question = item["question"]
                 correct_answer = item["answer"]
                 for prompt in prompts:
-                    if isinstance(prompt, list):
-                        chosen_prompt = sample_string(prompt)
+                    if isinstance(prompt, Prompt):
+                        chosen_prompt = prompt.gen()
                     else:
                         chosen_prompt = prompt
                     start_time = time.time()
@@ -268,9 +268,13 @@ def evaluate_prompts(
                     choice_D=choice_D,
                 )
                 for prompt in prompts:
+                    if isinstance(prompt, Prompt):
+                        chosen_prompt = prompt.gen()
+                    else:
+                        chosen_prompt = prompt
                     start_time = time.time()
                     response = query_model(
-                        prompt,
+                        chosen_prompt,
                         multiple_choice_question,
                         model_name=model_name,
                         output_tokens=max_tokens,
@@ -298,7 +302,7 @@ def evaluate_prompts(
 
                     information["calls"].append(
                         {
-                            "prompt": prompt,
+                            "prompt": chosen_prompt,
                             "question": "Question: "
                             + multiple_choice_question
                             + "\n Read the question again: "
@@ -421,10 +425,11 @@ def find_quotes_with_letters(text):
 def sample_string(list: List[str]):
     return list[random.randint(0, len(list) - 1)]
 
-class Prompt:
+class PromptMaker:
     
-    def __init__(self, baseline_marker: str or List[str] or None, few_shots: str or List[str] or None, seperators: List[str]):
-        self.baseline_marker = baseline_marker
+    def __init__(self, name: str, baseline_markers: str or List[str] or None, few_shots: str or List[str] or None, seperators: List[str]):
+        self.name = name
+        self.baseline_markers = baseline_markers
         self.few_shots = few_shots
         self.seperators = seperators
         
@@ -435,13 +440,33 @@ class Prompt:
         return self.prompt
 
     def __hash__(self):
-        print(hash(str(self)))
-        return hash(str(self))
+        prompt = ""
+        for b in self.baseline_markers:
+            prompt += b
+        for f in self.few_shots:
+            prompt += f
+        for s in self.seperators:
+            prompt += s         
+        print(prompt)
+        return hash(prompt)
+
+    def __eq__(self, other):
+        prompt1 = ""
+        for b in self.baseline_markers:
+            for f in self.few_shots:
+                for s in self.seperators:
+                    prompt1 += b + s + f          
+        prompt2 = ""
+        for b in other.baseline_markers:
+            for f in other.few_shots:
+                for s in other.seperators:
+                    prompt2 += b + s + f
+        return prompt1 == prompt2
+    
     
     def gen(self):
-        start = self.sample_if_needed(self.baseline_marker)
-        end = self.randomize(self.few_shots)
-        return start + end
+        p = Prompt(sample_string(self.baseline_markers), self.sep(), self.randomize(self.few_shots))
+        return p
     
     def sample_if_needed(prompt_piece: str or List[str] or None):
         if prompt_piece:
@@ -465,3 +490,41 @@ class Prompt:
         
     def sep(self):
         return sample_string(self.separators)
+
+class Prompt:
+        def __init__(self, baseline: str, separator: str or None, shots: str or None):
+            self.baseline = baseline
+            self.separator = separator
+            self.shots = shots
+            self.prompt = self.make_prompt()
+            
+        def make_prompt(self, baseline: str, seperator: str, shots: str):
+            if shots: 
+                return '''
+                {baseline}
+                {seperator}
+                {shot1}
+                {shot2}
+                {shot3}
+                {shot4}
+                {shot5}
+                '''.format(baseline=self.baseline, seperator=self.seperator, shot1=self.shots[0], shot2=self.shots[1], shot3=self.shots[2], shot4=self.shots[3], shot5=self.shots[4])
+            else:
+                return '''
+                {baseline}
+                '''.format(baseline=self.baseline)
+            
+        def __str__(self):
+            return self.prompt
+    
+        def __repr__(self):
+            return self.prompt
+    
+        def __hash__(self):
+            return hash(self.prompt)
+    
+        def __eq__(self, other):
+            return self.prompt == other.prompt
+        
+        def gen(self):
+            return self.prompt
