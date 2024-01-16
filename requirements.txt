@@ -30,4 +30,5 @@ tenacity==8.2.3
 tiktoken==0.5.1
 anytree==2.12.1
 urllib3<2
+acl-anthology-py
 -e .
