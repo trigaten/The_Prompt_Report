@@ -1,4 +1,4 @@
-from openai import OpenAI
+import openai
 import os
 import time
 import datetime
@@ -11,16 +11,20 @@ import tiktoken
 from itertools import islice
 import requests
 from tenacity import retry, wait_random_exponential, stop_after_attempt
-from openai import OpenAI
+from prompt_systematic_review.config_data import DotenvPath
+from dotenv import load_dotenv
 
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-    organization=os.environ.get("OPENAI_ORG_ID"),
-)
+
+def client_setup():
+    load_dotenv(dotenv_path=DotenvPath)  # load all entries from .env file
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+
+    client = openai.OpenAI(api_key=openai.api)
+    return client
 
 
 @retry(wait=wait_random_exponential(min=1, max=20), stop=stop_after_attempt(6))
-def api_call(prompt, deployment_name, temperature, max_tokens, top_p):
+def api_call(prompt, deployment_name, temperature, max_tokens, top_p, client):
     """
     Call API (OpenAI, Azure) and return response
     - prompt: prompt template
@@ -50,7 +54,7 @@ def api_call(prompt, deployment_name, temperature, max_tokens, top_p):
         return response.choices[0].message.content
 
 
-def get_ada_embedding(text, model="text-embedding-ada-002"):
+def get_ada_embedding(text, client, model="text-embedding-ada-002"):
     """
     Get text embedding from openai API
     """

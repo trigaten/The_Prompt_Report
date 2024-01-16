@@ -13,11 +13,19 @@ from concurrent.futures import ThreadPoolExecutor
 
 import pandas as pd
 import PyPDF2
+from PyPDF2.errors import PdfReadError
 from prompt_systematic_review.utils.utils import process_paper_title
 
 import openai
 import tqdm
 from dotenv import load_dotenv
+import logging
+
+# don't want to see warning messages when users are running
+pdflogger = logging.getLogger("PyPDF2")
+pdflogger.setLevel(logging.ERROR)
+urlLogger = logging.getLogger("urllib3")
+urlLogger.setLevel(logging.ERROR)
 
 load_dotenv(dotenv_path=DotenvPath)  # load all entries from .env file
 
@@ -63,6 +71,7 @@ def collect():
     # clean ACL CSV
     acl_df["title"] = acl_df["title"].apply(lambda x: process_paper_title(x))
     acl_df["source"] = "ACL"
+
     # combine dfs
     combined_df = pd.concat([semantic_scholar_df, arxiv_df, acl_df])
     # drop duplicates
@@ -75,6 +84,9 @@ def collect():
     ]
 
     data = list(zip(deduplicated_df["url"].tolist(), deduplicated_df["title"].tolist()))
+
+    # make papers folder if it doesn't already exist
+    os.makedirs(os.path.join(DataFolderPath, "papers"), exist_ok=True)
 
     NUM_PROCESSES = 12  # adjust as needed per your machine
     with ThreadPoolExecutor(max_workers=NUM_PROCESSES) as executor:
@@ -113,7 +125,9 @@ def collect():
             os.remove(file_path)
             # Drop the corresponding row from the dataframe
             deduplicated_df = deduplicated_df[deduplicated_df["title"] != filename[:-4]]
-            print(f"Error processing {filename}: {e}")
+            # PDFRead Error is likely because of corrupted or empty PDF, can be ignored
+            if str(e) != "EOF marker not found":
+                print(f"Error processing {filename}: {e}")
     # TODO: there is smtg weird going on here...
 
     # Get a list of all the paper titles in the directory (without the .pdf extension)
@@ -187,5 +201,5 @@ def collect():
         # Check if the file is a PDF and its title is not in df_titles
         if filename.endswith(".pdf") and filename[:-4] not in df_titles:
             # Remove the file
-            os.remove("papers/" + filename)
+            os.remove(DataFolderPath + os.sep + "papers" + os.sep + filename)
     df_combined.to_csv(os.path.join(DataFolderPath, "master_papers.csv"))

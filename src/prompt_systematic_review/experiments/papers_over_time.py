@@ -43,7 +43,11 @@ def papers_over_time():
     ax.set_xlim(earliest_date, latest_date)
     plt.xticks(rotation=45, ha="right")
 
-    plt.show()
+    plt.savefig(
+        os.path.join(
+            DataFolderPath, "experiments_output" + os.sep + "papers_over_time_plt1.png"
+        )
+    )
 
     # Plot 2: number of papers submitted over time, between 2021 and 2023 (majority of papers)
     # Filter papers between 2021 and 2023
@@ -75,7 +79,11 @@ def papers_over_time():
 
     ax.set_xlim(earliest_date, latest_date)
     plt.xticks(rotation=45, ha="right")
-    plt.show()
+    plt.savefig(
+        os.path.join(
+            DataFolderPath, "experiments_output" + os.sep + "papers_over_time_plt2.png"
+        )
+    )
 
     # Plot 3: number of papers submitted over time, between 2021 and 2023,
     # with vertical lines indicating release dates of different LLMs
@@ -128,7 +136,11 @@ def papers_over_time():
 
     plt.legend()
 
-    plt.show()
+    plt.savefig(
+        os.path.join(
+            DataFolderPath, "experiments_output" + os.sep + "papers_over_time_plt3.png"
+        )
+    )
 
 
 class Experiment:

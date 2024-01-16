@@ -12,7 +12,6 @@ filtered_arxiv_papers.csv
 scripts/arxiv_papers_with_abstract.csv
 scripts/arxiv_papers_with_ai_labels.csv
 papers_output/*
-data/arxiv_papers_for_human_review.csv
 papers
 scripts/master_papers.csv
 scripts/t.py
@@ -29,4 +28,5 @@ data/topic-model-data/detected-phrases
 data/topic-model-data/processed
 data/topic-model-data/topic-model-outputs
 data/topic-model-data/master_papers.csv
+data/experiments_output
 data/SCS-training-data/

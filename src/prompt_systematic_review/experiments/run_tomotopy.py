@@ -57,7 +57,7 @@ def get_csv():
         "https://huggingface.co/datasets/PromptSystematicReview/Prompt_Systematic_Review_Dataset/raw/main/master_papers.csv"
     )
     df.to_csv(
-        os.path.join(DataFolderPath, "topic-model-data/master_papers.csv"),
+        os.path.join(DataFolderPath, "master_papers.csv"),
         sep=",",
         index=False,
         encoding="utf-8",
@@ -77,7 +77,7 @@ def run_detect_phrases():
         [
             "soup-nuts",
             "detect-phrases",
-            os.path.join(DataFolderPath, "topic-model-data/master_papers.csv"),
+            os.path.join(DataFolderPath, "master_papers.csv"),
             os.path.join(DataFolderPath, "topic-model-data/detected-phrases"),
             "--input-format",
             "csv",
@@ -104,7 +104,7 @@ def run_preprocess():
         [
             "soup-nuts",
             "preprocess",
-            os.path.join(DataFolderPath, "topic-model-data/master_papers.csv"),
+            os.path.join(DataFolderPath, "master_papers.csv"),
             os.path.join(DataFolderPath, "topic-model-data/processed"),
             "--text-key",
             "abstract",
@@ -151,14 +151,6 @@ def topic_model(
     top_docs_to_display="5",
     parser=None,
 ):
-    # create directory for outputs
-    os.makedirs(
-        os.path.join(
-            DataFolderPath, "topic-model-data" + os.sep + "topic-model-outputs"
-        ),
-        exist_ok=True,
-    )
-
     running_on_terminal = True
     if parser == None:
         running_on_terminal = False
@@ -313,7 +305,7 @@ def topic_model(
     with open(
         os.path.join(
             DataFolderPath,
-            f"topic-model-data/topic-model-outputs/topic_outputs-{args.num_topics}.html",
+            f"experiments_output/topic_outputs-{args.num_topics}.html",
         ),
         "w",
         encoding="utf-8",
@@ -331,7 +323,7 @@ def topic_model(
     pd.concat(data_by_topic).to_csv(
         os.path.join(
             DataFolderPath,
-            f"topic-model-data/topic-model-outputs/topic_outputs-{args.num_topics}.csv",
+            f"experiments_output/topic_outputs-{args.num_topics}.csv",
         ),
         index=False,
     )

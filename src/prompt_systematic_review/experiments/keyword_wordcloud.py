@@ -37,7 +37,12 @@ def keyword_wordcloud():
     plt.figure(figsize=(10, 5))
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.axis("off")
-    plt.show()
+    plt.savefig(
+        os.path.join(
+            DataFolderPath,
+            "experiments_output" + os.sep + "keyword_wordcloud_output.png",
+        )
+    )
 
 
 class Experiment:

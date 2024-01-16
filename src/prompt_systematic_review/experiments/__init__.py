@@ -11,10 +11,10 @@ from . import visualize_authors
 from . import graph_gpt_4_benchmarks200
 from . import graph_gpt_3_5_benchmarks
 from . import run_tomotopy
+from . import topicgpt
 
 
 experiments = [
-    count_models.Experiment,
     count_tool_mentions.Experiment,
     eval_prompts.Experiment,
     evaluate_human_agreement.Experiment,
@@ -27,4 +27,5 @@ experiments = [
     graph_gpt_4_benchmarks200.Experiment,
     graph_gpt_3_5_benchmarks.Experiment,
     run_tomotopy.Experiment,
+    topicgpt.Experiment,
 ]

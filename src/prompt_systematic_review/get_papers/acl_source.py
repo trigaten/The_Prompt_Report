@@ -5,7 +5,7 @@ import os
 from prompt_systematic_review.get_papers.paperSource import Paper
 from prompt_systematic_review.get_papers.paperSource import PaperSource
 from prompt_systematic_review.utils.utils import headers
-from anthology import Anthology
+from acl_anthology import Anthology
 import time
 
 
@@ -13,8 +13,8 @@ class AclSource(PaperSource):
     """A class to represent a source of papers from ArXiv."""
 
     baseURL = "http://export.arxiv.org/api/query?search_query=all:"
-    anthology = Anthology(importdir=os.path.join(os.environ["ACLANTHOLOGY"], "data"))
-    papersList = [paper for id_, paper in anthology.papers.items()]
+    anthology = Anthology.from_repo()
+    papersList = [paper for paper in anthology.papers()]
 
     def getPapers(self, count: int, keyWords: List[str]) -> List[Paper]:
         """
@@ -31,23 +31,43 @@ class AclSource(PaperSource):
         for keyword in keyWords:
             for paper in self.papersList:
                 if not (
-                    paper.title is None
-                    or paper.is_removed
-                    or paper.is_retracted
-                    or not paper.has_abstract
-                    or not paper.pdf
+                    paper.deletion is not None
+                    or paper.is_deleted
+                    or paper.abstract is None
+                    or paper.pdf is None
+                    or len(paper.authors) == 0
                 ):
-                    if keyword in paper.title.lower() + paper.get_abstract().lower():
-                        print("Do stuff with paper")
-                        s = paper.get("month") + " " + paper.get("year")
-                        dateSubmitted = datetime.strptime(s, "%B %Y").date()
+                    if (
+                        keyword
+                        in paper.title.as_text().lower()
+                        + paper.abstract.as_text().lower()
+                    ):
+                        if paper.month is not None:
+                            if "-" in paper.month:
+                                month = paper.month.split("-")[0]
+                                s = month + " " + paper.year
+                            else:
+                                s = paper.month + " " + paper.year
+                            try:
+                                dateSubmitted = datetime.strptime(s, "%B %Y").date()
+                            except ValueError:
+                                dateSubmitted = datetime.strptime(s, "%m %Y").date()
+                            except Exception as e:
+                                print(f"Error processing {paper.title}: {e}")
+                        elif paper.year is not None:
+                            s = paper.year
+                            dateSubmitted = datetime.strptime(s, "%Y").date()
+                        else:
+                            continue
                         paper = Paper(
-                            paper.title.replace("\n", "").replace("\r", ""),
-                            paper.get("author_string"),
-                            paper.pdf,
+                            paper.title.as_text().replace("\n", "").replace("\r", ""),
+                            [i.name.as_first_last for i in paper.authors],
+                            paper.pdf.url,
                             dateSubmitted,
                             [keyWord.lower() for keyWord in keyWords],
-                            paper.get_abstract(),
+                            paper.abstract.as_text()
+                            .replace("\n", "")
+                            .replace("\r", ""),
                         )
                         papers.append(paper)
         return papers

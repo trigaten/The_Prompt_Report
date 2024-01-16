@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from prompt_systematic_review.config_data import DataFolderPath
+import os
 
 # Dataset names and citation counts, from Semantic Scholar
 datasets = [
@@ -32,7 +33,12 @@ def graph_dataset_citations():
     plt.xticks(rotation=45, ha="right")
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig(
+        os.path.join(
+            DataFolderPath,
+            "experiments_output" + os.sep + "graph_dataset_citations_output.png",
+        )
+    )
 
 
 class Experiment:

@@ -3,7 +3,7 @@ import os
 
 DataFolderPath = os.path.abspath("./data")
 DotenvPath = os.path.abspath("./.env")
-hasDownloadedPapers = True
+hasDownloadedPapers = False
 
 
 def setDownloadedPapers(hasDownloadedPapers):

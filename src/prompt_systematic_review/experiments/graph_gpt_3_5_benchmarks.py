@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import os
+from prompt_systematic_review.config_data import DataFolderPath
 
 
 def graph_gpt_3_5():
@@ -43,8 +45,12 @@ def graph_gpt_3_5():
     plt.xticks(rotation=45, ha="right")
     plt.tight_layout()
 
-    # Showing the plot
-    plt.show()
+    plt.savefig(
+        os.path.join(
+            DataFolderPath,
+            "experiments_output" + os.sep + "graph_gpt_3_5_benchmarks_output.png",
+        )
+    )
 
 
 class Experiment:

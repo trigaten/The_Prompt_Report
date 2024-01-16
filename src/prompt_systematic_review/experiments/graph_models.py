@@ -21,7 +21,11 @@ def graph_models(inputFile="model_citation_counts.csv"):
     plt.xticks(rotation=45, ha="right")
     plt.tight_layout()
 
-    plt.show()
+    plt.savefig(
+        os.path.join(
+            DataFolderPath, "experiments_output" + os.sep + "graph_models_output.png"
+        )
+    )
 
 
 class Experiment:

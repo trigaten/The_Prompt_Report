@@ -42,7 +42,12 @@ def visualize_authors():
     plt.xticks(rotation=45, ha="right")
     plt.yticks(range(0, max(top_20_authors) + 2, 2))
     plt.tight_layout()
-    plt.show()
+    plt.savefig(
+        os.path.join(
+            DataFolderPath,
+            "experiments_output" + os.sep + "publication_frequency_by_author.png",
+        )
+    )
 
     # Display the frequency table
     publication_counts = author_counts.values
@@ -68,7 +73,12 @@ def visualize_authors():
     plt.title("Publication Count vs Frequency (Log Scale)")
     plt.grid(True, which="both", ls="--", linewidth=0.5)
 
-    plt.show()
+    plt.savefig(
+        os.path.join(
+            DataFolderPath,
+            "experiments_output" + os.sep + "publication_count_vs_frequency.png",
+        )
+    )
 
 
 class Experiment:

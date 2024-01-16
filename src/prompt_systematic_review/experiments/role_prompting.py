@@ -6,6 +6,8 @@ import time
 import json
 from datetime import datetime
 import concurrent.futures
+import os
+from prompt_systematic_review.config_data import DataFolderPath
 
 
 def query_model_with_timeout(
@@ -205,7 +207,12 @@ def response_to_dict(response):
 
 def write_to_file(data, count):
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    file_path = f"RP_eval_results_{current_datetime}_part_{((count//50) + 1)}.json"
+    file_path = os.path.join(
+        DataFolderPath,
+        "experiments_output"
+        + os.sep
+        + f"RP_eval_results_{current_datetime}_part_{((count//50) + 1)}.json",
+    )
     with open(file_path, "w") as json_file:
         json.dump(data, json_file)
     print(f"Written results to {file_path}")
