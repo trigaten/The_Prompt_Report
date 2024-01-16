@@ -8,10 +8,12 @@ if not config_data.hasDownloadedPapers:
     config_data.hasDownloadedPapers = True
 
 
-# from prompt_systematic_review import experiments
-# import os
+from prompt_systematic_review import experiments
+import os
 
-# os.makedirs(config_data.DataFolderPath + os.sep + "experiments_output", exist_ok=True)
-
-# for experiment in experiments.experiments:
-#     experiment.run()
+os.makedirs(config_data.DataFolderPath + os.sep + "experiments_output", exist_ok=True)
+print("Running experiments...")
+for experiment in experiments.experiments:
+    experiment.run()
+    
+print("Experiments completed. See data/experiments_output for output files")

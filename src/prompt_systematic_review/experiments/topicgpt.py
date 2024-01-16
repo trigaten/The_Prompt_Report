@@ -75,7 +75,6 @@ def run_topic_gpt():
             DataFolderPath, "experiments_output" + os.sep + "topic_distribution.png"
         )
     )
-    plt.show()
 
 
 class Experiment:

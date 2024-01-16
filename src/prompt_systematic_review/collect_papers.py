@@ -126,7 +126,7 @@ def collect():
             # Drop the corresponding row from the dataframe
             deduplicated_df = deduplicated_df[deduplicated_df["title"] != filename[:-4]]
             # PDFRead Error is likely because of corrupted or empty PDF, can be ignored
-            if e != "EOF marker not found":
+            if str(e) != "EOF marker not found":
                 print(f"Error processing {filename}: {e}")
     # TODO: there is smtg weird going on here...
 
@@ -201,5 +201,5 @@ def collect():
         # Check if the file is a PDF and its title is not in df_titles
         if filename.endswith(".pdf") and filename[:-4] not in df_titles:
             # Remove the file
-            os.remove("papers/" + filename)
+            os.remove(DataFolderPath + os.sep + "papers" + os.sep + filename)
     df_combined.to_csv(os.path.join(DataFolderPath, "master_papers.csv"))
