@@ -113,7 +113,7 @@ def generate_topics(
     responses = []
     running_dups = 0
     topic_format = regex.compile("^\[(\d+)\] ([\w\s]+):(.+)")
-    
+
     # Setup client
     client = client_setup()
 
@@ -128,7 +128,9 @@ def generate_topics(
             verbose,
         )
         try:
-            response = api_call(prompt, deployment_name, temperature, max_tokens, top_p, client)
+            response = api_call(
+                prompt, deployment_name, temperature, max_tokens, top_p, client
+            )
             topics = response.split("\n")
             for t in topics:
                 t = t.strip()

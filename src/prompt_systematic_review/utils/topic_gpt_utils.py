@@ -14,13 +14,12 @@ from tenacity import retry, wait_random_exponential, stop_after_attempt
 from prompt_systematic_review.config_data import DotenvPath
 from dotenv import load_dotenv
 
+
 def client_setup():
     load_dotenv(dotenv_path=DotenvPath)  # load all entries from .env file
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
-    client = openai.OpenAI(
-        api_key=openai.api
-    )
+    client = openai.OpenAI(api_key=openai.api)
     return client
 
 
