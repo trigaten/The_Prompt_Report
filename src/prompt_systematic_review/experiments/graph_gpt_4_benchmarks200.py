@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from prompt_systematic_review.config_data import DataFolderPath
 import os
 
+
 def graph_gt_4_benchmarks200():
     # Data
     data = {
@@ -90,7 +91,8 @@ def graph_gt_4_benchmarks200():
 
     plt.savefig(
         os.path.join(
-            DataFolderPath, "experiments_output" + os.sep + "graph_gpt_4_benchmarks200_output.png"
+            DataFolderPath,
+            "experiments_output" + os.sep + "graph_gpt_4_benchmarks200_output.png",
         )
     )
 

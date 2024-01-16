@@ -44,7 +44,8 @@ def visualize_authors():
     plt.tight_layout()
     plt.savefig(
         os.path.join(
-            DataFolderPath, "experiments_output" + os.sep + "publication_frequency_by_author.png"
+            DataFolderPath,
+            "experiments_output" + os.sep + "publication_frequency_by_author.png",
         )
     )
 
@@ -74,7 +75,8 @@ def visualize_authors():
 
     plt.savefig(
         os.path.join(
-            DataFolderPath, "experiments_output" + os.sep + "publication_count_vs_frequency.png"
+            DataFolderPath,
+            "experiments_output" + os.sep + "publication_count_vs_frequency.png",
         )
     )
 

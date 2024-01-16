@@ -39,7 +39,8 @@ def keyword_wordcloud():
     plt.axis("off")
     plt.savefig(
         os.path.join(
-            DataFolderPath, "experiments_output" + os.sep + "keyword_wordcloud_output.png"
+            DataFolderPath,
+            "experiments_output" + os.sep + "keyword_wordcloud_output.png",
         )
     )
 

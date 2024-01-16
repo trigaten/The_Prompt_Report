@@ -35,7 +35,8 @@ def graph_dataset_citations():
     plt.tight_layout()
     plt.savefig(
         os.path.join(
-            DataFolderPath, "experiments_output" + os.sep + "graph_dataset_citations_output.png"
+            DataFolderPath,
+            "experiments_output" + os.sep + "graph_dataset_citations_output.png",
         )
     )
 

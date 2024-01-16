@@ -47,7 +47,8 @@ def graph_gpt_3_5():
 
     plt.savefig(
         os.path.join(
-            DataFolderPath, "experiments_output" + os.sep + "graph_gpt_3_5_benchmarks_output.png"
+            DataFolderPath,
+            "experiments_output" + os.sep + "graph_gpt_3_5_benchmarks_output.png",
         )
     )
 

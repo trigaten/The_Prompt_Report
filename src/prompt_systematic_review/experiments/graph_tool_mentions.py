@@ -29,7 +29,8 @@ def graph_tool_mentions(
 
     plt.savefig(
         os.path.join(
-            DataFolderPath, "experiments_output" + os.sep + "graph_model_mentions_output.png"
+            DataFolderPath,
+            "experiments_output" + os.sep + "graph_model_mentions_output.png",
         )
     )
 
@@ -53,7 +54,8 @@ def graph_tool_mentions(
 
     plt.savefig(
         os.path.join(
-            DataFolderPath, "experiments_output" + os.sep + "graph_dataset_mentions_output.png"
+            DataFolderPath,
+            "experiments_output" + os.sep + "graph_dataset_mentions_output.png",
         )
     )
 
@@ -77,7 +79,8 @@ def graph_tool_mentions(
 
     plt.savefig(
         os.path.join(
-            DataFolderPath, "experiments_output" + os.sep + "graph_framework_mentions_output.png"
+            DataFolderPath,
+            "experiments_output" + os.sep + "graph_framework_mentions_output.png",
         )
     )
 

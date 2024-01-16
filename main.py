@@ -15,5 +15,5 @@ os.makedirs(config_data.DataFolderPath + os.sep + "experiments_output", exist_ok
 print("Running experiments...")
 for experiment in experiments.experiments:
     experiment.run()
-    
+
 print("Experiments completed. See data/experiments_output for output files")

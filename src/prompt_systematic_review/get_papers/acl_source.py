@@ -35,11 +35,13 @@ class AclSource(PaperSource):
                     or paper.is_deleted
                     or paper.abstract is None
                     or paper.pdf is None
-                    or len(paper.authors) == 0 
-
-
+                    or len(paper.authors) == 0
                 ):
-                    if keyword in paper.title.as_text().lower() + paper.abstract.as_text().lower():
+                    if (
+                        keyword
+                        in paper.title.as_text().lower()
+                        + paper.abstract.as_text().lower()
+                    ):
                         if paper.month is not None:
                             if "-" in paper.month:
                                 month = paper.month.split("-")[0]
@@ -63,7 +65,9 @@ class AclSource(PaperSource):
                             paper.pdf.url,
                             dateSubmitted,
                             [keyWord.lower() for keyWord in keyWords],
-                            paper.abstract.as_text().replace("\n", "").replace("\r", ""),
+                            paper.abstract.as_text()
+                            .replace("\n", "")
+                            .replace("\r", ""),
                         )
                         papers.append(paper)
         return papers
