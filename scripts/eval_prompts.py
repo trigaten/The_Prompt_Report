@@ -16,14 +16,25 @@ with open(
     "data/prompts.json", "r"
 ) as file:  # load prompts from prompts.json to make prompts more modular.
     prompts = json.load(file)
-    
-vanilla_prompts = [prompts['baseline1'], prompts['baseline2'], prompts['baseline3']]
-cot_prompts = [prompts["Now, let's..."], prompts["plan-and-solve"], prompts["thread-of-thought"]]
+
+vanilla_prompts = [prompts["baseline1"], prompts["baseline2"], prompts["baseline3"]]
+cot_prompts = [
+    prompts["Now, let's..."],
+    prompts["plan-and-solve"],
+    prompts["thread-of-thought"],
+]
 spacing = ["\n\n", "\n\n", "\n\n"]
 
 zero_shot_vanilla = PromptMaker("0-Shot Vanilla", vanilla_prompts, None, spacing)
 zero_shot_CoT = PromptMaker("0-Shot CoT", vanilla_prompts, cot_prompts, spacing)
-few_shot_vanilla = PromptMaker("Few-Shot Vanilla", vanilla_prompts, None, spacing, few_shots="MMLU", randomize_shots=True)
+few_shot_vanilla = PromptMaker(
+    "Few-Shot Vanilla",
+    vanilla_prompts,
+    None,
+    spacing,
+    few_shots="MMLU",
+    randomize_shots=True,
+)
 
 prompts_to_test = [
     zero_shot_vanilla,

@@ -124,7 +124,9 @@ def evaluate_mmlu_response(
             )
             return False
     else:
-        all_letters_in_response = find_parentheses_with_letters(response.message.content)
+        all_letters_in_response = find_parentheses_with_letters(
+            response.message.content
+        )
         if len(all_letters_in_response) == 0:
             return "incorrect"
         elif len(all_letters_in_response) == 1:
@@ -166,7 +168,12 @@ def evaluate_prompts(
     """
 
     query_count = 0
-    results = {prompt.name: {"correct": 0, "under review": 0, "incorrect": 0, "total": 0} if isinstance(prompt, PromptMaker) else prompt for prompt in prompts}
+    results = {
+        prompt.name: {"correct": 0, "under review": 0, "incorrect": 0, "total": 0}
+        if isinstance(prompt, PromptMaker)
+        else prompt
+        for prompt in prompts
+    }
     information = {
         "dataset": dataset,
         "config_name": config_name,
@@ -421,26 +428,37 @@ def find_quotes_with_letters(text):
     matches = re.findall(pattern, text)
     return matches
 
+
 def find_parentheses_with_letters(text):
-    pattern = r'\(\s*([A-D])\s*\)'
+    pattern = r"\(\s*([A-D])\s*\)"
     matches = re.findall(pattern, text)
     return matches
+
 
 from typing import List
 import random
 
+
 def sample_string(list: List[str]):
     return list[random.randint(0, len(list) - 1)]
 
-class PromptMaker:
 
-    def __init__(self, name: str, vanillas: str or List[str] or None, instructions: str or List[str] or None = None, spacing: str or None = None, few_shots: str or List[str] or None = None, randomize_shots: bool = False):
+class PromptMaker:
+    def __init__(
+        self,
+        name: str,
+        vanillas: str or List[str] or None,
+        instructions: str or List[str] or None = None,
+        spacing: str or None = None,
+        few_shots: str or List[str] or None = None,
+        randomize_shots: bool = False,
+    ):
         self.name = name
         self.vanillas = vanillas
         self.spacing = spacing
         self.instructions = instructions
         self.randomize_shots = randomize_shots
-        if few_shots == 'MMLU':
+        if few_shots == "MMLU":
             self.few_shots = {
                 "STEM": [
                     "Question: A 0.217 g sample of HgO (molar mass = 217 g) reacts with excess iodide ions according to the reaction shown above. Titration of the resulting solution requires how many mL of 0.10 M HCl to reach equivalence point?\nChoices:\n(A) 1.0 mL\n(B) 10 mL\n(C) 20 mL\n(D) 50 mL\nAnswer: (C)",
@@ -448,11 +466,11 @@ class PromptMaker:
                     "Question: A point pole has a strength of 4π * 10^-4 weber. The force in newtons on a point pole of 4π * 1.5 * 10^-4 weber placed at a distance of 10 cm from it will be\nChoices:\n(A) 15 N.\n(B) 20 N.\n(C) 7.5 N.\n(D) 3.75 N.\nAnswer: (A)",
                     "Question: Joe was in charge of lights for a dance. The red light blinks every two seconds, the yellow light every three seconds, and the blue light every five seconds. If we include the very beginning and very end of the dance, how many times during a seven minute dance will all the lights come on at the same time? (Assume that all three lights blink simultaneously at the very beginning of the dance.)\nChoices:\n(A) 3\n(B) 5\n(C) 6\n(D) 15\nAnswer: (D)",
                     "Question: The pleura\nChoices:\n(A) have no sensory innervation.\n(B) are separated by a 2 mm space.\n(C) extend into the neck.\n(D) are composed of respiratory epithelium.\nAnswer: (C)",
-                    ],
+                ],
                 "Humanities": [
                     "Question: Turtles live long lives and are happy creatures, unless they are injured.\nChoices:\n(A) (L • H) ≡ I\n(B) (L • H) ∨ I\n(C) L • (H ∨ I)\n(D) L • (H ⊃ R)\nAnswer: (B)",
                     "Question: A son owed a creditor $5,000. The son's father contacted the creditor and told him that he wanted to pay the son's debt. The father signed a document that stated the father would pay the son's debt at a rate of $500 a month for 10 months. The creditor made no written or oral commitment to forbear to sue the son to collect the $5,000 debt, and the father made no oral or written request for any such forbearance. For the next five months, the father made and the creditor accepted the $500 monthly payments as agreed. During that period, the creditor, in fact, did forbear to take any legal action against the son. However, the father then informed the creditor that he would make no further payments on the debt. Which of the following is the most persuasive argument that the father is liable to the creditor under the terms of their agreement?\nChoices:\n(A) The father's promise and the creditor's reliance thereon, if proved, gave rise to a valid claim by the creditor against the father based on the doctrine of promissory estoppel. \n(B) Because it was foreseeable that the father's promise would induce the creditor to forbear taking any action against the son, such forbearance was, as a matter of law, a bargained-for consideration for the father's promise. \n(C) The father's five payments to the creditor totaling $2,500 manifested a serious intent on the father's part to be contractually bound, and such manifestation is generally recognized as an effective substitute for consideration. \n(D) By assuming the antecedent debt obligation that the son owed to the creditor, the father became a surety whose promise to the creditor was enforceable, since it was in writing and supported by adequate consideration. \nAnswer: (A)",
-                    "Question: This question refers to the following information.\n\"\"Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.\"\"\nThomas Paine, Common Sense, 1776\nWhich of the following \"\"miseries\"\" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?\nChoices:\n(A) Organized response to Bacon's Rebellion\n(B) Federal response to Shays's Rebellion\n(C) Federal response to Pontiac's Rebellion\n(D) Federal response to the Whiskey Rebellion\nAnswer: (D)",
+                    'Question: This question refers to the following information.\n""Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.""\nThomas Paine, Common Sense, 1776\nWhich of the following ""miseries"" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?\nChoices:\n(A) Organized response to Bacon\'s Rebellion\n(B) Federal response to Shays\'s Rebellion\n(C) Federal response to Pontiac\'s Rebellion\n(D) Federal response to the Whiskey Rebellion\nAnswer: (D)',
                     "Question: Which of the following is true of a valid categorical syllogism?\nChoices:\n(A) The minor premise must deny the antecedent\n(B) The major premise must affirm the consequent\n(C) The middle term must be used in at least one premise in a universal or unqualified sense\n(D) All of the above\nAnswer: (C)",
                     "Question: How can the Upanishads be characterized?\nChoices:\n(A) Ritual texts\n(B) Philosophical texts\n(C) Hymns\n(D) Origin stories\nAnswer: (B)",
                 ],
@@ -465,15 +483,15 @@ class PromptMaker:
                 ],
                 "Other": [
                     "Question: In contrast to _______, _______ aim to reward favourable behaviour by companies. The success of such campaigns have been heightened through the use of ___________, which allow campaigns to facilitate the company in achieving _________ .\nChoices:\n(A) Buycotts, Boycotts, Blockchain technology, Charitable donations\n(B) Buycotts, Boycotts, Digital technology, Increased Sales\n(C) Boycotts, Buyalls, Blockchain technology, Charitable donations\n(D) Boycotts, Buycotts, Digital technology, Increased Sales\nAnswer: (D)",
-                    "Question: In the assessment of the hand function which of the following is true?\nChoices:\n(A) Abduction of the thumb is supplied by spinal root T2\n(B) Opposition of the thumb by opponens policis is supplied by spinal root T1\n(C) Finger adduction is supplied by the median nerve\n(D) Finger abduction is mediated by the palmar interossei\nAnswer: (B)", 
+                    "Question: In the assessment of the hand function which of the following is true?\nChoices:\n(A) Abduction of the thumb is supplied by spinal root T2\n(B) Opposition of the thumb by opponens policis is supplied by spinal root T1\n(C) Finger adduction is supplied by the median nerve\n(D) Finger abduction is mediated by the palmar interossei\nAnswer: (B)",
                     "Question: What characteristic is not a key feature of the 'open systems' model of management?\nChoices:\n(A) Morale\n(B) Innovation\n(C) Growth resource\n(D) Adaptation\nAnswer: (A)",
                     "Question: When older adults move to a new state after retirement, which of the following is the more likely destination?\nChoices:\n(A) Texas\n(B) California\n(C) Hawaii\n(D) Vermont\nAnswer: (A)",
                     "Question: Which of these songs was a Top 10 hit for the rock band The Police?\nChoices:\n(A) 'Radio Ga-Ga'\n(B) 'Ob-la-di Ob-la-da'\n(C) 'De Do Do Do De Da Da Da'\n(D) 'In-a-Gadda-Da-Vida'\nAnswer: (C)",
-                ]
-            } 
+                ],
+            }
         else:
             self.few_shots = None
-        
+
     def __str__(self):
         return self.prompt
 
@@ -504,8 +522,7 @@ class PromptMaker:
                 for f in other.few_shots:
                     prompt2 += i + f + v + other.name + str(other.randomize_shots)
         return prompt1 == prompt2
-    
-    
+
     def gen(self, category: str or None = None):
         vanilla = sample_string(self.vanillas)
         instruction = sample_string(self.instructions) if self.instructions else None
@@ -517,8 +534,7 @@ class PromptMaker:
         else:
             shots = None
         return Prompt(vanilla, instruction, space, shots)
-        
-    
+
     def sample_if_needed(prompt_piece: str or List[str] or None):
         if prompt_piece:
             if isinstance(prompt_piece, list):
@@ -527,6 +543,7 @@ class PromptMaker:
                 return prompt_piece
         else:
             return ""
+
     # def format(self, shots):
     #     return '''
     #     {shot1}
@@ -535,44 +552,72 @@ class PromptMaker:
     #     {shot4}
     #     {shot5}
     #     '''.format(shot1=shots[0], shot2=shots[1], shot3=shots[2], shot4=shots[3], shot5=shots[4])
-        
+
     # def space(self):
     #     return sample_string(self.spacing)
 
+
 class Prompt:
-        def __init__(self, vanilla: str, instruction: str or None, space: str or None, shots: str or None):
-            self.vanilla = vanilla
-            self.instruction = instruction
-            self.space = space
-            self.shots = shots
-            self.prompt = self.make_prompt()
-            
-        def make_prompt(self):
-            if self.shots:
-                if self.vanilla and self.instruction:
-                    return '''{vanilla}{space}{instruction}{space}{shot1}{space}{shot2}{space}{shot3}{space}{shot4}{space}{shot5}{space}'''.format(vanilla=self.vanilla, instruction=self.instruction, space=self.space, shot1=self.shots[0], shot2=self.shots[1], shot3=self.shots[2], shot4=self.shots[3], shot5=self.shots[4])
-                elif self.vanilla and not self.instruction:
-                    return '''{vanilla}{space}{shot1}{space}{shot2}{space}{shot3}{space}{shot4}{space}{shot5}{space}'''.format(vanilla=self.vanilla, instruction=self.instruction, space=self.space, shot1=self.shots[0], shot2=self.shots[1], shot3=self.shots[2], shot4=self.shots[3], shot5=self.shots[4])
-            elif self.instruction and self.vanilla:
-                return "{vanilla}{space}{instruction}{space}".format(vanilla=self.vanilla, instruction=self.instruction, space=self.space)
-            else:
-                return self.vanilla
-            
-        def __str__(self):
-            return self.prompt
-    
-        def __repr__(self):
-            return self.prompt
-    
-        def __hash__(self):
-            return hash(self.prompt)
-    
-        def __eq__(self, other):
-            return self.prompt == other.prompt
-        
-        def gen(self):
-            return self.prompt
-        
+    def __init__(
+        self,
+        vanilla: str,
+        instruction: str or None,
+        space: str or None,
+        shots: str or None,
+    ):
+        self.vanilla = vanilla
+        self.instruction = instruction
+        self.space = space
+        self.shots = shots
+        self.prompt = self.make_prompt()
+
+    def make_prompt(self):
+        if self.shots:
+            if self.vanilla and self.instruction:
+                return """{vanilla}{space}{instruction}{space}{shot1}{space}{shot2}{space}{shot3}{space}{shot4}{space}{shot5}{space}""".format(
+                    vanilla=self.vanilla,
+                    instruction=self.instruction,
+                    space=self.space,
+                    shot1=self.shots[0],
+                    shot2=self.shots[1],
+                    shot3=self.shots[2],
+                    shot4=self.shots[3],
+                    shot5=self.shots[4],
+                )
+            elif self.vanilla and not self.instruction:
+                return """{vanilla}{space}{shot1}{space}{shot2}{space}{shot3}{space}{shot4}{space}{shot5}{space}""".format(
+                    vanilla=self.vanilla,
+                    instruction=self.instruction,
+                    space=self.space,
+                    shot1=self.shots[0],
+                    shot2=self.shots[1],
+                    shot3=self.shots[2],
+                    shot4=self.shots[3],
+                    shot5=self.shots[4],
+                )
+        elif self.instruction and self.vanilla:
+            return "{vanilla}{space}{instruction}{space}".format(
+                vanilla=self.vanilla, instruction=self.instruction, space=self.space
+            )
+        else:
+            return self.vanilla
+
+    def __str__(self):
+        return self.prompt
+
+    def __repr__(self):
+        return self.prompt
+
+    def __hash__(self):
+        return hash(self.prompt)
+
+    def __eq__(self, other):
+        return self.prompt == other.prompt
+
+    def gen(self):
+        return self.prompt
+
+
 mmlu_split = {
     "high_school_european_history": "Humanities",
     "business_ethics": "Other",
@@ -584,7 +629,7 @@ mmlu_split = {
     "virology": "Other",
     "high_school_microeconomics": "Social Sciences",
     "econometrics": "Social Sciences",
-    "college_computer_science" : "STEM",
+    "college_computer_science": "STEM",
     "high_school_biology": "STEM",
     "abstract_algebra": "STEM",
     "professional_accounting": "Other",
