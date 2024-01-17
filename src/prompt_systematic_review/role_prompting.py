@@ -59,13 +59,11 @@ def query_model(
     """
     if rereading:
         messages = [
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": question + "\n\n" + question},
+            {"role": "user", "content": prompt + question + "\n\n" + question},
         ]
     else:
         messages = [
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": question},
+            {"role": "user", "content": prompt + question},
         ]
     if return_json:
         response = query_model_with_backoff(
@@ -126,7 +124,7 @@ def evaluate_mmlu_response(
             )
             return False
     else:
-        all_letters_in_response = find_quotes_with_letters(response.message.content)
+        all_letters_in_response = find_parentheses_with_letters(response.message.content)
         if len(all_letters_in_response) == 0:
             return "incorrect"
         elif len(all_letters_in_response) == 1:
@@ -168,7 +166,7 @@ def evaluate_prompts(
     """
 
     query_count = 0
-    results = {prompt: {"correct": 0, "total": 0} for prompt in prompts}
+    results = {prompt.name: {"correct": 0, "under review": 0, "incorrect": 0, "total": 0} if isinstance(prompt, PromptMaker) else prompt for prompt in prompts}
     information = {
         "dataset": dataset,
         "config_name": config_name,
@@ -254,13 +252,7 @@ def evaluate_prompts(
                     example["C"],
                     example["D"],
                 )
-                multiple_choice_question = """
-                {question}
-                A. {choice_A}
-                B. {choice_B}
-                C. {choice_C}
-                D. {choice_D}
-                """.format(
+                multiple_choice_question = """Question: {question}\nChoices:\n(A) {choice_A}\n(B) {choice_B}\n(C) {choice_C}\n(D) {choice_D}\nAnswer:""".format(
                     question=question,
                     choice_A=choice_A,
                     choice_B=choice_B,
@@ -268,13 +260,17 @@ def evaluate_prompts(
                     choice_D=choice_D,
                 )
                 for prompt in prompts:
-                    if isinstance(prompt, Prompt):
-                        chosen_prompt = prompt.gen()
+                    if isinstance(prompt, PromptMaker):
+                        if prompt.few_shots:
+                            category = example["config"]
+                            chosen_prompt = prompt.gen(category)
+                        else:
+                            chosen_prompt = prompt.gen()
                     else:
                         chosen_prompt = prompt
                     start_time = time.time()
                     response = query_model(
-                        chosen_prompt,
+                        chosen_prompt.prompt,
                         multiple_choice_question,
                         model_name=model_name,
                         output_tokens=max_tokens,
@@ -302,10 +298,11 @@ def evaluate_prompts(
 
                     information["calls"].append(
                         {
-                            "prompt": chosen_prompt,
+                            "prompt_name": prompt.name,
+                            "prompt": chosen_prompt.prompt,
                             "question": "Question: "
                             + multiple_choice_question
-                            + "\n Read the question again: "
+                            + "\n"
                             + multiple_choice_question
                             if reread
                             else multiple_choice_question,
@@ -316,11 +313,13 @@ def evaluate_prompts(
                             "config": example["config"],
                         }
                     )
-                    results[prompt]["total"] += 1
+                    results[prompt.name]["total"] += 1
                     if eval_result == "correct":
-                        results[prompt]["correct"] += 1
+                        results[prompt.name]["correct"] += 1
                     elif eval_result == "under review":
-                        results[prompt]["under review"] += 1
+                        results[prompt.name]["under review"] += 1
+                    elif eval_result == "incorrect":
+                        results[prompt.name]["incorrect"] += 1
                     if query_count % log_interval == 0:
                         try:
                             write_to_file(
@@ -422,16 +421,58 @@ def find_quotes_with_letters(text):
     matches = re.findall(pattern, text)
     return matches
 
+def find_parentheses_with_letters(text):
+    pattern = r'\(\s*([A-D])\s*\)'
+    matches = re.findall(pattern, text)
+    return matches
+
+from typing import List
+import random
+
 def sample_string(list: List[str]):
     return list[random.randint(0, len(list) - 1)]
 
 class PromptMaker:
-    
-    def __init__(self, name: str, baseline_markers: str or List[str] or None, few_shots: str or List[str] or None, seperators: List[str]):
+
+    def __init__(self, name: str, vanillas: str or List[str] or None, instructions: str or List[str] or None = None, spacing: str or None = None, few_shots: str or List[str] or None = None, randomize_shots: bool = False):
         self.name = name
-        self.baseline_markers = baseline_markers
-        self.few_shots = few_shots
-        self.seperators = seperators
+        self.vanillas = vanillas
+        self.spacing = spacing
+        self.instructions = instructions
+        self.randomize_shots = randomize_shots
+        if few_shots == 'MMLU':
+            self.few_shots = {
+                "STEM": [
+                    "Question: A 0.217 g sample of HgO (molar mass = 217 g) reacts with excess iodide ions according to the reaction shown above. Titration of the resulting solution requires how many mL of 0.10 M HCl to reach equivalence point?\nChoices:\n(A) 1.0 mL\n(B) 10 mL\n(C) 20 mL\n(D) 50 mL\nAnswer: (C)",
+                    "Question: Many Web browsers allow users to open anonymous windows. During a browsing session in an anonymous window, the browser does not record a browsing history or a list of downloaded files. When the anonymous window is exited, cookies created during the session are deleted. Which of the following statements about browsing sessions in an anonymous window is true?\nChoices:\n(A) The activities of a user browsing in an anonymous window will not be visible to people who monitor the user's network, such as the system administrator.\n(B) Items placed in a Web store's shopping cart for future purchase during the anonymous browsing session will not be saved on the user's computer.\n(C) A user will not be able to log in to e-mail or social media accounts during the anonymous browsing session.\n(D) A user browsing in an anonymous window will be protected from viruses launched from any web sites visited or files downloaded.\nAnswer: (B)",
+                    "Question: A point pole has a strength of 4π * 10^-4 weber. The force in newtons on a point pole of 4π * 1.5 * 10^-4 weber placed at a distance of 10 cm from it will be\nChoices:\n(A) 15 N.\n(B) 20 N.\n(C) 7.5 N.\n(D) 3.75 N.\nAnswer: (A)",
+                    "Question: Joe was in charge of lights for a dance. The red light blinks every two seconds, the yellow light every three seconds, and the blue light every five seconds. If we include the very beginning and very end of the dance, how many times during a seven minute dance will all the lights come on at the same time? (Assume that all three lights blink simultaneously at the very beginning of the dance.)\nChoices:\n(A) 3\n(B) 5\n(C) 6\n(D) 15\nAnswer: (D)",
+                    "Question: The pleura\nChoices:\n(A) have no sensory innervation.\n(B) are separated by a 2 mm space.\n(C) extend into the neck.\n(D) are composed of respiratory epithelium.\nAnswer: (C)",
+                    ],
+                "Humanities": [
+                    "Question: Turtles live long lives and are happy creatures, unless they are injured.\nChoices:\n(A) (L • H) ≡ I\n(B) (L • H) ∨ I\n(C) L • (H ∨ I)\n(D) L • (H ⊃ R)\nAnswer: (B)",
+                    "Question: A son owed a creditor $5,000. The son's father contacted the creditor and told him that he wanted to pay the son's debt. The father signed a document that stated the father would pay the son's debt at a rate of $500 a month for 10 months. The creditor made no written or oral commitment to forbear to sue the son to collect the $5,000 debt, and the father made no oral or written request for any such forbearance. For the next five months, the father made and the creditor accepted the $500 monthly payments as agreed. During that period, the creditor, in fact, did forbear to take any legal action against the son. However, the father then informed the creditor that he would make no further payments on the debt. Which of the following is the most persuasive argument that the father is liable to the creditor under the terms of their agreement?\nChoices:\n(A) The father's promise and the creditor's reliance thereon, if proved, gave rise to a valid claim by the creditor against the father based on the doctrine of promissory estoppel. \n(B) Because it was foreseeable that the father's promise would induce the creditor to forbear taking any action against the son, such forbearance was, as a matter of law, a bargained-for consideration for the father's promise. \n(C) The father's five payments to the creditor totaling $2,500 manifested a serious intent on the father's part to be contractually bound, and such manifestation is generally recognized as an effective substitute for consideration. \n(D) By assuming the antecedent debt obligation that the son owed to the creditor, the father became a surety whose promise to the creditor was enforceable, since it was in writing and supported by adequate consideration. \nAnswer: (A)",
+                    "Question: This question refers to the following information.\n\"\"Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.\"\"\nThomas Paine, Common Sense, 1776\nWhich of the following \"\"miseries\"\" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?\nChoices:\n(A) Organized response to Bacon's Rebellion\n(B) Federal response to Shays's Rebellion\n(C) Federal response to Pontiac's Rebellion\n(D) Federal response to the Whiskey Rebellion\nAnswer: (D)",
+                    "Question: Which of the following is true of a valid categorical syllogism?\nChoices:\n(A) The minor premise must deny the antecedent\n(B) The major premise must affirm the consequent\n(C) The middle term must be used in at least one premise in a universal or unqualified sense\n(D) All of the above\nAnswer: (C)",
+                    "Question: How can the Upanishads be characterized?\nChoices:\n(A) Ritual texts\n(B) Philosophical texts\n(C) Hymns\n(D) Origin stories\nAnswer: (B)",
+                ],
+                "Social Sciences": [
+                    "Question: Which of the following is not a problem associated with official statistics on strike action?\nChoices:\n(A) most strikes go unnoticed by employers and the mass media\n(B) not all industrial disputes will be reported by the employer\n(C) the definition of strikes excludes those that involve fewer than ten workers or last less than one day\n(D) it is hard to compare strikes that were measured in different ways\nAnswer: (A)",
+                    "Question: The realm of policy decisions concerned primarily with relations between the United States and the rest of the world is known as\nChoices:\n(A) terrorism policy.\n(B) economic policy.\n(C) foreign policy.\n(D) international policy.\nAnswer: (C)",
+                    "Question: In terms of Hofstede’s (1980) five cultural dimensions, the United States scores at the top of the scale on:\nChoices:\n(A) individualism and power distance.\n(B) individualism.\n(C) power distance and masculinity.\n(D) uncertainty avoidance.\nAnswer: (B)",
+                    "Question: For a stationary autoregressive process, shocks will\nChoices:\n(A) Eventually die away\n(B) Persist indefinitely\n(C) Grow exponentially\n(D) Never occur\nAnswer: (A)",
+                    "Question: Which of the following statements is NOT accurate regarding the services provided by local governments in the United States?\nChoices:\n(A) Duplication of efforts occurs often.\n(B) Social problems of the central city spill over into the surrounding residential suburbs.\n(C) Inefficiency in providing services occurs often.\n(D) One neighborhood's efforts to reduce pollution are always supported by neighboring communities.\nAnswer: (D)",
+                ],
+                "Other": [
+                    "Question: In contrast to _______, _______ aim to reward favourable behaviour by companies. The success of such campaigns have been heightened through the use of ___________, which allow campaigns to facilitate the company in achieving _________ .\nChoices:\n(A) Buycotts, Boycotts, Blockchain technology, Charitable donations\n(B) Buycotts, Boycotts, Digital technology, Increased Sales\n(C) Boycotts, Buyalls, Blockchain technology, Charitable donations\n(D) Boycotts, Buycotts, Digital technology, Increased Sales\nAnswer: (D)",
+                    "Question: In the assessment of the hand function which of the following is true?\nChoices:\n(A) Abduction of the thumb is supplied by spinal root T2\n(B) Opposition of the thumb by opponens policis is supplied by spinal root T1\n(C) Finger adduction is supplied by the median nerve\n(D) Finger abduction is mediated by the palmar interossei\nAnswer: (B)", 
+                    "Question: What characteristic is not a key feature of the 'open systems' model of management?\nChoices:\n(A) Morale\n(B) Innovation\n(C) Growth resource\n(D) Adaptation\nAnswer: (A)",
+                    "Question: When older adults move to a new state after retirement, which of the following is the more likely destination?\nChoices:\n(A) Texas\n(B) California\n(C) Hawaii\n(D) Vermont\nAnswer: (A)",
+                    "Question: Which of these songs was a Top 10 hit for the rock band The Police?\nChoices:\n(A) 'Radio Ga-Ga'\n(B) 'Ob-la-di Ob-la-da'\n(C) 'De Do Do Do De Da Da Da'\n(D) 'In-a-Gadda-Da-Vida'\nAnswer: (C)",
+                ]
+            } 
+        else:
+            self.few_shots = None
         
     def __str__(self):
         return self.prompt
@@ -441,32 +482,42 @@ class PromptMaker:
 
     def __hash__(self):
         prompt = ""
-        for b in self.baseline_markers:
-            prompt += b
+        for i in self.instructions:
+            prompt += i
         for f in self.few_shots:
             prompt += f
-        for s in self.seperators:
-            prompt += s         
-        print(prompt)
+        for v in self.vanillas:
+            prompt += v
+        prompt += self.name
+        prompt += str(self.randomize_shots)
         return hash(prompt)
 
     def __eq__(self, other):
         prompt1 = ""
-        for b in self.baseline_markers:
-            for f in self.few_shots:
-                for s in self.seperators:
-                    prompt1 += b + s + f          
+        for v in self.vanillas:
+            for i in self.instructions:
+                for f in self.few_shots:
+                    prompt1 += i + f + v + self.name + str(self.randomize_shots)
         prompt2 = ""
-        for b in other.baseline_markers:
-            for f in other.few_shots:
-                for s in other.seperators:
-                    prompt2 += b + s + f
+        for v in other.vanillas:
+            for i in other.instructions:
+                for f in other.few_shots:
+                    prompt2 += i + f + v + other.name + str(other.randomize_shots)
         return prompt1 == prompt2
     
     
-    def gen(self):
-        p = Prompt(sample_string(self.baseline_markers), self.sep(), self.randomize(self.few_shots))
-        return p
+    def gen(self, category: str or None = None):
+        vanilla = sample_string(self.vanillas)
+        instruction = sample_string(self.instructions) if self.instructions else None
+        space = sample_string(self.spacing) if self.spacing else None
+        if self.few_shots:
+            shots = self.few_shots[mmlu_split[category]]
+            if self.randomize_shots:
+                random.shuffle(shots)
+        else:
+            shots = None
+        return Prompt(vanilla, instruction, space, shots)
+        
     
     def sample_if_needed(prompt_piece: str or List[str] or None):
         if prompt_piece:
@@ -476,43 +527,36 @@ class PromptMaker:
                 return prompt_piece
         else:
             return ""
+    # def format(self, shots):
+    #     return '''
+    #     {shot1}
+    #     {shot2}
+    #     {shot3}
+    #     {shot4}
+    #     {shot5}
+    #     '''.format(shot1=shots[0], shot2=shots[1], shot3=shots[2], shot4=shots[3], shot5=shots[4])
         
-    def randomize(self, shots: List[str]):
-        random.shuffle(shots)
-        return '''
-        {sep}
-        {shot1}
-        {shot2}
-        {shot3}
-        {shot4}
-        {shot5}
-        '''.format(sep=self.sep(), shot1=shots[0], shot2=shots[1], shot3=shots[2], shot4=shots[3], shot5=shots[4])
-        
-    def sep(self):
-        return sample_string(self.separators)
+    # def space(self):
+    #     return sample_string(self.spacing)
 
 class Prompt:
-        def __init__(self, baseline: str, separator: str or None, shots: str or None):
-            self.baseline = baseline
-            self.separator = separator
+        def __init__(self, vanilla: str, instruction: str or None, space: str or None, shots: str or None):
+            self.vanilla = vanilla
+            self.instruction = instruction
+            self.space = space
             self.shots = shots
             self.prompt = self.make_prompt()
             
-        def make_prompt(self, baseline: str, seperator: str, shots: str):
-            if shots: 
-                return '''
-                {baseline}
-                {seperator}
-                {shot1}
-                {shot2}
-                {shot3}
-                {shot4}
-                {shot5}
-                '''.format(baseline=self.baseline, seperator=self.seperator, shot1=self.shots[0], shot2=self.shots[1], shot3=self.shots[2], shot4=self.shots[3], shot5=self.shots[4])
+        def make_prompt(self):
+            if self.shots:
+                if self.vanilla and self.instruction:
+                    return '''{vanilla}{space}{instruction}{space}{shot1}{space}{shot2}{space}{shot3}{space}{shot4}{space}{shot5}{space}'''.format(vanilla=self.vanilla, instruction=self.instruction, space=self.space, shot1=self.shots[0], shot2=self.shots[1], shot3=self.shots[2], shot4=self.shots[3], shot5=self.shots[4])
+                elif self.vanilla and not self.instruction:
+                    return '''{vanilla}{space}{shot1}{space}{shot2}{space}{shot3}{space}{shot4}{space}{shot5}{space}'''.format(vanilla=self.vanilla, instruction=self.instruction, space=self.space, shot1=self.shots[0], shot2=self.shots[1], shot3=self.shots[2], shot4=self.shots[3], shot5=self.shots[4])
+            elif self.instruction and self.vanilla:
+                return "{vanilla}{space}{instruction}{space}".format(vanilla=self.vanilla, instruction=self.instruction, space=self.space)
             else:
-                return '''
-                {baseline}
-                '''.format(baseline=self.baseline)
+                return self.vanilla
             
         def __str__(self):
             return self.prompt
@@ -528,3 +572,62 @@ class Prompt:
         
         def gen(self):
             return self.prompt
+        
+mmlu_split = {
+    "high_school_european_history": "Humanities",
+    "business_ethics": "Other",
+    "clinical_knowledge": "Other",
+    "medical_genetics": "Other",
+    "high_school_us_history": "Humanities",
+    "high_school_physics": "STEM",
+    "high_school_world_history": "Humanities",
+    "virology": "Other",
+    "high_school_microeconomics": "Social Sciences",
+    "econometrics": "Social Sciences",
+    "college_computer_science" : "STEM",
+    "high_school_biology": "STEM",
+    "abstract_algebra": "STEM",
+    "professional_accounting": "Other",
+    "philosophy": "Humanities",
+    "professional_medicine": "Other",
+    "nutrition": "Other",
+    "global_facts": "Other",
+    "machine_learning": "STEM",
+    "security_studies": "Social Sciences",
+    "public_relations": "Social Sciences",
+    "professional_psychology": "Social Sciences",
+    "prehistory": "Humanities",
+    "anatomy": "STEM",
+    "college_medicine": "Other",
+    "high_school_government_and_politics": "Social Sciences",
+    "college_chemistry": "STEM",
+    "logical_fallacies": "Humanities",
+    "high_school_geography": "Social Sciences",
+    "elementary_mathematics": "STEM",
+    "human_aging": "Other",
+    "college_mathematics": "STEM",
+    "high_school_psychology": "Social Sciences",
+    "formal_logic": "Humanities",
+    "high_school_statistics": "STEM",
+    "international_law": "Humanities",
+    "high_school_mathematics": "STEM",
+    "high_school_computer_science": "STEM",
+    "conceptual_physics": "STEM",
+    "miscellaneous": "Other",
+    "high_school_chemistry": "STEM",
+    "marketing": "Other",
+    "professional_law": "Humanities",
+    "management": "Other",
+    "college_physics": "STEM",
+    "jurisprudence": "Humanities",
+    "world_religions": "Humanities",
+    "sociology": "Social Sciences",
+    "us_foreign_policy": "Social Sciences",
+    "high_school_macroeconomics": "Social Sciences",
+    "computer_security": "STEM",
+    "moral_scenarios": "Humanities",
+    "moral_disputes": "Humanities",
+    "electrical_engineering": "STEM",
+    "astronomy": "STEM",
+    "college_biology": "STEM",
+}

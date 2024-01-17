@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 import json
+from prompt_systematic_review.role_prompting import PromptMaker, Prompt
 
 load_dotenv(dotenv_path="./.env")  # load all entries from .env file
 openai.api_key = os.getenv("OPENAI_API_KEY")  # load openai key
@@ -15,26 +16,36 @@ with open(
     "data/prompts.json", "r"
 ) as file:  # load prompts from prompts.json to make prompts more modular.
     prompts = json.load(file)
+    
+vanilla_prompts = [prompts['baseline1'], prompts['baseline2'], prompts['baseline3']]
+cot_prompts = [prompts["Now, let's..."], prompts["plan-and-solve"], prompts["thread-of-thought"]]
+spacing = ["\n\n", "\n\n", "\n\n"]
 
-prompts = [
+zero_shot_vanilla = PromptMaker("0-Shot Vanilla", vanilla_prompts, None, spacing)
+zero_shot_CoT = PromptMaker("0-Shot CoT", vanilla_prompts, cot_prompts, spacing)
+few_shot_vanilla = PromptMaker("Few-Shot Vanilla", vanilla_prompts, None, spacing, few_shots="MMLU", randomize_shots=True)
 
+prompts_to_test = [
+    zero_shot_vanilla,
+    zero_shot_CoT,
+    few_shot_vanilla,
 ]
 
 dataset = "mmlu"  # mmlu or gsm8k
 config_name = None  # main if gs8k, None if mmlu
 split = "test"
 model = "gpt-4-1106-preview"
-examples = 1  # number of examples to test
+examples = 20  # number of examples to test
 start = 0  # start index for dataset
 log_interval = 25  # log interval for creatings jsons of results by query
-max_toks = 50
+max_toks = 300
 rereading = False  # if true, will "reread" the question to the LM at query time
 return_json = False
 SEED = 42
 temp = 0.0
 
 eval = evaluate_prompts(
-    prompts,
+    prompts_to_test,
     dataset,
     config_name,
     split,
