@@ -435,9 +435,6 @@ def find_parentheses_with_letters(text):
     return matches
 
 
-from typing import List
-import random
-
 
 def sample_string(list: List[str]):
     return list[random.randint(0, len(list) - 1)]
@@ -453,6 +450,16 @@ class PromptMaker:
         few_shots: str or List[str] or None = None,
         randomize_shots: bool = False,
     ):
+        '''
+        This class holds the specifications for prompts that are generated with a degree of randomness.
+        :param name: The name of the prompt.
+        :param vanillas: The baseline prompt.
+        :param instructions: The extra instructions for the prompt. This is where 0-shot CoT prompts are specified.
+        :param spacing: The spacing between the prompt pieces.
+        :param few_shots: The few-shot prompts. This is where MMLU prompts are specified.
+        :param randomize_shots: Whether to randomize the order of the few-shot prompts.
+        :returns PromptMaker: A PromptMaker instance.
+        '''
         self.name = name
         self.vanillas = vanillas
         self.spacing = spacing
@@ -524,6 +531,11 @@ class PromptMaker:
         return prompt1 == prompt2
 
     def gen(self, category: str or None = None):
+        '''
+        Generates a prompt instance from a PromptMaker
+        :param category: The category of the prompt. This is used for MMLU prompts.
+        '''
+        
         vanilla = sample_string(self.vanillas)
         instruction = sample_string(self.instructions) if self.instructions else None
         space = sample_string(self.spacing) if self.spacing else None
@@ -534,28 +546,6 @@ class PromptMaker:
         else:
             shots = None
         return Prompt(vanilla, instruction, space, shots)
-
-    def sample_if_needed(prompt_piece: str or List[str] or None):
-        if prompt_piece:
-            if isinstance(prompt_piece, list):
-                return sample_string(prompt_piece)
-            else:
-                return prompt_piece
-        else:
-            return ""
-
-    # def format(self, shots):
-    #     return '''
-    #     {shot1}
-    #     {shot2}
-    #     {shot3}
-    #     {shot4}
-    #     {shot5}
-    #     '''.format(shot1=shots[0], shot2=shots[1], shot3=shots[2], shot4=shots[3], shot5=shots[4])
-
-    # def space(self):
-    #     return sample_string(self.spacing)
-
 
 class Prompt:
     def __init__(
