@@ -17,13 +17,18 @@ with open(
 ) as file:  # load prompts from prompts.json to make prompts more modular.
     prompts = json.load(file)
 
-baseline_prompts = [prompts["baseline1"], prompts["baseline2"], prompts["baseline3"]]
+baseline_prompts = [
+    prompts["baseline1"],
+    prompts["baseline2"],
+    prompts["baseline3"],
+]  # creating list of baseline prompts ex. "Solve this problem..."
 zero_shot_cot_prompts = [
     prompts["Now, let's..."],
     prompts["plan-and-solve"],
     prompts["thread-of-thought"],
 ]
 
+# creating prompt objects
 zero_shot_baseline = Prompt("0-Shot Vanilla", baseline_prompts[0], 1)
 zero_shot_CoT = Prompt("0-Shot CoT", zero_shot_cot_prompts[0], 2, CoT=True)
 few_shot_baseline = Prompt("Few-Shot Vanilla", baseline_prompts[1], 2, shots=True)
@@ -42,7 +47,7 @@ model = "gpt-3.5-turbo"
 examples = 10  # number of examples to test
 start = 0  # start index for dataset
 log_interval = 25  # log interval for creatings jsons of results by query
-max_toks = 500
+max_toks = 500  # max tokens for query
 rereading = False  # if true, will "reread" the question to the LM at query time
 return_json = False
 SEED = 42

@@ -15,6 +15,7 @@ import pandas as pd
 import logging
 import random
 import numpy as np
+from openai.types.chat.chat_completion import ChatCompletion
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -22,7 +23,9 @@ logging.getLogger("httpx").setLevel(
     logging.WARNING
 )  # Ensure success messages from httpx are not printed to console
 
-with open("data/mmlu_configs.json", "r") as file:  # load all MMLU configs
+with open(
+    "data/mmlu_configs.json", "r"
+) as file:  # load all MMLU configs ex. "high_school_chemistry"
     mmlu_configs = json.load(file)["configs"]
 
 
@@ -30,11 +33,13 @@ with open("data/mmlu_configs.json", "r") as file:  # load all MMLU configs
     wait=wait_random_exponential(min=1, max=60),
     stop=stop_after_attempt(20),
 )
-def query_model_with_backoff(**kwargs):
+def query_model_with_backoff(**kwargs: dict) -> ChatCompletion:
     """
     Queries the model with backoff and logs if any errors occur.
     :param kwargs: The arguments to pass to the query.
+    :type kwargs: dict
     :return: The response from the API.
+    :rtype: ChatCompletion
     """
     try:
         return openai.chat.completions.create(**kwargs)
@@ -52,18 +57,27 @@ def query_model(
     rereading: bool = False,
     seed: int = 42,
     temperature: float = 0.0,
-) -> dict:
+) -> ChatCompletion:
     """
     Query the OpenAI API.
     :param prompt: The prompt to use.
+    :type prompt: str
     :param question: The question to use from the dataset.
+    :type question: str
     :param model_name: The OpenAI model to use.
+    :type model_name: str
     :param output_tokens: The maximum number of output tokens to generate.
+    :type output_tokens: int
     :param return_json: Whether to return the response as a JSON.
+    :type return_json: bool
     :param rereading: Whether to reread the question to the LM at query time.
+    :type rereading: bool
     :param seed: The seed to use for the random number generator.
+    :type seed: int
     :param temperature: The temperature to use for the LM.
+    :type temperature: float
     :return: The response from the API.
+    :rtype: ChatCompletion
     """
     if rereading:  # if we are rereading the question to the LM
         messages = [
@@ -94,20 +108,24 @@ def query_model(
         return response
 
 
-def evaluate_mmlu_response(
-    response: dict, correct_answer: str, json_mode: bool
-) -> bool:
+def evaluate_mmlu_response(response: dict, correct_answer: str, json_mode: bool) -> str:
     """
     Evaluate the response from the API for a MMLU question and return whether it is correct.
     :param response: The response from the API.
+    :type response: dict
     :param correct_answer: The correct answer to the question taken from the dataset.
+    :type correct_answer: str
     :param json_mode: Whether the response is in JSON mode.
-    :return: Whether the response is correct.
+    :type json_mode: bool
+    :return: "correct", "incorrect" or "under review".
+    :rtype: str
     """
     if json_mode:
         try:
             json_response = json.loads(response.message.content)
-            return json_response["answer"] == correct_answer
+            return (
+                "correct" if json_response["answer"] == correct_answer else "incorrect"
+            )
         except JSONDecodeError as e:
             print(f"JSONDecodeError: {e}")
             print("Error occurred at: Line {}, Column {}".format(e.lineno, e.colno))
@@ -115,7 +133,7 @@ def evaluate_mmlu_response(
                 "Problematic text snippet: ",
                 response.message.content[max(0, e.pos - 50) : e.pos + 50],
             )
-            return False
+            return
     else:
         # Find all capital letters A-D surrounded by parentheses
         all_letters_in_response = find_parentheses_with_letters(
@@ -153,12 +171,19 @@ def evaluate_prompts(
     """
     Evaluate a list of prompts on a dataset and return the results.
     :param prompts: The prompts to use.
+    :type prompts: List[Prompt]
     :param dataset: The dataset to use. This will be "gsm8k" for the GSM-8k dataset.
+    :type dataset: str
     :param config_name: The configuration name to use. This will be "main" for the GSM-8k dataset.
+    :type config_name: str
     :param split: The split of the dataset to use. One of the splits for the GSM-8k dataset is "test".
+    :type split: str
     :param model_name: The OpenAI model to use (ex. "gpt-4").
+    :type model_name: str
     :param examples: The number of examples to evaluate, 1 by default.
+    :type examples: None or int
     :return: The results of the evaluation.
+    :rtype: dict
     """
 
     query_count = 0
@@ -211,7 +236,9 @@ def evaluate_prompts(
                         example["C"],
                         example["D"],
                     )  # set variables for question choices
-                    if prompt.format_num == 1:
+                    if (
+                        prompt.format_num == 1
+                    ):  # first prompt format featuring double colons and dashes
                         multiple_choice_question = """Problem \n\t{question}\n Options \n\t\n(A)::{choice_A} -- (B)::{choice_B} -- (C)::{choice_C} -- (D)::{choice_D}\n Answer\n\t""".format(
                             question=question,
                             choice_A=choice_A,
@@ -219,7 +246,9 @@ def evaluate_prompts(
                             choice_C=choice_C,
                             choice_D=choice_D,
                         )
-                    elif prompt.format_num == 2:
+                    elif (
+                        prompt.format_num == 2
+                    ):  # second prompt format featuring double colons and newlines
                         multiple_choice_question = """PROBLEM::{question}, OPTIONS:: \n(A): {choice_A} \n(B): {choice_B} \n(C): {choice_C} \n(D): {choice_D}, ANSWER::""".format(
                             question=question,
                             choice_A=choice_A,
@@ -242,7 +271,7 @@ def evaluate_prompts(
                     )
                     end_time = time.time()
                     query_count += 1
-                    wall_time = end_time - start_time
+                    wall_time = end_time - start_time  # calculate wall time
                     information["total_wall_time"] += wall_time
                     information["total_input_tokens"] += response.usage.prompt_tokens
                     information[
@@ -253,6 +282,7 @@ def evaluate_prompts(
                         response.choices[0], correct_answer, json_mode
                     )
 
+                    # if we are running JSON mode, we want to add a note to the prompt to remind the LM to return a JSON
                     if json_mode:
                         multiple_choice_question = (
                             multiple_choice_question
@@ -279,6 +309,7 @@ def evaluate_prompts(
                     )
                     results[prompt.name]["total"] += 1
                     results[prompt.name][eval_result] += 1
+
                     # write results if necessary
                     if query_count % log_interval == 0:
                         try:
@@ -302,8 +333,12 @@ def extract_numbers(string: str) -> List[int]:
     """
     Extract the number from a string that can take any of the following forms:
     "####1,000", "####1,000.00", "####$1,000", "####$1,000.00", "####1000", "####1000.00", "####$1000", "####$1000.00", "#### 1,000", "#### 1,000.00", "#### 1000", "#### 1000.00"
-    param string: The string to extract the number from.
-    return: The extracted number.
+    This function was used when GSM8K was supported.
+
+    :param string: The string to extract the number from.
+    :type string: str
+    :return: The extracted number.
+    :rtype: List[int]
     """
     # Remove commas from the string
     string_without_commas = string.replace(",", "")
@@ -323,7 +358,9 @@ def response_to_dict(response):
     """
     Convert the response from the API to a dictionary.
     :param response: The response from the API.
+    :type response: ChatCompletion
     :return: The response as a dictionary.
+    :rtype: dict
     """
     # Extract relevant data from the response
     response_data = {
@@ -357,9 +394,13 @@ def write_to_file(data, count, log_interval=25):
     """
     Writes the results to a JSON file.
     :param data: The data to write to the file.
+    :type data: dict
     :param count: The number of queries that have been made.
+    :type count: int
     :param log_interval: The interval of queries at which to write to the file.
-    :returns None
+    :type log_interval: int
+    :return: None
+    :rtype: None
     """
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     file_path = f"data/benchmarking/eval_results_{current_datetime}_part_{((count//log_interval))}.json"
@@ -372,8 +413,11 @@ def load_mmlu(configs: List[str], split: str) -> pd.DataFrame:
     """
     Loads the MMLU dataset into a DataFrame.
     :param configs: The list of configs to load.
+    :type configs: List[str]
     :param split: The split of the dataset to load.
-    :returns pd.DataFrame: The loaded DataFrame.
+    :type split: str
+    :return: The loaded DataFrame.
+    :rtype: pd.DataFrame
     """
     column_names = ["input", "A", "B", "C", "D", "answer"]
 
@@ -400,7 +444,9 @@ def find_quotes_with_letters(text):
     """
     Finds letters A-D surrounded by quotes.
     :param text: The text to search.
-    :returns List[str]: The list of letters found.
+    :type text: str
+    :return List[str]: The list of letters found.
+    :rtype: List[str]
     """
     pattern = r'["\']([A-D])["\']'
     matches = re.findall(pattern, text)
@@ -411,7 +457,9 @@ def find_parentheses_with_letters(text):
     """
     Finds letters A-D surrounded by parentheses.
     :param text: The text to search.
-    :returns List[str]: The list of letters found.
+    :type text: str
+    :return List[str]: The list of letters found.
+    :rtype: List[str]
     """
     pattern = r"\(\s*([A-D])\s*\)"
     matches = re.findall(pattern, text)
@@ -422,7 +470,9 @@ def sample_string(list: List[str]):
     """
     Retrieves a random string from a list.
     :param list: The list to sample from.
+    :type: List[str]
     :returns str: The sampled string.
+    :rtype: str
     """
     return list[random.randint(0, len(list) - 1)]
 
@@ -450,10 +500,15 @@ class Prompt:
         """
         Creates a new Prompt object.
         :param name: The name of the prompt.
+        :type name: str
         :param base: The base prompt; usually either a baseline or a CoT 0-shot prompt.
+        :type base: str
         :param format_num: The format number of the prompt, 1 and 2 currently supported.
+        :type format_num: int
         :param shots: Whether the prompt contains few-shot examples.
-        :returns Prompt object.
+        :type shots: bool or None
+        :return the resulting Prompt object.
+        :rtype Prompt
         """
         self.base = base
         self.name = name
@@ -461,14 +516,18 @@ class Prompt:
         self.shots = shots
         self.CoT = CoT
 
-    def gen(self, category: str or None = None):
+    def gen(self, category: str or None = None) -> str:
         """
         Generates a text prompt from the prompt object.
         :param category: The MMLU category to use for few-shot examples.
-        :returns str: The generated prompt.
+        :type category: str or None
+        :return str: The generated prompt.
+        :rtype str
         """
         shots = None
-        if category:
+        if (
+            category
+        ):  # if an MMLU category is provided, category only provided for few-shot prompts
             all_shots = {
                 1: {  # few-shot prompts with format 1
                     "STEM": [
@@ -531,9 +590,11 @@ class Prompt:
                     ],
                 },
             }
-            shots = all_shots[self.format_num][mmlu_split[category]]
+            shots = all_shots[self.format_num][
+                mmlu_split[category]
+            ]  # get the specific few-shot prompt set for the MMLU category group of the question
 
-        if shots:
+        if shots:  # if this is a few-shot prompt
             return """{base}\n{shot1}\n{shot2}\n{shot3}\n{shot4}\n{shot5}\n""".format(
                 base=self.base,
                 shot1=shots[0],
@@ -542,21 +603,21 @@ class Prompt:
                 shot4=shots[3],
                 shot5=shots[4],
             )
-        elif self.CoT:
+        elif self.CoT:  # if this is a Chain-of-Thought prompt
             return ""
-        elif self.base:
+        elif self.base:  # if this is just a baseline prompt
             return "{base}".format(base=self.base)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.prompt
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.prompt
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.prompt)
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self.prompt == other.prompt
 
 
