@@ -31,6 +31,11 @@ with open("data/mmlu_configs.json", "r") as file:  # load all MMLU configs
     stop=stop_after_attempt(20),
 )
 def query_model_with_backoff(**kwargs):
+    """
+    Queries the model with backoff and logs if any errors occur.
+    :param kwargs: The arguments to pass to the query.
+    :return: The response from the API.
+    """
     try:
         return openai.chat.completions.create(**kwargs)
     except Exception as e:
@@ -176,7 +181,9 @@ def evaluate_prompts(
     if dataset == "mmlu":
         df = load_mmlu(configs=mmlu_configs, split=split)
         # Group by 'config' and then sample 20% of each subset
-        reduced_df = df.groupby('config').apply(lambda x: x.sample(max(1, int(np.ceil(len(x) * 0.2))), random_state=42))
+        reduced_df = df.groupby("config").apply(
+            lambda x: x.sample(max(1, int(np.ceil(len(x) * 0.2))), random_state=42)
+        )
 
         # shuffle the rows
         reduced_df = reduced_df.sample(frac=1, random_state=42)
@@ -220,6 +227,8 @@ def evaluate_prompts(
                             choice_C=choice_C,
                             choice_D=choice_D,
                         )
+                    if prompt.CoT:  # adding in the CoT prompt after "Answer:"
+                        multiple_choice_question += prompt.base
                     start_time = time.time()
                     response = query_model(
                         chosen_prompt,
@@ -421,6 +430,13 @@ def sample_string(list: List[str]):
 class Prompt:
     """
     This class represents a prompt and holds the few-shot prompts for each MMLU category.
+    The format number of the prompt corresponds to the following formats:
+
+    1.
+    Problem \n\t{}\n Options \n\t\n(A)::{} -- (B)::{} -- (C)::{}-- (D)::{}\n Answer\n\t{}
+
+    2.
+    PROBLEM::{}, OPTIONS:: \n(A): {} \n(B): {} \n(C): {} \n(D): {}, ANSWER::{}
     """
 
     def __init__(
@@ -429,6 +445,7 @@ class Prompt:
         base: str,
         format_num: int,
         shots: bool or None = None,
+        CoT: bool or None = None,
     ):
         """
         Creates a new Prompt object.
@@ -442,6 +459,7 @@ class Prompt:
         self.name = name
         self.format_num = format_num
         self.shots = shots
+        self.CoT = CoT
 
     def gen(self, category: str or None = None):
         """
@@ -524,6 +542,8 @@ class Prompt:
                 shot4=shots[3],
                 shot5=shots[4],
             )
+        elif self.CoT:
+            return ""
         elif self.base:
             return "{base}".format(base=self.base)
 

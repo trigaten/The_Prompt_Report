@@ -25,8 +25,8 @@ zero_shot_cot_prompts = [
 ]
 
 zero_shot_baseline = Prompt("0-Shot Vanilla", baseline_prompts[0], 1)
-zero_shot_CoT = Prompt("0-Shot CoT", zero_shot_cot_prompts[0], 2)
-few_shot_baseline = Prompt("Few-Shot Vanilla", baseline_prompts[1], 2, True)
+zero_shot_CoT = Prompt("0-Shot CoT", zero_shot_cot_prompts[0], 2, CoT=True)
+few_shot_baseline = Prompt("Few-Shot Vanilla", baseline_prompts[1], 2, shots=True)
 
 prompts_to_test = [
     zero_shot_baseline,
@@ -39,10 +39,10 @@ config_name = None  # main if gs8k, None if mmlu
 split = "test"
 # model = "gpt-4-1106-preview"
 model = "gpt-3.5-turbo"
-examples = 3  # number of examples to test
+examples = 10  # number of examples to test
 start = 0  # start index for dataset
 log_interval = 25  # log interval for creatings jsons of results by query
-max_toks = 300
+max_toks = 500
 rereading = False  # if true, will "reread" the question to the LM at query time
 return_json = False
 SEED = 42
