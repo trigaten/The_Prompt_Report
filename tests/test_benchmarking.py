@@ -6,6 +6,7 @@ from prompt_systematic_review.benchmarking import (
     response_to_dict,
     load_mmlu,
     find_quotes_with_letters,
+    find_parentheses_with_letters,
 )
 
 import pytest
@@ -20,6 +21,7 @@ import json
 def api_key():
     load_dotenv(dotenv_path="./.env")  # Adjust the path as needed
     return os.getenv("OPENAI_API_KEY")
+
 
 @pytest.mark.API_test
 def test_json_output(api_key):
@@ -150,27 +152,12 @@ def test_load_mmlu():
     with open("data/mmlu_configs.json", "r") as file:
         mmlu_configs = json.load(file)["configs"]
     df = load_mmlu(mmlu_configs, "test")
-    
-    assert (
-        df.iloc[0]["input"]
-        == "When was the telescope invented by Galileo?"
-    )
-    assert (
-        df.iloc[0].A
-        == "1409"
-    )
-    assert (
-        df.iloc[0].B
-        == "1509"
-    )
-    assert (
-        df.iloc[0].C
-        == "1609"
-    )
-    assert (
-        df.iloc[0].D
-        == "1709"
-    )
+
+    assert df.iloc[0]["input"] == "When was the telescope invented by Galileo?"
+    assert df.iloc[0].A == "1409"
+    assert df.iloc[0].B == "1509"
+    assert df.iloc[0].C == "1609"
+    assert df.iloc[0].D == "1709"
     assert df.iloc[0].answer == "C"
     assert df.iloc[0].config == "astronomy"
     assert len(df) == 13911
@@ -184,7 +171,7 @@ def test_modular_prompts():
         assert isinstance(prompt, str)
         assert len(prompt) > 0
         assert isinstance(prompt_name, str)
-        
+
 
 def test_find_quotes_with_letters():
     answer = "A"
@@ -204,3 +191,86 @@ def test_find_quotes_with_letters():
 
     answer = '"A""B""A"'
     assert find_quotes_with_letters(answer) == ["A", "B", "A"]
+
+
+def test_find_parentheses_between_letters():
+    answer = "A"
+    assert find_parentheses_with_letters(answer) == []
+
+    answer = "A. 8"
+    assert find_parentheses_with_letters(answer) == []
+
+    answer = "'a'"
+    assert find_parentheses_with_letters(answer) == []
+
+    answer = '"A"'
+    assert find_parentheses_with_letters(answer) == []
+
+    answer = "'A''B''C''D'"
+    assert find_parentheses_with_letters(answer) == []
+
+    answer = '"A""B""A"'
+    assert find_parentheses_with_letters(answer) == []
+
+    answer = "(A)"
+    assert find_parentheses_with_letters(answer) == ["A"]
+
+    answer = "(A)(B)(C)(D)"
+    assert find_parentheses_with_letters(answer) == ["A", "B", "C", "D"]
+
+    answer = "(A)(B)(A)"
+    assert find_parentheses_with_letters(answer) == ["A", "B", "A"]
+
+    answer = "(A)(B)(A)"
+    assert find_parentheses_with_letters(answer) == ["A", "B", "A"]
+
+    answer = "(A)(B)(A)"
+    assert find_parentheses_with_letters(answer) == ["A", "B", "A"]
+
+    answer = "(A)(B)(A)"
+    assert find_parentheses_with_letters(answer) == ["A", "B", "A"]
+
+    answer = "(A)(B)(A)"
+    assert find_parentheses_with_letters(answer) == ["A", "B", "A"]
+
+    answer = "(A)(B)(A)"
+    assert find_parentheses_with_letters(answer) == ["A", "B", "A"]
+
+    answer = "(A)(B)(A)"
+    assert find_parentheses_with_letters(answer) == ["A", "B", "A"]
+
+    answer = "(A)(B)(A)"
+    assert find_parentheses_with_letters(answer) == ["A", "B", "A"]
+
+    answer = "(A)(B)(A)"
+    assert find_parentheses_with_letters(answer) == ["A", "B", "A"]
+
+
+def test_evaluate_mmlu_response():
+    class Response:
+        def __init__(self, content):
+            self.message = Message(content)
+
+    class Message:
+        def __init__(self, content):
+            self.content = content
+
+    response = Response("(A)")
+    correct = "A"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
+
+    response = Response("(A)")
+    correct = "B"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "incorrect"
+
+    response = Response("(A)(B)")
+    correct = "A"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "under review"
+
+    response = Response("(A)(B)")
+    correct = "C"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "incorrect"
