@@ -1,9 +1,4 @@
 {
-    "mmlu baseline with reasoning": "Solve the following problem and return a JSON with the first entry being the reasoning behind the choice labeled as \"reasoning\", and the second entry being the answer to the question containing only the letter \"A\", \"B\", \"C\" or \"D\", labeled as \"answer\". Keep your reasoning as short and concise as possible.",
-    "mmlu baseline without reasoning": "Solve the following problem and return a JSON with the answer to the question containing only the letter \"A\", \"B\", \"C\" or \"D\", labeled as \"answer\".",
-    "mmlu baseline without json": "Solve the following problem and return the answer to the question containing only the letter \"A\", \"B\", \"C\" or \"D\" with quotes surrounding the correct letter.",
- 
-    "gsm8k baseline": "Solve the following problem and put your final answer after four hashtags like the following example: \nQuestion: What is (4 + 5) * 2?\nAnswer: 4 + 5 is 9, and 9 * 2 is ####18\n\n Make your response as short as possible.",
     "math rookie": "You are a math rookie.",
     "careless student": "You are a careless student.",
     "gardener": "You are a gardener.",
