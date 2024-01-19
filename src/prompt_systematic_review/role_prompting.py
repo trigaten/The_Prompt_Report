@@ -8,7 +8,6 @@ from json.decoder import JSONDecodeError
 from datetime import datetime
 from tenacity import (
     retry,
-    before_log,
     stop_after_attempt,
     wait_random_exponential,
 )
@@ -22,7 +21,7 @@ logging.getLogger("httpx").setLevel(
     logging.WARNING
 )  # Ensure success messages from httpx are not printed to console
 
-with open("data/mmlu_configs.json", "r") as file:
+with open("data/mmlu_configs.json", "r") as file:  # load all MMLU configs
     mmlu_configs = json.load(file)["configs"]
 
 
@@ -49,15 +48,18 @@ def query_model(
     temperature: float = 0.0,
 ) -> dict:
     """
-    Query the OpenAI API with a timeout.
+    Query the OpenAI API.
     :param prompt: The prompt to use.
     :param question: The question to use from the dataset.
     :param model_name: The OpenAI model to use.
     :param output_tokens: The maximum number of output tokens to generate.
-    :param timeout: Timeout for the request in seconds.
-    :return: The response from the API or None if timeout occurs.
+    :param return_json: Whether to return the response as a JSON.
+    :param rereading: Whether to reread the question to the LM at query time.
+    :param seed: The seed to use for the random number generator.
+    :param temperature: The temperature to use for the LM.
+    :return: The response from the API.
     """
-    if rereading:
+    if rereading:  # if we are rereading the question to the LM
         messages = [
             {"role": "user", "content": prompt + question + "\n\n" + question},
         ]
@@ -86,22 +88,6 @@ def query_model(
         return response
 
 
-def evaluate_gsm8k_response(response: dict, correct_answer: str) -> bool:
-    """
-    Evaluate the response from the API for a GSM8K question and return whether it is correct.
-    :param response: The response from the API.
-    :param correct_answer: The correct answer to the question taken from the dataset.
-    :return: Whether the response is correct.
-    """
-    marked_nums_in_response = extract_numbers(response.message.content)
-    if len(marked_nums_in_response) == 0:
-        return False
-    else:
-        final_answer = extract_numbers(response.message.content)[-1]
-    correct = extract_numbers(correct_answer)[-1]
-    return final_answer == correct
-
-
 def evaluate_mmlu_response(
     response: dict, correct_answer: str, json_mode: bool
 ) -> bool:
@@ -109,6 +95,7 @@ def evaluate_mmlu_response(
     Evaluate the response from the API for a MMLU question and return whether it is correct.
     :param response: The response from the API.
     :param correct_answer: The correct answer to the question taken from the dataset.
+    :param json_mode: Whether the response is in JSON mode.
     :return: Whether the response is correct.
     """
     if json_mode:
@@ -124,6 +111,7 @@ def evaluate_mmlu_response(
             )
             return False
     else:
+        # Find all capital letters A-D surrounded by parentheses
         all_letters_in_response = find_parentheses_with_letters(
             response.message.content
         )
@@ -170,8 +158,6 @@ def evaluate_prompts(
     query_count = 0
     results = {
         prompt.name: {"correct": 0, "under review": 0, "incorrect": 0, "total": 0}
-        if isinstance(prompt, PromptMaker)
-        else prompt
         for prompt in prompts
     }
     information = {
@@ -186,114 +172,66 @@ def evaluate_prompts(
         "total_wall_time": 0,
     }
 
-    if dataset == "gsm8k":
-        data = load_hf_dataset(dataset_name=dataset, name=config_name, split=split)
-
-        for i, item in enumerate(data):
-            if i >= start_index:
-                question = item["question"]
-                correct_answer = item["answer"]
-                for prompt in prompts:
-                    if isinstance(prompt, Prompt):
-                        chosen_prompt = prompt.gen()
-                    else:
-                        chosen_prompt = prompt
-                    start_time = time.time()
-                    response = query_model(
-                        chosen_prompt,
-                        question,
-                        model_name=model_name,
-                        output_tokens=max_tokens,
-                        return_json=json_mode,
-                        rereading=reread,
-                        seed=seed,
-                        temperature=temperature,
-                    )
-                    query_count += 1
-                    end_time = time.time()
-                    wall_time = end_time - start_time
-                    information["total_wall_time"] += wall_time
-                    information["total_input_tokens"] += response.usage.prompt_tokens
-                    information[
-                        "total_output_tokens"
-                    ] += response.usage.completion_tokens
-                    response_dict = response_to_dict(response)
-                    is_correct = evaluate_gsm8k_response(
-                        response.choices[0], correct_answer
-                    )
-                    information["calls"].append(
-                        {
-                            "prompt": chosen_prompt,
-                            "question": question,
-                            "correct_answer": correct_answer,
-                            "response": response_dict,
-                            "marked_correct": is_correct,
-                            "wall_time": wall_time,
-                        }
-                    )
-                    results[chosen_prompt]["total"] += 1
-                    if is_correct:
-                        results[chosen_prompt]["correct"] += 1
-                    if query_count % log_interval == 0:
-                        try:
-                            write_to_file(
-                                [results, information], query_count, log_interval
-                            )
-                        except Exception as e:
-                            print(f"Error writing to file: {e}")
-
-            if examples and i + 1 == examples + start_index:
-                break
-        return results, information
-
-    elif dataset == "mmlu":
+    if dataset == "mmlu":
         df = load_mmlu(configs=mmlu_configs, split=split)
 
         for i, example in df.iterrows():
             if i >= start_index:
+                # extract information from the example
                 question = example["input"]
                 correct_answer = example["answer"]
-                choice_A, choice_B, choice_C, choice_D = (
-                    example["A"],
-                    example["B"],
-                    example["C"],
-                    example["D"],
-                )
-                multiple_choice_question = """Question: {question}\nChoices:\n(A) {choice_A}\n(B) {choice_B}\n(C) {choice_C}\n(D) {choice_D}\nAnswer:""".format(
-                    question=question,
-                    choice_A=choice_A,
-                    choice_B=choice_B,
-                    choice_C=choice_C,
-                    choice_D=choice_D,
-                )
                 for prompt in prompts:
-                    if isinstance(prompt, PromptMaker):
-                        if prompt.few_shots:
+                    # check if prompt object
+                    if isinstance(prompt, Prompt):
+                        if prompt.shots:  # if the prompt contains few-shot examples
+                            # extract MMLU category from dataframe row
                             category = example["config"]
                             chosen_prompt = prompt.gen(category)
-                        else:
+                        else:  # if no few-shot examples
                             chosen_prompt = prompt.gen()
-                    else:
-                        chosen_prompt = prompt
+                    choice_A, choice_B, choice_C, choice_D = (
+                        example["A"],
+                        example["B"],
+                        example["C"],
+                        example["D"],
+                    )  # set variables for question choices
+                    if prompt.format_num == 1:
+                        multiple_choice_question = """Problem \n\t{question}\n Options \n\t\n(A)::{choice_A} -- (B)::{choice_B} -- (C)::{choice_C} -- (D)::{choice_D}\n Answer\n\t""".format(
+                            question=question,
+                            choice_A=choice_A,
+                            choice_B=choice_B,
+                            choice_C=choice_C,
+                            choice_D=choice_D,
+                        )
+                    elif prompt.format_num == 2:
+                        multiple_choice_question = """PROBLEM::{question}, OPTIONS:: \n(A): {choice_A} \n(B): {choice_B} \n(C): {choice_C} \n(D): {choice_D}, ANSWER::""".format(
+                            question=question,
+                            choice_A=choice_A,
+                            choice_B=choice_B,
+                            choice_C=choice_C,
+                            choice_D=choice_D,
+                        )
                     start_time = time.time()
                     response = query_model(
-                        chosen_prompt.prompt,
+                        chosen_prompt,
                         multiple_choice_question,
                         model_name=model_name,
                         output_tokens=max_tokens,
                         return_json=json_mode,
                         rereading=reread,
+                        temperature=temperature,
+                        seed=seed,
                     )
                     end_time = time.time()
-                    wall_time = end_time - start_time
                     query_count += 1
+                    wall_time = end_time - start_time
                     information["total_wall_time"] += wall_time
                     information["total_input_tokens"] += response.usage.prompt_tokens
                     information[
                         "total_output_tokens"
                     ] += response.usage.completion_tokens
                     response_dict = response_to_dict(response)
-                    eval_result = evaluate_mmlu_response(
+                    eval_result = evaluate_mmlu_response(  # evaluates the response to "correct", "incorrect" or "under review"
                         response.choices[0], correct_answer, json_mode
                     )
 
@@ -303,13 +241,14 @@ def evaluate_prompts(
                             + '\nRemember to return a JSON with the answer to the question containing only the letter "A", "B", "C" or "D", labeled as "answer".'
                         )
 
+                    # record information about the query
                     information["calls"].append(
                         {
                             "prompt_name": prompt.name,
-                            "prompt": chosen_prompt.prompt,
+                            "prompt": chosen_prompt,
                             "question": "Question: "
                             + multiple_choice_question
-                            + "\n"
+                            + "\n\n"
                             + multiple_choice_question
                             if reread
                             else multiple_choice_question,
@@ -321,12 +260,8 @@ def evaluate_prompts(
                         }
                     )
                     results[prompt.name]["total"] += 1
-                    if eval_result == "correct":
-                        results[prompt.name]["correct"] += 1
-                    elif eval_result == "under review":
-                        results[prompt.name]["under review"] += 1
-                    elif eval_result == "incorrect":
-                        results[prompt.name]["incorrect"] += 1
+                    results[prompt.name][eval_result] += 1
+                    # write results if necessary
                     if query_count % log_interval == 0:
                         try:
                             write_to_file(
@@ -334,7 +269,9 @@ def evaluate_prompts(
                             )
                         except Exception as e:
                             print(f"Error writing to file: {e}")
-            if examples and i + 1 == examples + start_index:
+            if (
+                examples and i + 1 == examples + start_index
+            ):  # if we have reached the number of examples we want to evaluate
                 break
         return results, information
 
@@ -365,6 +302,11 @@ def extract_numbers(string: str) -> List[int]:
 
 
 def response_to_dict(response):
+    """
+    Convert the response from the API to a dictionary.
+    :param response: The response from the API.
+    :return: The response as a dictionary.
+    """
     # Extract relevant data from the response
     response_data = {
         "id": response.id,
@@ -394,6 +336,13 @@ def response_to_dict(response):
 
 
 def write_to_file(data, count, log_interval=25):
+    """
+    Writes the results to a JSON file.
+    :param data: The data to write to the file.
+    :param count: The number of queries that have been made.
+    :param log_interval: The interval of queries at which to write to the file.
+    :returns None
+    """
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     file_path = f"data/benchmarking/eval_results_{current_datetime}_part_{((count//log_interval))}.json"
     with open(file_path, "w") as json_file:
@@ -402,6 +351,12 @@ def write_to_file(data, count, log_interval=25):
 
 
 def load_mmlu(configs: List[str], split: str) -> pd.DataFrame:
+    """
+    Loads the MMLU dataset into a DataFrame.
+    :param configs: The list of configs to load.
+    :param split: The split of the dataset to load.
+    :returns pd.DataFrame: The loaded DataFrame.
+    """
     column_names = ["input", "A", "B", "C", "D", "answer"]
 
     # List to store each DataFrame
@@ -424,173 +379,144 @@ def load_mmlu(configs: List[str], split: str) -> pd.DataFrame:
 
 
 def find_quotes_with_letters(text):
+    """
+    Finds letters A-D surrounded by quotes.
+    :param text: The text to search.
+    :returns List[str]: The list of letters found.
+    """
     pattern = r'["\']([A-D])["\']'
     matches = re.findall(pattern, text)
     return matches
 
 
 def find_parentheses_with_letters(text):
+    """
+    Finds letters A-D surrounded by parentheses.
+    :param text: The text to search.
+    :returns List[str]: The list of letters found.
+    """
     pattern = r"\(\s*([A-D])\s*\)"
     matches = re.findall(pattern, text)
     return matches
 
 
-
 def sample_string(list: List[str]):
+    """
+    Retrieves a random string from a list.
+    :param list: The list to sample from.
+    :returns str: The sampled string.
+    """
     return list[random.randint(0, len(list) - 1)]
 
 
-class PromptMaker:
+class Prompt:
+    """
+    This class represents a prompt and holds the few-shot prompts for each MMLU category.
+    """
+
     def __init__(
         self,
         name: str,
-        vanillas: str or List[str] or None,
-        instructions: str or List[str] or None = None,
-        spacing: str or None = None,
-        few_shots: str or List[str] or None = None,
-        randomize_shots: bool = False,
+        base: str,
+        format_num: int,
+        shots: bool or None = None,
     ):
-        '''
-        This class holds the specifications for prompts that are generated with a degree of randomness.
+        """
+        Creates a new Prompt object.
         :param name: The name of the prompt.
-        :param vanillas: The baseline prompt.
-        :param instructions: The extra instructions for the prompt. This is where 0-shot CoT prompts are specified.
-        :param spacing: The spacing between the prompt pieces.
-        :param few_shots: The few-shot prompts. This is where MMLU prompts are specified.
-        :param randomize_shots: Whether to randomize the order of the few-shot prompts.
-        :returns PromptMaker: A PromptMaker instance.
-        '''
+        :param base: The base prompt; usually either a baseline or a CoT 0-shot prompt.
+        :param format_num: The format number of the prompt, 1 and 2 currently supported.
+        :param shots: Whether the prompt contains few-shot examples.
+        :returns Prompt object.
+        """
+        self.base = base
         self.name = name
-        self.vanillas = vanillas
-        self.spacing = spacing
-        self.instructions = instructions
-        self.randomize_shots = randomize_shots
-        if few_shots == "MMLU":
-            self.few_shots = {
-                "STEM": [
-                    "Question: A 0.217 g sample of HgO (molar mass = 217 g) reacts with excess iodide ions according to the reaction shown above. Titration of the resulting solution requires how many mL of 0.10 M HCl to reach equivalence point?\nChoices:\n(A) 1.0 mL\n(B) 10 mL\n(C) 20 mL\n(D) 50 mL\nAnswer: (C)",
-                    "Question: Many Web browsers allow users to open anonymous windows. During a browsing session in an anonymous window, the browser does not record a browsing history or a list of downloaded files. When the anonymous window is exited, cookies created during the session are deleted. Which of the following statements about browsing sessions in an anonymous window is true?\nChoices:\n(A) The activities of a user browsing in an anonymous window will not be visible to people who monitor the user's network, such as the system administrator.\n(B) Items placed in a Web store's shopping cart for future purchase during the anonymous browsing session will not be saved on the user's computer.\n(C) A user will not be able to log in to e-mail or social media accounts during the anonymous browsing session.\n(D) A user browsing in an anonymous window will be protected from viruses launched from any web sites visited or files downloaded.\nAnswer: (B)",
-                    "Question: A point pole has a strength of 4π * 10^-4 weber. The force in newtons on a point pole of 4π * 1.5 * 10^-4 weber placed at a distance of 10 cm from it will be\nChoices:\n(A) 15 N.\n(B) 20 N.\n(C) 7.5 N.\n(D) 3.75 N.\nAnswer: (A)",
-                    "Question: Joe was in charge of lights for a dance. The red light blinks every two seconds, the yellow light every three seconds, and the blue light every five seconds. If we include the very beginning and very end of the dance, how many times during a seven minute dance will all the lights come on at the same time? (Assume that all three lights blink simultaneously at the very beginning of the dance.)\nChoices:\n(A) 3\n(B) 5\n(C) 6\n(D) 15\nAnswer: (D)",
-                    "Question: The pleura\nChoices:\n(A) have no sensory innervation.\n(B) are separated by a 2 mm space.\n(C) extend into the neck.\n(D) are composed of respiratory epithelium.\nAnswer: (C)",
-                ],
-                "Humanities": [
-                    "Question: Turtles live long lives and are happy creatures, unless they are injured.\nChoices:\n(A) (L • H) ≡ I\n(B) (L • H) ∨ I\n(C) L • (H ∨ I)\n(D) L • (H ⊃ R)\nAnswer: (B)",
-                    "Question: A son owed a creditor $5,000. The son's father contacted the creditor and told him that he wanted to pay the son's debt. The father signed a document that stated the father would pay the son's debt at a rate of $500 a month for 10 months. The creditor made no written or oral commitment to forbear to sue the son to collect the $5,000 debt, and the father made no oral or written request for any such forbearance. For the next five months, the father made and the creditor accepted the $500 monthly payments as agreed. During that period, the creditor, in fact, did forbear to take any legal action against the son. However, the father then informed the creditor that he would make no further payments on the debt. Which of the following is the most persuasive argument that the father is liable to the creditor under the terms of their agreement?\nChoices:\n(A) The father's promise and the creditor's reliance thereon, if proved, gave rise to a valid claim by the creditor against the father based on the doctrine of promissory estoppel. \n(B) Because it was foreseeable that the father's promise would induce the creditor to forbear taking any action against the son, such forbearance was, as a matter of law, a bargained-for consideration for the father's promise. \n(C) The father's five payments to the creditor totaling $2,500 manifested a serious intent on the father's part to be contractually bound, and such manifestation is generally recognized as an effective substitute for consideration. \n(D) By assuming the antecedent debt obligation that the son owed to the creditor, the father became a surety whose promise to the creditor was enforceable, since it was in writing and supported by adequate consideration. \nAnswer: (A)",
-                    'Question: This question refers to the following information.\n""Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.""\nThomas Paine, Common Sense, 1776\nWhich of the following ""miseries"" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?\nChoices:\n(A) Organized response to Bacon\'s Rebellion\n(B) Federal response to Shays\'s Rebellion\n(C) Federal response to Pontiac\'s Rebellion\n(D) Federal response to the Whiskey Rebellion\nAnswer: (D)',
-                    "Question: Which of the following is true of a valid categorical syllogism?\nChoices:\n(A) The minor premise must deny the antecedent\n(B) The major premise must affirm the consequent\n(C) The middle term must be used in at least one premise in a universal or unqualified sense\n(D) All of the above\nAnswer: (C)",
-                    "Question: How can the Upanishads be characterized?\nChoices:\n(A) Ritual texts\n(B) Philosophical texts\n(C) Hymns\n(D) Origin stories\nAnswer: (B)",
-                ],
-                "Social Sciences": [
-                    "Question: Which of the following is not a problem associated with official statistics on strike action?\nChoices:\n(A) most strikes go unnoticed by employers and the mass media\n(B) not all industrial disputes will be reported by the employer\n(C) the definition of strikes excludes those that involve fewer than ten workers or last less than one day\n(D) it is hard to compare strikes that were measured in different ways\nAnswer: (A)",
-                    "Question: The realm of policy decisions concerned primarily with relations between the United States and the rest of the world is known as\nChoices:\n(A) terrorism policy.\n(B) economic policy.\n(C) foreign policy.\n(D) international policy.\nAnswer: (C)",
-                    "Question: In terms of Hofstede’s (1980) five cultural dimensions, the United States scores at the top of the scale on:\nChoices:\n(A) individualism and power distance.\n(B) individualism.\n(C) power distance and masculinity.\n(D) uncertainty avoidance.\nAnswer: (B)",
-                    "Question: For a stationary autoregressive process, shocks will\nChoices:\n(A) Eventually die away\n(B) Persist indefinitely\n(C) Grow exponentially\n(D) Never occur\nAnswer: (A)",
-                    "Question: Which of the following statements is NOT accurate regarding the services provided by local governments in the United States?\nChoices:\n(A) Duplication of efforts occurs often.\n(B) Social problems of the central city spill over into the surrounding residential suburbs.\n(C) Inefficiency in providing services occurs often.\n(D) One neighborhood's efforts to reduce pollution are always supported by neighboring communities.\nAnswer: (D)",
-                ],
-                "Other": [
-                    "Question: In contrast to _______, _______ aim to reward favourable behaviour by companies. The success of such campaigns have been heightened through the use of ___________, which allow campaigns to facilitate the company in achieving _________ .\nChoices:\n(A) Buycotts, Boycotts, Blockchain technology, Charitable donations\n(B) Buycotts, Boycotts, Digital technology, Increased Sales\n(C) Boycotts, Buyalls, Blockchain technology, Charitable donations\n(D) Boycotts, Buycotts, Digital technology, Increased Sales\nAnswer: (D)",
-                    "Question: In the assessment of the hand function which of the following is true?\nChoices:\n(A) Abduction of the thumb is supplied by spinal root T2\n(B) Opposition of the thumb by opponens policis is supplied by spinal root T1\n(C) Finger adduction is supplied by the median nerve\n(D) Finger abduction is mediated by the palmar interossei\nAnswer: (B)",
-                    "Question: What characteristic is not a key feature of the 'open systems' model of management?\nChoices:\n(A) Morale\n(B) Innovation\n(C) Growth resource\n(D) Adaptation\nAnswer: (A)",
-                    "Question: When older adults move to a new state after retirement, which of the following is the more likely destination?\nChoices:\n(A) Texas\n(B) California\n(C) Hawaii\n(D) Vermont\nAnswer: (A)",
-                    "Question: Which of these songs was a Top 10 hit for the rock band The Police?\nChoices:\n(A) 'Radio Ga-Ga'\n(B) 'Ob-la-di Ob-la-da'\n(C) 'De Do Do Do De Da Da Da'\n(D) 'In-a-Gadda-Da-Vida'\nAnswer: (C)",
-                ],
-            }
-        else:
-            self.few_shots = None
-
-    def __str__(self):
-        return self.prompt
-
-    def __repr__(self):
-        return self.prompt
-
-    def __hash__(self):
-        prompt = ""
-        for i in self.instructions:
-            prompt += i
-        for f in self.few_shots:
-            prompt += f
-        for v in self.vanillas:
-            prompt += v
-        prompt += self.name
-        prompt += str(self.randomize_shots)
-        return hash(prompt)
-
-    def __eq__(self, other):
-        prompt1 = ""
-        for v in self.vanillas:
-            for i in self.instructions:
-                for f in self.few_shots:
-                    prompt1 += i + f + v + self.name + str(self.randomize_shots)
-        prompt2 = ""
-        for v in other.vanillas:
-            for i in other.instructions:
-                for f in other.few_shots:
-                    prompt2 += i + f + v + other.name + str(other.randomize_shots)
-        return prompt1 == prompt2
+        self.format_num = format_num
+        self.shots = shots
 
     def gen(self, category: str or None = None):
-        '''
-        Generates a prompt instance from a PromptMaker
-        :param category: The category of the prompt. This is used for MMLU prompts.
-        '''
-        
-        vanilla = sample_string(self.vanillas)
-        instruction = sample_string(self.instructions) if self.instructions else None
-        space = sample_string(self.spacing) if self.spacing else None
-        if self.few_shots:
-            shots = self.few_shots[mmlu_split[category]]
-            if self.randomize_shots:
-                random.shuffle(shots)
-        else:
-            shots = None
-        return Prompt(vanilla, instruction, space, shots)
+        """
+        Generates a text prompt from the prompt object.
+        :param category: The MMLU category to use for few-shot examples.
+        :returns str: The generated prompt.
+        """
+        shots = None
+        if category:
+            all_shots = {
+                1: {  # few-shot prompts with format 1
+                    "STEM": [
+                        "Problem \n\tA 0.217 g sample of HgO (molar mass = 217 g) reacts with excess iodide ions according to the reaction shown above. Titration of the resulting solution requires how many mL of 0.10 M HCl to reach equivalence point?\nOptions \n\t\n(A)::1.0 mL -- (B)::10 mL -- (C)::20 mL -- (D)::50 mL\n Answer\n\t(C)",
+                        "Problem \n\tMany Web browsers allow users to open anonymous windows. During a browsing session in an anonymous window, the browser does not record a browsing history or a list of downloaded files. When the anonymous window is exited, cookies created during the session are deleted. Which of the following statements about browsing sessions in an anonymous window is true?\nOptions \n\t\n(A)::The activities of a user browsing in an anonymous window will not be visible to people who monitor the user's network, such as the system administrator. -- (B)::Items placed in a Web store's shopping cart for future purchase during the anonymous browsing session will not be saved on the user's computer. -- (C)::A user will not be able to log in to e-mail or social media accounts during the anonymous browsing session. -- (D)::A user browsing in an anonymous window will be protected from viruses launched from any web sites visited or files downloaded.\n Answer\n\t(B)",
+                        "Problem \n\tA point pole has a strength of 4π * 10^-4 weber. The force in newtons on a point pole of 4π * 1.5 * 10^-4 weber placed at a distance of 10 cm from it will be\nOptions \n\t\n(A)::15 N. -- (B)::20 N. -- (C)::7.5 N. -- (D)::3.75 N.\n Answer\n\t(A)",
+                        "Problem \n\tJoe was in charge of lights for a dance. The red light blinks every two seconds, the yellow light every three seconds, and the blue light every five seconds. If we include the very beginning and very end of the dance, how many times during a seven minute dance will all the lights come on at the same time? (Assume that all three lights blink simultaneously at the very beginning of the dance.)\nOptions \n\t\n(A)::3 -- (B)::5 -- (C)::6 -- (D)::15\n Answer\n\t(D)",
+                        "Problem \n\tThe pleura\nOptions \n\t\n(A)::have no sensory innervation. -- (B)::are separated by a 2 mm space. -- (C)::extend into the neck. -- (D)::are composed of respiratory epithelium.\n Answer\n\t(C)",
+                    ],
+                    "Humanities": [
+                        "Problem \n\tTurtles live long lives and are happy creatures, unless they are injured.\nOptions \n\t\n(A)::(L • H) ≡ I -- (B)::(L • H) ∨ I -- (C)::L • (H ∨ I) -- (D)::L • (H ⊃ R)\n Answer\n\t(B)",
+                        "Problem \n\tA son owed a creditor $5,000. The son's father contacted the creditor and told him that he wanted to pay the son's debt. The father signed a document that stated the father would pay the son's debt at a rate of $500 a month for 10 months. The creditor made no written or oral commitment to forbear to sue the son to collect the $5,000 debt, and the father made no oral or written request for any such forbearance. For the next five months, the father made and the creditor accepted the $500 monthly payments as agreed. During that period, the creditor, in fact, did forbear to take any legal action against the son. However, the father then informed the creditor that he would make no further payments on the debt. Which of the following is the most persuasive argument that the father is liable to the creditor under the terms of their agreement?\nOptions \n\t\n(A)::The father's promise and the creditor's reliance thereon, if proved, gave rise to a valid claim by the creditor against the father based on the doctrine of promissory estoppel.  -- (B)::Because it was foreseeable that the father's promise would induce the creditor to forbear taking any action against the son, such forbearance was, as a matter of law, a bargained-for consideration for the father's promise.  -- (C)::The father's five payments to the creditor totaling $2,500 manifested a serious intent on the father's part to be contractually bound, and such manifestation is generally recognized as an effective substitute for consideration.  -- (D)::By assuming the antecedent debt obligation that the son owed to the creditor, the father became a surety whose promise to the creditor was enforceable, since it was in writing and supported by adequate consideration. \n Answer\n\t(A)",
+                        'Problem \n\tThis question refers to the following information.\n""Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.""\nThomas Paine, Common Sense, 1776\nWhich of the following ""miseries"" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?\nOptions \n\t\n(A)::Organized response to Bacon\'s Rebellion -- (B)::Federal response to Shays\'s Rebellion -- (C)::Federal response to Pontiac\'s Rebellion -- (D)::Federal response to the Whiskey Rebellion\n Answer\n\t(D)',
+                        "Problem \n\tWhich of the following is true of a valid categorical syllogism?\nOptions \n\t\n(A)::The minor premise must deny the antecedent -- (B)::The major premise must affirm the consequent -- (C)::The middle term must be used in at least one premise in a universal or unqualified sense -- (D)::All of the above\n Answer\n\t(C)",
+                        "Problem \n\tHow can the Upanishads be characterized?\nOptions \n\t\n(A)::Ritual texts -- (B)::Philosophical texts -- (C)::Hymns -- (D)::Origin stories\n Answer\n\t(B)",
+                    ],
+                    "Social Sciences": [
+                        "Problem \n\tWhich of the following is not a problem associated with official statistics on strike action?\nOptions \n\t\n(A)::most strikes go unnoticed by employers and the mass media -- (B)::not all industrial disputes will be reported by the employer -- (C)::the definition of strikes excludes those that involve fewer than ten workers or last less than one day -- (D)::it is hard to compare strikes that were measured in different ways\n Answer\n\t(A)",
+                        "Problem \n\tThe realm of policy decisions concerned primarily with relations between the United States and the rest of the world is known as\nOptions \n\t\n(A)::terrorism policy. -- (B)::economic policy. -- (C)::foreign policy. -- (D)::international policy.\n Answer\n\t(C)",
+                        "Problem \n\tIn terms of Hofstede’s (1980) five cultural dimensions, the United States scores at the top of the scale on:\nOptions \n\t\n(A)::individualism and power distance. -- (B)::individualism. -- (C)::power distance and masculinity. -- (D)::uncertainty avoidance.\n Answer\n\t(B)",
+                        "Problem \n\tFor a stationary autoregressive process, shocks will\nOptions \n\t\n(A)::Eventually die away -- (B)::Persist indefinitely -- (C)::Grow exponentially -- (D)::Never occur\n Answer\n\t(A)",
+                        "Problem \n\tWhich of the following statements is NOT accurate regarding the services provided by local governments in the United States?\nOptions \n\t\n(A)::Duplication of efforts occurs often. -- (B)::Social problems of the central city spill over into the surrounding residential suburbs. -- (C)::Inefficiency in providing services occurs often. -- (D)::One neighborhood's efforts to reduce pollution are always supported by neighboring communities.\n Answer\n\t(D)",
+                    ],
+                    "Other": [
+                        "Problem \n\tIn contrast to _______, _______ aim to reward favourable behaviour by companies. The success of such campaigns have been heightened through the use of ___________, which allow campaigns to facilitate the company in achieving _________ .\nOptions \n\t\n(A)::Buycotts, Boycotts, Blockchain technology, Charitable donations -- (B)::Buycotts, Boycotts, Digital technology, Increased Sales -- (C)::Boycotts, Buyalls, Blockchain technology, Charitable donations -- (D)::Boycotts, Buycotts, Digital technology, Increased Sales\n Answer\n\t(D)",
+                        "Problem \n\tIn the assessment of the hand function which of the following is true?\nOptions \n\t\n(A)::Abduction of the thumb is supplied by spinal root T2 -- (B)::Opposition of the thumb by opponens policis is supplied by spinal root T1 -- (C)::Finger adduction is supplied by the median nerve -- (D)::Finger abduction is mediated by the palmar interossei\n Answer\n\t(B)",
+                        "Problem \n\tWhat characteristic is not a key feature of the 'open systems' model of management?\nOptions \n\t\n(A)::Morale -- (B)::Innovation -- (C)::Growth resource -- (D)::Adaptation\n Answer\n\t(A)",
+                        "Problem \n\tWhen older adults move to a new state after retirement, which of the following is the more likely destination?\nOptions \n\t\n(A)::Texas -- (B)::California -- (C)::Hawaii -- (D)::Vermont\n Answer\n\t(A)",
+                        "Problem \n\tWhich of these songs was a Top 10 hit for the rock band The Police?\nOptions \n\t\n(A)::'Radio Ga-Ga' -- (B)::'Ob-la-di Ob-la-da' -- (C)::'De Do Do Do De Da Da Da' -- (D)::'In-a-Gadda-Da-Vida'\n Answer\n\t(C)",
+                    ],
+                },
+                2: {  # same few-shot prompts with format 2
+                    "STEM": [
+                        "PROBLEM::A 0.217 g sample of HgO (molar mass = 217 g) reacts with excess iodide ions according to the reaction shown above. Titration of the resulting solution requires how many mL of 0.10 M HCl to reach equivalence point?, OPTIONS:: \n(A): 1.0 mL\n(B): 10 mL\n(C): 20 mL\n(D): 50 mL, ANSWER::(C)",
+                        "PROBLEM::Many Web browsers allow users to open anonymous windows. During a browsing session in an anonymous window, the browser does not record a browsing history or a list of downloaded files. When the anonymous window is exited, cookies created during the session are deleted. Which of the following statements about browsing sessions in an anonymous window is true?, OPTIONS:: \n(A): The activities of a user browsing in an anonymous window will not be visible to people who monitor the user's network, such as the system administrator.\n(B): Items placed in a Web store's shopping cart for future purchase during the anonymous browsing session will not be saved on the user's computer.\n(C): A user will not be able to log in to e-mail or social media accounts during the anonymous browsing session.\n(D): A user browsing in an anonymous window will be protected from viruses launched from any web sites visited or files downloaded., ANSWER::(B)",
+                        "PROBLEM::A point pole has a strength of 4π * 10^-4 weber. The force in newtons on a point pole of 4π * 1.5 * 10^-4 weber placed at a distance of 10 cm from it will be, OPTIONS:: \n(A): 15 N.\n(B): 20 N.\n(C): 7.5 N.\n(D): 3.75 N., ANSWER::(A)",
+                        "PROBLEM::Joe was in charge of lights for a dance. The red light blinks every two seconds, the yellow light every three seconds, and the blue light every five seconds. If we include the very beginning and very end of the dance, how many times during a seven minute dance will all the lights come on at the same time? (Assume that all three lights blink simultaneously at the very beginning of the dance.), OPTIONS:: \n(A): 3\n(B): 5\n(C): 6\n(D): 15, ANSWER::(D)",
+                        "PROBLEM::The pleura, OPTIONS:: \n(A): have no sensory innervation.\n(B): are separated by a 2 mm space.\n(C): extend into the neck.\n(D): are composed of respiratory epithelium., ANSWER::(C)",
+                    ],
+                    "Humanities": [
+                        "PROBLEM::Turtles live long lives and are happy creatures, unless they are injured., OPTIONS:: \n(A): (L • H) ≡ I\n(B): (L • H) ∨ I\n(C): L • (H ∨ I)\n(D): L • (H ⊃ R), ANSWER::(B)",
+                        "PROBLEM::A son owed a creditor $5,000. The son's father contacted the creditor and told him that he wanted to pay the son's debt. The father signed a document that stated the father would pay the son's debt at a rate of $500 a month for 10 months. The creditor made no written or oral commitment to forbear to sue the son to collect the $5,000 debt, and the father made no oral or written request for any such forbearance. For the next five months, the father made and the creditor accepted the $500 monthly payments as agreed. During that period, the creditor, in fact, did forbear to take any legal action against the son. However, the father then informed the creditor that he would make no further payments on the debt. Which of the following is the most persuasive argument that the father is liable to the creditor under the terms of their agreement?, OPTIONS:: \n(A): The father's promise and the creditor's reliance thereon, if proved, gave rise to a valid claim by the creditor against the father based on the doctrine of promissory estoppel. \n(B): Because it was foreseeable that the father's promise would induce the creditor to forbear taking any action against the son, such forbearance was, as a matter of law, a bargained-for consideration for the father's promise. \n(C): The father's five payments to the creditor totaling $2,500 manifested a serious intent on the father's part to be contractually bound, and such manifestation is generally recognized as an effective substitute for consideration. \n(D): By assuming the antecedent debt obligation that the son owed to the creditor, the father became a surety whose promise to the creditor was enforceable, since it was in writing and supported by adequate consideration. , ANSWER::(A)",
+                        'PROBLEM::This question refers to the following information.\n""Society in every state is a blessing, but government even in its best state is but a necessary evil; in its worst state an intolerable one; for when we suffer, or are exposed to the same miseries by a government, which we might expect in a country without government, our calamity is heightened by reflecting that we furnish the means by which we suffer. Government, like dress, is the badge of lost innocence; the palaces of kings are built on the ruins of the bowers of paradise. For were the impulses of conscience clear, uniform, and irresistibly obeyed, man would need no other lawgiver; but that not being the case, he finds it necessary to surrender up a part of his property to furnish means for the protection of the rest; and this he is induced to do by the same prudence which in every other case advises him out of two evils to choose the least. Wherefore, security being the true design and end of government, it unanswerably follows that whatever form thereof appears most likely to ensure it to us, with the least expense and greatest benefit, is preferable to all others.""\nThomas Paine, Common Sense, 1776\nWhich of the following ""miseries"" alluded to above were most condemned by Anti-Federalists of the post-Revolutionary era?, OPTIONS:: \n(A): Organized response to Bacon\'s Rebellion\n(B): Federal response to Shays\'s Rebellion\n(C): Federal response to Pontiac\'s Rebellion\n(D): Federal response to the Whiskey Rebellion, ANSWER::(D)',
+                        "PROBLEM::Which of the following is true of a valid categorical syllogism?, OPTIONS:: \n(A): The minor premise must deny the antecedent\n(B): The major premise must affirm the consequent\n(C): The middle term must be used in at least one premise in a universal or unqualified sense\n(D): All of the above, ANSWER::(C)",
+                        "PROBLEM::How can the Upanishads be characterized?, OPTIONS:: \n(A): Ritual texts\n(B): Philosophical texts\n(C): Hymns\n(D): Origin stories, ANSWER::(B)",
+                    ],
+                    "Social Sciences": [
+                        "PROBLEM::Which of the following is not a problem associated with official statistics on strike action?, OPTIONS:: \n(A): most strikes go unnoticed by employers and the mass media\n(B): not all industrial disputes will be reported by the employer\n(C): the definition of strikes excludes those that involve fewer than ten workers or last less than one day\n(D): it is hard to compare strikes that were measured in different ways, ANSWER::(A)",
+                        "PROBLEM::The realm of policy decisions concerned primarily with relations between the United States and the rest of the world is known as, OPTIONS:: \n(A): terrorism policy.\n(B): economic policy.\n(C): foreign policy.\n(D): international policy., ANSWER::(C)",
+                        "PROBLEM::In terms of Hofstede’s (1980) five cultural dimensions, the United States scores at the top of the scale on:, OPTIONS:: \n(A): individualism and power distance.\n(B): individualism.\n(C): power distance and masculinity.\n(D): uncertainty avoidance., ANSWER::(B)",
+                        "PROBLEM::For a stationary autoregressive process, shocks will, OPTIONS:: \n(A): Eventually die away\n(B): Persist indefinitely\n(C): Grow exponentially\n(D): Never occur, ANSWER::(A)",
+                        "PROBLEM::Which of the following statements is NOT accurate regarding the services provided by local governments in the United States?, OPTIONS:: \n(A): Duplication of efforts occurs often.\n(B): Social problems of the central city spill over into the surrounding residential suburbs.\n(C): Inefficiency in providing services occurs often.\n(D): One neighborhood's efforts to reduce pollution are always supported by neighboring communities., ANSWER::(D)",
+                    ],
+                    "Other": [
+                        "PROBLEM::In contrast to _______, _______ aim to reward favourable behaviour by companies. The success of such campaigns have been heightened through the use of ___________, which allow campaigns to facilitate the company in achieving _________ ., OPTIONS:: \n(A): Buycotts, Boycotts, Blockchain technology, Charitable donations\n(B): Buycotts, Boycotts, Digital technology, Increased Sales\n(C): Boycotts, Buyalls, Blockchain technology, Charitable donations\n(D): Boycotts, Buycotts, Digital technology, Increased Sales, ANSWER::(D)",
+                        "PROBLEM::In the assessment of the hand function which of the following is true?, OPTIONS:: \n(A): Abduction of the thumb is supplied by spinal root T2\n(B): Opposition of the thumb by opponens policis is supplied by spinal root T1\n(C): Finger adduction is supplied by the median nerve\n(D): Finger abduction is mediated by the palmar interossei, ANSWER::(B)",
+                        "PROBLEM::What characteristic is not a key feature of the 'open systems' model of management?, OPTIONS:: \n(A): Morale\n(B): Innovation\n(C): Growth resource\n(D): Adaptation, ANSWER::(A)",
+                        "PROBLEM::When older adults move to a new state after retirement, which of the following is the more likely destination?, OPTIONS:: \n(A): Texas\n(B): California\n(C): Hawaii\n(D): Vermont, ANSWER::(A)",
+                        "PROBLEM::Which of these songs was a Top 10 hit for the rock band The Police?, OPTIONS:: \n(A): 'Radio Ga-Ga'\n(B): 'Ob-la-di Ob-la-da'\n(C): 'De Do Do Do De Da Da Da'\n(D): 'In-a-Gadda-Da-Vida', ANSWER::(C)",
+                    ],
+                },
+            }
+            shots = all_shots[self.format_num][mmlu_split[category]]
 
-class Prompt:
-    def __init__(
-        self,
-        vanilla: str,
-        instruction: str or None,
-        space: str or None,
-        shots: str or None,
-    ):
-        self.vanilla = vanilla
-        self.instruction = instruction
-        self.space = space
-        self.shots = shots
-        self.prompt = self.make_prompt()
-
-    def make_prompt(self):
-        if self.shots:
-            if self.vanilla and self.instruction:
-                return """{vanilla}{space}{instruction}{space}{shot1}{space}{shot2}{space}{shot3}{space}{shot4}{space}{shot5}{space}""".format(
-                    vanilla=self.vanilla,
-                    instruction=self.instruction,
-                    space=self.space,
-                    shot1=self.shots[0],
-                    shot2=self.shots[1],
-                    shot3=self.shots[2],
-                    shot4=self.shots[3],
-                    shot5=self.shots[4],
-                )
-            elif self.vanilla and not self.instruction:
-                return """{vanilla}{space}{shot1}{space}{shot2}{space}{shot3}{space}{shot4}{space}{shot5}{space}""".format(
-                    vanilla=self.vanilla,
-                    instruction=self.instruction,
-                    space=self.space,
-                    shot1=self.shots[0],
-                    shot2=self.shots[1],
-                    shot3=self.shots[2],
-                    shot4=self.shots[3],
-                    shot5=self.shots[4],
-                )
-        elif self.instruction and self.vanilla:
-            return "{vanilla}{space}{instruction}{space}".format(
-                vanilla=self.vanilla, instruction=self.instruction, space=self.space
+        if shots:
+            return """{base}\n{shot1}\n{shot2}\n{shot3}\n{shot4}\n{shot5}\n""".format(
+                base=self.base,
+                shot1=shots[0],
+                shot2=shots[1],
+                shot3=shots[2],
+                shot4=shots[3],
+                shot5=shots[4],
             )
-        else:
-            return self.vanilla
+        elif self.base:
+            return "{base}".format(base=self.base)
 
     def __str__(self):
         return self.prompt
@@ -603,9 +529,6 @@ class Prompt:
 
     def __eq__(self, other):
         return self.prompt == other.prompt
-
-    def gen(self):
-        return self.prompt
 
 
 mmlu_split = {
