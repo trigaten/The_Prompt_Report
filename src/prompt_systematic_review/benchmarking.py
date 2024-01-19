@@ -14,6 +14,7 @@ from tenacity import (
 import pandas as pd
 import logging
 import random
+import numpy as np
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -174,6 +175,14 @@ def evaluate_prompts(
 
     if dataset == "mmlu":
         df = load_mmlu(configs=mmlu_configs, split=split)
+        # Group by 'config' and then sample 20% of each subset
+        reduced_df = df.groupby('config').apply(lambda x: x.sample(max(1, int(np.ceil(len(x) * 0.2))), random_state=42))
+
+        # shuffle the rows
+        reduced_df = reduced_df.sample(frac=1, random_state=42)
+
+        # Reset index if needed
+        reduced_df.reset_index(drop=True, inplace=True)
 
         for i, example in df.iterrows():
             if i >= start_index:
