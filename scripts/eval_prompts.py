@@ -18,7 +18,11 @@ with open(
     prompts = json.load(file)
 
 baseline_prompts = [prompts["baseline1"], prompts["baseline2"], prompts["baseline3"]]
-zero_shot_cot_prompts = [prompts["Now, let's..."], prompts["plan-and-solve"], prompts["thread-of-thought"]]
+zero_shot_cot_prompts = [
+    prompts["Now, let's..."],
+    prompts["plan-and-solve"],
+    prompts["thread-of-thought"],
+]
 
 zero_shot_baseline = Prompt("0-Shot Vanilla", baseline_prompts[0], 1)
 zero_shot_CoT = Prompt("0-Shot CoT", zero_shot_cot_prompts[0], 2)
@@ -34,7 +38,7 @@ dataset = "mmlu"  # mmlu or gsm8k
 config_name = None  # main if gs8k, None if mmlu
 split = "test"
 # model = "gpt-4-1106-preview"
-model = 'gpt-3.5-turbo'
+model = "gpt-3.5-turbo"
 examples = 3  # number of examples to test
 start = 0  # start index for dataset
 log_interval = 25  # log interval for creatings jsons of results by query
