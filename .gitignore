@@ -17,3 +17,4 @@ papers
 /RP_eval_results_*.json
 scripts/master_papers.csv
 data/mmlu
+data/benchmarking/*
