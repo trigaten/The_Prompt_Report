@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 import json
-from prompt_systematic_review.role_prompting import PromptMaker, Prompt
+from prompt_systematic_review.role_prompting import Prompt
 
 load_dotenv(dotenv_path="./.env")  # load all entries from .env file
 openai.api_key = os.getenv("OPENAI_API_KEY")  # load openai key
@@ -17,36 +17,25 @@ with open(
 ) as file:  # load prompts from prompts.json to make prompts more modular.
     prompts = json.load(file)
 
-vanilla_prompts = [prompts["baseline1"], prompts["baseline2"], prompts["baseline3"]]
-cot_prompts = [
-    prompts["Now, let's..."],
-    prompts["plan-and-solve"],
-    prompts["thread-of-thought"],
-]
-spacing = ["\n\n", "\n\n", "\n\n"]
+baseline_prompts = [prompts["baseline1"], prompts["baseline2"], prompts["baseline3"]]
+zero_shot_cot_prompts = [prompts["Now, let's..."], prompts["plan-and-solve"], prompts["thread-of-thought"]]
 
-zero_shot_vanilla = PromptMaker("0-Shot Vanilla", vanilla_prompts, None, spacing)
-zero_shot_CoT = PromptMaker("0-Shot CoT", vanilla_prompts, cot_prompts, spacing)
-few_shot_vanilla = PromptMaker(
-    "Few-Shot Vanilla",
-    vanilla_prompts,
-    None,
-    spacing,
-    few_shots="MMLU",
-    randomize_shots=True,
-)
+zero_shot_baseline = Prompt("0-Shot Vanilla", baseline_prompts[0], 1)
+zero_shot_CoT = Prompt("0-Shot CoT", zero_shot_cot_prompts[0], 2)
+few_shot_baseline = Prompt("Few-Shot Vanilla", baseline_prompts[1], 2, True)
 
 prompts_to_test = [
-    zero_shot_vanilla,
+    zero_shot_baseline,
     zero_shot_CoT,
-    few_shot_vanilla,
+    few_shot_baseline,
 ]
 
 dataset = "mmlu"  # mmlu or gsm8k
 config_name = None  # main if gs8k, None if mmlu
 split = "test"
-model = "gpt-4-1106-preview"
-examples = 20  # number of examples to test
+# model = "gpt-4-1106-preview"
+model = 'gpt-3.5-turbo'
+examples = 3  # number of examples to test
 start = 0  # start index for dataset
 log_interval = 25  # log interval for creatings jsons of results by query
 max_toks = 300
