@@ -29,14 +29,26 @@ zero_shot_cot_prompts = [
 ]
 
 # creating prompt objects
-zero_shot_baseline = Prompt("0-Shot Vanilla", baseline_prompts[0], 1)
+zero_shot_baseline1_format1 = Prompt("0-Shot Vanilla 1 Format 1", baseline_prompts[0], 1)
+zero_shot_baseline1_format2 = Prompt("0-shot Vanilla 1 Format 2", baseline_prompts[0], 2)
+
+zero_shot_baseline2_format1 = Prompt("0-Shot Vanilla 2 Format 1", baseline_prompts[1], 1)
+zero_shot_baseline2_format2 = Prompt("0-shot Vanilla 2 Format 2", baseline_prompts[1], 2)
+
+zero_shot_baseline3_format1 = Prompt("0-shot Vanilla 3 Format 1", baseline_prompts[2], 1)
+zero_shot_baseline3_format2 = Prompt("0-shot Vanilla 3 Format 2", baseline_prompts[2], 2)
+
+
 zero_shot_CoT = Prompt("0-Shot CoT", zero_shot_cot_prompts[0], 2, CoT=True)
 few_shot_baseline = Prompt("Few-Shot Vanilla", baseline_prompts[1], 2, shots=True)
 
 prompts_to_test = [
-    zero_shot_baseline,
-    zero_shot_CoT,
-    few_shot_baseline,
+    zero_shot_baseline1_format1,
+    zero_shot_baseline1_format2,
+    # zero_shot_baseline2_format1,
+    # zero_shot_baseline2_format2,
+    # zero_shot_baseline3_format1,
+    # zero_shot_baseline3_format2,
 ]
 
 dataset = "mmlu"  # mmlu or gsm8k
@@ -44,10 +56,10 @@ config_name = None  # main if gs8k, None if mmlu
 split = "test"
 # model = "gpt-4-1106-preview"
 model = "gpt-3.5-turbo"
-examples = 10  # number of examples to test
+examples = 2800  # number of examples to test
 start = 0  # start index for dataset
 log_interval = 25  # log interval for creatings jsons of results by query
-max_toks = 500  # max tokens for query
+max_toks = 700  # max tokens for query
 rereading = False  # if true, will "reread" the question to the LM at query time
 return_json = False
 SEED = 42
