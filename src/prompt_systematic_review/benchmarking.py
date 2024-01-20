@@ -85,7 +85,7 @@ def query_model(
         ]
     else:
         messages = [
-            {"role": "user", "content": prompt + question},
+            {"role": "user", "content": prompt + "\n" + question},
         ]
     if return_json:
         response = query_model_with_backoff(
