@@ -23,7 +23,7 @@
     "thread-of-thought": "Walk me through this context in manageable parts step by step, summarizing and analyzing as we go.",
     
     "baseline1": "Solve the following problem and return your answer as (A), (B), (C) or (D) with parentheses surrounding the correct letter.",
-    "baseline2": "Answer the question with quotes surrounding the final answer as such: (A), (B), (C) or (D).",
+    "baseline2": "Answer the question with parentheses surrounding the final answer as such: (A), (B), (C) or (D).",
     "baseline3": "Solve the problem and return (A), (B), (C) or (D).",
 
     "MMLU Other1: ": "Question: In contrast to _______, _______ aim to reward favourable behaviour by companies. The success of such campaigns have been heightened through the use of ___________, which allow campaigns to facilitate the company in achieving _________ .\nChoices:\n(A) Buycotts, Boycotts, Blockchain technology, Charitable donations\n(B) Buycotts, Boycotts, Digital technology, Increased Sales\n(C) Boycotts, Buyalls, Blockchain technology, Charitable donations\n(D) Boycotts, Buycotts, Digital technology, Increased Sales\nAnswer: (D)",
