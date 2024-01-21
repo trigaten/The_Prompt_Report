@@ -287,12 +287,24 @@ def test_evaluate_correct_answer_is():
     response = Response("(A), (B) but the correct answer is (C)")
     correct = "B"
     json_mode = False
-    assert evaluate_mmlu_response(response, correct, json_mode) == "under review"
+    assert evaluate_mmlu_response(response, correct, json_mode) == "incorrect"
 
     response = Response("(C)")
     correct = "B"
     json_mode = False
     assert evaluate_mmlu_response(response, correct, json_mode) == "incorrect"
+    
+    response = Response("The answer to The problem is (C)")
+    correct = "C"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
+    
+    response = Response("The answer is (C)")
+    correct = "C"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
+    
+    
 
 
 class Response:
