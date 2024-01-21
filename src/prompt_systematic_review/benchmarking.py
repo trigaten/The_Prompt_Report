@@ -604,7 +604,7 @@ class Prompt:
                 shot5=shots[4],
             )
         elif self.CoT:  # if this is a Chain-of-Thought prompt
-            return ""
+            return "Solve the problem and return (A), (B), (C) or (D)."
         elif self.base:  # if this is just a baseline prompt
             return "{base}".format(base=self.base)
 
