@@ -120,6 +120,9 @@ def evaluate_mmlu_response(response: dict, correct_answer: str, json_mode: bool)
     :return: "correct", "incorrect" or "under review".
     :rtype: str
     """
+    
+
+    
     if json_mode:
         try:
             json_response = json.loads(response.message.content)
@@ -135,6 +138,13 @@ def evaluate_mmlu_response(response: dict, correct_answer: str, json_mode: bool)
             )
             return
     else:
+        # Checking if there is a part of the string that says "the correct answer is ({letter})"
+        pattern = re.compile(r"the correct answer is \(([A-D])\)", re.IGNORECASE) # ignores case
+        match = pattern.search(response.message.content)
+        if match:
+            if match.group(1).upper() == correct_answer:
+                return "correct" 
+
         # Find all capital letters A-D surrounded by parentheses
         all_letters_in_response = find_parentheses_with_letters(
             response.message.content
