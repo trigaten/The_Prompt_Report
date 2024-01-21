@@ -247,14 +247,6 @@ def test_find_parentheses_between_letters():
 
 
 def test_evaluate_mmlu_response():
-    class Response:
-        def __init__(self, content):
-            self.message = Message(content)
-
-    class Message:
-        def __init__(self, content):
-            self.content = content
-
     response = Response("(A)")
     correct = "A"
     json_mode = False
@@ -274,3 +266,40 @@ def test_evaluate_mmlu_response():
     correct = "C"
     json_mode = False
     assert evaluate_mmlu_response(response, correct, json_mode) == "incorrect"
+
+
+def test_evaluate_correct_answer_is():
+    response = Response("The correct answer is (B)")
+    correct = "B"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
+
+    response = Response("(A), (C) but the correct answer is (B)")
+    correct = "B"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
+
+    response = Response("(A), (C) but the correct answer is (C)")
+    correct = "B"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "incorrect"
+
+    response = Response("(A), (B) but the correct answer is (C)")
+    correct = "B"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "under review"
+
+    response = Response("(C)")
+    correct = "B"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "incorrect"
+
+
+class Response:
+    def __init__(self, content):
+        self.message = Message(content)
+
+
+class Message:
+    def __init__(self, content):
+        self.content = content
