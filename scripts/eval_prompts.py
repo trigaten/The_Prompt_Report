@@ -23,32 +23,132 @@ baseline_prompts = [
     prompts["baseline3"],
 ]  # creating list of baseline prompts ex. "Solve this problem..."
 zero_shot_cot_prompts = [
-    prompts["Now, let's..."],
+    prompts["let's think..."],
     prompts["plan-and-solve"],
     prompts["thread-of-thought"],
 ]
 
 # creating prompt objects
-zero_shot_baseline1_format1 = Prompt("0-Shot Vanilla 1 Format 1", baseline_prompts[0], 1)
-zero_shot_baseline1_format2 = Prompt("0-shot Vanilla 1 Format 2", baseline_prompts[0], 2)
+zero_shot_baseline1_format1 = Prompt(
+    "0-Shot Vanilla 1 Format 1", baseline_prompts[0], 1
+)
+zero_shot_baseline1_format2 = Prompt(
+    "0-shot Vanilla 1 Format 2", baseline_prompts[0], 2
+)
 
-zero_shot_baseline2_format1 = Prompt("0-Shot Vanilla 2 Format 1", baseline_prompts[1], 1)
-zero_shot_baseline2_format2 = Prompt("0-shot Vanilla 2 Format 2", baseline_prompts[1], 2)
+zero_shot_baseline2_format1 = Prompt(
+    "0-Shot Vanilla 2 Format 1", baseline_prompts[1], 1
+)
+zero_shot_baseline2_format2 = Prompt(
+    "0-shot Vanilla 2 Format 2", baseline_prompts[1], 2
+)
 
-zero_shot_baseline3_format1 = Prompt("0-shot Vanilla 3 Format 1", baseline_prompts[2], 1)
-zero_shot_baseline3_format2 = Prompt("0-shot Vanilla 3 Format 2", baseline_prompts[2], 2)
+zero_shot_baseline3_format1 = Prompt(
+    "0-shot Vanilla 3 Format 1", baseline_prompts[2], 1
+)
+zero_shot_baseline3_format2 = Prompt(
+    "0-shot Vanilla 3 Format 2", baseline_prompts[2], 2
+)
 
 
-zero_shot_CoT = Prompt("0-Shot CoT", zero_shot_cot_prompts[0], 2, CoT=True)
-few_shot_baseline = Prompt("Few-Shot Vanilla", baseline_prompts[1], 2, shots=True)
+zero_shot_CoT1_format1 = Prompt(
+    "0-Shot CoT 1 Format 1", zero_shot_cot_prompts[0], 1, CoT=True
+)
+zero_shot_CoT1_format2 = Prompt(
+    "0-Shot CoT 1 Format 2", zero_shot_cot_prompts[0], 2, CoT=True
+)
+
+zero_shot_CoT2_format1 = Prompt(
+    "0-Shot CoT 2 Format 1", zero_shot_cot_prompts[1], 1, CoT=True
+)
+zero_shot_CoT2_format2 = Prompt(
+    "0-Shot CoT 2 Format 2", zero_shot_cot_prompts[1], 2, CoT=True
+)
+
+zero_shot_CoT3_format1 = Prompt(
+    "0-Shot CoT 3 Format 1", zero_shot_cot_prompts[2], 1, CoT=True
+)
+zero_shot_CoT3_format2 = Prompt(
+    "0-Shot CoT 3 Format 2", zero_shot_cot_prompts[2], 2, CoT=True
+)
+
+few_shot_baseline1_format1 = Prompt(
+    "Few-Shot Vanilla 1 Format 1", baseline_prompts[0], 1, shots=True
+)
+few_shot_baseline1_format2 = Prompt(
+    "Few-Shot Vanilla 1 Format 2", baseline_prompts[0], 2, shots=True
+)
+
+few_shot_baseline2_format1 = Prompt(
+    "Few-Shot Vanilla 2 Format 1", baseline_prompts[1], 1, shots=True
+)
+few_shot_baseline2_format2 = Prompt(
+    "Few-Shot Vanilla 2 Format 2", baseline_prompts[1], 2, shots=True
+)
+
+few_shot_baseline3_format1 = Prompt(
+    "Few-Shot Vanilla 3 Format 1", baseline_prompts[2], 1, shots=True
+)
+few_shot_baseline3_format2 = Prompt(
+    "Few-Shot Vanilla 3 Format 2", baseline_prompts[2], 2, shots=True
+)
+
+few_shot_CoT1_format1 = Prompt(
+    "Few-Shot CoT 1 Format 1", baseline_prompts[0], 1, CoT=True, shots=True
+)
+
+few_shot_CoT2_format1 = Prompt(
+    "Few-Shot CoT 2 Format 1", baseline_prompts[1], 1, CoT=True, shots=True
+)
+
+few_shot_CoT3_format1 = Prompt(
+    "Few-Shot CoT 3 Format 1", baseline_prompts[2], 1, CoT=True, shots=True
+)
+
+few_shot_CoT1_format2 = Prompt(
+    "Few-Shot CoT 1 Format 2", baseline_prompts[0], 2, CoT=True, shots=True
+)
+
+few_shot_CoT2_format2 = Prompt(
+    "Few-Shot CoT 2 Format 2", baseline_prompts[1], 2, CoT=True, shots=True
+)
+
+few_shot_CoT3_format2 = Prompt(
+    "Few-Shot CoT 3 Format 2", baseline_prompts[2], 2, CoT=True, shots=True
+)
+
 
 prompts_to_test = [
-    zero_shot_baseline1_format1,
-    zero_shot_baseline1_format2,
+    # zero_shot_baseline1_format1,
+    # zero_shot_baseline1_format2,
     # zero_shot_baseline2_format1,
     # zero_shot_baseline2_format2,
     # zero_shot_baseline3_format1,
     # zero_shot_baseline3_format2,
+    # few_shot_baseline1_format1,
+    # few_shot_baseline1_format2
+    # zero_shot_CoT
+    
+    # zero_shot_CoT1_format1,
+    # zero_shot_CoT1_format2,
+    # zero_shot_CoT2_format1,
+    # zero_shot_CoT2_format2,
+    # zero_shot_CoT3_format1,
+    # zero_shot_CoT3_format2,
+    
+    # few_shot_baseline1_format1,
+    # few_shot_baseline1_format2,
+    # few_shot_baseline2_format1,
+    # few_shot_baseline2_format2,
+    # few_shot_baseline3_format1,
+    # few_shot_baseline3_format2,
+    
+    few_shot_CoT1_format1,
+    few_shot_CoT1_format2,
+    # few_shot_CoT2_format1,
+    # few_shot_CoT2_format2,
+    # few_shot_CoT3_format1,
+    # few_shot_CoT3_format2,
 ]
 
 dataset = "mmlu"  # mmlu or gsm8k
@@ -58,12 +158,12 @@ split = "test"
 model = "gpt-3.5-turbo"
 examples = 2800  # number of examples to test
 start = 0  # start index for dataset
-log_interval = 25  # log interval for creatings jsons of results by query
+log_interval = 200  # log interval for creatings jsons of results by query
 max_toks = 700  # max tokens for query
 rereading = False  # if true, will "reread" the question to the LM at query time
 return_json = False
 SEED = 42
-temp = 0.0
+temp = 0.5
 
 eval = evaluate_prompts(
     prompts_to_test,
