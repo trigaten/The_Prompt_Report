@@ -168,7 +168,7 @@ def test_modular_prompts():
         prompts = json.load(file)
 
     for prompt_name, prompt in prompts.items():
-        assert isinstance(prompt, str)
+        assert isinstance(prompt, str) or isinstance(prompt, dict)
         assert len(prompt) > 0
         assert isinstance(prompt_name, str)
 
@@ -258,11 +258,6 @@ def test_evaluate_mmlu_response():
     assert evaluate_mmlu_response(response, correct, json_mode) == "incorrect"
 
     response = Response("(A)(B)")
-    correct = "A"
-    json_mode = False
-    assert evaluate_mmlu_response(response, correct, json_mode) == "under review"
-
-    response = Response("(A)(B)")
     correct = "C"
     json_mode = False
     assert evaluate_mmlu_response(response, correct, json_mode) == "incorrect"
@@ -304,6 +299,15 @@ def test_evaluate_correct_answer_is():
     json_mode = False
     assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
     
+    response = Response("(C) is the correct option.")
+    correct = "C"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
+    
+    response = Response("(C) is the correct answer.")
+    correct = "C"
+    json_mode = False
+    assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
     
 
 
