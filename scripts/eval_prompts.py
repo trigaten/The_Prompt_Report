@@ -128,21 +128,18 @@ prompts_to_test = [
     # few_shot_baseline1_format1,
     # few_shot_baseline1_format2
     # zero_shot_CoT
-    
     # zero_shot_CoT1_format1,
     # zero_shot_CoT1_format2,
     # zero_shot_CoT2_format1,
     # zero_shot_CoT2_format2,
     # zero_shot_CoT3_format1,
     # zero_shot_CoT3_format2,
-    
     # few_shot_baseline1_format1,
     # few_shot_baseline1_format2,
     # few_shot_baseline2_format1,
     # few_shot_baseline2_format2,
     # few_shot_baseline3_format1,
     # few_shot_baseline3_format2,
-    
     few_shot_CoT1_format1,
     few_shot_CoT1_format2,
     # few_shot_CoT2_format1,

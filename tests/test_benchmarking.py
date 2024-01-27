@@ -288,27 +288,26 @@ def test_evaluate_correct_answer_is():
     correct = "B"
     json_mode = False
     assert evaluate_mmlu_response(response, correct, json_mode) == "incorrect"
-    
+
     response = Response("The answer to The problem is (C)")
     correct = "C"
     json_mode = False
     assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
-    
+
     response = Response("The answer is (C)")
     correct = "C"
     json_mode = False
     assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
-    
+
     response = Response("(C) is the correct option.")
     correct = "C"
     json_mode = False
     assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
-    
+
     response = Response("(C) is the correct answer.")
     correct = "C"
     json_mode = False
     assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
-    
 
 
 class Response:
