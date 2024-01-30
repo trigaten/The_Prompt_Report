@@ -308,8 +308,10 @@ def test_evaluate_correct_answer_is():
     correct = "C"
     json_mode = False
     assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
-    
-    response = Response("The telescope was invented by Galileo. To determine when it was invented, we need to consider the options provided.\n\nOption (A): 1409 - This is unlikely as Galileo was born in 1564, so he could not have invented the telescope before he was born.\n\nOption (B): 1509 - This is also unlikely as Galileo was still a child at this time and did not invent the telescope until later in his life.\n\nOption (C): 1609 - This is the most likely option as Galileo invented the telescope in 1609.\n\nOption (D): 1709 - This is too late as Galileo passed away in 1642, so he could not have invented the telescope in 1709.\n\nTherefore, the correct answer is (C): 1609.")
+
+    response = Response(
+        "The telescope was invented by Galileo. To determine when it was invented, we need to consider the options provided.\n\nOption (A): 1409 - This is unlikely as Galileo was born in 1564, so he could not have invented the telescope before he was born.\n\nOption (B): 1509 - This is also unlikely as Galileo was still a child at this time and did not invent the telescope until later in his life.\n\nOption (C): 1609 - This is the most likely option as Galileo invented the telescope in 1609.\n\nOption (D): 1709 - This is too late as Galileo passed away in 1642, so he could not have invented the telescope in 1709.\n\nTherefore, the correct answer is (C): 1609."
+    )
     correct = "C"
     json_mode = False
     assert evaluate_mmlu_response(response, correct, json_mode) == "correct"
