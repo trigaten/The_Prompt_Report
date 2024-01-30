@@ -142,19 +142,6 @@ def evaluate_mmlu_response(response: dict, correct_answer: str, json_mode: bool)
         else:
             return "incorrect"
 
-        # if len(all_letters_in_response) == 0:
-        #     return "incorrect"
-        # elif len(all_letters_in_response) == 1:
-        #     if all_letters_in_response[0] == correct_answer:
-        #         return "correct"
-        #     else:
-        #         return "incorrect"
-        # else:
-        #     if correct_answer in all_letters_in_response:
-        #         return "under review"
-        #     else:
-        #         return "incorrect"
-
 
 def extract_predicted_answer(text):
     answer = None
