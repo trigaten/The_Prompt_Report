@@ -1,15 +1,10 @@
 import os
 import csv
-import json
-import argparse
-import requests
 import pandas as pd
-from tika import parser as tika_parser
+from collections import defaultdict
+from multiprocessing import Pool, cpu_count
+from pdfminer.high_level import extract_text
 from tqdm import tqdm
-from collections import Counter, defaultdict
-from prompt_systematic_review.get_papers.semantic_scholar_source import (
-    SemanticScholarSource,
-)
 from prompt_systematic_review.config_data import DataFolderPath
 
 """This script counts the number of papers in our dataset that mention each model.
@@ -54,56 +49,56 @@ model_names = [
 ]
 
 
-def count_models():
-    # script portion
-    masterpaperscsv_file_path = os.path.join(DataFolderPath, "master_papers.csv")
+def parse_pdf(file_path):
+    try:
+        text = extract_text(file_path)
+        return text
+    except Exception as e:
+        print(f"Error processing {file_path}: {e}")
+        return ""
 
-    # get all paper ids from our dataset
+def process_file(args):
+    folder_path, filename = args
+    file_path = os.path.join(folder_path, filename)
+    if filename.endswith(".pdf"):
+        data = parse_pdf(file_path)
+        counts = {model: data.count(model) for model in model_names if model in data}
+        return filename, counts
+    return filename, {}
+
+def count_model_mentions_parallel(folder_path):
+    files = os.listdir(folder_path)
+    with Pool(cpu_count()) as pool:
+        # Use imap_unordered for better tqdm compatibility
+        result_iter = pool.imap_unordered(process_file, [(folder_path, f) for f in files])
+        
+        model_counts = defaultdict(list)
+
+        # Wrap the iterator with tqdm for the progress bar
+        for filename, counts in tqdm(result_iter, total=len(files)):
+            for model, count in counts.items():
+                if count > 0:
+                    model_counts[model].append(filename)
+
+    return model_counts
+
+def count_models():
+    masterpaperscsv_file_path = os.path.join(DataFolderPath, "master_papers.csv")
     arxiv_papers_df = pd.read_csv(masterpaperscsv_file_path)
     paper_ids = set(arxiv_papers_df["paperId"])
 
-    model_counts = defaultdict(list)
-
-    def count_model_mentions(folder_path):
-        # Iterate through all files in the folder, count model mentions
-        for filename in tqdm(os.listdir(folder_path)):
-            try:
-                if filename.endswith(".pdf"):
-                    file_path = os.path.join(folder_path, filename)
-
-                    parsed_pdf = tika_parser.from_file(file_path)
-                    data = parsed_pdf["content"]
-
-                    for model in model_names:
-                        if model in data:
-                            model_counts[model].append(filename)
-
-            except Exception as e:
-                print(f"Error processing {filename}: {e}")
-
     papers_dataset_path = os.path.join(DataFolderPath, "papers/")
-
-    # call function to count model mentions
-    count_model_mentions(papers_dataset_path)
-    print(model_counts)
+    model_counts = count_model_mentions_parallel(papers_dataset_path)
 
     output_file_path = os.path.join(DataFolderPath, "model_citation_counts.csv")
-
     with open(output_file_path, "w", encoding="utf-8") as f:
         fieldnames = ["model_name", "count", "list_of_papers"]
-
-        # Create a CSV writer object
         writer = csv.DictWriter(f, fieldnames=fieldnames)
-
-        # Write headers to the CSV file
         writer.writeheader()
-
-        # Write data rows to the CSV file
         for model, titles in model_counts.items():
             writer.writerow(
                 {"model_name": model, "count": len(titles), "list_of_papers": titles}
             )
-
 
 class Experiment:
     def run():
