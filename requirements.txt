@@ -13,6 +13,7 @@ openai
 tika
 tqdm
 openai
+pdfminer.six
 load_dotenv
 tomotopy
 wordcloud
