@@ -21,6 +21,7 @@ datasets = [
     "HellaSwag",
 ]
 
+
 def parse_pdf(file_path):
     try:
         text = extract_text(file_path)
@@ -29,22 +30,28 @@ def parse_pdf(file_path):
         print(f"Error processing {file_path}: {e}")
         return ""
 
+
 def process_file(args):
     folder_path, filename = args
     file_path = os.path.join(folder_path, filename)
     if filename.endswith(".pdf"):
         data = parse_pdf(file_path)
-        counts = {dataset: data.count(dataset) for dataset in datasets if dataset in data}
+        counts = {
+            dataset: data.count(dataset) for dataset in datasets if dataset in data
+        }
         return filename, counts
     return filename, {}
 
+
 def count_dataset_mentions_parallel(folder_path):
     files = os.listdir(folder_path)
-    files = [f for f in files if f.endswith('.pdf')]
-    
+    files = [f for f in files if f.endswith(".pdf")]
+
     with Pool(cpu_count()) as pool:
-        result_iter = pool.imap_unordered(process_file, [(folder_path, f) for f in files])
-        
+        result_iter = pool.imap_unordered(
+            process_file, [(folder_path, f) for f in files]
+        )
+
         dataset_counts = defaultdict(int)
 
         for _, counts in tqdm(result_iter, total=len(files)):
@@ -53,12 +60,15 @@ def count_dataset_mentions_parallel(folder_path):
 
     return dataset_counts
 
+
 def graph_dataset_citations():
     papers_dataset_path = os.path.join(DataFolderPath, "papers/")
     dataset_usage_counts = count_dataset_mentions_parallel(papers_dataset_path)
 
     # Sorting the datasets based on usage count
-    sorted_datasets = sorted(dataset_usage_counts.items(), key=lambda x: x[1], reverse=True)
+    sorted_datasets = sorted(
+        dataset_usage_counts.items(), key=lambda x: x[1], reverse=True
+    )
     if not sorted_datasets:
         print("No datasets found in the papers.")
         return
@@ -77,6 +87,7 @@ def graph_dataset_citations():
     os.makedirs(output_dir, exist_ok=True)
     output_file_path = os.path.join(output_dir, "graph_dataset_mentions_output.png")
     plt.savefig(output_file_path)
+
 
 class Experiment:
     def run():

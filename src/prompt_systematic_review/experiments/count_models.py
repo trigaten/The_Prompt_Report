@@ -57,6 +57,7 @@ def parse_pdf(file_path):
         print(f"Error processing {file_path}: {e}")
         return ""
 
+
 def process_file(args):
     folder_path, filename = args
     file_path = os.path.join(folder_path, filename)
@@ -66,12 +67,15 @@ def process_file(args):
         return filename, counts
     return filename, {}
 
+
 def count_model_mentions_parallel(folder_path):
     files = os.listdir(folder_path)
     with Pool(cpu_count()) as pool:
         # Use imap_unordered for better tqdm compatibility
-        result_iter = pool.imap_unordered(process_file, [(folder_path, f) for f in files])
-        
+        result_iter = pool.imap_unordered(
+            process_file, [(folder_path, f) for f in files]
+        )
+
         model_counts = defaultdict(list)
 
         # Wrap the iterator with tqdm for the progress bar
@@ -81,6 +85,7 @@ def count_model_mentions_parallel(folder_path):
                     model_counts[model].append(filename)
 
     return model_counts
+
 
 def count_models():
     masterpaperscsv_file_path = os.path.join(DataFolderPath, "master_papers.csv")
@@ -99,6 +104,7 @@ def count_models():
             writer.writerow(
                 {"model_name": model, "count": len(titles), "list_of_papers": titles}
             )
+
 
 class Experiment:
     def run():
