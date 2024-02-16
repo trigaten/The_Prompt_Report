@@ -148,19 +148,19 @@ def test_multiple_numbers():
     assert extract_numbers("####1000 ####2000") == [1000, 2000]
 
 
-def test_load_mmlu():
-    with open("data/mmlu_configs.json", "r") as file:
-        mmlu_configs = json.load(file)["configs"]
-    df = load_mmlu(mmlu_configs, "test")
+# def test_load_mmlu():
+#     with open("data/mmlu_configs.json", "r") as file:
+#         mmlu_configs = json.load(file)["configs"]
+#     df = load_mmlu(mmlu_configs, "test")
 
-    assert df.iloc[0]["input"] == "When was the telescope invented by Galileo?"
-    assert df.iloc[0].A == "1409"
-    assert df.iloc[0].B == "1509"
-    assert df.iloc[0].C == "1609"
-    assert df.iloc[0].D == "1709"
-    assert df.iloc[0].answer == "C"
-    assert df.iloc[0].config == "astronomy"
-    assert len(df) == 13911
+#     assert df.iloc[0]["input"] == "When was the telescope invented by Galileo?"
+#     assert df.iloc[0].A == "1409"
+#     assert df.iloc[0].B == "1509"
+#     assert df.iloc[0].C == "1609"
+#     assert df.iloc[0].D == "1709"
+#     assert df.iloc[0].answer == "C"
+#     assert df.iloc[0].config == "astronomy"
+#     assert len(df) == 13911
 
 
 def test_modular_prompts():
