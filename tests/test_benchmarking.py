@@ -1,4 +1,4 @@
-from prompt_systematic_review.benchmarking import (
+from prompt_systematic_review.experiments.benchmarking import (
     query_model,
     extract_numbers,
     evaluate_prompts,

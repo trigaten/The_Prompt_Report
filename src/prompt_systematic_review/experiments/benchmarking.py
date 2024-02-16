@@ -1,4 +1,3 @@
-from prompt_systematic_review.load_hf_data import load_hf_dataset
 import openai
 from typing import List
 import re
@@ -426,10 +425,10 @@ def write_to_file(data, count, log_interval=25):
         + os.sep
         + f"data/benchmarking/eval_results_{current_datetime}_part_{((count//log_interval))}.json",
     )
-    
+
     with open(file_path, "w") as json_file:
         json.dump(data, json_file)
-        
+
     print(f"Written results to {file_path}")
 
 

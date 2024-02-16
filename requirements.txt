@@ -6,7 +6,6 @@ datasets
 huggingface_hub
 pytest
 jellyfish
-black[jupyter]
 sphinx
 renku-sphinx-theme
 sphinx-autobuild
@@ -15,6 +14,23 @@ tika
 tqdm
 openai
 load_dotenv
+tomotopy
 wordcloud
+pytest-dotenv
+scipy
+networkx
+tomotopy
+soup-nuts @ git+https://git@github.com/ahoho/topics.git@dev
+black
+pytz==2023.3
+regex==2023.8.8
+Requests==2.31.0
+sentence_transformers==2.2.2
+tenacity==8.2.3
+tiktoken==0.5.1
+anytree==2.12.1
+urllib3<2
+acl-anthology-py
+seaborn
 tenacity
 -e .

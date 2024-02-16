@@ -2,14 +2,14 @@
 Test a set of prompts against a dataset and return the results. Currently working for GSM-8k. You must add your openAI API key to the key variable below.
 """
 
-from prompt_systematic_review.benchmarking import evaluate_prompts
+from prompt_systematic_review.experiments.benchmarking import evaluate_prompts
 import openai
 from dotenv import load_dotenv
 import os
 from datetime import datetime
 import json
-from prompt_systematic_review.benchmarking import Prompt
 from prompt_systematic_review.config_data import DataFolderPath, DotenvPath
+from prompt_systematic_review.experiments.benchmarking import Prompt
 
 load_dotenv(dotenv_path=DotenvPath)  # load all entries from .env file
 
@@ -165,6 +165,7 @@ return_json = False
 SEED = 42
 temp = 0.5
 
+
 def eval_prompts():
     eval = evaluate_prompts(
         prompts_to_test,
@@ -187,7 +188,7 @@ def eval_prompts():
 
     # File path for the JSON file
     d_path = f"data/benchmarking/eval_results_{current_datetime}.json"
-    
+
     file_path = os.path.join(
         DataFolderPath,
         "experiments_output" + os.sep + d_path,
@@ -196,6 +197,7 @@ def eval_prompts():
     # Writing the dictionary to a JSON file
     with open(file_path, "w") as json_file:
         json.dump(eval, json_file)
+
 
 class Experiment:
     def run():
