@@ -9,9 +9,12 @@ import os
 from datetime import datetime
 import json
 from prompt_systematic_review.benchmarking import Prompt
+from prompt_systematic_review.config_data import DataFolderPath, DotenvPath
 
-load_dotenv(dotenv_path="./.env")  # load all entries from .env file
+load_dotenv(dotenv_path=DotenvPath)  # load all entries from .env file
+
 openai.api_key = os.getenv("OPENAI_API_KEY")  # load openai key
+
 with open(
     "data/prompts.json", "r"
 ) as file:  # load prompts from prompts.json to make prompts more modular.
@@ -140,8 +143,8 @@ prompts_to_test = [
     # few_shot_baseline2_format2,
     # few_shot_baseline3_format1,
     # few_shot_baseline3_format2,
-    few_shot_CoT1_format1,
-    few_shot_CoT1_format2,
+    # few_shot_CoT1_format1,
+    # few_shot_CoT1_format2,
     # few_shot_CoT2_format1,
     # few_shot_CoT2_format2,
     # few_shot_CoT3_format1,
@@ -162,28 +165,38 @@ return_json = False
 SEED = 42
 temp = 0.5
 
-eval = evaluate_prompts(
-    prompts_to_test,
-    dataset,
-    config_name,
-    split,
-    model,
-    examples,
-    start_index=start,
-    log_interval=log_interval,
-    max_tokens=max_toks,
-    reread=rereading,
-    json_mode=return_json,
-    seed=SEED,
-    temperature=temp,
-)
+def eval_prompts():
+    eval = evaluate_prompts(
+        prompts_to_test,
+        dataset,
+        config_name,
+        split,
+        model,
+        examples,
+        start_index=start,
+        log_interval=log_interval,
+        max_tokens=max_toks,
+        reread=rereading,
+        json_mode=return_json,
+        seed=SEED,
+        temperature=temp,
+    )
 
-# Getting current date and time in YYYY-MM-DD_HH-MM-SS format
-current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    # Getting current date and time in YYYY-MM-DD_HH-MM-SS format
+    current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-# File path for the JSON file
-file_path = f"data/benchmarking/eval_results_{current_datetime}.json"
+    # File path for the JSON file
+    d_path = f"data/benchmarking/eval_results_{current_datetime}.json"
+    
+    file_path = os.path.join(
+        DataFolderPath,
+        "experiments_output" + os.sep + d_path,
+    )
 
-# Writing the dictionary to a JSON file
-with open(file_path, "w") as json_file:
-    json.dump(eval, json_file)
+    # Writing the dictionary to a JSON file
+    with open(file_path, "w") as json_file:
+        json.dump(eval, json_file)
+
+class Experiment:
+    def run():
+        eval_prompts()

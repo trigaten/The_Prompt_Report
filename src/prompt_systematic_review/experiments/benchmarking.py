@@ -16,6 +16,8 @@ import logging
 import random
 import numpy as np
 from openai.types.chat.chat_completion import ChatCompletion
+import os
+from prompt_systematic_review.config_data import DataFolderPath
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -418,9 +420,16 @@ def write_to_file(data, count, log_interval=25):
     :rtype: None
     """
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    file_path = f"data/benchmarking/eval_results_{current_datetime}_part_{((count//log_interval))}.json"
+    file_path = os.path.join(
+        DataFolderPath,
+        "experiments_output"
+        + os.sep
+        + f"data/benchmarking/eval_results_{current_datetime}_part_{((count//log_interval))}.json",
+    )
+    
     with open(file_path, "w") as json_file:
         json.dump(data, json_file)
+        
     print(f"Written results to {file_path}")
 
 
