@@ -385,7 +385,9 @@ titles_above_threshold = {}
 for paper_id in top_nodes:
     full_title = get_paper_title(paper_id, api_key)
     if full_title:
-        display_title = title_mappings.get(full_title, full_title)  # Use the full title if not found in the dictionary
+        display_title = title_mappings.get(
+            full_title, full_title
+        )  # Use the full title if not found in the dictionary
         if len(display_title) > 50:
             display_title = textwrap.shorten(
                 display_title, width=50, placeholder="..."
@@ -426,7 +428,9 @@ import matplotlib.pyplot as plt
 import textwrap
 
 
-def adjust_overlap(pos, nodes_to_adjust, min_dist=1.0, repulsion_factor=1.05, vertical_bias=2.0):
+def adjust_overlap(
+    pos, nodes_to_adjust, min_dist=1.0, repulsion_factor=1.05, vertical_bias=2.0
+):
     for _ in range(1000):  # Increase the number of iterations for a denser graph
         adjusted = False
         for node1 in nodes_to_adjust:
@@ -436,12 +440,15 @@ def adjust_overlap(pos, nodes_to_adjust, min_dist=1.0, repulsion_factor=1.05, ve
                 x1, y1 = pos[node1]
                 x2, y2 = pos[node2]
                 dx, dy = x1 - x2, y1 - y2
-                dist = (dx**2 + dy**2)**0.5
+                dist = (dx**2 + dy**2) ** 0.5
                 if dist < min_dist:  # If nodes are too close, push them apart
                     if dist == 0:  # To avoid division by zero
                         dx, dy = 1, 0
                         dist = 1
-                    dx, dy = dx / dist * min_dist * repulsion_factor, dy / dist * min_dist * repulsion_factor
+                    dx, dy = (
+                        dx / dist * min_dist * repulsion_factor,
+                        dy / dist * min_dist * repulsion_factor,
+                    )
 
                     # Apply additional vertical adjustment
                     dy *= vertical_bias
@@ -455,7 +462,7 @@ def adjust_overlap(pos, nodes_to_adjust, min_dist=1.0, repulsion_factor=1.05, ve
                         if other_node == node1 or other_node == node2:
                             continue
                         ox, oy = pos[other_node]
-                        if ((new_x1 - ox)**2 + (new_y1 - oy)**2)**0.5 < min_dist:
+                        if ((new_x1 - ox) ** 2 + (new_y1 - oy) ** 2) ** 0.5 < min_dist:
                             overlap = True
                             break
 
@@ -467,8 +474,6 @@ def adjust_overlap(pos, nodes_to_adjust, min_dist=1.0, repulsion_factor=1.05, ve
             break
 
 
-
-
 # Load the cleaned references
 with open("cleaned_complete_paper_references.json", "r") as json_file:
     paper_references = json.load(json_file)
@@ -478,7 +483,7 @@ G = nx.DiGraph()
 for paper_id, references in paper_references.items():
     for ref_id in references:
         G.add_edge(paper_id, ref_id)
-        
+
 title_to_technique = {
     "Language Models are Few-Shot Learners": "In-Context Learning (ICL)",
     "Calibrate Before Use: Improving Few-Shot Performance of Language Models": "Calibration for FSL",
@@ -534,8 +539,12 @@ for paper_id in top_nodes:
     full_title = get_paper_title(paper_id, api_key)  # Fetch full paper title
     if full_title:
         # Check if the full title is in your dictionary and use the mapped value if it is
-        display_title = title_to_technique.get(full_title, full_title)  # Use the full title if not found in the dictionary
-        wrapped_title = wrap_text(display_title, 16)  # Wrap the title (or its mapped value)
+        display_title = title_to_technique.get(
+            full_title, full_title
+        )  # Use the full title if not found in the dictionary
+        wrapped_title = wrap_text(
+            display_title, 16
+        )  # Wrap the title (or its mapped value)
         titles_above_threshold[paper_id] = wrapped_title
 
 
@@ -543,7 +552,9 @@ for paper_id in top_nodes:
 node_sizes = [G.in_degree(node) * 2000 for node in G.nodes()]
 
 # Calculate font size based on in-degree (you can adjust the scaling factor)
-font_sizes = {node: G.in_degree(node) * .2 + 14 for node in G.nodes()}  # '+ 10' ensures a minimum font size
+font_sizes = {
+    node: G.in_degree(node) * 0.2 + 14 for node in G.nodes()
+}  # '+ 10' ensures a minimum font size
 
 # Draw the graph with adjusted layout parameters
 plt.figure(figsize=(60, 35))
@@ -552,17 +563,23 @@ pos = nx.kamada_kawai_layout(G, dist=None, scale=1)
 adjust_overlap(pos, top_nodes, min_dist=0.2, repulsion_factor=1.05)
 
 # Draw all nodes first
-nx.draw_networkx_nodes(G, pos, node_size=node_sizes, node_color=(45 / 255, 137 / 255, 145 / 255, 1))
+nx.draw_networkx_nodes(
+    G, pos, node_size=node_sizes, node_color=(45 / 255, 137 / 255, 145 / 255, 1)
+)
 
 # Draw the edges
-nx.draw_networkx_edges(G, pos, edge_color='gray', width=0.5)
+nx.draw_networkx_edges(G, pos, edge_color="gray", width=0.5)
 
 # Assign and label top nodes with titles
 for node, label in titles_above_threshold.items():
     x, y = pos[node]
-    num_lines = label.count('\n') + 1
-    y_offset = 0.005 * num_lines  # Adjust this factor as needed to position the text correctly
-    plt.text(x, y + y_offset, label, fontsize=font_sizes[node], ha='center', va='center')
+    num_lines = label.count("\n") + 1
+    y_offset = (
+        0.005 * num_lines
+    )  # Adjust this factor as needed to position the text correctly
+    plt.text(
+        x, y + y_offset, label, fontsize=font_sizes[node], ha="center", va="center"
+    )
 
 plt.title("Directed Graph of Paper's Internal References", fontsize=50)
 plt.show()
