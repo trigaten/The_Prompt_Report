@@ -296,7 +296,7 @@ for paper_id, references in merged_paper_references.items():
     ]
 
 # Save the cleaned data back to a JSON file
-with open("cleaned_complete_paper_references.json", "w") as file:
+with open("data/cleaned_complete_paper_references.json", "w") as file:
     json.dump(merged_paper_references, file, indent=4)
 
 print("Cleaned data saved to cleaned_merged_paper_references.json")
@@ -319,7 +319,7 @@ matplotlib.rcParams.update(
 )
 
 # Load the data
-with open("cleaned_complete_paper_references.json", "r") as file:
+with open("data/cleaned_complete_paper_references.json", "r") as file:
     data = json.load(file)
 
 # Count the number of references for each key
@@ -364,7 +364,7 @@ import matplotlib.pyplot as plt
 import textwrap
 
 # Load the cleaned references
-with open("cleaned_complete_paper_references.json", "r") as json_file:
+with open("data/cleaned_complete_paper_references.json", "r") as json_file:
     paper_references = json.load(json_file)
 
 # Create the graph
@@ -475,7 +475,7 @@ def adjust_overlap(
 
 
 # Load the cleaned references
-with open("cleaned_complete_paper_references.json", "r") as json_file:
+with open("data/cleaned_complete_paper_references.json", "r") as json_file:
     paper_references = json.load(json_file)
 
 # Create the graph
@@ -658,7 +658,7 @@ title_to_technique = {
 }
 
 # Load the existing dictionary of paper references
-with open("cleaned_complete_paper_references.json", "r") as file:
+with open("data/cleaned_complete_paper_references.json", "r") as file:
     paper_references = json.load(file)
 
 # Query each title and get citation counts
