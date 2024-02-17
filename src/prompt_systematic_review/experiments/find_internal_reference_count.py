@@ -109,7 +109,7 @@ import random
 
 
 # Path to the CSV file containing the papers' data
-csv_file_path = "master_papers.csv"
+csv_file_path = "./data/master_papers.csv"
 
 # Dictionary to hold the references
 paper_references = {}
@@ -242,7 +242,9 @@ titles = [
 
 # Processing the papers with a progress bar
 for title in tqdm(titles):
-    paper_id, references = get_references(title, api_key)
+    paper_id = query_paper_id(title, api_key)
+    references = get_references(paper_id, api_key)
+
     if paper_id:
         paper_references[paper_id] = references
     else:
@@ -381,13 +383,14 @@ top_nodes = sorted(G.nodes(), key=lambda n: G.in_degree(n), reverse=True)[:20]
 
 titles_above_threshold = {}
 for paper_id in top_nodes:
-    title = get_paper_title(paper_id, api_key)
-    if title:
-        if len(title) > 50:
-            title = textwrap.shorten(
-                title, width=50, placeholder="..."
+    full_title = get_paper_title(paper_id, api_key)
+    if full_title:
+        display_title = title_mappings.get(full_title, full_title)  # Use the full title if not found in the dictionary
+        if len(display_title) > 50:
+            display_title = textwrap.shorten(
+                display_title, width=50, placeholder="..."
             )  # Shorten if longer than 60s
-        titles_above_threshold[paper_id] = title
+        titles_above_threshold[paper_id] = display_title
 
 # Cap the maximum node size to prevent too large nodes
 # max_size = 100000  # Maximum size for a node
@@ -423,29 +426,47 @@ import matplotlib.pyplot as plt
 import textwrap
 
 
-def adjust_overlap(pos, nodes_to_adjust, min_dist=0.1, repulsion_factor=1.05):
+def adjust_overlap(pos, nodes_to_adjust, min_dist=1.0, repulsion_factor=1.05, vertical_bias=2.0):
     for _ in range(1000):  # Increase the number of iterations for a denser graph
         adjusted = False
-        for i, node1 in enumerate(nodes_to_adjust):
-            for node2 in nodes_to_adjust[i + 1 :]:
+        for node1 in nodes_to_adjust:
+            for node2 in nodes_to_adjust:
+                if node1 == node2:
+                    continue  # Skip comparing the node to itself
                 x1, y1 = pos[node1]
                 x2, y2 = pos[node2]
                 dx, dy = x1 - x2, y1 - y2
-                dist = (dx**2 + dy**2) ** 0.5
+                dist = (dx**2 + dy**2)**0.5
                 if dist < min_dist:  # If nodes are too close, push them apart
-                    # Apply a repulsion factor to move nodes further apart
                     if dist == 0:  # To avoid division by zero
                         dx, dy = 1, 0
                         dist = 1
-                    dx, dy = (
-                        dx / dist * min_dist * repulsion_factor,
-                        dy / dist * min_dist * repulsion_factor,
-                    )
-                    pos[node1] = (x1 + dx, y1 + dy)
-                    pos[node2] = (x2 - dx, y2 - dy)
-                    adjusted = True
+                    dx, dy = dx / dist * min_dist * repulsion_factor, dy / dist * min_dist * repulsion_factor
+
+                    # Apply additional vertical adjustment
+                    dy *= vertical_bias
+
+                    # Update the position of node1
+                    new_x1, new_y1 = x1 + dx, y1 + dy
+
+                    # Check if the new position of node1 overlaps with other nodes
+                    overlap = False
+                    for other_node in nodes_to_adjust:
+                        if other_node == node1 or other_node == node2:
+                            continue
+                        ox, oy = pos[other_node]
+                        if ((new_x1 - ox)**2 + (new_y1 - oy)**2)**0.5 < min_dist:
+                            overlap = True
+                            break
+
+                    if not overlap:
+                        pos[node1] = new_x1, new_y1
+                        adjusted = True
+
         if not adjusted:  # Break the loop if no adjustments were made
             break
+
+
 
 
 # Load the cleaned references
@@ -457,6 +478,35 @@ G = nx.DiGraph()
 for paper_id, references in paper_references.items():
     for ref_id in references:
         G.add_edge(paper_id, ref_id)
+        
+title_to_technique = {
+    "Language Models are Few-Shot Learners": "In-Context Learning (ICL)",
+    "Calibrate Before Use: Improving Few-Shot Performance of Language Models": "Calibration for FSL",
+    "Fantastically Ordered Prompts and Where to Find Them: Overcoming Few-Shot Prompt Order Sensitivity": "Example Ordering",
+    "What Makes Good In-Context Examples for GPT-3?": "Good Example Criteria",
+    "Making Pre-trained Language Models Better Few-shot Learners": "Pre-trained FSL Improvement",
+    "Self-Consistency Improves Chain of Thought Reasoning in Language Models": "Self-Consistency",
+    "Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?": "Example Label Quality",
+    "Large Language Models are Zero-Shot Reasoners": "Zero-Shot-CoT",
+    "Least-to-Most Prompting Enables Complex Reasoning in Large Language Models": "Least-to-Most Prompting",
+    "True Few-Shot Learning with Language Models": "True FSL",
+    "Prompt Programming for Large Language Models: Beyond the Few-Shot Paradigm": "Role Prompting",
+    "Learning To Retrieve Prompts for In-Context Learning": "Prompt Retrieval Learning",
+    "An Explanation of In-context Learning as Implicit Bayesian Inference": "Implicit Bayesian Inference",
+    "OPT: Open Pre-trained Transformer Language Models": "Open Pre-trained Transformer (OPT)",
+    "Do Prompt-Based Models Really Understand the Meaning of Their Prompts?": "Prompt Meaning Understanding",
+    "MetaICL: Learning to Learn In Context": "Meta In-Context Learning (MetaICL)",
+    "Noisy Channel Language Model Prompting for Few-Shot Text Classification": "Noisy Channel Prompting",
+    "Challenging BIG-Bench Tasks and Whether Chain-of-Thought Can Solve Them": "BIG-Bench & CoT",
+    "Can language models learn from explanations in context?": "Learning from Explanations",
+    "Reframing Instructional Prompts to GPTk’s Language": "Instructional Prompt Reframing",
+    "Meta-learning via Language Model In-context Tuning": "Meta-Learning LM Tuning",
+    "Program Synthesis with Large Language Models": "Program Synthesis LLM",
+    "Selective Annotation Makes Language Models Better Few-Shot Learners": "Input Distribution",
+    "Measuring and Narrowing the Compositionality Gap in Language Models": "Compositionality Gap",
+    "Rationale-Augmented Ensembles in Language Models": "Rationale-Augmented Ensembles",
+}
+
 
 # Remove isolated nodes and nodes with less than 10 incoming edges
 G.remove_nodes_from(list(nx.isolates(G)))
@@ -468,7 +518,7 @@ top_nodes = sorted(G.nodes(), key=lambda n: G.in_degree(n), reverse=True)[:25]
 
 
 # Define a function to wrap text into at most two lines
-def wrap_text(text, width, max_lines=2):
+def wrap_text(text, width, max_lines=3):
     wrapped_lines = textwrap.wrap(text, width)
     if len(wrapped_lines) > max_lines:
         wrapped_lines = wrapped_lines[:max_lines]
@@ -478,18 +528,22 @@ def wrap_text(text, width, max_lines=2):
     return "\n".join(wrapped_lines)
 
 
+# Adjusted part of your code for assigning and labeling top nodes with titles
 titles_above_threshold = {}
 for paper_id in top_nodes:
-    title = get_paper_title(
-        paper_id, api_key
-    )  # Function to fetch paper title using paper_id
-    if title:
-        wrapped_title = wrap_text(title, 40)  # Wrap the title into at most two lines
+    full_title = get_paper_title(paper_id, api_key)  # Fetch full paper title
+    if full_title:
+        # Check if the full title is in your dictionary and use the mapped value if it is
+        display_title = title_to_technique.get(full_title, full_title)  # Use the full title if not found in the dictionary
+        wrapped_title = wrap_text(display_title, 16)  # Wrap the title (or its mapped value)
         titles_above_threshold[paper_id] = wrapped_title
 
 
 # Cap the maximum node size to prevent too large nodes
 node_sizes = [G.in_degree(node) * 2000 for node in G.nodes()]
+
+# Calculate font size based on in-degree (you can adjust the scaling factor)
+font_sizes = {node: G.in_degree(node) * .2 + 14 for node in G.nodes()}  # '+ 10' ensures a minimum font size
 
 # Draw the graph with adjusted layout parameters
 plt.figure(figsize=(60, 35))
@@ -498,19 +552,19 @@ pos = nx.kamada_kawai_layout(G, dist=None, scale=1)
 adjust_overlap(pos, top_nodes, min_dist=0.2, repulsion_factor=1.05)
 
 # Draw all nodes first
-nx.draw_networkx_nodes(G, pos, node_size=node_sizes, node_color="skyblue")
+nx.draw_networkx_nodes(G, pos, node_size=node_sizes, node_color=(45 / 255, 137 / 255, 145 / 255, 1))
 
 # Draw the edges
-nx.draw_networkx_edges(G, pos, edge_color="gray", width=0.5)
+nx.draw_networkx_edges(G, pos, edge_color='gray', width=0.5)
 
 # Assign and label top nodes with titles
 for node, label in titles_above_threshold.items():
     x, y = pos[node]
-    num_lines = label.count("\n") + 1
-    y_offset = 0.01 * 2  # Adjust this factor as needed to position the text correctly
-    plt.text(x, y + y_offset, label, fontsize=20, ha="center", va="center")
+    num_lines = label.count('\n') + 1
+    y_offset = 0.005 * num_lines  # Adjust this factor as needed to position the text correctly
+    plt.text(x, y + y_offset, label, fontsize=font_sizes[node], ha='center', va='center')
 
-plt.title("Graph of Paper References")
+plt.title("Directed Graph of Paper's Internal References", fontsize=50)
 plt.show()
 
 # %%
@@ -612,7 +666,7 @@ plt.bar(
 )  # RGBA color
 
 # Rotate the x-axis labels by 45 degrees for better readability
-plt.xticks(rotation=90, ha="right")  # ha='right' aligns the labels at the right angle
+plt.xticks(rotation=45, ha="right")  # ha='right' aligns the labels at the right angle
 
 # Add labels and title
 plt.ylabel("Number of References")
@@ -621,3 +675,5 @@ plt.title("Citation Counts for Techniques Based on Papers")
 
 plt.tight_layout()  # Adjusts layout to prevent clipping of labels
 plt.show()
+
+# %%
