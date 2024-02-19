@@ -1,4 +1,4 @@
-# %%
+# %% RUN 1st
 import os
 import requests
 import time
@@ -12,7 +12,7 @@ load_dotenv()
 api_key = os.getenv("SEMANTIC_SCHOLAR_API_KEY")
 
 
-# %%
+# %% RUN 2nd
 def rate_limited_request(url, headers, max_retries=3, delay=0.1):
     retries = 0
     while retries < max_retries:
@@ -100,7 +100,7 @@ def get_paper_title(paper_id, api_key):
         return None
 
 
-# %%
+# %%Run 3rd
 import os
 import csv
 import json
@@ -172,7 +172,7 @@ with open("revised_paper_references.json", "w") as json_file:
     json.dump(paper_references, json_file, indent=4)
 print("Data saved to revised_paper_references.json")
 
-# %%
+# %%RUN 4th
 # Second main to add important papers not in our original dataset
 
 
@@ -260,7 +260,7 @@ with open("unmatched_titles_additional.json", "w") as json_file:
 print("Data saved to unmatched_titles_additional.json")
 
 
-# %%
+# %%Run 5th
 # Merge the two files
 
 # Load the existing data from both JSON files
@@ -282,7 +282,7 @@ with open("complete_paper_references.json", "w") as file:
 print("Merged data saved to complete_paper_references.json")
 
 
-# %%
+# %%Run 6th
 # Only keep refernces which refer to papers in our combined dataset
 
 # Load the merged paper references
@@ -302,7 +302,7 @@ with open("data/cleaned_complete_paper_references.json", "w") as file:
 print("Cleaned data saved to cleaned_merged_paper_references.json")
 
 
-# %%
+# %SKIP
 # Histogram of the top 30 most cited papers by internal citation count
 
 import json
@@ -356,7 +356,7 @@ plt.title("Top 30 Papers by Number of References")
 plt.show()
 
 
-# %%
+# %%SKIP
 # Generate a graph of all the papers with more than 10 internal references
 
 import networkx as nx
@@ -422,7 +422,8 @@ plt.title("Graph of Paper References")
 plt.show()
 
 
-# %%
+# %%Run - Update File Path
+
 import networkx as nx
 import matplotlib.pyplot as plt
 import textwrap
@@ -595,7 +596,7 @@ plt.axis('off')
 # plt.title("Directed Graph of Paper's Internal References", fontsize=50)
 plt.show()
 
-# %%
+# %%Run - Update File Path
 # Generate a graph of all the papers with more than 10 internal references
 import json
 import matplotlib.pyplot as plt
