@@ -475,7 +475,7 @@ def adjust_overlap(
 
 
 # Load the cleaned references
-with open("data/cleaned_complete_paper_references.json", "r") as json_file:
+with open("/Users/aayushgupta/Documents/GitHub/Prompt_Systematic_Review/src/prompt_systematic_review/experiments/cleaned_complete_paper_references.json", "r") as json_file:
     paper_references = json.load(json_file)
 
 # Create the graph
@@ -485,17 +485,17 @@ for paper_id, references in paper_references.items():
         G.add_edge(paper_id, ref_id)
 
 title_to_technique = {
-    "Language Models are Few-Shot Learners": "In-Context Learning (ICL)",
+    "Language Models are Few-Shot Learners": "Few-Shot Prompting",
     "Calibrate Before Use: Improving Few-Shot Performance of Language Models": "Calibration for FSL",
     "Fantastically Ordered Prompts and Where to Find Them: Overcoming Few-Shot Prompt Order Sensitivity": "Example Ordering",
-    "What Makes Good In-Context Examples for GPT-3?": "Good Example Criteria",
+    "What Makes Good In-Context Examples for GPT-3?": "In-Context Learning (ICL)",
     "Making Pre-trained Language Models Better Few-shot Learners": "Pre-trained FSL Improvement",
     "Self-Consistency Improves Chain of Thought Reasoning in Language Models": "Self-Consistency",
     "Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?": "Example Label Quality",
     "Large Language Models are Zero-Shot Reasoners": "Zero-Shot-CoT",
     "Least-to-Most Prompting Enables Complex Reasoning in Large Language Models": "Least-to-Most Prompting",
     "True Few-Shot Learning with Language Models": "True FSL",
-    "Prompt Programming for Large Language Models: Beyond the Few-Shot Paradigm": "Role Prompting",
+    "Prompt Programming for Large Language Models: Beyond the Few-Shot Paradigm": "Beyond the Few-Shot Paradigm",
     "Learning To Retrieve Prompts for In-Context Learning": "Prompt Retrieval Learning",
     "An Explanation of In-context Learning as Implicit Bayesian Inference": "Implicit Bayesian Inference",
     "OPT: Open Pre-trained Transformer Language Models": "Open Pre-trained Transformer (OPT)",
@@ -513,14 +513,24 @@ title_to_technique = {
 }
 
 
-# Remove isolated nodes and nodes with less than 10 incoming edges
-G.remove_nodes_from(list(nx.isolates(G)))
-nodes_to_remove = [node for node in G.nodes() if G.in_degree(node) < 8]
-G.remove_nodes_from(nodes_to_remove)
+
 
 # Find the top 20 nodes with the most incoming edges
 top_nodes = sorted(G.nodes(), key=lambda n: G.in_degree(n), reverse=True)[:25]
 
+# Print the name of the paper and the amount of references for the top 20 nodes
+print("Top 20 Referenced Papers:")
+for paper_id in top_nodes:
+    in_degree = G.in_degree(paper_id)  # The number of references
+    full_title = get_paper_title(paper_id, api_key)  # Assuming this function fetches the paper title
+    display_title = title_to_technique.get(full_title, full_title)  # Use mapped value if exists, otherwise full title
+    print(f'"{display_title}" referenced by {in_degree} other papers and its paper_id was {paper_id}')
+
+
+# Remove isolated nodes and nodes with less than 10 incoming edges
+G.remove_nodes_from(list(nx.isolates(G)))
+nodes_to_remove = [node for node in G.nodes() if G.in_degree(node) < 8]
+G.remove_nodes_from(nodes_to_remove)
 
 # Define a function to wrap text into at most two lines
 def wrap_text(text, width, max_lines=3):
@@ -580,8 +590,9 @@ for node, label in titles_above_threshold.items():
     plt.text(
         x, y + y_offset, label, fontsize=font_sizes[node], ha="center", va="center"
     )
+plt.axis('off')
 
-plt.title("Directed Graph of Paper's Internal References", fontsize=50)
+# plt.title("Directed Graph of Paper's Internal References", fontsize=50)
 plt.show()
 
 # %%
@@ -598,9 +609,9 @@ title_to_technique = {
     "A Practical Survey on Zero-Shot Prompt Design for In-Context Learning": "Zero-Shot Prompt",
     "Prompt Programming for Large Language Models: Beyond the Few-Shot Paradigm": "Role Prompting",
     "Bounding the Capabilities of Large Language Models in Open Text Generation with Prompt Constraints": "Style Prompting",
-    "Language Models are Few-Shot Learners": "In-context learning (ICL)",
-    "A Survey on In-context Learning": "Few-shot learning (FSL)",
-    "What Makes Good In-Context Examples for {GPT}-3?": "K-Nearest Neighbor (KNN)",
+    "Language Models are Few-Shot Learners": "Few-shot Learning (FSL)",
+    # "A Survey on In-context Learning": "In-context learning (ICL)",
+    "What Makes Good In-Context Examples for {\GPT}-3?": "In-Context Learning (ICL)",
     "Finding Support Examples for In-Context Learning": "fiLter-thEN-Search (LENS)",
     "Unified Demonstration Retriever for In-Context Learning": "Unified Demonstration Retriever (UDR)",
     "Fantastically Ordered Prompts and Where to Find Them: Overcoming Few-Shot Prompt Order Sensitivity": "Example Ordering",
@@ -658,17 +669,18 @@ title_to_technique = {
 }
 
 # Load the existing dictionary of paper references
-with open("data/cleaned_complete_paper_references.json", "r") as file:
+with open("/Users/aayushgupta/Documents/GitHub/Prompt_Systematic_Review/src/prompt_systematic_review/experiments/cleaned_complete_paper_references.json", "r") as file:
     paper_references = json.load(file)
 
-# Query each title and get citation counts
+# Initialize a dictionary for citation counts
 citation_counts = {}
+
+# Iterate over the title_to_technique mapping
 for title, technique in title_to_technique.items():
-    paper_id = query_paper_id(title, api_key)
-    if paper_id and paper_id in paper_references:
-        citation_count = len(paper_references[paper_id])
-        citation_counts[technique] = citation_count
-        print({technique}, {citation_count})
+    paper_id = query_paper_id(title, api_key)  # Get the paper ID for each title
+    # Count how many times each paper_id appears in the reference lists of other papers
+    citation_count = sum(paper_id in refs for refs in paper_references.values())
+    citation_counts[technique] = citation_count
 
 # Sort the citation counts in descending order
 sorted_citations = sorted(citation_counts.items(), key=lambda x: x[1], reverse=True)
@@ -678,19 +690,23 @@ sorted_techniques, sorted_counts = zip(*sorted_citations)
 
 # Create a vertical bar chart
 plt.figure(figsize=(30, 12))
-plt.bar(
-    sorted_techniques, sorted_counts, color=(45 / 255, 137 / 255, 145 / 255, 1)
-)  # RGBA color
+plt.bar(sorted_techniques, sorted_counts, color=(45 / 255, 137 / 255, 145 / 255, 1))  # RGBA color
+
+plt.yscale('log')
 
 # Rotate the x-axis labels by 45 degrees for better readability
-plt.xticks(rotation=45, ha="right")  # ha='right' aligns the labels at the right angle
+plt.xticks(rotation=45, ha="right")
+
+# Remove the top and right borders
+ax = plt.gca()  # Get current axes
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
 
 # Add labels and title
 plt.ylabel("Number of References")
 plt.xlabel("Technique")
-plt.title("Citation Counts for Techniques Based on Papers")
+# plt.title("Internal Citation Counts for Techniques Based on Papers")
 
 plt.tight_layout()  # Adjusts layout to prevent clipping of labels
 plt.show()
-
 # %%
