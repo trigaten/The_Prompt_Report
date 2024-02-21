@@ -305,121 +305,121 @@ print("Cleaned data saved to cleaned_merged_paper_references.json")
 # %SKIP
 # Histogram of the top 30 most cited papers by internal citation count
 
-import json
-import matplotlib.pyplot as plt
-import textwrap
-import matplotlib
+# import json
+# import matplotlib.pyplot as plt
+# import textwrap
+# import matplotlib
 
-# Set font properties globally
-matplotlib.rcParams.update(
-    {
-        "font.family": "Arial",  # You can replace 'Arial' with 'Helvetica' or another modern font
-        "font.size": 8,  # You can adjust this value as needed
-    }
-)
+# # Set font properties globally
+# matplotlib.rcParams.update(
+#     {
+#         "font.family": "Arial",  # You can replace 'Arial' with 'Helvetica' or another modern font
+#         "font.size": 8,  # You can adjust this value as needed
+#     }
+# )
 
-# Load the data
-with open("data/cleaned_complete_paper_references.json", "r") as file:
-    data = json.load(file)
+# # Load the data
+# with open("data/cleaned_complete_paper_references.json", "r") as file:
+#     data = json.load(file)
 
-# Count the number of references for each key
-reference_counts = {key: len(references) for key, references in data.items()}
+# # Count the number of references for each key
+# reference_counts = {key: len(references) for key, references in data.items()}
 
-# Sort by the number of references and select the top 50
-top_25 = sorted(reference_counts.items(), key=lambda x: x[1], reverse=True)[:30]
+# # Sort by the number of references and select the top 50
+# top_25 = sorted(reference_counts.items(), key=lambda x: x[1], reverse=True)[:30]
 
-# Fetch the titles for the top 50 paper IDs
-top_25_titles = {paper_id: get_paper_title(paper_id, api_key) for paper_id, _ in top_25}
+# # Fetch the titles for the top 50 paper IDs
+# top_25_titles = {paper_id: get_paper_title(paper_id, api_key) for paper_id, _ in top_25}
 
-# Replace paper IDs with their titles in the top_50 list
-top_25_with_titles = [(top_25_titles[paper_id], count) for paper_id, count in top_25]
+# # Replace paper IDs with their titles in the top_50 list
+# top_25_with_titles = [(top_25_titles[paper_id], count) for paper_id, count in top_25]
 
-# Unpack the data for plotting
-titles, counts = zip(*top_25_with_titles)
+# # Unpack the data for plotting
+# titles, counts = zip(*top_25_with_titles)
 
-# Define the RGBA color
-rgba_color = (45 / 255, 137 / 255, 145 / 255, 1)  # Converted from rgba(45, 137, 145, 1)
+# # Define the RGBA color
+# rgba_color = (45 / 255, 137 / 255, 145 / 255, 1)  # Converted from rgba(45, 137, 145, 1)
 
-# Create a vertical bar chart
-plt.figure(figsize=(12, 8))
-plt.bar(titles, counts, color=rgba_color)
+# # Create a vertical bar chart
+# plt.figure(figsize=(12, 8))
+# plt.bar(titles, counts, color=rgba_color)
 
-# Rotate the x-axis labels by 45 degrees for better readability
-plt.xticks(rotation=45, ha="right")  # ha='right' aligns the labels at the right angle
+# # Rotate the x-axis labels by 45 degrees for better readability
+# plt.xticks(rotation=45, ha="right")  # ha='right' aligns the labels at the right angle
 
-# Add labels and title
-plt.ylabel("Number of References")
-plt.xlabel("Paper Title")
-plt.title("Top 30 Papers by Number of References")
+# # Add labels and title
+# plt.ylabel("Number of References")
+# plt.xlabel("Paper Title")
+# plt.title("Top 30 Papers by Number of References")
 
-# plt.tight_layout()  # Adjusts layout to prevent clipping of labels
-plt.show()
+# # plt.tight_layout()  # Adjusts layout to prevent clipping of labels
+# plt.show()
 
 
 # %%SKIP
 # Generate a graph of all the papers with more than 10 internal references
 
-import networkx as nx
-import matplotlib.pyplot as plt
-import textwrap
+# import networkx as nx
+# import matplotlib.pyplot as plt
+# import textwrap
 
-# Load the cleaned references
-with open("data/cleaned_complete_paper_references.json", "r") as json_file:
-    paper_references = json.load(json_file)
+# # Load the cleaned references
+# with open("data/cleaned_complete_paper_references.json", "r") as json_file:
+#     paper_references = json.load(json_file)
 
-# Create the graph
-G = nx.DiGraph()
-for paper_id, references in paper_references.items():
-    for ref_id in references:
-        G.add_edge(paper_id, ref_id)
+# # Create the graph
+# G = nx.DiGraph()
+# for paper_id, references in paper_references.items():
+#     for ref_id in references:
+#         G.add_edge(paper_id, ref_id)
 
-# Remove isolated nodes and nodes with less than 10 incoming edges
-G.remove_nodes_from(list(nx.isolates(G)))
-nodes_to_remove = [node for node in G.nodes() if G.in_degree(node) < 10]
-G.remove_nodes_from(nodes_to_remove)
+# # Remove isolated nodes and nodes with less than 10 incoming edges
+# G.remove_nodes_from(list(nx.isolates(G)))
+# nodes_to_remove = [node for node in G.nodes() if G.in_degree(node) < 10]
+# G.remove_nodes_from(nodes_to_remove)
 
-# Find the top 20 nodes with the most incoming edges
-top_nodes = sorted(G.nodes(), key=lambda n: G.in_degree(n), reverse=True)[:20]
+# # Find the top 20 nodes with the most incoming edges
+# top_nodes = sorted(G.nodes(), key=lambda n: G.in_degree(n), reverse=True)[:20]
 
-titles_above_threshold = {}
-for paper_id in top_nodes:
-    full_title = get_paper_title(paper_id, api_key)
-    if full_title:
-        display_title = title_mappings.get(
-            full_title, full_title
-        )  # Use the full title if not found in the dictionary
-        if len(display_title) > 50:
-            display_title = textwrap.shorten(
-                display_title, width=50, placeholder="..."
-            )  # Shorten if longer than 60s
-        titles_above_threshold[paper_id] = display_title
+# titles_above_threshold = {}
+# for paper_id in top_nodes:
+#     full_title = get_paper_title(paper_id, api_key)
+#     if full_title:
+#         display_title = title_mappings.get(
+#             full_title, full_title
+#         )  # Use the full title if not found in the dictionary
+#         if len(display_title) > 50:
+#             display_title = textwrap.shorten(
+#                 display_title, width=50, placeholder="..."
+#             )  # Shorten if longer than 60s
+#         titles_above_threshold[paper_id] = display_title
 
-# Cap the maximum node size to prevent too large nodes
-# max_size = 100000  # Maximum size for a node
-node_sizes = [G.in_degree(node) * 2000 for node in G.nodes()]
+# # Cap the maximum node size to prevent too large nodes
+# # max_size = 100000  # Maximum size for a node
+# node_sizes = [G.in_degree(node) * 2000 for node in G.nodes()]
 
-# Draw the graph with adjusted layout parameters
-plt.figure(figsize=(60, 35))  # Increased figure size for more space
-pos = nx.kamada_kawai_layout(G, dist=None, scale=1)  # Adjust 'scale' as needed
-nx.draw(
-    G,
-    pos,
-    with_labels=False,
-    node_size=node_sizes,
-    node_color="skyblue",
-    edge_color="gray",
-    width=0.5,
-)
+# # Draw the graph with adjusted layout parameters
+# plt.figure(figsize=(60, 35))  # Increased figure size for more space
+# pos = nx.kamada_kawai_layout(G, dist=None, scale=1)  # Adjust 'scale' as needed
+# nx.draw(
+#     G,
+#     pos,
+#     with_labels=False,
+#     node_size=node_sizes,
+#     node_color="skyblue",
+#     edge_color="gray",
+#     width=0.5,
+# )
 
-# Assign and label top nodes with titles
-for node, label in titles_above_threshold.items():
-    x, y = pos[node]
-    wrapped_label = label.split("\n")
-    for i, line in enumerate(wrapped_label):
-        plt.text(x, y, line, fontsize=18, ha="center", va="center")
+# # Assign and label top nodes with titles
+# for node, label in titles_above_threshold.items():
+#     x, y = pos[node]
+#     wrapped_label = label.split("\n")
+#     for i, line in enumerate(wrapped_label):
+#         plt.text(x, y, line, fontsize=18, ha="center", va="center")
 
-plt.title("Graph of Paper References")
-plt.show()
+# plt.title("Graph of Paper References")
+# plt.show()
 
 
 # %%Run - Update File Path
