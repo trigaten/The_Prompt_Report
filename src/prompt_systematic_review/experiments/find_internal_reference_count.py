@@ -476,7 +476,10 @@ def adjust_overlap(
 
 
 # Load the cleaned references
-with open("/Users/aayushgupta/Documents/GitHub/Prompt_Systematic_Review/src/prompt_systematic_review/experiments/cleaned_complete_paper_references.json", "r") as json_file:
+with open(
+    "/Users/aayushgupta/Documents/GitHub/Prompt_Systematic_Review/src/prompt_systematic_review/experiments/cleaned_complete_paper_references.json",
+    "r",
+) as json_file:
     paper_references = json.load(json_file)
 
 # Create the graph
@@ -514,8 +517,6 @@ title_to_technique = {
 }
 
 
-
-
 # Find the top 20 nodes with the most incoming edges
 top_nodes = sorted(G.nodes(), key=lambda n: G.in_degree(n), reverse=True)[:25]
 
@@ -523,15 +524,22 @@ top_nodes = sorted(G.nodes(), key=lambda n: G.in_degree(n), reverse=True)[:25]
 print("Top 20 Referenced Papers:")
 for paper_id in top_nodes:
     in_degree = G.in_degree(paper_id)  # The number of references
-    full_title = get_paper_title(paper_id, api_key)  # Assuming this function fetches the paper title
-    display_title = title_to_technique.get(full_title, full_title)  # Use mapped value if exists, otherwise full title
-    print(f'"{display_title}" referenced by {in_degree} other papers and its paper_id was {paper_id}')
+    full_title = get_paper_title(
+        paper_id, api_key
+    )  # Assuming this function fetches the paper title
+    display_title = title_to_technique.get(
+        full_title, full_title
+    )  # Use mapped value if exists, otherwise full title
+    print(
+        f'"{display_title}" referenced by {in_degree} other papers and its paper_id was {paper_id}'
+    )
 
 
 # Remove isolated nodes and nodes with less than 10 incoming edges
 G.remove_nodes_from(list(nx.isolates(G)))
 nodes_to_remove = [node for node in G.nodes() if G.in_degree(node) < 8]
 G.remove_nodes_from(nodes_to_remove)
+
 
 # Define a function to wrap text into at most two lines
 def wrap_text(text, width, max_lines=3):
@@ -591,7 +599,7 @@ for node, label in titles_above_threshold.items():
     plt.text(
         x, y + y_offset, label, fontsize=font_sizes[node], ha="center", va="center"
     )
-plt.axis('off')
+plt.axis("off")
 
 # plt.title("Directed Graph of Paper's Internal References", fontsize=50)
 plt.show()
@@ -670,7 +678,10 @@ title_to_technique = {
 }
 
 # Load the existing dictionary of paper references
-with open("/Users/aayushgupta/Documents/GitHub/Prompt_Systematic_Review/src/prompt_systematic_review/experiments/cleaned_complete_paper_references.json", "r") as file:
+with open(
+    "/Users/aayushgupta/Documents/GitHub/Prompt_Systematic_Review/src/prompt_systematic_review/experiments/cleaned_complete_paper_references.json",
+    "r",
+) as file:
     paper_references = json.load(file)
 
 # Initialize a dictionary for citation counts
@@ -691,17 +702,19 @@ sorted_techniques, sorted_counts = zip(*sorted_citations)
 
 # Create a vertical bar chart
 plt.figure(figsize=(30, 12))
-plt.bar(sorted_techniques, sorted_counts, color=(45 / 255, 137 / 255, 145 / 255, 1))  # RGBA color
+plt.bar(
+    sorted_techniques, sorted_counts, color=(45 / 255, 137 / 255, 145 / 255, 1)
+)  # RGBA color
 
-plt.yscale('log')
+plt.yscale("log")
 
 # Rotate the x-axis labels by 45 degrees for better readability
 plt.xticks(rotation=45, ha="right")
 
 # Remove the top and right borders
 ax = plt.gca()  # Get current axes
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
 
 # Add labels and title
 plt.ylabel("Number of References")
