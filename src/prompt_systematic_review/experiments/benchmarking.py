@@ -423,7 +423,7 @@ def write_to_file(data, count, log_interval=25):
         DataFolderPath,
         "experiments_output"
         + os.sep
-        + f"data/benchmarking/eval_results_{current_datetime}_part_{((count//log_interval))}.json",
+        + f"eval_results_{current_datetime}_part_{((count//log_interval))}.json",
     )
 
     with open(file_path, "w") as json_file:
@@ -553,7 +553,7 @@ class Prompt:
         ):  # if an MMLU category is provided, category only provided for few-shot prompts
             all_shots = {
                 "vanilla": {
-                    1: {  # few-shot prompts with format 1
+                    "1": {  # few-shot prompts with format 1
                         "STEM": [
                             "Problem \n\tA 0.217 g sample of HgO (molar mass = 217 g) reacts with excess iodide ions according to the reaction shown above. Titration of the resulting solution requires how many mL of 0.10 M HCl to reach equivalence point?\nOptions \n\t\n(A)::1.0 mL -- (B)::10 mL -- (C)::20 mL -- (D)::50 mL\n Answer\n\t(C)",
                             "Problem \n\tMany Web browsers allow users to open anonymous windows. During a browsing session in an anonymous window, the browser does not record a browsing history or a list of downloaded files. When the anonymous window is exited, cookies created during the session are deleted. Which of the following statements about browsing sessions in an anonymous window is true?\nOptions \n\t\n(A)::The activities of a user browsing in an anonymous window will not be visible to people who monitor the user's network, such as the system administrator. -- (B)::Items placed in a Web store's shopping cart for future purchase during the anonymous browsing session will not be saved on the user's computer. -- (C)::A user will not be able to log in to e-mail or social media accounts during the anonymous browsing session. -- (D)::A user browsing in an anonymous window will be protected from viruses launched from any web sites visited or files downloaded.\n Answer\n\t(B)",
@@ -583,7 +583,7 @@ class Prompt:
                             "Problem \n\tWhich of these songs was a Top 10 hit for the rock band The Police?\nOptions \n\t\n(A)::'Radio Ga-Ga' -- (B)::'Ob-la-di Ob-la-da' -- (C)::'De Do Do Do De Da Da Da' -- (D)::'In-a-Gadda-Da-Vida'\n Answer\n\t(C)",
                         ],
                     },
-                    2: {  # same few-shot prompts with format 2
+                    "2": {  # same few-shot prompts with format 2
                         "STEM": [
                             "PROBLEM::A 0.217 g sample of HgO (molar mass = 217 g) reacts with excess iodide ions according to the reaction shown above. Titration of the resulting solution requires how many mL of 0.10 M HCl to reach equivalence point?, OPTIONS:: \n(A): 1.0 mL\n(B): 10 mL\n(C): 20 mL\n(D): 50 mL, ANSWER::(C)",
                             "PROBLEM::Many Web browsers allow users to open anonymous windows. During a browsing session in an anonymous window, the browser does not record a browsing history or a list of downloaded files. When the anonymous window is exited, cookies created during the session are deleted. Which of the following statements about browsing sessions in an anonymous window is true?, OPTIONS:: \n(A): The activities of a user browsing in an anonymous window will not be visible to people who monitor the user's network, such as the system administrator.\n(B): Items placed in a Web store's shopping cart for future purchase during the anonymous browsing session will not be saved on the user's computer.\n(C): A user will not be able to log in to e-mail or social media accounts during the anonymous browsing session.\n(D): A user browsing in an anonymous window will be protected from viruses launched from any web sites visited or files downloaded., ANSWER::(B)",
@@ -677,6 +677,9 @@ class Prompt:
                     },
                 },
             }
+            # print("Format number: ", self.format_num)
+            # print("Category: ", mmlu_split[category])
+            # print("CoT: ", self.CoT)
             shots = all_shots["CoT" if self.CoT else "vanilla"][str(self.format_num)][
                 mmlu_split[category]
             ]  # get the specific few-shot prompt set for the MMLU category group of the question
