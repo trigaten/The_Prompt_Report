@@ -310,12 +310,14 @@ def evaluate_prompts(
                         {
                             "prompt_name": prompt.name,
                             "prompt": chosen_prompt,
-                            "question": "Question: "
-                            + multiple_choice_question
-                            + "\n\n"
-                            + multiple_choice_question
-                            if reread
-                            else multiple_choice_question,
+                            "question": (
+                                "Question: "
+                                + multiple_choice_question
+                                + "\n\n"
+                                + multiple_choice_question
+                                if reread
+                                else multiple_choice_question
+                            ),
                             "correct_answer": correct_answer,
                             "response": response_dict,
                             "mark": eval_result,

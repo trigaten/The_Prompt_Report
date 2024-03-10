@@ -158,7 +158,7 @@ model = "gpt-4-1106-preview"
 # model = "gpt-3.5-turbo"
 examples = 50  # number of examples to test
 start = 0  # start index for dataset
-log_interval = 200 # log interval for creatings jsons of results by query
+log_interval = 200  # log interval for creatings jsons of results by query
 max_toks = 700  # max tokens for query
 rereading = False  # if true, will "reread" the question to the LM at query time
 return_json = False
@@ -202,3 +202,8 @@ def eval_prompts():
 class Experiment:
     def run():
         eval_prompts()
+
+    run()
+
+
+Experiment()
