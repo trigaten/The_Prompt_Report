@@ -53,6 +53,50 @@ def get_references(paper_id, api_key):
         return reference_ids
     return []
 
+def get_citation_counts(paper_ids):
+    """
+    Fetches citation counts for a list of paper IDs from Semantic Scholar's API.
+
+    Parameters:
+    - paper_ids (list): A list of paper IDs (strings).
+
+    Returns:
+    - dict: A dictionary where keys are paper IDs and values are citation counts.
+    """
+    # Define the URL for the batch API endpoint
+    url = 'https://api.semanticscholar.org/graph/v1/paper/batch'
+    
+    # Define the parameters for the fields you want to retrieve
+    params = {'fields': 'citationCount'}
+    
+    # The payload for the POST request, including the list of paper IDs
+    payload = {"ids": paper_ids}
+    
+    # Make the POST request to the batch API endpoint
+    response = requests.post(url, params=params, json=payload)
+    
+    # Initialize an empty dictionary to store the citation counts
+    citation_counts = {}
+    
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Parse the JSON response
+        data = response.json()
+        
+        # Loop through the papers in the response
+        for paper in data:
+            # Extract the paper ID and citation count
+            paper_id = paper.get('paperId')
+            citation_count = paper.get('citationCount', 0)
+            
+            # Add the citation count to the dictionary
+            citation_counts[paper_id] = citation_count
+    else:
+        print(f"Failed to fetch data: {response.status_code}")
+    
+    return citation_counts
+
+
 
 # Function to query paper title from Arxiv Id
 def get_arxiv_paper_title(arxiv_id):
@@ -296,7 +340,7 @@ for paper_id, references in merged_paper_references.items():
     ]
 
 # Save the cleaned data back to a JSON file
-with open("data/cleaned_complete_paper_references.json", "w") as file:
+with open("cleaned_complete_paper_references.json", "w") as file:
     json.dump(merged_paper_references, file, indent=4)
 
 print("Cleaned data saved to cleaned_merged_paper_references.json")
@@ -429,50 +473,40 @@ import matplotlib.pyplot as plt
 import textwrap
 
 
-def adjust_overlap(
-    pos, nodes_to_adjust, min_dist=1.0, repulsion_factor=1.05, vertical_bias=2.0
-):
-    for _ in range(1000):  # Increase the number of iterations for a denser graph
+# Function to adjust node positions to maintain a min and max distance
+def adjust_overlap(pos, nodes_to_adjust, min_dist=1.0, max_dist=2.0, repulsion_factor=1.05, attraction_factor=0.95, vertical_bias=2.0):
+    for _ in range(1000):  # Iteration limit
         adjusted = False
         for node1 in nodes_to_adjust:
             for node2 in nodes_to_adjust:
                 if node1 == node2:
-                    continue  # Skip comparing the node to itself
+                    continue  # Skip self comparisons
                 x1, y1 = pos[node1]
                 x2, y2 = pos[node2]
                 dx, dy = x1 - x2, y1 - y2
-                dist = (dx**2 + dy**2) ** 0.5
-                if dist < min_dist:  # If nodes are too close, push them apart
-                    if dist == 0:  # To avoid division by zero
-                        dx, dy = 1, 0
-                        dist = 1
-                    dx, dy = (
-                        dx / dist * min_dist * repulsion_factor,
-                        dy / dist * min_dist * repulsion_factor,
-                    )
+                dist = (dx**2 + dy**2) ** 0.5  # Euclidean distance
+                
+                if dist < min_dist:  # Nodes too close, push apart
+                    factor = repulsion_factor
+                elif dist > max_dist:  # Nodes too far, pull together
+                    factor = -attraction_factor
+                else:
+                    continue  # Distance is acceptable, no adjustment
+                
+                if dist == 0:  # Prevent division by zero
+                    dx, dy = 1, 0
+                    dist = 1
+                
+                dx, dy = dx / dist * min_dist * factor, dy / dist * min_dist * factor
+                dy *= vertical_bias  # Apply vertical adjustment
+                
+                # Adjust positions
+                pos[node1] = (x1 + dx, y1 + dy)
+                pos[node2] = (x2 - dx, y2 - dy)
+                adjusted = True
 
-                    # Apply additional vertical adjustment
-                    dy *= vertical_bias
-
-                    # Update the position of node1
-                    new_x1, new_y1 = x1 + dx, y1 + dy
-
-                    # Check if the new position of node1 overlaps with other nodes
-                    overlap = False
-                    for other_node in nodes_to_adjust:
-                        if other_node == node1 or other_node == node2:
-                            continue
-                        ox, oy = pos[other_node]
-                        if ((new_x1 - ox) ** 2 + (new_y1 - oy) ** 2) ** 0.5 < min_dist:
-                            overlap = True
-                            break
-
-                    if not overlap:
-                        pos[node1] = new_x1, new_y1
-                        adjusted = True
-
-        if not adjusted:  # Break the loop if no adjustments were made
-            break
+        if not adjusted:
+            break  # Stop if no adjustments were made in a full pass
 
 
 # Load the cleaned references
@@ -488,57 +522,51 @@ for paper_id, references in paper_references.items():
     for ref_id in references:
         G.add_edge(paper_id, ref_id)
 
-title_to_technique = {
-    "Language Models are Few-Shot Learners": "Few-Shot Prompting",
-    "Calibrate Before Use: Improving Few-Shot Performance of Language Models": "Calibration for FSL",
-    "Fantastically Ordered Prompts and Where to Find Them: Overcoming Few-Shot Prompt Order Sensitivity": "Example Ordering",
-    "What Makes Good In-Context Examples for GPT-3?": "In-Context Learning (ICL)",
-    "Making Pre-trained Language Models Better Few-shot Learners": "Pre-trained FSL Improvement",
-    "Self-Consistency Improves Chain of Thought Reasoning in Language Models": "Self-Consistency",
-    "Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?": "Example Label Quality",
-    "Large Language Models are Zero-Shot Reasoners": "Zero-Shot-CoT",
-    "Least-to-Most Prompting Enables Complex Reasoning in Large Language Models": "Least-to-Most Prompting",
-    "True Few-Shot Learning with Language Models": "True FSL",
-    "Prompt Programming for Large Language Models: Beyond the Few-Shot Paradigm": "Beyond the Few-Shot Paradigm",
-    "Learning To Retrieve Prompts for In-Context Learning": "Prompt Retrieval Learning",
-    "An Explanation of In-context Learning as Implicit Bayesian Inference": "Implicit Bayesian Inference",
-    "OPT: Open Pre-trained Transformer Language Models": "Open Pre-trained Transformer (OPT)",
-    "Do Prompt-Based Models Really Understand the Meaning of Their Prompts?": "Prompt Meaning Understanding",
-    "MetaICL: Learning to Learn In Context": "Meta In-Context Learning (MetaICL)",
-    "Noisy Channel Language Model Prompting for Few-Shot Text Classification": "Noisy Channel Prompting",
-    "Challenging BIG-Bench Tasks and Whether Chain-of-Thought Can Solve Them": "BIG-Bench & CoT",
-    "Can language models learn from explanations in context?": "Learning from Explanations",
-    "Reframing Instructional Prompts to GPTk’s Language": "Instructional Prompt Reframing",
-    "Meta-learning via Language Model In-context Tuning": "Meta-Learning LM Tuning",
-    "Program Synthesis with Large Language Models": "Program Synthesis LLM",
-    "Selective Annotation Makes Language Models Better Few-Shot Learners": "Input Distribution",
+
+technique_to_title = {
+    "Language Models are Few-Shot Learners": "Few-Shot Learning",
+    "A Survey on In-context Learning": "In-context Learning Survey",
+    "Exploring Demonstration Ensembling for In-context Learning": "Demonstration Ensembling",
+    "Unified Demonstration Retriever for In-Context Learning": "Unified Demo Retriever",
+    "Finding Support Examples for In-Context Learning": "Support Examples",
+    "Large Language Models Are Human-Level Prompt Engineers": "Human-Level Prompting",
     "Measuring and Narrowing the Compositionality Gap in Language Models": "Compositionality Gap",
-    "Rationale-Augmented Ensembles in Language Models": "Rationale-Augmented Ensembles",
+    "Automatic Chain of Thought Prompting in Large Language Models": "Automatic CoT",
+    "Complexity-Based Prompting for Multi-Step Reasoning": "Complexity-Based Prompting",
+    "Self-Generated In-Context Learning: Leveraging Auto-regressive Language Models as a Demonstration Generator": "Self-Generated ICL",
+    "Least-to-Most Prompting Enables Complex Reasoning in Large Language Models": "Least-to-Most Prompting",
+    "Learning To Retrieve Prompts for In-Context Learning": "Prompt Retrieval",
+    "Fantastically Ordered Prompts and Where to Find Them: Overcoming Few-Shot Prompt Order Sensitivity": "Prompt Order Sensitivity",
+    "What Makes Good In-Context Examples for GPT-3?": "Good In-Context Examples",
+    "MoT: Memory-of-Thought Enables ChatGPT to Self-Improve": "Memory-of-Thought",
+    "kNN Prompting: Beyond-Context Learning with Calibration-Free Nearest Neighbor Inference": "kNN Prompting",
+    "Large Language Models are Zero-Shot Reasoners": "Zero-Shot Reasoning",
+    "Self-Consistency Improves Chain of Thought Reasoning in Language Models": "Self-Consistency",
+    "Large Language Models as Optimizers": "LLMs as Optimizers",
+    "Decomposed Prompting: A Modular Approach for Solving Complex Tasks": "Decomposed Prompting",
+    "Is a Question Decomposition Unit All We Need?": "Question Decomposition",
+    "Deductive Verification of Chain-of-Thought Reasoning": "Deductive Verification",
+    "Active Prompting with Chain-of-Thought for Large Language Models": "Active Prompting",
+    "Large Language Model Guided Tree-of-Thought": "LLM Guided ToT",
+    "Language Models (Mostly) Know What They Know": "LLM Self-Knowledge",
+    "Automatic Prompt Augmentation and Selection with Chain-of-Thought from Labeled Data": "Automatic Prompt Augmentation",
+    "Maieutic Prompting: Logically Consistent Reasoning with Recursive Explanations": "Maieutic Prompting",
+    "Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models": "Plan-and-Solve Prompting",
+    "Tree of Thoughts: Deliberate Problem Solving with Large Language Models": "Tree of Thoughts",
+    "Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks": "Program of Thoughts",
+    "Self-Refine: Iterative Refinement with Self-Feedback": "Self-Refine",
+    "Cumulative Reasoning with Large Language Models": "Cumulative Reasoning",
+    "Faithful Chain-of-Thought Reasoning": "Faithful CoT",
+    "Making Language Models Better Reasoners with Step-Aware Verifier": "Step-Aware Verification",
+    "Graph of Thoughts: Solving Elaborate Problems with Large Language Models": "Graph of Thoughts",
+    "Chain-of-Verification Reduces Hallucination in Large Language Models": "Chain-of-Verification",
+    "Better Zero-Shot Reasoning with Self-Adaptive Prompting": "Self-Adaptive Prompting",
+    "Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves": "Rephrase and Respond"
 }
+# Find the nodes with at least one incoming edge
+nodes_with_incoming_edges = [node for node in G.nodes() if G.in_degree(node) > 0]
 
-
-# Find the top 20 nodes with the most incoming edges
 top_nodes = sorted(G.nodes(), key=lambda n: G.in_degree(n), reverse=True)[:25]
-
-# Print the name of the paper and the amount of references for the top 20 nodes
-print("Top 20 Referenced Papers:")
-for paper_id in top_nodes:
-    in_degree = G.in_degree(paper_id)  # The number of references
-    full_title = get_paper_title(
-        paper_id, api_key
-    )  # Assuming this function fetches the paper title
-    display_title = title_to_technique.get(
-        full_title, full_title
-    )  # Use mapped value if exists, otherwise full title
-    print(
-        f'"{display_title}" referenced by {in_degree} other papers and its paper_id was {paper_id}'
-    )
-
-
-# Remove isolated nodes and nodes with less than 10 incoming edges
-G.remove_nodes_from(list(nx.isolates(G)))
-nodes_to_remove = [node for node in G.nodes() if G.in_degree(node) < 8]
-G.remove_nodes_from(nodes_to_remove)
 
 
 # Define a function to wrap text into at most two lines
@@ -552,57 +580,48 @@ def wrap_text(text, width, max_lines=3):
     return "\n".join(wrapped_lines)
 
 
-# Adjusted part of your code for assigning and labeling top nodes with titles
+# Assign and label nodes with titles
 titles_above_threshold = {}
 for paper_id in top_nodes:
     full_title = get_paper_title(paper_id, api_key)  # Fetch full paper title
     if full_title:
-        # Check if the full title is in your dictionary and use the mapped value if it is
-        display_title = title_to_technique.get(
-            full_title, full_title
-        )  # Use the full title if not found in the dictionary
-        wrapped_title = wrap_text(
-            display_title, 16
-        )  # Wrap the title (or its mapped value)
+        display_title = technique_to_title.get(full_title, full_title)
+        wrapped_title = wrap_text(display_title, 10)
         titles_above_threshold[paper_id] = wrapped_title
 
-
-# Cap the maximum node size to prevent too large nodes
-node_sizes = [G.in_degree(node) * 2000 for node in G.nodes()]
+# Set node sizes proportional to the number of incoming edges (increased size)
+node_sizes = [((G.in_degree(node) * 3000)+1000) for node in top_nodes]
 
 # Calculate font size based on in-degree (you can adjust the scaling factor)
-font_sizes = {
-    node: G.in_degree(node) * 0.2 + 14 for node in G.nodes()
-}  # '+ 10' ensures a minimum font size
+font_sizes = {node: G.in_degree(node) * 0.60 + 14 for node in top_nodes}
 
 # Draw the graph with adjusted layout parameters
-plt.figure(figsize=(60, 35))
-pos = nx.kamada_kawai_layout(G, dist=None, scale=1)
+plt.figure(figsize=(50, 30))
 
-adjust_overlap(pos, top_nodes, min_dist=0.2, repulsion_factor=1.05)
+pos = nx.spring_layout(G, k=.3, iterations=50, scale=2)  # Initial layout
+adjust_overlap(pos, top_nodes, min_dist=1, max_dist=7.5)  # Adjust node positions
 
-# Draw all nodes first
+# Draw nodes with incoming edges
 nx.draw_networkx_nodes(
-    G, pos, node_size=node_sizes, node_color=(45 / 255, 137 / 255, 145 / 255, 1)
+    G, pos, nodelist=top_nodes, node_size=node_sizes, node_color=(45/255, 137/255, 145/255, 1)
 )
 
 # Draw the edges
-nx.draw_networkx_edges(G, pos, edge_color="gray", width=0.5)
+nx.draw_networkx_edges(G, pos, edge_color="gray", width=0.3)
 
-# Assign and label top nodes with titles
+# Assign and label nodes with titles without y_offset
 for node, label in titles_above_threshold.items():
     x, y = pos[node]
-    num_lines = label.count("\n") + 1
-    y_offset = (
-        0.005 * num_lines
-    )  # Adjust this factor as needed to position the text correctly
-    plt.text(
-        x, y + y_offset, label, fontsize=font_sizes[node], ha="center", va="center"
-    )
-plt.axis("off")
+    plt.text(x, y, label, fontsize=font_sizes[node], ha="center", va="center", wrap=True)
 
-# plt.title("Directed Graph of Paper's Internal References", fontsize=50)
+plt.axis("off")
 plt.show()
+# # Print the names of all the nodes
+# print("Names of all nodes:")
+# for node in top_nodes:
+#     full_title = get_paper_title(node, api_key)
+#     if full_title:
+#         print(full_title)
 
 # %%Run - Update File Path
 # Generate a graph of all the papers with more than 10 internal references
