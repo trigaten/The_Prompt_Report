@@ -158,9 +158,9 @@ if os.path.exists(csv_file_path):
                 if references is not None:
                     paper_references[paper_id] = references
                 else:
-                    unmatched_papers[row["title"]] = (
-                        "No references found or error occurred"
-                    )
+                    unmatched_papers[
+                        row["title"]
+                    ] = "No references found or error occurred"
             else:
                 print(f"Paper Id Could not be found for: {row}")
 
