@@ -173,7 +173,7 @@ def evaluate_prompts(
     config_name: str,
     split: str,
     model_name: str,
-    examples: None or int = 1,
+    examples: int = 1 or None,
     start_index: int = 0,
     log_interval: int = 25,
     max_tokens: int = 5000,

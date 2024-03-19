@@ -203,7 +203,3 @@ class Experiment:
     def run():
         eval_prompts()
 
-    run()
-
-
-Experiment()
