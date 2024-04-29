@@ -441,4 +441,7 @@ if __name__ == "__main__":
 }
     csv_file_path = "data/master_papers.csv"
     main.process_papers(csv_file_path)
+    main.process_additional_papers(titles)
+    main.merge_paper_references
+    main.clean_paper_references()
     main.visualize_graph(technique_to_title)
