@@ -18,6 +18,8 @@ load_dotenv
 tomotopy
 wordcloud
 pytest-dotenv
+python-dotenv
+networkx
 scipy
 networkx
 tomotopy
@@ -33,4 +35,5 @@ anytree==2.12.1
 urllib3<2
 acl-anthology-py
 seaborn
+requests
 -e .
