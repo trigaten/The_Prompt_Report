@@ -50,12 +50,14 @@ class SemanticScholarSource:
                         )
                         paper = Paper(
                             title=paper_data["title"],
-                            authors=[
-                                author["name"]
-                                for author in paper_data.get("authors", [])
-                            ]
-                            if paper_data["authors"]
-                            else "",
+                            authors=(
+                                [
+                                    author["name"]
+                                    for author in paper_data.get("authors", [])
+                                ]
+                                if paper_data["authors"]
+                                else ""
+                            ),
                             url=open_access_pdf_url,
                             dateSubmitted=publication_date,
                             keyWords=None,

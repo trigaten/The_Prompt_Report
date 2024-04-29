@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import textwrap
 import matplotlib
 
+
 class SemanticScholarAPI:
     def __init__(self, api_key):
         self.api_key = api_key
@@ -56,8 +57,8 @@ class SemanticScholarAPI:
         return []
 
     def get_citation_counts(self, paper_ids):
-        url = 'https://api.semanticscholar.org/graph/v1/paper/batch'
-        params = {'fields': 'citationCount'}
+        url = "https://api.semanticscholar.org/graph/v1/paper/batch"
+        params = {"fields": "citationCount"}
         payload = {"ids": paper_ids}
         response = requests.post(url, params=params, json=payload)
         citation_counts = {}
@@ -65,8 +66,8 @@ class SemanticScholarAPI:
         if response.status_code == 200:
             data = response.json()
             for paper in data:
-                paper_id = paper.get('paperId')
-                citation_count = paper.get('citationCount', 0)
+                paper_id = paper.get("paperId")
+                citation_count = paper.get("citationCount", 0)
                 citation_counts[paper_id] = citation_count
         else:
             print(f"Failed to fetch data: {response.status_code}")
@@ -142,10 +143,16 @@ class PaperProcessor:
                     if source == "Semantic Scholar":
                         paper_id = row.get("paperId", "").strip()
                     elif source == "arXiv":
-                        arxiv_paper_id = self.extract_arxiv_id(row.get("url", "").strip())
-                        paper_id = self.convert_arxiv_id_to_semantic_scholar_id(arxiv_paper_id)
+                        arxiv_paper_id = self.extract_arxiv_id(
+                            row.get("url", "").strip()
+                        )
+                        paper_id = self.convert_arxiv_id_to_semantic_scholar_id(
+                            arxiv_paper_id
+                        )
                     else:
-                        unmatched_papers[row.get("title", "").strip()] = "Source not supported"
+                        unmatched_papers[row.get("title", "").strip()] = (
+                            "Source not supported"
+                        )
                         continue
 
                     if paper_id:
@@ -153,7 +160,9 @@ class PaperProcessor:
                         if references is not None:
                             paper_references[paper_id] = references
                         else:
-                            unmatched_papers[row["title"]] = "No references found or error occurred"
+                            unmatched_papers[row["title"]] = (
+                                "No references found or error occurred"
+                            )
                     else:
                         print(f"Paper Id Could not be found for: {row}")
         else:
@@ -181,7 +190,16 @@ class GraphVisualizer:
     def __init__(self, api_key):
         self.semantic_scholar_api = SemanticScholarAPI(api_key)
 
-    def adjust_overlap(self, pos, nodes_to_adjust, min_dist=1.0, max_dist=2.0, repulsion_factor=1.05, attraction_factor=0.95, vertical_bias=2.0):
+    def adjust_overlap(
+        self,
+        pos,
+        nodes_to_adjust,
+        min_dist=1.0,
+        max_dist=2.0,
+        repulsion_factor=1.05,
+        attraction_factor=0.95,
+        vertical_bias=2.0,
+    ):
         for _ in range(1000):
             adjusted = False
             for node1 in nodes_to_adjust:
@@ -204,7 +222,10 @@ class GraphVisualizer:
                         dx, dy = 1, 0
                         dist = 1
 
-                    dx, dy = dx / dist * min_dist * factor, dy / dist * min_dist * factor
+                    dx, dy = (
+                        dx / dist * min_dist * factor,
+                        dy / dist * min_dist * factor,
+                    )
                     dy *= vertical_bias
 
                     pos[node1] = (x1 + dx, y1 + dy)
@@ -227,7 +248,9 @@ class GraphVisualizer:
             for ref_id in references:
                 G.add_edge(paper_id, ref_id)
 
-        nodes_with_incoming_edges = [node for node in G.nodes() if G.in_degree(node) > 0]
+        nodes_with_incoming_edges = [
+            node for node in G.nodes() if G.in_degree(node) > 0
+        ]
 
         top_nodes = sorted(G.nodes(), key=lambda n: G.in_degree(n), reverse=True)[:25]
 
@@ -239,22 +262,36 @@ class GraphVisualizer:
                 wrapped_title = self.wrap_text(display_title, 10)
                 titles_above_threshold[paper_id] = wrapped_title
 
-        node_sizes = [((G.in_degree(node) * 300)+1000) for node in top_nodes]
+        node_sizes = [((G.in_degree(node) * 300) + 1000) for node in top_nodes]
 
         font_sizes = {node: G.in_degree(node) * 0.06 + 14 for node in top_nodes}
 
         plt.figure(figsize=(50, 30))
 
-        pos = nx.spring_layout(G, k=.3, iterations=50, scale=2)
+        pos = nx.spring_layout(G, k=0.3, iterations=50, scale=2)
         self.adjust_overlap(pos, top_nodes, min_dist=1, max_dist=7.5)
 
-        nx.draw_networkx_nodes(G, pos, nodelist=top_nodes, node_size=node_sizes, node_color=(45/255, 137/255, 145/255, 1))
+        nx.draw_networkx_nodes(
+            G,
+            pos,
+            nodelist=top_nodes,
+            node_size=node_sizes,
+            node_color=(45 / 255, 137 / 255, 145 / 255, 1),
+        )
 
         nx.draw_networkx_edges(G, pos, edge_color="gray", width=0.3)
 
         for node, label in titles_above_threshold.items():
             x, y = pos[node]
-            plt.text(x, y, label, fontsize=font_sizes[node], ha="center", va="center", wrap=True)
+            plt.text(
+                x,
+                y,
+                label,
+                fontsize=font_sizes[node],
+                ha="center",
+                va="center",
+                wrap=True,
+            )
 
         plt.axis("off")
         plt.show()
@@ -267,12 +304,16 @@ class GraphVisualizer:
             citation_count = sum(paper_id in refs for refs in paper_references.values())
             citation_counts[technique] = citation_count
 
-        sorted_citations = sorted(citation_counts.items(), key=lambda x: x[1], reverse=True)
+        sorted_citations = sorted(
+            citation_counts.items(), key=lambda x: x[1], reverse=True
+        )
 
         sorted_techniques, sorted_counts = zip(*sorted_citations)
 
         plt.figure(figsize=(30, 12))
-        plt.bar(sorted_techniques, sorted_counts, color=(45 / 255, 137 / 255, 145 / 255, 1))
+        plt.bar(
+            sorted_techniques, sorted_counts, color=(45 / 255, 137 / 255, 145 / 255, 1)
+        )
 
         plt.yscale("log")
 
@@ -297,13 +338,17 @@ class Main:
         self.graph_visualizer = GraphVisualizer(self.api_key)
 
     def process_papers(self, csv_file_path):
-        paper_references, unmatched_papers = self.paper_processor.process_papers(csv_file_path)
+        paper_references, unmatched_papers = self.paper_processor.process_papers(
+            csv_file_path
+        )
         with open("revised_paper_references.json", "w") as json_file:
             json.dump(paper_references, json_file, indent=4)
         print("Data saved to revised_paper_references.json")
 
     def process_additional_papers(self, titles):
-        paper_references, unmatched_titles = self.paper_processor.process_additional_papers(titles)
+        paper_references, unmatched_titles = (
+            self.paper_processor.process_additional_papers(titles)
+        )
         with open("paper_references_additional.json", "w") as json_file:
             json.dump(paper_references, json_file, indent=4)
         print("Data saved to paper_references_additional.json")
@@ -322,18 +367,27 @@ class Main:
         print("Merged data saved to complete_paper_references.json")
 
     def clean_paper_references(self):
-        with open("complete_paper_references.json","r",) as file:
+        with open(
+            "complete_paper_references.json",
+            "r",
+        ) as file:
             merged_paper_references = json.load(file)
         for paper_id, references in merged_paper_references.items():
-            merged_paper_references[paper_id] = [ref for ref in references if ref in merged_paper_references]
+            merged_paper_references[paper_id] = [
+                ref for ref in references if ref in merged_paper_references
+            ]
         with open("cleaned_complete_paper_references.json", "w") as file:
             json.dump(merged_paper_references, file, indent=4)
         print("Cleaned data saved to cleaned_merged_paper_references.json")
 
     def visualize_graph(self, technique_to_title):
-        with open("src/prompt_systematic_review/experiments/cleaned_complete_paper_references.json","r",) as json_file:
+        with open(
+            "src/prompt_systematic_review/experiments/cleaned_complete_paper_references.json",
+            "r",
+        ) as json_file:
             paper_references = json.load(json_file)
         self.graph_visualizer.visualize_graph(paper_references, technique_to_title)
+
 
 if __name__ == "__main__":
     main = Main()
@@ -400,45 +454,45 @@ if __name__ == "__main__":
     ]
 
     technique_to_title = {
-    "Language Models are Few-Shot Learners": "Few-Shot Learning",
-    "A Survey on In-context Learning": "In-context Learning Survey",
-    "Exploring Demonstration Ensembling for In-context Learning": "Demonstration Ensembling",
-    "Unified Demonstration Retriever for In-Context Learning": "Unified Demo Retriever",
-    "Finding Support Examples for In-Context Learning": "Support Examples",
-    "Large Language Models Are Human-Level Prompt Engineers": "Human-Level Prompting",
-    "Measuring and Narrowing the Compositionality Gap in Language Models": "Compositionality Gap",
-    "Automatic Chain of Thought Prompting in Large Language Models": "Automatic CoT",
-    "Complexity-Based Prompting for Multi-Step Reasoning": "Complexity-Based Prompting",
-    "Self-Generated In-Context Learning: Leveraging Auto-regressive Language Models as a Demonstration Generator": "Self-Generated ICL",
-    "Least-to-Most Prompting Enables Complex Reasoning in Large Language Models": "Least-to-Most Prompting",
-    "Learning To Retrieve Prompts for In-Context Learning": "Prompt Retrieval",
-    "Fantastically Ordered Prompts and Where to Find Them: Overcoming Few-Shot Prompt Order Sensitivity": "Prompt Order Sensitivity",
-    "What Makes Good In-Context Examples for GPT-3?": "Good In-Context Examples",
-    "MoT: Memory-of-Thought Enables ChatGPT to Self-Improve": "Memory-of-Thought",
-    "kNN Prompting: Beyond-Context Learning with Calibration-Free Nearest Neighbor Inference": "kNN Prompting",
-    "Large Language Models are Zero-Shot Reasoners": "Zero-Shot Reasoning",
-    "Self-Consistency Improves Chain of Thought Reasoning in Language Models": "Self-Consistency",
-    "Large Language Models as Optimizers": "LLMs as Optimizers",
-    "Decomposed Prompting: A Modular Approach for Solving Complex Tasks": "Decomposed Prompting",
-    "Is a Question Decomposition Unit All We Need?": "Question Decomposition",
-    "Deductive Verification of Chain-of-Thought Reasoning": "Deductive Verification",
-    "Active Prompting with Chain-of-Thought for Large Language Models": "Active Prompting",
-    "Large Language Model Guided Tree-of-Thought": "LLM Guided ToT",
-    "Language Models (Mostly) Know What They Know": "LLM Self-Knowledge",
-    "Automatic Prompt Augmentation and Selection with Chain-of-Thought from Labeled Data": "Automatic Prompt Augmentation",
-    "Maieutic Prompting: Logically Consistent Reasoning with Recursive Explanations": "Maieutic Prompting",
-    "Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models": "Plan-and-Solve Prompting",
-    "Tree of Thoughts: Deliberate Problem Solving with Large Language Models": "Tree of Thoughts",
-    "Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks": "Program of Thoughts",
-    "Self-Refine: Iterative Refinement with Self-Feedback": "Self-Refine",
-    "Cumulative Reasoning with Large Language Models": "Cumulative Reasoning",
-    "Faithful Chain-of-Thought Reasoning": "Faithful CoT",
-    "Making Language Models Better Reasoners with Step-Aware Verifier": "Step-Aware Verification",
-    "Graph of Thoughts: Solving Elaborate Problems with Large Language Models": "Graph of Thoughts",
-    "Chain-of-Verification Reduces Hallucination in Large Language Models": "Chain-of-Verification",
-    "Better Zero-Shot Reasoning with Self-Adaptive Prompting": "Self-Adaptive Prompting",
-    "Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves": "Rephrase and Respond"
-}
+        "Language Models are Few-Shot Learners": "Few-Shot Learning",
+        "A Survey on In-context Learning": "In-context Learning Survey",
+        "Exploring Demonstration Ensembling for In-context Learning": "Demonstration Ensembling",
+        "Unified Demonstration Retriever for In-Context Learning": "Unified Demo Retriever",
+        "Finding Support Examples for In-Context Learning": "Support Examples",
+        "Large Language Models Are Human-Level Prompt Engineers": "Human-Level Prompting",
+        "Measuring and Narrowing the Compositionality Gap in Language Models": "Compositionality Gap",
+        "Automatic Chain of Thought Prompting in Large Language Models": "Automatic CoT",
+        "Complexity-Based Prompting for Multi-Step Reasoning": "Complexity-Based Prompting",
+        "Self-Generated In-Context Learning: Leveraging Auto-regressive Language Models as a Demonstration Generator": "Self-Generated ICL",
+        "Least-to-Most Prompting Enables Complex Reasoning in Large Language Models": "Least-to-Most Prompting",
+        "Learning To Retrieve Prompts for In-Context Learning": "Prompt Retrieval",
+        "Fantastically Ordered Prompts and Where to Find Them: Overcoming Few-Shot Prompt Order Sensitivity": "Prompt Order Sensitivity",
+        "What Makes Good In-Context Examples for GPT-3?": "Good In-Context Examples",
+        "MoT: Memory-of-Thought Enables ChatGPT to Self-Improve": "Memory-of-Thought",
+        "kNN Prompting: Beyond-Context Learning with Calibration-Free Nearest Neighbor Inference": "kNN Prompting",
+        "Large Language Models are Zero-Shot Reasoners": "Zero-Shot Reasoning",
+        "Self-Consistency Improves Chain of Thought Reasoning in Language Models": "Self-Consistency",
+        "Large Language Models as Optimizers": "LLMs as Optimizers",
+        "Decomposed Prompting: A Modular Approach for Solving Complex Tasks": "Decomposed Prompting",
+        "Is a Question Decomposition Unit All We Need?": "Question Decomposition",
+        "Deductive Verification of Chain-of-Thought Reasoning": "Deductive Verification",
+        "Active Prompting with Chain-of-Thought for Large Language Models": "Active Prompting",
+        "Large Language Model Guided Tree-of-Thought": "LLM Guided ToT",
+        "Language Models (Mostly) Know What They Know": "LLM Self-Knowledge",
+        "Automatic Prompt Augmentation and Selection with Chain-of-Thought from Labeled Data": "Automatic Prompt Augmentation",
+        "Maieutic Prompting: Logically Consistent Reasoning with Recursive Explanations": "Maieutic Prompting",
+        "Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models": "Plan-and-Solve Prompting",
+        "Tree of Thoughts: Deliberate Problem Solving with Large Language Models": "Tree of Thoughts",
+        "Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks": "Program of Thoughts",
+        "Self-Refine: Iterative Refinement with Self-Feedback": "Self-Refine",
+        "Cumulative Reasoning with Large Language Models": "Cumulative Reasoning",
+        "Faithful Chain-of-Thought Reasoning": "Faithful CoT",
+        "Making Language Models Better Reasoners with Step-Aware Verifier": "Step-Aware Verification",
+        "Graph of Thoughts: Solving Elaborate Problems with Large Language Models": "Graph of Thoughts",
+        "Chain-of-Verification Reduces Hallucination in Large Language Models": "Chain-of-Verification",
+        "Better Zero-Shot Reasoning with Self-Adaptive Prompting": "Self-Adaptive Prompting",
+        "Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves": "Rephrase and Respond",
+    }
     csv_file_path = "data/master_papers.csv"
     main.process_papers(csv_file_path)
     main.visualize_graph(technique_to_title)
