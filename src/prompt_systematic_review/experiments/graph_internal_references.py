@@ -362,7 +362,7 @@ class Main:
             paper_references = json.load(file)
         with open("paper_references_additional.json", "r") as file:
             paper_references_additional = json.load(file)
-        paper_references.update(paper_references_additional)
+        paper_references.update(paper_references_additional) 
         with open("complete_paper_references.json", "w") as file:
             json.dump(paper_references, file, indent=4)
         print("Merged data saved to complete_paper_references.json")
@@ -382,10 +382,7 @@ class Main:
         print("Cleaned data saved to cleaned_merged_paper_references.json")
 
     def visualize_graph(self, technique_to_title):
-        with open(
-            "src/prompt_systematic_review/experiments/cleaned_complete_paper_references.json",
-            "r",
-        ) as json_file:
+        with open("cleaned_complete_paper_references.json", "r") as json_file:
             paper_references = json.load(json_file)
         self.graph_visualizer.visualize_graph(paper_references, technique_to_title)
 
@@ -494,9 +491,9 @@ if __name__ == "__main__":
         "Better Zero-Shot Reasoning with Self-Adaptive Prompting": "Self-Adaptive Prompting",
         "Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves": "Rephrase and Respond",
     }
-    csv_file_path = "data/master_papers.csv"
-    main.process_papers(csv_file_path)
-    main.process_additional_papers(titles)
-    main.merge_paper_references
+    # csv_file_path = "data/master_papers.csv"
+    # main.process_papers(csv_file_path)
+    # main.process_additional_papers(titles)
+    main.merge_paper_references()
     main.clean_paper_references()
     main.visualize_graph(technique_to_title)
