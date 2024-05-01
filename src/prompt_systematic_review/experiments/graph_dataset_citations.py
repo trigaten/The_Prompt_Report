@@ -85,10 +85,15 @@ def graph_dataset_citations():
 
     output_dir = os.path.join(DataFolderPath, "experiments_output")
     os.makedirs(output_dir, exist_ok=True)
+    # output_file_path = os.path.join(output_dir, "graph_dataset_mentions_output.png")
     output_file_path = os.path.join(output_dir, "graph_dataset_mentions_output.png")
+
     plt.savefig(output_file_path)
 
 
 class Experiment:
     def run():
         graph_dataset_citations()
+
+if __name__ == "__main__":
+    graph_dataset_citations()

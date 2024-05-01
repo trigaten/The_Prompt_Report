@@ -15,19 +15,27 @@ def graph_models(inputFile="model_citation_counts.csv"):
 
     plt.figure(figsize=(10, 6))
     plt.bar(top_20["model_name"], top_20["count"], color="#2E8991")
-    plt.xlabel("Model Name")
-    plt.ylabel("Count")
-    plt.title("Counts of Model Mentions in Dataset")
-    plt.xticks(rotation=45, ha="right")
+    plt.xlabel("Model Name", fontsize=20)
+    plt.ylabel("Count", fontsize=20)
+    plt.title("Counts of Model Mentions in Dataset", fontsize=30)
+
+    plt.xticks(rotation=45, ha="right", fontsize=15)  # Adjust fontsize as needed
+    plt.yticks(fontsize=15)  # Adjust fontsize as needed
+
     plt.tight_layout()
 
     output_dir = os.path.join(DataFolderPath, "experiments_output")
     os.makedirs(output_dir, exist_ok=True)  # Create directory if it doesn't exist
 
-    output_file_path = os.path.join(output_dir, "graph_models_output.png")
+    # output_file_path = os.path.join(output_dir, "graph_models_output.png")
+    output_file_path = os.path.join("graph_models_output.png")
+
     plt.savefig(output_file_path)
 
 
 class Experiment:
     def run():
         graph_models()
+
+if __name__ == "__main__":
+    graph_models()
