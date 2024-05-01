@@ -122,7 +122,7 @@ few_shot_CoT3_format2 = Prompt(
 
 
 prompts_to_test = [
-    # zero_shot_baseline1_format1,
+    zero_shot_baseline1_format1,
     # zero_shot_baseline1_format2,
     # zero_shot_baseline2_format1,
     # zero_shot_baseline2_format2,
@@ -131,19 +131,19 @@ prompts_to_test = [
     # few_shot_baseline1_format1,
     # few_shot_baseline1_format2
     # zero_shot_CoT
-    # zero_shot_CoT1_format1,
+    zero_shot_CoT1_format1,
     # zero_shot_CoT1_format2,
     # zero_shot_CoT2_format1,
     # zero_shot_CoT2_format2,
     # zero_shot_CoT3_format1,
     # zero_shot_CoT3_format2,
-    # few_shot_baseline1_format1,
+    few_shot_baseline1_format1,
     # few_shot_baseline1_format2,
     # few_shot_baseline2_format1,
     # few_shot_baseline2_format2,
     # few_shot_baseline3_format1,
     # few_shot_baseline3_format2,
-    # few_shot_CoT1_format1,
+    few_shot_CoT1_format1,
     # few_shot_CoT1_format2,
     # few_shot_CoT2_format1,
     # few_shot_CoT2_format2,
@@ -154,16 +154,16 @@ prompts_to_test = [
 dataset = "mmlu"  # mmlu or gsm8k
 config_name = None  # main if gs8k, None if mmlu
 split = "test"
-# model = "gpt-4-1106-preview"
-model = "gpt-3.5-turbo"
-examples = 2800  # number of examples to test
+model = "gpt-4-1106-preview"
+# model = "gpt-3.5-turbo"
+examples = 50  # number of examples to test
 start = 0  # start index for dataset
 log_interval = 200  # log interval for creatings jsons of results by query
 max_toks = 700  # max tokens for query
 rereading = False  # if true, will "reread" the question to the LM at query time
 return_json = False
 SEED = 42
-temp = 0.5
+temp = 0.0
 
 
 def eval_prompts():
@@ -187,7 +187,7 @@ def eval_prompts():
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
     # File path for the JSON file
-    d_path = f"data/benchmarking/eval_results_{current_datetime}.json"
+    d_path = f"eval_results_{current_datetime}.json"
 
     file_path = os.path.join(
         DataFolderPath,
