@@ -262,14 +262,14 @@ class GraphVisualizer:
                 wrapped_title = self.wrap_text(display_title, 10)
                 titles_above_threshold[paper_id] = wrapped_title
 
-        node_sizes = [((G.in_degree(node) * 300) + 1000) for node in top_nodes]
+        node_sizes = [((G.in_degree(node) * 8) + 35) for node in top_nodes]
 
-        font_sizes = {node: G.in_degree(node) * 0.06 + 14 for node in top_nodes}
+        font_sizes = {node: G.in_degree(node) * 0.001 + 12 for node in top_nodes}
 
-        plt.figure(figsize=(50, 30))
+        plt.figure(figsize=(10, 6))
 
         pos = nx.spring_layout(G, k=0.3, iterations=50, scale=2)
-        self.adjust_overlap(pos, top_nodes, min_dist=1, max_dist=7.5)
+        self.adjust_overlap(pos, top_nodes, min_dist=.5, max_dist=5)
 
         nx.draw_networkx_nodes(
             G,
@@ -295,6 +295,8 @@ class GraphVisualizer:
 
         plt.axis("off")
         plt.show()
+        plt.savefig('network_graph.png', format='png', dpi=300) 
+
 
     def visualize_citation_counts(self, paper_references, title_to_technique):
         citation_counts = {}
@@ -494,6 +496,6 @@ if __name__ == "__main__":
     # csv_file_path = "data/master_papers.csv"
     # main.process_papers(csv_file_path)
     # main.process_additional_papers(titles)
-    main.merge_paper_references()
-    main.clean_paper_references()
+    # main.merge_paper_references()
+    # main.clean_paper_references()
     main.visualize_graph(technique_to_title)
