@@ -14,6 +14,40 @@ import textwrap
 import matplotlib
 
 
+"""
+This script processes a CSV file containing research paper information, retrieves reference data from the Semantic Scholar API, 
+and visualizes the citation graph and citation counts.
+
+The SemanticScholarAPI class handles interactions with the Semantic Scholar API, including getting paper references and citation counts.
+It uses rate limiting and exponential backoff to handle API rate limits and errors.
+
+The ArxivAPI class retrieves paper titles from the arXiv API given an arXiv ID.
+
+The PaperProcessor class processes the CSV file, extracts paper IDs (either directly from Semantic Scholar or by converting arXiv IDs), 
+and retrieves the references for each paper using the SemanticScholarAPI. It can also process additional papers given a list of titles.
+
+The GraphVisualizer class visualizes the citation graph, showing the most referenced papers and their connections. 
+It applies techniques like adjusting node overlap, wrapping long titles, and scaling node sizes based on the number of incoming citations.
+It can also visualize a bar chart of the citation counts for different techniques.
+
+The Main class ties everything together. It loads the API key from a .env file, initializes the other classes, and provides methods to:
+1. Process the initial CSV file
+2. Process additional papers 
+3. Merge the reference data
+4. Clean the merged data (remove references to papers not in the dataset)
+5. Visualize the citation graph
+
+To use this script:
+1. Set your Semantic Scholar API key in a .env file as SEMANTIC_SCHOLAR_API_KEY.
+2. Prepare a Master Papers CSV 
+3. Update the 'titles' list with any additional papers to include.
+4. Update the 'technique_to_title' dictionary to map paper titles to the techniques they represent.
+5. Run the script, uncommenting the desired methods in the 'if __name__ == "__main__":' block.
+
+The script will save the processed data to JSON files at each step, and display the visualizations using matplotlib and the graph as a PNG.
+"""
+
+
 class SemanticScholarAPI:
     def __init__(self, api_key):
         self.api_key = api_key
