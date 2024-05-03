@@ -44,7 +44,7 @@ def evaluate_human_agreement(inputFile="arxiv_papers_with_abstract.csv"):
     df["title"] = df["title"].apply(lambda x: process_paper_title(x))
 
     # df = df.iloc[400:800]
-    df_limited = df.copy()  # .iloc[400:800]
+    df_limited = df.copy().iloc[200:]
     df_limited["human_review"] = ~df_limited["title"].isin(blacklist["title"])
     keepables = ["highly relevant", "somewhat relevant", "neutral"]
 
