@@ -186,9 +186,9 @@ class PaperProcessor:
                             arxiv_paper_id
                         )
                     else:
-                        unmatched_papers[
-                            row.get("title", "").strip()
-                        ] = "Source not supported"
+                        unmatched_papers[row.get("title", "").strip()] = (
+                            "Source not supported"
+                        )
                         continue
 
                     if paper_id:
@@ -196,9 +196,9 @@ class PaperProcessor:
                         if references is not None:
                             paper_references[paper_id] = references
                         else:
-                            unmatched_papers[
-                                row["title"]
-                            ] = "No references found or error occurred"
+                            unmatched_papers[row["title"]] = (
+                                "No references found or error occurred"
+                            )
                     else:
                         print(f"Paper Id Could not be found for: {row}")
         else:
@@ -297,7 +297,7 @@ class GraphVisualizer:
                 display_title = technique_to_title.get(full_title, full_title)
                 wrapped_title = self.wrap_text(display_title, 10)
                 titles_above_threshold[paper_id] = wrapped_title
-        
+
         node_sizes = [((G.in_degree(node) * 80) + 50) for node in top_nodes]
 
         font_sizes = {node: G.in_degree(node) * 0.001 + 12 for node in top_nodes}
@@ -305,7 +305,7 @@ class GraphVisualizer:
         plt.figure(figsize=(10, 6))
 
         pos = nx.spring_layout(G, k=0.3, iterations=50, scale=2)
-        self.adjust_overlap(pos, top_nodes, min_dist=.5, max_dist=5)
+        self.adjust_overlap(pos, top_nodes, min_dist=0.5, max_dist=5)
 
         nx.draw_networkx_nodes(
             G,
@@ -331,8 +331,7 @@ class GraphVisualizer:
 
         plt.axis("off")
         # plt.show()
-        plt.savefig('network_graph.png', format='png', dpi=300) 
-
+        plt.savefig("network_graph.png", format="png", dpi=300)
 
     def visualize_citation_counts(self, paper_references, title_to_technique):
         citation_counts = {}
@@ -400,7 +399,7 @@ class Main:
             paper_references = json.load(file)
         with open("paper_references_additional.json", "r") as file:
             paper_references_additional = json.load(file)
-        paper_references.update(paper_references_additional) 
+        paper_references.update(paper_references_additional)
         with open("complete_paper_references.json", "w") as file:
             json.dump(paper_references, file, indent=4)
         print("Merged data saved to complete_paper_references.json")

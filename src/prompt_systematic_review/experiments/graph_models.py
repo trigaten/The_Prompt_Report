@@ -37,5 +37,6 @@ class Experiment:
     def run():
         graph_models()
 
+
 if __name__ == "__main__":
     graph_models()
