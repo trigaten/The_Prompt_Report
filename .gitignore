@@ -17,6 +17,8 @@ scripts/master_papers.csv
 scripts/t.py
 /RP_eval_results_*.json
 scripts/master_papers.csv
+data/mmlu
+data/benchmarking/*
 scratch
 scratch/*
 scratch/acl-anthology

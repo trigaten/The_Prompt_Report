@@ -36,4 +36,5 @@ urllib3<2
 acl-anthology-py
 seaborn
 requests
+tenacity
 -e .
