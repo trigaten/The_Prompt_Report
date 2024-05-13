@@ -45,7 +45,9 @@ To use this script:
 5. Run the script, uncommenting the desired methods in the 'if __name__ == "__main__":' block.
 
 The script will save the processed data to JSON files at each step, and display the visualizations using matplotlib and the graph as a PNG.
-"""
+
+
+May need to uncomment some stuff at the bottom for this to work."""
 
 
 class SemanticScholarAPI:
@@ -295,8 +297,8 @@ class GraphVisualizer:
                 display_title = technique_to_title.get(full_title, full_title)
                 wrapped_title = self.wrap_text(display_title, 10)
                 titles_above_threshold[paper_id] = wrapped_title
-
-        node_sizes = [((G.in_degree(node) * 8) + 35) for node in top_nodes]
+        
+        node_sizes = [((G.in_degree(node) * 80) + 50) for node in top_nodes]
 
         font_sizes = {node: G.in_degree(node) * 0.001 + 12 for node in top_nodes}
 
@@ -328,7 +330,7 @@ class GraphVisualizer:
             )
 
         plt.axis("off")
-        plt.show()
+        # plt.show()
         plt.savefig('network_graph.png', format='png', dpi=300) 
 
 
