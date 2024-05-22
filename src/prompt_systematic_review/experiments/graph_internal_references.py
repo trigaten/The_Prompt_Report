@@ -333,7 +333,6 @@ class GraphVisualizer:
 
     def visualize_citation_counts(self, paper_references, title_to_technique):
         citation_counts = {}
-
         for title, technique in title_to_technique.items():
             paper_id = self.semantic_scholar_api.query_paper_id(title)
             citation_count = sum(paper_id in refs for refs in paper_references.values())
@@ -342,25 +341,22 @@ class GraphVisualizer:
         sorted_citations = sorted(
             citation_counts.items(), key=lambda x: x[1], reverse=True
         )
-
         sorted_techniques, sorted_counts = zip(*sorted_citations)
 
         plt.figure(figsize=(30, 12))
         plt.bar(
-            sorted_techniques, sorted_counts, color=(45 / 255, 137 / 255, 145 / 255, 1)
+            sorted_techniques,
+            sorted_counts,
+            color=(45 / 255, 137 / 255, 145 / 255, 1)
         )
-
         plt.yscale("log")
-
         plt.xticks(rotation=45, ha="right")
-
         ax = plt.gca()
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
-
-        plt.ylabel("Number of References")
-        plt.xlabel("Technique")
-
+        plt.ylabel("Citation Counts")
+        plt.xlabel("Prompting Techniques")
+        plt.title("Citation Counts of Prompting Techniques")
         plt.tight_layout()
         plt.show()
 
