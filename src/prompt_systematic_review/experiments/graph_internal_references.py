@@ -343,7 +343,7 @@ class GraphVisualizer:
         )
         sorted_techniques, sorted_counts = zip(*sorted_citations)
 
-        plt.figure(figsize=(30, 12))
+        plt.figure(figsize=(15, 6))
         plt.bar(
             sorted_techniques,
             sorted_counts,
