@@ -44,7 +44,7 @@ def evaluate_human_agreement(inputFile="arxiv_papers_with_abstract.csv"):
     df["title"] = df["title"].apply(lambda x: process_paper_title(x))
 
     # df = df.iloc[400:800]
-    df_limited = df.copy()  # .iloc[400:800]
+    df_limited = df.copy().iloc[200:]
     df_limited["human_review"] = ~df_limited["title"].isin(blacklist["title"])
     keepables = ["highly relevant", "somewhat relevant", "neutral"]
 
@@ -57,15 +57,18 @@ def evaluate_human_agreement(inputFile="arxiv_papers_with_abstract.csv"):
     agreement_grid = pd.crosstab(df_limited["AI_keep"], df_limited["human_review"])
 
     true_positives = agreement_grid.loc[True, True]
+    true_negatives = agreement_grid.loc[False, False]
     false_positives = agreement_grid.loc[True, False]
     false_negatives = agreement_grid.loc[False, True]
 
+    accuracy = (true_positives + true_negatives) / len(df_limited)
     precision = true_positives / (true_positives + false_positives)
     recall = true_positives / (true_positives + false_negatives)
 
     f1_score = 2 * (precision * recall) / (precision + recall)
     print(f"Precision: {precision}")
     print(f"Recall: {recall}")
+    print(f"Accuracy: {accuracy}")
     print(f"F1 Score: {f1_score}")
 
 

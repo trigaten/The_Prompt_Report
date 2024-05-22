@@ -24,7 +24,7 @@ scipy
 networkx
 tomotopy
 soup-nuts @ git+https://git@github.com/ahoho/topics.git@dev
-black
+black==23.10.1
 pytz==2023.3
 regex==2023.8.8
 Requests==2.31.0
@@ -36,4 +36,5 @@ urllib3<2
 acl-anthology-py
 seaborn
 requests
+tenacity
 -e .

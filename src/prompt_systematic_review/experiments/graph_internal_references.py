@@ -45,7 +45,9 @@ To use this script:
 5. Run the script, uncommenting the desired methods in the 'if __name__ == "__main__":' block.
 
 The script will save the processed data to JSON files at each step, and display the visualizations using matplotlib and the graph as a PNG.
-"""
+
+
+May need to uncomment some stuff at the bottom for this to work."""
 
 
 class SemanticScholarAPI:
@@ -296,14 +298,14 @@ class GraphVisualizer:
                 wrapped_title = self.wrap_text(display_title, 10)
                 titles_above_threshold[paper_id] = wrapped_title
 
-        node_sizes = [((G.in_degree(node) * 8) + 35) for node in top_nodes]
+        node_sizes = [((G.in_degree(node) * 80) + 50) for node in top_nodes]
 
         font_sizes = {node: G.in_degree(node) * 0.001 + 12 for node in top_nodes}
 
         plt.figure(figsize=(10, 6))
 
         pos = nx.spring_layout(G, k=0.3, iterations=50, scale=2)
-        self.adjust_overlap(pos, top_nodes, min_dist=.5, max_dist=5)
+        self.adjust_overlap(pos, top_nodes, min_dist=0.5, max_dist=5)
 
         nx.draw_networkx_nodes(
             G,
@@ -328,8 +330,9 @@ class GraphVisualizer:
             )
 
         plt.axis("off")
-        plt.savefig('network_graph.png', format='png', dpi=300) 
-
+        
+        # plt.show()
+        plt.savefig("network_graph.png", format="png", dpi=300)
 
     def visualize_citation_counts(self, paper_references, title_to_technique):
         citation_counts = {}
@@ -393,7 +396,7 @@ class Main:
             paper_references = json.load(file)
         with open("paper_references_additional.json", "r") as file:
             paper_references_additional = json.load(file)
-        paper_references.update(paper_references_additional) 
+        paper_references.update(paper_references_additional)
         with open("complete_paper_references.json", "w") as file:
             json.dump(paper_references, file, indent=4)
         print("Merged data saved to complete_paper_references.json")
