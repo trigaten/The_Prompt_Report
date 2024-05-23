@@ -530,10 +530,4 @@ if __name__ == "__main__":
         "Better Zero-Shot Reasoning with Self-Adaptive Prompting": "Self-Adaptive Prompting",
         "Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves": "Rephrase and Respond",
     }
-    # csv_file_path = "data/master_papers.csv"
-    # main.process_papers(csv_file_path)
-    # main.process_additional_papers(titles)
-    # main.merge_paper_references()
-    # main.clean_paper_references()
-    # main.visualize_graph(technique_to_title)
     main.visualize_chart(technique_to_title)
