@@ -330,7 +330,7 @@ class GraphVisualizer:
             )
 
         plt.axis("off")
-        
+
         # plt.show()
         plt.savefig("network_graph.png", format="png", dpi=300)
 
@@ -348,9 +348,7 @@ class GraphVisualizer:
 
         plt.figure(figsize=(15, 6))
         plt.bar(
-            sorted_techniques,
-            sorted_counts,
-            color=(45 / 255, 137 / 255, 145 / 255, 1)
+            sorted_techniques, sorted_counts, color=(45 / 255, 137 / 255, 145 / 255, 1)
         )
         plt.yscale("log")
         plt.xticks(rotation=45, ha="right")
@@ -419,10 +417,13 @@ class Main:
         with open("cleaned_complete_paper_references.json", "r") as json_file:
             paper_references = json.load(json_file)
         self.graph_visualizer.visualize_graph(paper_references, technique_to_title)
+
     def visualize_chart(self, technique_to_title):
         with open("cleaned_complete_paper_references.json", "r") as json_file:
             paper_references = json.load(json_file)
-        self.graph_visualizer.visualize_citation_counts(paper_references, technique_to_title)
+        self.graph_visualizer.visualize_citation_counts(
+            paper_references, technique_to_title
+        )
 
 
 if __name__ == "__main__":
@@ -536,5 +537,3 @@ if __name__ == "__main__":
     # main.clean_paper_references()
     # main.visualize_graph(technique_to_title)
     main.visualize_chart(technique_to_title)
-
-
