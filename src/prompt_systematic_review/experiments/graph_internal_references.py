@@ -355,9 +355,9 @@ class GraphVisualizer:
         ax = plt.gca()
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
-        plt.ylabel("Citation Counts")
-        plt.xlabel("Prompting Techniques")
-        plt.title("Citation Counts of Prompting Techniques")
+        plt.ylabel("Counts", fontdict={"fontsize": 14})
+        plt.xlabel("Prompting Techniques", fontdict={"fontsize": 14})
+        plt.title("Citation Counts of Prompting Techniques", fontdict={"fontsize": 30})
         plt.tight_layout()
         plt.show()
 
