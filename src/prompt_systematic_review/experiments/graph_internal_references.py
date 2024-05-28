@@ -330,12 +330,12 @@ class GraphVisualizer:
             )
 
         plt.axis("off")
+
         # plt.show()
         plt.savefig("network_graph.png", format="png", dpi=300)
 
     def visualize_citation_counts(self, paper_references, title_to_technique):
         citation_counts = {}
-
         for title, technique in title_to_technique.items():
             paper_id = self.semantic_scholar_api.query_paper_id(title)
             citation_count = sum(paper_id in refs for refs in paper_references.values())
@@ -344,25 +344,20 @@ class GraphVisualizer:
         sorted_citations = sorted(
             citation_counts.items(), key=lambda x: x[1], reverse=True
         )
-
         sorted_techniques, sorted_counts = zip(*sorted_citations)
 
-        plt.figure(figsize=(30, 12))
+        plt.figure(figsize=(15, 6))
         plt.bar(
             sorted_techniques, sorted_counts, color=(45 / 255, 137 / 255, 145 / 255, 1)
         )
-
         plt.yscale("log")
-
         plt.xticks(rotation=45, ha="right")
-
         ax = plt.gca()
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
-
-        plt.ylabel("Number of References")
-        plt.xlabel("Technique")
-
+        plt.ylabel("Counts", fontdict={"fontsize": 14})
+        plt.xlabel("Prompting Techniques", fontdict={"fontsize": 14})
+        plt.title("Citation Counts of Prompting Techniques", fontdict={"fontsize": 30})
         plt.tight_layout()
         plt.show()
 
@@ -422,6 +417,13 @@ class Main:
         with open("cleaned_complete_paper_references.json", "r") as json_file:
             paper_references = json.load(json_file)
         self.graph_visualizer.visualize_graph(paper_references, technique_to_title)
+
+    def visualize_chart(self, technique_to_title):
+        with open("cleaned_complete_paper_references.json", "r") as json_file:
+            paper_references = json.load(json_file)
+        self.graph_visualizer.visualize_citation_counts(
+            paper_references, technique_to_title
+        )
 
 
 if __name__ == "__main__":
@@ -528,9 +530,4 @@ if __name__ == "__main__":
         "Better Zero-Shot Reasoning with Self-Adaptive Prompting": "Self-Adaptive Prompting",
         "Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves": "Rephrase and Respond",
     }
-    # csv_file_path = "data/master_papers.csv"
-    # main.process_papers(csv_file_path)
-    # main.process_additional_papers(titles)
-    # main.merge_paper_references()
-    # main.clean_paper_references()
-    main.visualize_graph(technique_to_title)
+    main.visualize_chart(technique_to_title)
