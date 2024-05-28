@@ -15,6 +15,8 @@ import matplotlib
 
 
 """
+RUN FROM ROOT
+
 This script processes a CSV file containing research paper information, retrieves reference data from the Semantic Scholar API, 
 and visualizes the citation graph and citation counts.
 
@@ -497,7 +499,7 @@ if __name__ == "__main__":
         "Unified Demonstration Retriever for In-Context Learning": "Unified Demo Retriever",
         "Finding Support Examples for In-Context Learning": "Support Examples",
         "Large Language Models Are Human-Level Prompt Engineers": "Human-Level Prompting",
-        "Measuring and Narrowing the Compositionality Gap in Language Models": "Compositionality Gap",
+        "Measuring and Narrowing the Compositionality Gap in Language Models": "Self-Ask",
         "Automatic Chain of Thought Prompting in Large Language Models": "Automatic CoT",
         "Complexity-Based Prompting for Multi-Step Reasoning": "Complexity-Based Prompting",
         "Self-Generated In-Context Learning: Leveraging Auto-regressive Language Models as a Demonstration Generator": "Self-Generated ICL",
