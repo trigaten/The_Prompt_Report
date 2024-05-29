@@ -187,9 +187,9 @@ class PaperProcessor:
                             arxiv_paper_id
                         )
                     else:
-                        unmatched_papers[
-                            row.get("title", "").strip()
-                        ] = "Source not supported"
+                        unmatched_papers[row.get("title", "").strip()] = (
+                            "Source not supported"
+                        )
                         continue
 
                     if paper_id:
@@ -197,9 +197,9 @@ class PaperProcessor:
                         if references is not None:
                             paper_references[paper_id] = references
                         else:
-                            unmatched_papers[
-                                row["title"]
-                            ] = "No references found or error occurred"
+                            unmatched_papers[row["title"]] = (
+                                "No references found or error occurred"
+                            )
                     else:
                         print(f"Paper Id Could not be found for: {row}")
         else:
@@ -532,8 +532,8 @@ def graph_internal_references():
         "Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves": "Rephrase and Respond",
     }
     main.visualize_chart(technique_to_title)
-    
-    
+
+
 class Experiment:
     def run():
         graph_internal_references()

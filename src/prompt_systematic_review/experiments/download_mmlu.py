@@ -29,6 +29,7 @@ def move_and_rename_extracted_contents(extracted_folder, final_folder, new_folde
 
     return mmlu_folder
 
+
 def download_mmlu():
     # URL of the .tar file
     url = "https://people.eecs.berkeley.edu/~hendrycks/data.tar"
@@ -46,7 +47,9 @@ def download_mmlu():
     extract_tar(download_path, extract_path)
 
     # Move and rename the contents of the extracted folder
-    move_and_rename_extracted_contents(extract_path, final_data_folder, final_folder_name)
+    move_and_rename_extracted_contents(
+        extract_path, final_data_folder, final_folder_name
+    )
 
     # Cleanup
     if os.path.exists(download_path):
