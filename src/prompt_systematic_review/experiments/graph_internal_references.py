@@ -7,7 +7,6 @@ import pandas as pd
 from dotenv import load_dotenv
 import csv
 import random
-import scipy
 import networkx as nx
 import matplotlib.pyplot as plt
 import textwrap
@@ -188,9 +187,9 @@ class PaperProcessor:
                             arxiv_paper_id
                         )
                     else:
-                        unmatched_papers[
-                            row.get("title", "").strip()
-                        ] = "Source not supported"
+                        unmatched_papers[row.get("title", "").strip()] = (
+                            "Source not supported"
+                        )
                         continue
 
                     if paper_id:
@@ -198,9 +197,9 @@ class PaperProcessor:
                         if references is not None:
                             paper_references[paper_id] = references
                         else:
-                            unmatched_papers[
-                                row["title"]
-                            ] = "No references found or error occurred"
+                            unmatched_papers[row["title"]] = (
+                                "No references found or error occurred"
+                            )
                     else:
                         print(f"Paper Id Could not be found for: {row}")
         else:
@@ -428,7 +427,7 @@ class Main:
         )
 
 
-if __name__ == "__main__":
+def graph_internal_references():
     main = Main()
 
     titles = [
@@ -533,3 +532,8 @@ if __name__ == "__main__":
         "Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves": "Rephrase and Respond",
     }
     main.visualize_chart(technique_to_title)
+
+
+class Experiment:
+    def run():
+        graph_internal_references()
