@@ -4,3 +4,4 @@ repos:
     hooks:
     -   id: black
         exclude: src/prompt_systematic_review/experiments/find_internal_reference_count.py
+        exclude: src/prompt_systematic_review/experiments/graph_internal_references.py

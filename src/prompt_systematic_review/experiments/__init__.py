@@ -12,7 +12,9 @@ from . import graph_gpt_4_benchmarks200
 from . import graph_gpt_3_5_benchmarks
 from . import run_tomotopy
 from . import topicgpt
-
+from . import download_mmlu
+from . import graph_internal_references
+from . import graph
 
 experiments = [
     count_tool_mentions.Experiment,
