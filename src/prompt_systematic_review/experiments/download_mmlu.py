@@ -29,27 +29,32 @@ def move_and_rename_extracted_contents(extracted_folder, final_folder, new_folde
 
     return mmlu_folder
 
+def download_mmlu():
+    # URL of the .tar file
+    url = "https://people.eecs.berkeley.edu/~hendrycks/data.tar"
 
-# URL of the .tar file
-url = "https://people.eecs.berkeley.edu/~hendrycks/data.tar"
+    # Temporary paths
+    download_path = "./data.tar"
+    extract_path = "./extracted"
 
-# Temporary paths
-download_path = "./data.tar"
-extract_path = "./extracted"
+    # Final path
+    final_data_folder = "./data"
+    final_folder_name = "mmlu"
 
-# Final path
-final_data_folder = "./data"
-final_folder_name = "mmlu"
+    # Download and extract the file
+    download_and_extract(url, download_path)
+    extract_tar(download_path, extract_path)
 
-# Download and extract the file
-download_and_extract(url, download_path)
-extract_tar(download_path, extract_path)
+    # Move and rename the contents of the extracted folder
+    move_and_rename_extracted_contents(extract_path, final_data_folder, final_folder_name)
 
-# Move and rename the contents of the extracted folder
-move_and_rename_extracted_contents(extract_path, final_data_folder, final_folder_name)
+    # Cleanup
+    if os.path.exists(download_path):
+        os.remove(download_path)
+    if os.path.exists(extract_path):
+        shutil.rmtree(extract_path)
 
-# Cleanup
-if os.path.exists(download_path):
-    os.remove(download_path)
-if os.path.exists(extract_path):
-    shutil.rmtree(extract_path)
+
+class Experiment:
+    def run():
+        download_mmlu()

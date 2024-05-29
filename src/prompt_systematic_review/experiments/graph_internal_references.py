@@ -7,7 +7,6 @@ import pandas as pd
 from dotenv import load_dotenv
 import csv
 import random
-import scipy
 import networkx as nx
 import matplotlib.pyplot as plt
 import textwrap
@@ -428,7 +427,7 @@ class Main:
         )
 
 
-if __name__ == "__main__":
+def graph_internal_references():
     main = Main()
 
     titles = [
@@ -533,3 +532,8 @@ if __name__ == "__main__":
         "Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves": "Rephrase and Respond",
     }
     main.visualize_chart(technique_to_title)
+    
+    
+class Experiment:
+    def run():
+        graph_internal_references()
