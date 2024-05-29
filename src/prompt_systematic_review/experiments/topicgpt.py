@@ -74,7 +74,8 @@ def run_topic_gpt():
         os.path.join(
             DataFolderPath, "experiments_output" + os.sep + "topic_distribution.png"
         ),
-        format="pdf", bbox_inches="tight"
+        format="pdf",
+        bbox_inches="tight",
     )
 
 

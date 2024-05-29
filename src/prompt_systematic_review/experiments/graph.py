@@ -89,7 +89,9 @@ class GraphVisualizer:
         plt.savefig(
             os.path.join(
                 DataFolderPath, "experiments_output" + os.sep + "paper_graph.pdf"
-            ),format="pdf", bbox_inches="tight"
+            ),
+            format="pdf",
+            bbox_inches="tight",
         )
 
 

@@ -46,7 +46,9 @@ def visualize_authors():
         os.path.join(
             DataFolderPath,
             "experiments_output" + os.sep + "publication_frequency_by_author.pdf",
-        ), format="pdf", bbox_inches="tight"
+        ),
+        format="pdf",
+        bbox_inches="tight",
     )
 
     # Display the frequency table
@@ -78,7 +80,8 @@ def visualize_authors():
             DataFolderPath,
             "experiments_output" + os.sep + "publication_count_vs_frequency.pdf",
         ),
-        format="pdf", bbox_inches="tight"
+        format="pdf",
+        bbox_inches="tight",
     )
 
 

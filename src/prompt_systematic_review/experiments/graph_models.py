@@ -30,7 +30,7 @@ def graph_models(inputFile="model_citation_counts.csv"):
     # output_file_path = os.path.join(output_dir, "graph_models_output.png")
     output_file_path = os.path.join("graph_models_output.pdf")
 
-    plt.savefig(output_file_path,format="pdf", bbox_inches="tight")
+    plt.savefig(output_file_path, format="pdf", bbox_inches="tight")
 
 
 class Experiment:
