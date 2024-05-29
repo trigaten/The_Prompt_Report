@@ -9,6 +9,7 @@ import csv
 import networkx as nx
 import matplotlib.pyplot as plt
 import textwrap
+from prompt_systematic_review.config_data import DataFolderPath
 
 
 class SemanticScholarAPI:
@@ -85,7 +86,13 @@ class GraphVisualizer:
         plt.title("Citation Counts by Technique")
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.show()
+        plt.savefig(
+            os.path.join(
+                DataFolderPath, "experiments_output" + os.sep + "paper_graph.pdf"
+            ),
+            format="pdf",
+            bbox_inches="tight",
+        )
 
 
 class Main:

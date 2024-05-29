@@ -92,8 +92,10 @@ def graph_gt_4_benchmarks200():
     plt.savefig(
         os.path.join(
             DataFolderPath,
-            "experiments_output" + os.sep + "graph_gpt_4_benchmarks200_output.png",
-        )
+            "experiments_output" + os.sep + "graph_gpt_4_benchmarks200_output.pdf",
+        ),
+        format="pdf",
+        bbox_inches="tight",
     )
 
 

@@ -333,7 +333,7 @@ class GraphVisualizer:
         plt.axis("off")
 
         # plt.show()
-        plt.savefig("network_graph.png", format="png", dpi=300)
+        plt.savefig("network_graph.pdf", format="pdf", bbox_inches="tight")
 
     def visualize_citation_counts(self, paper_references, title_to_technique):
         citation_counts = {}

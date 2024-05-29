@@ -45,8 +45,10 @@ def visualize_authors():
     plt.savefig(
         os.path.join(
             DataFolderPath,
-            "experiments_output" + os.sep + "publication_frequency_by_author.png",
-        )
+            "experiments_output" + os.sep + "publication_frequency_by_author.pdf",
+        ),
+        format="pdf",
+        bbox_inches="tight",
     )
 
     # Display the frequency table
@@ -76,8 +78,10 @@ def visualize_authors():
     plt.savefig(
         os.path.join(
             DataFolderPath,
-            "experiments_output" + os.sep + "publication_count_vs_frequency.png",
-        )
+            "experiments_output" + os.sep + "publication_count_vs_frequency.pdf",
+        ),
+        format="pdf",
+        bbox_inches="tight",
     )
 
 
