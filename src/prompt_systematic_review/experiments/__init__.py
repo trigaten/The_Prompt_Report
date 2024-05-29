@@ -28,4 +28,5 @@ experiments = [
     graph_gpt_3_5_benchmarks.Experiment,
     run_tomotopy.Experiment,
     topicgpt.Experiment,
+    count_models.Experiment,
 ]

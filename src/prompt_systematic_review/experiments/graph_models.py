@@ -28,9 +28,9 @@ def graph_models(inputFile="model_citation_counts.csv"):
     os.makedirs(output_dir, exist_ok=True)  # Create directory if it doesn't exist
 
     # output_file_path = os.path.join(output_dir, "graph_models_output.png")
-    output_file_path = os.path.join("graph_models_output.png")
+    output_file_path = os.path.join("graph_models_output.pdf")
 
-    plt.savefig(output_file_path)
+    plt.savefig(output_file_path,format="pdf", bbox_inches="tight")
 
 
 class Experiment:

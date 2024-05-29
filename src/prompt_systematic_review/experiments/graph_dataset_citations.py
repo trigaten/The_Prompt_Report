@@ -86,9 +86,9 @@ def graph_dataset_citations():
     output_dir = os.path.join(DataFolderPath, "experiments_output")
     os.makedirs(output_dir, exist_ok=True)
     # output_file_path = os.path.join(output_dir, "graph_dataset_mentions_output.png")
-    output_file_path = os.path.join(output_dir, "graph_dataset_mentions_output.png")
+    output_file_path = os.path.join(output_dir, "graph_dataset_mentions_output.pdf")
 
-    plt.savefig(output_file_path)
+    plt.savefig(output_file_path,format="pdf", bbox_inches="tight")
 
 
 class Experiment:

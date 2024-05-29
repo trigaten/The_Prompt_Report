@@ -73,7 +73,8 @@ def run_topic_gpt():
     plt.savefig(
         os.path.join(
             DataFolderPath, "experiments_output" + os.sep + "topic_distribution.png"
-        )
+        ),
+        format="pdf", bbox_inches="tight"
     )
 
 
