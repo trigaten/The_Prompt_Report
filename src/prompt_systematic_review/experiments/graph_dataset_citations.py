@@ -77,10 +77,10 @@ def graph_dataset_citations():
 
     plt.figure(figsize=(10, 6))
     plt.bar(datasets, counts, color="#2E8991")
-    plt.xlabel("Dataset Name",fontsize=20)
-    plt.ylabel("Number of Mentions",fontsize=20)
-    plt.title("Dataset Mentions in Papers",fontsize=30)
-    plt.xticks(rotation=45, ha="right",fontsize=15)
+    plt.xlabel("Dataset Name", fontsize=20)
+    plt.ylabel("Number of Mentions", fontsize=20)
+    plt.title("Dataset Mentions in Papers", fontsize=30)
+    plt.xticks(rotation=45, ha="right", fontsize=15)
     plt.yticks(fontsize=15)
     plt.tight_layout()
 
@@ -95,6 +95,7 @@ def graph_dataset_citations():
 class Experiment:
     def run():
         graph_dataset_citations()
+
 
 if __name__ == "__main__":
     graph_dataset_citations()
