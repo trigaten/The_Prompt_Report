@@ -109,7 +109,7 @@ class Main:
         )
 
 
-if __name__ == "__main__":
+def run_graph():
     main = Main()
     titles = [
         "Bounding the Capabilities of Large Language Models in Open Text Generation with Prompt Constraints",
@@ -215,3 +215,8 @@ if __name__ == "__main__":
 
     csv_file_path = "path_to_your_csv.csv"
     main.run(csv_file_path, technique_to_title)
+
+
+class Experiment:
+    def run():
+        run_graph()
