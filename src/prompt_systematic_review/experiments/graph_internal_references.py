@@ -363,14 +363,15 @@ class GraphVisualizer:
         plt.yscale("log")
         plt.xticks(rotation=45, ha="right")
         ax = plt.gca()
-        ax.spines["top"].set_visible(False)
-        ax.spines["right"].set_visible(False)
+        ax.spines["top"].set_visible(True)
+        ax.spines["right"].set_visible(True)
         
         plt.ylabel("Counts", fontdict={"fontsize": 14})
         plt.xlabel("Prompting Techniques", fontdict={"fontsize": 14})
         plt.title("Citation Counts of Prompting Techniques", fontdict={"fontsize": 30})
         plt.tight_layout()
-        plt.show()
+        plt.savefig("internal_references.pdf", format="pdf", bbox_inches="tight")
+        # plt.show()
 
 
 class Main:
@@ -502,7 +503,7 @@ def graph_internal_references():
     ]
 
     technique_to_title = {
-        "Language Models are Few-Shot Learners": "Few-Shot Learning*",
+        "Language Models are Few-Shot Learners": "Few-Shot Prompting*",
         "A Survey on In-context Learning": "In-context Learning Survey",
         "Exploring Demonstration Ensembling for In-context Learning": "Demonstration Ensembling",
         "Unified Demonstration Retriever for In-Context Learning": "Unified Demo Retriever*",
@@ -518,7 +519,7 @@ def graph_internal_references():
         "What Makes Good In-Context Examples for GPT-3?": "Good In-Context Examples",
         "MoT: Memory-of-Thought Enables ChatGPT to Self-Improve": "Memory-of-Thought*",
         "kNN Prompting: Beyond-Context Learning with Calibration-Free Nearest Neighbor Inference": "kNN Prompting*",
-        "Large Language Models are Zero-Shot Reasoners": "Zero-Shot Reasoning*",
+        "Large Language Models are Zero-Shot Reasoners": "Chain-of-Thought*",
         "Self-Consistency Improves Chain of Thought Reasoning in Language Models": "Self-Consistency*",
         "Large Language Models as Optimizers": "LLMs as Optimizers",
         "Decomposed Prompting: A Modular Approach for Solving Complex Tasks": "Decomposed Prompting*",
