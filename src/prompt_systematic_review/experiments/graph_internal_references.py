@@ -337,6 +337,13 @@ class GraphVisualizer:
 
     def visualize_citation_counts(self, paper_references, title_to_technique):
         citation_counts = {}
+        print(paper_references)
+        # cleaned_complete_paper_references.json
+        # new
+        # with open('cleaned_complete_paper_references.json', 'r') as file:
+        #     citation_counts = json.load(file)
+
+        # exit()
         for title, technique in title_to_technique.items():
             paper_id = self.semantic_scholar_api.query_paper_id(title)
             citation_count = sum(paper_id in refs for refs in paper_references.values())
@@ -347,6 +354,8 @@ class GraphVisualizer:
         )
         sorted_techniques, sorted_counts = zip(*sorted_citations)
 
+
+
         plt.figure(figsize=(15, 6))
         plt.bar(
             sorted_techniques, sorted_counts, color=(45 / 255, 137 / 255, 145 / 255, 1)
@@ -356,6 +365,7 @@ class GraphVisualizer:
         ax = plt.gca()
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
+        
         plt.ylabel("Counts", fontdict={"fontsize": 14})
         plt.xlabel("Prompting Techniques", fontdict={"fontsize": 14})
         plt.title("Citation Counts of Prompting Techniques", fontdict={"fontsize": 30})
@@ -492,44 +502,44 @@ def graph_internal_references():
     ]
 
     technique_to_title = {
-        "Language Models are Few-Shot Learners": "Few-Shot Learning",
+        "Language Models are Few-Shot Learners": "Few-Shot Learning*",
         "A Survey on In-context Learning": "In-context Learning Survey",
         "Exploring Demonstration Ensembling for In-context Learning": "Demonstration Ensembling",
-        "Unified Demonstration Retriever for In-Context Learning": "Unified Demo Retriever",
+        "Unified Demonstration Retriever for In-Context Learning": "Unified Demo Retriever*",
         "Finding Support Examples for In-Context Learning": "Support Examples",
         "Large Language Models Are Human-Level Prompt Engineers": "Human-Level Prompting",
-        "Measuring and Narrowing the Compositionality Gap in Language Models": "Self-Ask",
-        "Automatic Chain of Thought Prompting in Large Language Models": "Automatic CoT",
-        "Complexity-Based Prompting for Multi-Step Reasoning": "Complexity-Based Prompting",
-        "Self-Generated In-Context Learning: Leveraging Auto-regressive Language Models as a Demonstration Generator": "Self-Generated ICL",
-        "Least-to-Most Prompting Enables Complex Reasoning in Large Language Models": "Least-to-Most Prompting",
+        "Measuring and Narrowing the Compositionality Gap in Language Models": "Self-Ask*",
+        "Automatic Chain of Thought Prompting in Large Language Models": "Automatic CoT*",
+        "Complexity-Based Prompting for Multi-Step Reasoning": "Complexity-Based Prompting*",
+        "Self-Generated In-Context Learning: Leveraging Auto-regressive Language Models as a Demonstration Generator": "Self-Generated ICL*",
+        "Least-to-Most Prompting Enables Complex Reasoning in Large Language Models": "Least-to-Most Prompting*",
         "Learning To Retrieve Prompts for In-Context Learning": "Prompt Retrieval",
         "Fantastically Ordered Prompts and Where to Find Them: Overcoming Few-Shot Prompt Order Sensitivity": "Prompt Order Sensitivity",
         "What Makes Good In-Context Examples for GPT-3?": "Good In-Context Examples",
-        "MoT: Memory-of-Thought Enables ChatGPT to Self-Improve": "Memory-of-Thought",
-        "kNN Prompting: Beyond-Context Learning with Calibration-Free Nearest Neighbor Inference": "kNN Prompting",
-        "Large Language Models are Zero-Shot Reasoners": "Zero-Shot Reasoning",
-        "Self-Consistency Improves Chain of Thought Reasoning in Language Models": "Self-Consistency",
+        "MoT: Memory-of-Thought Enables ChatGPT to Self-Improve": "Memory-of-Thought*",
+        "kNN Prompting: Beyond-Context Learning with Calibration-Free Nearest Neighbor Inference": "kNN Prompting*",
+        "Large Language Models are Zero-Shot Reasoners": "Zero-Shot Reasoning*",
+        "Self-Consistency Improves Chain of Thought Reasoning in Language Models": "Self-Consistency*",
         "Large Language Models as Optimizers": "LLMs as Optimizers",
-        "Decomposed Prompting: A Modular Approach for Solving Complex Tasks": "Decomposed Prompting",
+        "Decomposed Prompting: A Modular Approach for Solving Complex Tasks": "Decomposed Prompting*",
         "Is a Question Decomposition Unit All We Need?": "Question Decomposition",
-        "Deductive Verification of Chain-of-Thought Reasoning": "Deductive Verification",
-        "Active Prompting with Chain-of-Thought for Large Language Models": "Active Prompting",
-        "Large Language Model Guided Tree-of-Thought": "LLM Guided ToT",
-        "Language Models (Mostly) Know What They Know": "LLM Self-Knowledge",
-        "Automatic Prompt Augmentation and Selection with Chain-of-Thought from Labeled Data": "Automatic Prompt Augmentation",
-        "Maieutic Prompting: Logically Consistent Reasoning with Recursive Explanations": "Maieutic Prompting",
-        "Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models": "Plan-and-Solve Prompting",
-        "Tree of Thoughts: Deliberate Problem Solving with Large Language Models": "Tree of Thoughts",
-        "Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks": "Program of Thoughts",
-        "Self-Refine: Iterative Refinement with Self-Feedback": "Self-Refine",
-        "Cumulative Reasoning with Large Language Models": "Cumulative Reasoning",
-        "Faithful Chain-of-Thought Reasoning": "Faithful CoT",
-        "Making Language Models Better Reasoners with Step-Aware Verifier": "Step-Aware Verification",
-        "Graph of Thoughts: Solving Elaborate Problems with Large Language Models": "Graph of Thoughts",
-        "Chain-of-Verification Reduces Hallucination in Large Language Models": "Chain-of-Verification",
-        "Better Zero-Shot Reasoning with Self-Adaptive Prompting": "Self-Adaptive Prompting",
-        "Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves": "Rephrase and Respond",
+        "Deductive Verification of Chain-of-Thought Reasoning": "Deductive Verification*",
+        "Active Prompting with Chain-of-Thought for Large Language Models": "Active Prompting*",
+        "Large Language Model Guided Tree-of-Thought": "Tree-of-Thought*",
+        "Language Models (Mostly) Know What They Know": "Self-Evaluation*",
+        "Automatic Prompt Augmentation and Selection with Chain-of-Thought from Labeled Data": "Automate-CoT*",
+        "Maieutic Prompting: Logically Consistent Reasoning with Recursive Explanations": "Maieutic Prompting*",
+        "Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models": "Plan-and-Solve Prompting*",
+        "Tree of Thoughts: Deliberate Problem Solving with Large Language Models": "Tree of Thoughts*",
+        "Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks": "Program of Thoughts*",
+        "Self-Refine: Iterative Refinement with Self-Feedback": "Self-Refine*",
+        "Cumulative Reasoning with Large Language Models": "Cumulative Reasoning*",
+        "Faithful Chain-of-Thought Reasoning": "Faithful CoT*",
+        "Making Language Models Better Reasoners with Step-Aware Verifier": "Step-Aware Verification*",
+        "Graph of Thoughts: Solving Elaborate Problems with Large Language Models": "Graph of Thoughts*",
+        "Chain-of-Verification Reduces Hallucination in Large Language Models": "Chain-of-Verification*",
+        "Better Zero-Shot Reasoning with Self-Adaptive Prompting": "Self-Adaptive Prompting*",
+        "Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves": "Rephrase and Respond*",
     }
     main.visualize_chart(technique_to_title)
 
@@ -537,3 +547,6 @@ def graph_internal_references():
 class Experiment:
     def run():
         graph_internal_references()
+
+if __name__ == "__main__":
+    graph_internal_references()
