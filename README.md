@@ -31,7 +31,7 @@ env_files =
 
 ## blacklist.csv
 
-Papers we should not include due to being poorly written or AI generated
+Papers do not include due to them being poorly written or AI generated (or simply irrelevant).
 
 ## Notes
 
