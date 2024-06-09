@@ -48,10 +48,9 @@ However, if you wish to save time and only run the experiments, you can download
 
 Every experiment script has a `run_experiment` function that is called in `main.py`. The `run_experiment` function is responsible for running the experiment and saving the results. However each script can be run individually by just running `python src/prompt_systematic_review/experiments/<experiment_name>.py` from root. 
 
+There is one experiment, `graph_internal_references` that, because of weird issues with parallelism, is better run from root as an individual script. To avoid it causing issues with other experiments, it is run last as it is ordered at the bottom of the list in `experiments/__init__.py`.
 
-## blacklist.csv
 
-Papers to not include due to them being poorly written or AI generated (or simply irrelevant).
 
 ## Notes
 

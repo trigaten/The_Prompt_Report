@@ -2,8 +2,16 @@ import matplotlib.pyplot as plt
 from prompt_systematic_review.config_data import DataFolderPath
 import os
 
-
 def graph_gt_4_benchmarks200():
+    """
+    Function to plot the GPT-4 benchmarks for role prompts and non-role prompts.
+
+    This function creates a bar chart to compare the scores of role prompts and non-role prompts.
+    The data is sorted in descending order and the scores are displayed on top of the bars.
+    The plot is saved as a PDF file in the experiments_output directory.
+
+    :return: None
+    """
     # Data
     data = {
         "Role Prompts": {
@@ -30,14 +38,12 @@ def graph_gt_4_benchmarks200():
             "10-Shot Contrastive CoT": 158,
         },
     }
-
     # Preparing data for plotting
     categories = ["Role Prompts", "Non-role Prompts"]
     colors = ["blue", "green"]
     role_prompt_scores = list(data["Role Prompts"].values())
     non_role_prompt_scores = list(data["Non-role Prompts"].values())
     labels = list(data["Role Prompts"].keys()) + list(data["Non-role Prompts"].keys())
-
     # Sorting the data within each category from highest to lowest score
     sorted_role_prompts = dict(
         sorted(data["Role Prompts"].items(), key=lambda item: item[1], reverse=True)
@@ -45,14 +51,12 @@ def graph_gt_4_benchmarks200():
     sorted_non_role_prompts = dict(
         sorted(data["Non-role Prompts"].items(), key=lambda item: item[1], reverse=True)
     )
-
     # Preparing sorted data for plotting
     sorted_role_prompt_scores = list(sorted_role_prompts.values())
     sorted_non_role_prompt_scores = list(sorted_non_role_prompts.values())
     sorted_labels = list(sorted_role_prompts.keys()) + list(
         sorted_non_role_prompts.keys()
     )
-
     # Plotting the sorted data
     plt.figure(figsize=(15, 8))
     bars1 = plt.bar(
@@ -67,7 +71,6 @@ def graph_gt_4_benchmarks200():
         color=colors[1],
         label=categories[1],
     )
-
     # Adding the number above each bar
     for bars in [bars1, bars2]:
         for bar in bars:
@@ -80,7 +83,6 @@ def graph_gt_4_benchmarks200():
                 va="bottom",
                 bbox=dict(facecolor="white", alpha=0.5),
             )
-
     # Customizing the plot
     plt.xlabel("Prompts")
     plt.ylabel("Scores")
@@ -88,7 +90,6 @@ def graph_gt_4_benchmarks200():
     plt.xticks(range(len(sorted_labels)), sorted_labels, rotation=90)
     plt.legend()
     plt.tight_layout()
-
     plt.savefig(
         os.path.join(
             DataFolderPath,
@@ -98,7 +99,9 @@ def graph_gt_4_benchmarks200():
         bbox_inches="tight",
     )
 
-
 class Experiment:
     def run():
         graph_gt_4_benchmarks200()
+
+if __name__ == "__main__":
+    graph_gt_4_benchmarks200()

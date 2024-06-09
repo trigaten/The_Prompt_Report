@@ -12,6 +12,18 @@ import os
 
 
 def visualize_authors():
+    """
+    Generate visualizations of the publication counts for authors in the master_papers.csv dataset.
+
+    This function reads the master_papers.csv file, processes the authors' data, and generates two visualizations:
+    1. A vertical bar chart displaying the top 20 authors' publication counts.
+    2. A histogram of the number of publications per author on a logarithmic scale.
+
+    The visualizations are saved as PDF files in the experiments_output directory.
+
+    :return: None
+    :rtype: None
+    """
     file_path = os.path.join(DataFolderPath, "master_papers.csv")
 
     # Read the CSV file into a DataFrame
@@ -88,3 +100,6 @@ def visualize_authors():
 class Experiment:
     def run():
         visualize_authors()
+
+if __name__ == "__main__":
+    visualize_authors()

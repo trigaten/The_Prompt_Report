@@ -1,16 +1,20 @@
-"""
-This script generates a wordcloud of the most common 
-words in abstracts in the master_papers.csv dataset.
-"""
-
-import matplotlib.pyplot as plt
+import os
 import pandas as pd
 from wordcloud import WordCloud
-import os
+import matplotlib.pyplot as plt
 from prompt_systematic_review.config_data import DataFolderPath
 
-
 def keyword_wordcloud():
+    """
+    Generate a word cloud from the abstracts of the papers in the master_papers.csv file.
+
+    This function reads the abstracts from the master_papers.csv file, concatenates them into a single
+    string, and generates a word cloud visualization using the WordCloud library. The resulting word
+    cloud is saved as an image file.
+
+    :return: None
+    :rtype: None
+    """
     file_path = os.path.join(DataFolderPath, "master_papers.csv")
 
     # Read the CSV file into a DataFrame
@@ -48,3 +52,6 @@ def keyword_wordcloud():
 class Experiment:
     def run():
         keyword_wordcloud()
+
+if __name__ == "__main__":
+    keyword_wordcloud()
