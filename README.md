@@ -46,7 +46,7 @@ Notably, the keywords used in the automated review/scraping process are in `src/
 
 ## Running the code
 Running `main.py` will download the papers, run the automated review, and run the experiments.
-However, if you wish to save time and only run the experiments, you can download the data from huggingface and move the papers folder into the data folder (should look like `data/papers/*.pdf`). Adjust main.py accordingly. 
+However, if you wish to save time and only run the experiments, you can download the data from huggingface and move the papers folder and all the csv files in the dataset into the data folder (should look like `data/papers/*.pdf` and `data/master_papers.csv` etc). Adjust main.py accordingly. 
 
 Every experiment script has a `run_experiment` function that is called in `main.py`. The `run_experiment` function is responsible for running the experiment and saving the results. However each script can be run individually by just running `python src/prompt_systematic_review/experiments/<experiment_name>.py` from root. 
 
