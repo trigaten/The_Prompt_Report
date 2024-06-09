@@ -1,5 +1,5 @@
 """
-Test a set of prompts against a dataset and return the results. Currently working for GSM-8k. You must add your openAI API key to the key variable below.
+Test a set of prompts against a dataset and return the results. Currently working for GSM-8k and MMLU.
 """
 
 from prompt_systematic_review.experiments.benchmarking import evaluate_prompts
@@ -167,6 +167,9 @@ temp = 0.0
 
 
 def eval_prompts():
+    """
+    Evaluate a set of prompts against a dataset and save the results to a JSON file.
+    """
     eval = evaluate_prompts(
         prompts_to_test,
         dataset,
@@ -202,3 +205,7 @@ def eval_prompts():
 class Experiment:
     def run():
         eval_prompts()
+
+
+if __name__ == "__main__":
+    eval_prompts()

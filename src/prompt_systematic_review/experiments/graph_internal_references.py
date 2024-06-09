@@ -187,9 +187,9 @@ class PaperProcessor:
                             arxiv_paper_id
                         )
                     else:
-                        unmatched_papers[row.get("title", "").strip()] = (
-                            "Source not supported"
-                        )
+                        unmatched_papers[
+                            row.get("title", "").strip()
+                        ] = "Source not supported"
                         continue
 
                     if paper_id:
@@ -197,9 +197,9 @@ class PaperProcessor:
                         if references is not None:
                             paper_references[paper_id] = references
                         else:
-                            unmatched_papers[row["title"]] = (
-                                "No references found or error occurred"
-                            )
+                            unmatched_papers[
+                                row["title"]
+                            ] = "No references found or error occurred"
                     else:
                         print(f"Paper Id Could not be found for: {row}")
         else:
@@ -354,8 +354,6 @@ class GraphVisualizer:
         )
         sorted_techniques, sorted_counts = zip(*sorted_citations)
 
-
-
         plt.figure(figsize=(15, 6))
         plt.bar(
             sorted_techniques, sorted_counts, color=(45 / 255, 137 / 255, 145 / 255, 1)
@@ -365,7 +363,7 @@ class GraphVisualizer:
         ax = plt.gca()
         ax.spines["top"].set_visible(True)
         ax.spines["right"].set_visible(True)
-        
+
         plt.ylabel("Counts", fontdict={"fontsize": 14})
         plt.xlabel("Prompting Techniques", fontdict={"fontsize": 14})
         plt.title("Citation Counts of Prompting Techniques", fontdict={"fontsize": 30})
@@ -548,6 +546,7 @@ def graph_internal_references():
 class Experiment:
     def run():
         graph_internal_references()
+
 
 if __name__ == "__main__":
     graph_internal_references()

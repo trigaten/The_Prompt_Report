@@ -1,11 +1,24 @@
+import os
+import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-import pandas as pd
-import os
 from prompt_systematic_review.config_data import DataFolderPath
 
 
 def papers_over_time():
+    """
+    Generate plots showing the number of papers submitted over time.
+
+    This function reads the master_papers.csv file, processes the submission dates, and generates three plots:
+    1. Number of papers submitted over time, by year.
+    2. Number of papers submitted between 2021 and 2023 (majority of papers).
+    3. Number of papers submitted between 2021 and 2023, with vertical lines indicating release dates of different LLMs.
+
+    The plots are saved as image files in the experiments_output directory.
+
+    :return: None
+    :rtype: None
+    """
     file_path = os.path.join(DataFolderPath, "master_papers.csv")
 
     arxiv_papers_df = pd.read_csv(file_path)
@@ -146,3 +159,7 @@ def papers_over_time():
 class Experiment:
     def run():
         papers_over_time()
+
+
+if __name__ == "__main__":
+    papers_over_time()

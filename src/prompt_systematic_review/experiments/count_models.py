@@ -10,8 +10,6 @@ from prompt_systematic_review.config_data import DataFolderPath
 """This script counts the number of papers in our dataset that mention each model.
 The script takes one arg, for the path location of the full paper dataset."""
 
-# TODO improvement: use word embeddings to find similar model names.
-# for now, assume the common model name will appear in the paper
 model_names = [
     "GPT-3",
     "GPT-4",
@@ -50,6 +48,12 @@ model_names = [
 
 
 def parse_pdf(file_path):
+    """
+    Extract text from a PDF file.
+
+    :param file_path: The path to the PDF file.
+    :return: The extracted text from the PDF file.
+    """
     try:
         text = extract_text(file_path)
         return text
@@ -59,6 +63,12 @@ def parse_pdf(file_path):
 
 
 def process_file(args):
+    """
+    Process a single file to count model mentions.
+
+    :param args: A tuple containing the folder path and filename.
+    :return: A tuple containing the filename and a dictionary of model mention counts.
+    """
     folder_path, filename = args
     file_path = os.path.join(folder_path, filename)
     if filename.endswith(".pdf"):
@@ -69,6 +79,12 @@ def process_file(args):
 
 
 def count_model_mentions_parallel(folder_path):
+    """
+    Count model mentions in parallel for all files in a folder.
+
+    :param folder_path: The path to the folder containing the files.
+    :return: A dictionary mapping model names to lists of filenames mentioning the model.
+    """
     files = os.listdir(folder_path)
     with Pool(cpu_count()) as pool:
         # Use imap_unordered for better tqdm compatibility
@@ -88,6 +104,9 @@ def count_model_mentions_parallel(folder_path):
 
 
 def count_models():
+    """
+    Count model mentions in the papers dataset and save the results to a CSV file.
+    """
     masterpaperscsv_file_path = os.path.join(DataFolderPath, "master_papers.csv")
     arxiv_papers_df = pd.read_csv(masterpaperscsv_file_path)
     paper_ids = set(arxiv_papers_df["paperId"])
@@ -109,3 +128,7 @@ def count_models():
 class Experiment:
     def run():
         count_models()
+
+
+if __name__ == "__main__":
+    count_models()

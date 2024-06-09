@@ -4,6 +4,14 @@ from prompt_systematic_review.config_data import DataFolderPath
 
 
 def graph_gpt_3_5():
+    """
+    Graph the number of correct answers for GPT-3.5 across various categories.
+
+    Generates a bar chart displaying the number of correct answers for each category
+    and saves the chart as a PDF.
+
+    :return: None
+    """
     # Data for plotting
     data = {
         "math rookie": {"correct": 1230, "total": 2000},
@@ -58,3 +66,7 @@ def graph_gpt_3_5():
 class Experiment:
     def run():
         graph_gpt_3_5()
+
+
+if __name__ == "__main__":
+    graph_gpt_3_5()

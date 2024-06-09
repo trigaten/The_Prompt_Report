@@ -8,7 +8,7 @@ import tqdm
 
 def query_acl(downloadName: str = None, verbose=False):
     """
-    Download papers from arxiv and save them to a csv file.
+    Download papers from ACL and save them to a csv file.
     :param downloadName: The name of the csv file to save the data to.
     """
 

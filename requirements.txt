@@ -12,7 +12,6 @@ sphinx-autobuild
 openai
 tika
 tqdm
-openai
 pdfminer.six
 load_dotenv
 tomotopy
@@ -21,8 +20,6 @@ pytest-dotenv
 python-dotenv
 networkx
 scipy
-networkx
-tomotopy
 soup-nuts @ git+https://git@github.com/ahoho/topics.git@dev
 black==23.10.1
 pytz==2023.3
@@ -35,6 +32,4 @@ anytree==2.12.1
 urllib3<2
 acl-anthology-py
 seaborn
-requests
-tenacity
 -e .
