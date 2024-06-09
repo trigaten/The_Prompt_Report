@@ -344,6 +344,9 @@ class GraphVisualizer:
         #     citation_counts = json.load(file)
 
         # exit()
+        with open('citation_counts.json', 'w') as f:
+            json.dump(citation_counts, f, indent=4)
+            
         for title, technique in title_to_technique.items():
             paper_id = self.semantic_scholar_api.query_paper_id(title)
             citation_count = sum(paper_id in refs for refs in paper_references.values())
