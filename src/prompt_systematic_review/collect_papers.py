@@ -1,4 +1,4 @@
-from prompt_systematic_review.get_papers.download_arxiv import query_archive
+from prompt_systematic_review.get_papers.download_arxiv import query_arxiv
 from prompt_systematic_review.get_papers.download_semantic_scholar import (
     query_semantic_scholar,
 )
@@ -54,7 +54,7 @@ def downloadPaper(url: str, title: str):
 
 def collect():
     # download CSV of arXiv results
-    arxiv_df = query_archive(verbose=True)
+    arxiv_df = query_arxiv(verbose=True)
     # clean arXiv CSV
     arxiv_df["title"] = arxiv_df["title"].apply(lambda x: process_paper_title(x))
     arxiv_df["source"] = "arXiv"
@@ -128,7 +128,7 @@ def collect():
             # PDFRead Error is likely because of corrupted or empty PDF, can be ignored
             if str(e) != "EOF marker not found":
                 print(f"Error processing {filename}: {e}")
-    # TODO: there is smtg weird going on here...
+    
 
     # Get a list of all the paper titles in the directory (without the .pdf extension)
     paper_titles = [
