@@ -149,7 +149,6 @@ def collect():
             # PDFRead Error is likely because of corrupted or empty PDF, can be ignored
             if str(e) != "EOF marker not found":
                 print(f"Error processing {filename}: {e}")
-    
 
     # Get a list of all the paper titles in the directory (without the .pdf extension)
     paper_titles = [

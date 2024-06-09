@@ -4,6 +4,7 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from prompt_systematic_review.config_data import DataFolderPath
 
+
 def keyword_wordcloud():
     """
     Generate a word cloud from the abstracts of the papers in the master_papers.csv file.
@@ -52,6 +53,7 @@ def keyword_wordcloud():
 class Experiment:
     def run():
         keyword_wordcloud()
+
 
 if __name__ == "__main__":
     keyword_wordcloud()

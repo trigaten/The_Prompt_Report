@@ -34,5 +34,3 @@ def getDataPath():
     :rtype: str
     """
     return os.path.abspath(DataFolderPath)
-
-

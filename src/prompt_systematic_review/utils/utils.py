@@ -36,4 +36,3 @@ def process_paper_title(title: str) -> str:
     # .replace(" ", "")
     # s = re.sub(r'\W+', '', s)
     return s
-

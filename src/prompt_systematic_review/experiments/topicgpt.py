@@ -93,5 +93,6 @@ class Experiment:
     def run():
         run_topic_gpt()
 
+
 if __name__ == "__main__":
     run_topic_gpt()

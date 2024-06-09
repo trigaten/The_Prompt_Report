@@ -4,7 +4,7 @@ from prompt_systematic_review import config_data
 config_data.DataFolderPath = "./data"
 config_data.DotenvPath = "./.env"
 
-### IF RUNNING EXPERIMENTS MULTIPLE TIMES, PLEASE SET 
+### IF RUNNING EXPERIMENTS MULTIPLE TIMES, PLEASE SET
 ### hasDownloadedPapers TO True IN config_data.py or uncomment the following line
 ### config_data.hasDownloadedPapers = True
 

@@ -8,29 +8,31 @@ after cloning, run `pip install -r requirements.txt` from root
 
 Make a file at root called `.env`.
 
-For OpenAI: https://platform.openai.com/docs/quickstart 
-For Hugging Face: https://huggingface.co/docs/hub/security-tokens, also run `huggingface-cli login`
-For Sematic Scholar: https://www.semanticscholar.org/product/api#api-key 
+For OpenAI: https://platform.openai.com/docs/quickstart <br>
+For Hugging Face: https://huggingface.co/docs/hub/security-tokens, also run `huggingface-cli login` <br>
+For Sematic Scholar: https://www.semanticscholar.org/product/api#api-key  <br>
 
 Use the reference `example.env` file to fill in your API keys/tokens. 
-`OPENAI_API_KEY=sk.-...`
-`SEMANTIC_SCHOLAR_API_KEY=...`
-`HF_TOKEN=...`
+```
+OPENAI_API_KEY=sk.-...
+SEMANTIC_SCHOLAR_API_KEY=...
+HF_TOKEN=...
+```
 
 ## Setting up keys for running tests
-Then to load the .env file, type:
-pip install pytest-dotenv
+Then to load the .env file, type: <br>
+`pip install pytest-dotenv`
 
-You can also choose to update the env file by doing:
-py.test --envfile path/to/.env
+You can also choose to update the env file by doing: <br>
+`py.test --envfile path/to/.env`
 
 In the case that you have several .env files, create a new env_files in the pytest config folder and type:
-
+```
 env_files =
 .env
 .test.env
 .deploy.env
-
+```
 ## Structure of the Repository
 The script `main.py` calls the necessary functions to download all the papers, deduplicate and filter them, and then run all the experiments. 
 

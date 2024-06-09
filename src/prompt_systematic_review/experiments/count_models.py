@@ -46,6 +46,7 @@ model_names = [
     "SAM",
 ]
 
+
 def parse_pdf(file_path):
     """
     Extract text from a PDF file.
@@ -127,6 +128,7 @@ def count_models():
 class Experiment:
     def run():
         count_models()
+
 
 if __name__ == "__main__":
     count_models()

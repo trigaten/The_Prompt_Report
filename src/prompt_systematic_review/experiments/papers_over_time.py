@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from prompt_systematic_review.config_data import DataFolderPath
 
+
 def papers_over_time():
     """
     Generate plots showing the number of papers submitted over time.
@@ -158,6 +159,7 @@ def papers_over_time():
 class Experiment:
     def run():
         papers_over_time()
+
 
 if __name__ == "__main__":
     papers_over_time()

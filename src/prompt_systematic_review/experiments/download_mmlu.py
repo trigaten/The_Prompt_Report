@@ -3,6 +3,7 @@ import requests
 import tarfile
 import shutil
 
+
 def download_and_extract(url, target_path):
     """
     Download a file from the given URL and save it to the target path.
@@ -16,6 +17,7 @@ def download_and_extract(url, target_path):
         with open(target_path, "wb") as f:
             f.write(response.raw.read())
 
+
 def extract_tar(file_path, extract_path):
     """
     Extract the contents of a .tar file to the specified extract path.
@@ -26,6 +28,7 @@ def extract_tar(file_path, extract_path):
     # Extract the .tar file
     with tarfile.open(file_path) as tar:
         tar.extractall(path=extract_path)
+
 
 def move_and_rename_extracted_contents(extracted_folder, final_folder, new_folder_name):
     """
@@ -46,6 +49,7 @@ def move_and_rename_extracted_contents(extracted_folder, final_folder, new_folde
         shutil.move(item_path, mmlu_folder)
 
     return mmlu_folder
+
 
 def download_mmlu():
     """
@@ -77,9 +81,11 @@ def download_mmlu():
     if os.path.exists(extract_path):
         shutil.rmtree(extract_path)
 
+
 class Experiment:
     def run():
         download_mmlu()
+
 
 if __name__ == "__main__":
     download_mmlu()

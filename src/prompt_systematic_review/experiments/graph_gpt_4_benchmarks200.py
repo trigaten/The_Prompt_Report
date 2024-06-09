@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from prompt_systematic_review.config_data import DataFolderPath
 import os
 
+
 def graph_gt_4_benchmarks200():
     """
     Function to plot the GPT-4 benchmarks for role prompts and non-role prompts.
@@ -99,9 +100,11 @@ def graph_gt_4_benchmarks200():
         bbox_inches="tight",
     )
 
+
 class Experiment:
     def run():
         graph_gt_4_benchmarks200()
+
 
 if __name__ == "__main__":
     graph_gt_4_benchmarks200()

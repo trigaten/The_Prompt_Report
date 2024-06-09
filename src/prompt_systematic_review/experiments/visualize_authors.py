@@ -101,5 +101,6 @@ class Experiment:
     def run():
         visualize_authors()
 
+
 if __name__ == "__main__":
     visualize_authors()

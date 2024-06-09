@@ -21,6 +21,7 @@ datasets = [
     "HellaSwag",
 ]
 
+
 def parse_pdf(file_path):
     """
     Extract text from a PDF file.
@@ -36,6 +37,7 @@ def parse_pdf(file_path):
     except Exception as e:
         print(f"Error processing {file_path}: {e}")
         return ""
+
 
 def process_file(args):
     """
@@ -55,6 +57,7 @@ def process_file(args):
         }
         return filename, counts
     return filename, {}
+
 
 def count_dataset_mentions_parallel(folder_path):
     """
@@ -80,6 +83,7 @@ def count_dataset_mentions_parallel(folder_path):
                 dataset_counts[dataset] += count
 
     return dataset_counts
+
 
 def graph_dataset_citations():
     """
@@ -118,9 +122,11 @@ def graph_dataset_citations():
 
     plt.savefig(output_file_path, format="pdf", bbox_inches="tight")
 
+
 class Experiment:
     def run():
         graph_dataset_citations()
+
 
 if __name__ == "__main__":
     graph_dataset_citations()

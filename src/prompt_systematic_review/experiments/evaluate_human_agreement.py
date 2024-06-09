@@ -17,13 +17,13 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def evaluate_human_agreement(input_file="arxiv_papers_with_abstract.csv"):
     """
     Evaluate the agreement between AI predictions and human reviews on a dataset.
-    
-    This function reads a dataset from a CSV file, processes each paper's title and abstract using the 
+
+    This function reads a dataset from a CSV file, processes each paper's title and abstract using the
     `review_abstract_title_categorical` function, and compares the AI predictions with human reviews.
-    
-    The results are saved to a new CSV file, and metrics such as precision, recall, accuracy, and F1 score 
+
+    The results are saved to a new CSV file, and metrics such as precision, recall, accuracy, and F1 score
     are computed and saved to a text file.
-    
+
     :param input_file: The name of the input CSV file containing the dataset. Defaults to "arxiv_papers_with_abstract.csv".
     :type input_file: str
     """
@@ -53,9 +53,9 @@ def evaluate_human_agreement(input_file="arxiv_papers_with_abstract.csv"):
     df.to_csv(
         os.path.join(
             DataFolderPath,
-            "experiments_output" + os.sep + "arxiv_papers_with_ai_labels.csv"
+            "experiments_output" + os.sep + "arxiv_papers_with_ai_labels.csv",
         ),
-        index=False
+        index=False,
     )
 
     # Read blacklist data
@@ -92,7 +92,12 @@ def evaluate_human_agreement(input_file="arxiv_papers_with_abstract.csv"):
     print(f"F1 Score: {f1_score}")
 
     # Write metrics to a text file
-    with open(os.path.join(DataFolderPath, "experiments_output" + os.sep + "agreement_metrics.txt"), "w") as f:
+    with open(
+        os.path.join(
+            DataFolderPath, "experiments_output" + os.sep + "agreement_metrics.txt"
+        ),
+        "w",
+    ) as f:
         f.write(f"Precision: {precision}\n")
         f.write(f"Recall: {recall}\n")
         f.write(f"Accuracy: {accuracy}\n")
