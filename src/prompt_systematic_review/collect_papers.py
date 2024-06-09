@@ -1,4 +1,4 @@
-from prompt_systematic_review.get_papers.download_arxiv import query_archive
+from prompt_systematic_review.get_papers.download_arxiv import query_arxiv
 from prompt_systematic_review.get_papers.download_semantic_scholar import (
     query_semantic_scholar,
 )
@@ -33,6 +33,14 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def downloadPaper(url: str, title: str):
+    """
+    Download a paper given its URL and title.
+
+    :param url: The URL of the paper to download.
+    :type url: str
+    :param title: The title of the paper.
+    :type title: str
+    """
     response = requests.get(url)
     recurse = 0
     while (
@@ -53,8 +61,22 @@ def downloadPaper(url: str, title: str):
 
 
 def collect():
+    """
+    Collect papers from various sources, deduplicate and filter them, and save them to a CSV file.
+
+    This function performs the following steps:
+    1. Downloads papers from arXiv, Semantic Scholar, and ACL using the respective query functions.
+    2. Cleans and deduplicates the downloaded papers.
+    3. Removes papers that are in the blacklist.
+    4. Downloads the PDF files of the remaining papers using multithreading.
+    5. Filters out papers that don't contain the word "prompt" in their content.
+    6. Performs an automated review of the papers using the GPT-4 model.
+    7. Combines the human-reviewed and AI-reviewed papers into a final dataset.
+    8. Removes PDF files of papers that are not in the final dataset.
+    9. Saves the final dataset to a CSV file named "master_papers.csv".
+    """
     # download CSV of arXiv results
-    arxiv_df = query_archive(verbose=True)
+    arxiv_df = query_arxiv(verbose=True)
     # clean arXiv CSV
     arxiv_df["title"] = arxiv_df["title"].apply(lambda x: process_paper_title(x))
     arxiv_df["source"] = "arXiv"
@@ -117,7 +139,6 @@ def collect():
                         deduplicated_df["title"] != filename[:-4]
                     ]
                     # Add the paper to the new blacklist
-                    # TODO: this is messed up, results in an array of 80K single characters
                     new_blacklist += filename[:-4]
 
         except Exception as e:
@@ -128,7 +149,6 @@ def collect():
             # PDFRead Error is likely because of corrupted or empty PDF, can be ignored
             if str(e) != "EOF marker not found":
                 print(f"Error processing {filename}: {e}")
-    # TODO: there is smtg weird going on here...
 
     # Get a list of all the paper titles in the directory (without the .pdf extension)
     paper_titles = [

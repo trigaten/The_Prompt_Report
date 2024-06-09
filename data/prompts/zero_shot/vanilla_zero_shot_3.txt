@@ -1,1 +1,0 @@
-Solve the problem and return "A", "B", "C" or "D".

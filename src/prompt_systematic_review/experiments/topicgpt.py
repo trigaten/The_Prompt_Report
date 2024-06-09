@@ -9,6 +9,16 @@ import subprocess
 
 
 def run_topic_gpt():
+    """
+    Run the TopicGPT experiment to generate a topic distribution for the papers.
+
+    This function sets up the necessary data and prompt files, runs the generation script,
+    generates a tree structure from the generated topics, filters out topics below a certain threshold,
+    and visualizes the topic distribution using a horizontal bar chart.
+
+    :return: None
+    :rtype: None
+    """
     sns.set_style("whitegrid")
     plt.rcParams.update({"font.size": 17})
 
@@ -82,3 +92,7 @@ def run_topic_gpt():
 class Experiment:
     def run():
         run_topic_gpt()
+
+
+if __name__ == "__main__":
+    run_topic_gpt()

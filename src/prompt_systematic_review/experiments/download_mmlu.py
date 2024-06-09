@@ -5,6 +5,12 @@ import shutil
 
 
 def download_and_extract(url, target_path):
+    """
+    Download a file from the given URL and save it to the target path.
+
+    :param url: The URL of the file to download.
+    :param target_path: The path where the downloaded file will be saved.
+    """
     # Download the file
     response = requests.get(url, stream=True)
     if response.status_code == 200:
@@ -13,12 +19,27 @@ def download_and_extract(url, target_path):
 
 
 def extract_tar(file_path, extract_path):
+    """
+    Extract the contents of a .tar file to the specified extract path.
+
+    :param file_path: The path to the .tar file.
+    :param extract_path: The path where the contents will be extracted.
+    """
     # Extract the .tar file
     with tarfile.open(file_path) as tar:
         tar.extractall(path=extract_path)
 
 
 def move_and_rename_extracted_contents(extracted_folder, final_folder, new_folder_name):
+    """
+    Move and rename the contents of the extracted folder to the final folder.
+
+    :param extracted_folder: The path to the extracted folder.
+    :param final_folder: The path to the final folder.
+    :param new_folder_name: The new name for the folder.
+    :return: The path to the final folder.
+    :rtype: str
+    """
     # Move and rename the contents of the extracted folder
     mmlu_folder = os.path.join(final_folder, new_folder_name)
     os.makedirs(mmlu_folder, exist_ok=True)
@@ -31,6 +52,9 @@ def move_and_rename_extracted_contents(extracted_folder, final_folder, new_folde
 
 
 def download_mmlu():
+    """
+    Download the MMLU dataset and extract it to the final data folder.
+    """
     # URL of the .tar file
     url = "https://people.eecs.berkeley.edu/~hendrycks/data.tar"
 
@@ -61,3 +85,7 @@ def download_mmlu():
 class Experiment:
     def run():
         download_mmlu()
+
+
+if __name__ == "__main__":
+    download_mmlu()

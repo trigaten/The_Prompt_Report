@@ -23,6 +23,14 @@ datasets = [
 
 
 def parse_pdf(file_path):
+    """
+    Extract text from a PDF file.
+
+    :param file_path: Path to the PDF file
+    :type file_path: str
+    :return: Extracted text
+    :rtype: str
+    """
     try:
         text = extract_text(file_path)
         return text
@@ -32,6 +40,14 @@ def parse_pdf(file_path):
 
 
 def process_file(args):
+    """
+    Process a single file to count mentions of predefined datasets.
+
+    :param args: Tuple containing folder path and filename
+    :type args: tuple
+    :return: Filename and a dictionary of dataset mention counts
+    :rtype: tuple (str, dict)
+    """
     folder_path, filename = args
     file_path = os.path.join(folder_path, filename)
     if filename.endswith(".pdf"):
@@ -44,6 +60,14 @@ def process_file(args):
 
 
 def count_dataset_mentions_parallel(folder_path):
+    """
+    Count mentions of datasets in all PDF files in a folder using parallel processing.
+
+    :param folder_path: Path to the folder containing PDF files
+    :type folder_path: str
+    :return: Dictionary with datasets as keys and their mention counts as values
+    :rtype: dict
+    """
     files = os.listdir(folder_path)
     files = [f for f in files if f.endswith(".pdf")]
 
@@ -62,6 +86,13 @@ def count_dataset_mentions_parallel(folder_path):
 
 
 def graph_dataset_citations():
+    """
+    Graph the number of citations for each dataset mentioned in the papers.
+
+    Generates a bar graph of dataset mentions, saves the graph as a PDF.
+
+    :return: None
+    """
     papers_dataset_path = os.path.join(DataFolderPath, "papers/")
     dataset_usage_counts = count_dataset_mentions_parallel(papers_dataset_path)
 

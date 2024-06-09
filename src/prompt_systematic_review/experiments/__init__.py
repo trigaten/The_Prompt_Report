@@ -14,10 +14,12 @@ from . import run_tomotopy
 from . import topicgpt
 from . import download_mmlu
 from . import graph_internal_references
-from . import graph
+
 
 experiments = [
     count_tool_mentions.Experiment,
+    download_mmlu.Experiment,
+    count_models.Experiment,
     eval_prompts.Experiment,
     evaluate_human_agreement.Experiment,
     graph_dataset_citations.Experiment,
@@ -30,5 +32,5 @@ experiments = [
     graph_gpt_3_5_benchmarks.Experiment,
     run_tomotopy.Experiment,
     topicgpt.Experiment,
-    count_models.Experiment,
+    graph_internal_references.Experiment,
 ]

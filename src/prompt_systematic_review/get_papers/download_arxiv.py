@@ -6,7 +6,7 @@ from prompt_systematic_review.utils import keywords
 import tqdm
 
 
-def query_archive(downloadName: str = None, verbose=False):
+def query_arxiv(downloadName: str = None, verbose=False):
     """
     Download papers from arxiv and save them to a csv file.
     :param downloadName: The name of the csv file to save the data to.

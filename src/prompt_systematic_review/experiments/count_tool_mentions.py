@@ -14,9 +14,14 @@ from prompt_systematic_review.config_data import DataFolderPath
 The script takes one arg, for the path location of the full paper dataset."""
 
 
-# TODO improvement: use word embeddings to find similar tool names.
-# for now, assume the common tool name will appear in the paper
-def count_tool_mentions(input_folder_path: str, output_file_path: str, tool_lst: list):
+def count_tool_mentions(input_folder_path, output_file_path, tool_lst):
+    """
+    Count tool mentions in the papers dataset and save the results to a CSV file.
+
+    :param input_folder_path: The path to the folder containing the paper files.
+    :param output_file_path: The path to the output CSV file.
+    :param tool_lst: The list of tools to count mentions for.
+    """
     tool_counts = defaultdict(list)
 
     # Iterate through all files in the input folder, count tool mentions
@@ -54,7 +59,9 @@ def count_tool_mentions(input_folder_path: str, output_file_path: str, tool_lst:
 
 
 def run_count_tool_mentions():
-    # script portion
+    """
+    Run the tool mention counting process for models, datasets, and frameworks.
+    """
     masterpaperscsv_file_path = os.path.join(DataFolderPath, "master_papers.csv")
 
     # get all paper ids from our dataset
@@ -175,3 +182,7 @@ def run_count_tool_mentions():
 class Experiment:
     def run():
         run_count_tool_mentions()
+
+
+if __name__ == "__main__":
+    run_count_tool_mentions()

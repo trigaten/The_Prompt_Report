@@ -93,7 +93,7 @@ class ArXivSource(PaperSource):
 
     def getPaperSrc(self, paper: Paper, destinationFolder: str = None, recurse=0):
         """
-        download a paper.
+        Download a paper given a paper object.
 
         :param paper: The paper to get the download of.
         :type paper: Paper
