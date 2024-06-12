@@ -10,7 +10,6 @@ is available on [Hugging Face](https://huggingface.co/datasets/PromptSystematicR
 
 ## Table of Contents
 - [Prompt Engineering Survey](#prompt-engineering-survey)
-  - [Table of Contents](#table-of-contents)
   - [Install requirements](#install-requirements)
   - [Setting up API keys](#setting-up-api-keys)
   - [Setting up keys for running tests](#setting-up-keys-for-running-tests)
