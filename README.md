@@ -5,9 +5,9 @@ prompting or prompt engineering. While prompting is a widespread and highly rese
 exists conflicting terminology and a poor ontological understanding of what constitutes a prompt due to the
 area’s nascency. This repository is the code for The Prompt Report, our research that establishes a structured 
 understanding of prompts, by assembling a taxonomy of prompting techniques and analyzing their use. This code 
-allows for the automated review of papers, the collection of data, and the running of experiments. Our [dataset 
-is available on Hugging Face](https://huggingface.co/datasets/PromptSystematicReview/ThePromptReport) and our [paper is 
-available on ArXiv.org](https://arxiv.org/pdf/2406.06608)
+allows for the automated review of papers, the collection of data, and the running of experiments. Our dataset 
+is available on [Hugging Face](https://huggingface.co/datasets/PromptSystematicReview/ThePromptReport) and our paper is 
+available on [ArXiv.org](https://arxiv.org/pdf/2406.06608). Information is also available on our [website](https://trigaten.github.io/Prompt_Survey_Site/)
 
 ## Table of Contents
 - [Prompt Engineering Survey](#prompt-engineering-survey)
