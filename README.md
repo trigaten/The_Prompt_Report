@@ -7,7 +7,7 @@ area’s nascency. This repository is the code for The Prompt Report, our resear
 understanding of prompts, by assembling a taxonomy of prompting techniques and analyzing their use. This code 
 allows for the automated review of papers, the collection of data, and the running of experiments. Our dataset 
 is available on [Hugging Face](https://huggingface.co/datasets/PromptSystematicReview/ThePromptReport) and our paper is 
-available on [ArXiv.org](https://arxiv.org/pdf/2406.06608). Information is also available on our [website](https://trigaten.github.io/Prompt_Survey_Site/)
+available on [ArXiv.org](https://arxiv.org/pdf/2406.06608). Information is also available on our [website](https://trigaten.github.io/Prompt_Survey_Site/).
 
 ## Table of Contents
 - [Prompt Engineering Survey](#prompt-engineering-survey)
