@@ -1,4 +1,4 @@
-# Prompt Engineering Survey
+# The Prompt Report Code Repository 
 Generative Artificial Intelligence (GenAI) systems are being increasingly deployed across all parts of
 industry and research settings. Developers and end users interact with these systems through the use of
 prompting or prompt engineering. While prompting is a widespread and highly researched concept, there
@@ -6,7 +6,8 @@ exists conflicting terminology and a poor ontological understanding of what cons
 area’s nascency. This repository is the code for The Prompt Report, our research that establishes a structured 
 understanding of prompts, by assembling a taxonomy of prompting techniques and analyzing their use. This code 
 allows for the automated review of papers, the collection of data, and the running of experiments. Our dataset 
-is available on [Hugging Face](https://huggingface.co/datasets/PromptSystematicReview/ThePromptReport)
+is available on [Hugging Face](https://huggingface.co/datasets/PromptSystematicReview/ThePromptReport) and our paper is 
+available on [ArXiv.org](https://arxiv.org/pdf/2406.06608). Information is also available on our [website](https://trigaten.github.io/Prompt_Survey_Site/).
 
 ## Table of Contents
 - [Prompt Engineering Survey](#prompt-engineering-survey)
